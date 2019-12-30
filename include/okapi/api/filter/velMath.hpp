@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -16,66 +16,53 @@
 #include <memory>
 
 namespace okapi {
-class VelMathArgs {
-  public:
-  explicit VelMathArgs(double iticksPerRev, QTime isampleTime = 0_ms);
-  VelMathArgs(double iticksPerRev,
-              const std::shared_ptr<Filter> &ifilter,
-              QTime isampleTime = 0_ms);
-
-  virtual ~VelMathArgs();
-
-  double ticksPerRev;
-  std::shared_ptr<Filter> filter;
-  QTime sampleTime;
-};
-
 class VelMath {
   public:
   /**
-   * Velocity math helper. Calculates filtered velocity. Throws a std::invalid_argument exception
-   * if iticksPerRev is zero.
+   * Velocity math helper. Calculates filtered velocity. Throws a `std::invalid_argument` exception
+   * if `iticksPerRev` is zero.
    *
-   * @param iticksPerRev number of ticks per revolution (or whatever units you are using)
-   * @param ifilter filter used for filtering the calculated velocity
-   * @param isampleTime the minimum time between velocity measurements
+   * @param iticksPerRev The number of ticks per revolution (or whatever units you are using).
+   * @param ifilter The filter used for filtering the calculated velocity.
+   * @param isampleTime The minimum time between velocity measurements.
+   * @param ilogger The logger this instance will log to.
    */
   VelMath(double iticksPerRev,
-          const std::shared_ptr<Filter> &ifilter,
+          std::unique_ptr<Filter> ifilter,
           QTime isampleTime,
-          std::unique_ptr<AbstractTimer> iloopDtTimer);
-
-  VelMath(const VelMathArgs &iparams, std::unique_ptr<AbstractTimer> iloopDtTimer);
+          std::unique_ptr<AbstractTimer> iloopDtTimer,
+          std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   virtual ~VelMath();
 
   /**
    * Calculates the current velocity and acceleration. Returns the (filtered) velocity.
    *
-   * @param inewPos new position
-   * @return current (filtered) velocity
+   * @param inewPos The new position measurement.
+   * @return The new velocity estimate.
    */
   virtual QAngularSpeed step(double inewPos);
 
   /**
-   * Sets ticks per revolution (or whatever units you are using).
+   * Sets ticks per revolution (or whatever units you are using). Throws a `std::invalid_argument`
+   * exception if iticksPerRev is zero.
    *
-   * @para iTPR ticks per revolution
+   * @param iTPR The number of ticks per revolution.
    */
   virtual void setTicksPerRev(double iTPR);
 
   /**
-   * Returns the last calculated velocity.
+   * @return The last calculated velocity.
    */
   virtual QAngularSpeed getVelocity() const;
 
   /**
-   * Returns the last calculated acceleration.
+   * @return The last calculated acceleration.
    */
   virtual QAngularAcceleration getAccel() const;
 
   protected:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
   QAngularSpeed vel{0_rpm};
   QAngularSpeed lastVel{0_rpm};
   QAngularAcceleration accel{0.0};
@@ -84,6 +71,6 @@ class VelMath {
 
   QTime sampleTime;
   std::unique_ptr<AbstractTimer> loopDtTimer;
-  std::shared_ptr<Filter> filter;
+  std::unique_ptr<Filter> filter;
 };
 } // namespace okapi

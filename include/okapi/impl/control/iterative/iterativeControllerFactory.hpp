@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -13,6 +13,7 @@
 #include "okapi/api/util/mathUtil.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
+#include "okapi/impl/filter/velMathFactory.hpp"
 
 namespace okapi {
 class IterativeControllerFactory {
@@ -24,13 +25,16 @@ class IterativeControllerFactory {
    * @param ikI integral gain
    * @param ikD derivative gain
    * @param ikBias controller bias (constant offset added to the output)
+   * @param iderivativeFilter A filter for filtering the derivative term.
+   * @param ilogger The logger this instance will log to.
    */
   static IterativePosPIDController
   posPID(double ikP,
          double ikI,
          double ikD,
          double ikBias = 0,
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+         const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller.
@@ -39,14 +43,17 @@ class IterativeControllerFactory {
    * @param ikD derivative gain
    * @param ikF feed-forward gain
    * @param ikSF a feed-forward gain to counteract static friction
+   * @param iderivativeFilter A filter for filtering the derivative term.
+   * @param ilogger The logger this instance will log to.
    */
   static IterativeVelPIDController
   velPID(double ikP,
          double ikD,
          double ikF = 0,
          double ikSF = 0,
-         const VelMathArgs &iparams = VelMathArgs(imev5TPR),
-         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+         std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5GreenTPR),
+         std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+         const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller that automatically writes to the motor.
@@ -56,6 +63,9 @@ class IterativeControllerFactory {
    * @param ikD derivative gain
    * @param ikF feed-forward gain
    * @param ikSF a feed-forward gain to counteract static friction
+   * @param ivelMath The VelMath.
+   * @param iderivativeFilter A filter for filtering the derivative term.
+   * @param ilogger The logger this instance will log to.
    */
   static IterativeMotorVelocityController
   motorVelocity(Motor imotor,
@@ -63,7 +73,9 @@ class IterativeControllerFactory {
                 double ikD,
                 double ikF = 0,
                 double ikSF = 0,
-                const VelMathArgs &iparams = VelMathArgs(imev5TPR));
+                std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5GreenTPR),
+                std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+                const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller that automatically writes to the motor.
@@ -73,6 +85,9 @@ class IterativeControllerFactory {
    * @param ikD derivative gain
    * @param ikF feed-forward gain
    * @param ikSF a feed-forward gain to counteract static friction
+   * @param ivelMath The VelMath.
+   * @param iderivativeFilter A filter for filtering the derivative term.
+   * @param ilogger The logger this instance will log to.
    */
   static IterativeMotorVelocityController
   motorVelocity(MotorGroup imotor,
@@ -80,7 +95,9 @@ class IterativeControllerFactory {
                 double ikD,
                 double ikF = 0,
                 double ikSF = 0,
-                const VelMathArgs &iparams = VelMathArgs(imev5TPR));
+                std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5GreenTPR),
+                std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+                const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Velocity PD controller that automatically writes to the motor.

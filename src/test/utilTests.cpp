@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -6,13 +6,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "test/tests/impl/utilTests.hpp"
-#include "okapi/api.hpp"
 #include "test/testRunner.hpp"
 
-void testUtils() {
-  using namespace okapi;
-  using namespace snowhouse;
+using namespace okapi;
+using namespace snowhouse;
 
+static void testUtils() {
   {
     test_printf("Testing Rate");
 
@@ -45,7 +44,7 @@ void testUtils() {
       uint32_t lastTime = pros::millis();
 
       for (int i = 0; i < 10; i++) {
-        rate.delay(10);
+        rate.delayUntil(10_ms);
 
         // Static cast so the compiler doesn't complain about comparing signed and unsigned values
         test("Rate " + std::to_string(i),
@@ -129,5 +128,6 @@ void testUtils() {
 }
 
 void runUtilTests() {
+  test_printf("Testing Util");
   testUtils();
 }

@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -20,7 +20,8 @@ class XDriveModelTest : public ::testing::Test {
             bottomLeftMotor,
             leftSensor,
             rightSensor,
-            127) {
+            127,
+            v5MotorMaxVoltage) {
   }
 
   void assertAllMotorsLastVelocity(const std::int16_t expectedLastVelocity) const {
@@ -92,6 +93,32 @@ TEST_F(XDriveModelTest, DriveVectorHalfPower) {
 TEST_F(XDriveModelTest, DriveVectorBoundsInput) {
   model.driveVector(0.9, 0.25);
   assertLeftAndRightMotorsLastVelocity(127, 71);
+}
+
+TEST_F(XDriveModelTest, DriveVectorAndRotateAreEquivalent) {
+  for (double i = -1; i < 1;) {
+    model.driveVector(0, i);
+    auto lastTopLeft = topLeftMotor->lastVelocity;
+    auto lastTopRight = topRightMotor->lastVelocity;
+    auto lastBottomRight = bottomRightMotor->lastVelocity;
+    auto lastBottomLeft = bottomLeftMotor->lastVelocity;
+    model.rotate(i);
+    EXPECT_FLOAT_EQ(topLeftMotor->lastVelocity, lastTopLeft);
+    EXPECT_FLOAT_EQ(topRightMotor->lastVelocity, lastTopRight);
+    EXPECT_FLOAT_EQ(bottomRightMotor->lastVelocity, lastBottomRight);
+    EXPECT_FLOAT_EQ(bottomLeftMotor->lastVelocity, lastBottomLeft);
+    i += 0.001;
+  }
+}
+
+TEST_F(XDriveModelTest, DriveVectorVoltageHalfPower) {
+  model.driveVectorVoltage(0.25, 0.25);
+  assertLeftAndRightMotorsLastVoltage(6000, 0);
+}
+
+TEST_F(XDriveModelTest, DriveVectorVoltageBoundsInput) {
+  model.driveVectorVoltage(0.9, 0.25);
+  assertLeftAndRightMotorsLastVoltage(12000, 6782);
 }
 
 TEST_F(XDriveModelTest, StopTest) {
@@ -176,7 +203,7 @@ TEST_F(XDriveModelTest, ArcadeThresholds) {
 
 TEST_F(XDriveModelTest, ArcadeNegativeZero) {
   model.arcade(-0.0, -1.0);
-  
+
   assertAllMotorsLastVelocity(0);
   assertLeftAndRightMotorsLastVoltage(-12000, 12000);
 }
@@ -335,4 +362,19 @@ TEST_F(XDriveModelTest, Reset) {
 
   EXPECT_EQ(leftSensor->get(), 0);
   EXPECT_EQ(rightSensor->get(), 0);
+}
+
+TEST_F(XDriveModelTest, SetMaxVoltageGreaterThan12000) {
+  model.setMaxVoltage(12001);
+  EXPECT_EQ(model.getMaxVoltage(), 12000);
+}
+
+TEST_F(XDriveModelTest, SetMaxVoltageLessThan0) {
+  model.setMaxVoltage(-1);
+  EXPECT_EQ(model.getMaxVoltage(), 0);
+}
+
+TEST_F(XDriveModelTest, SetMaxVelocityLessThan0) {
+  model.setMaxVelocity(-1);
+  EXPECT_EQ(model.getMaxVelocity(), 0);
 }

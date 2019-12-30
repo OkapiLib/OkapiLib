@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -16,7 +16,32 @@ AsyncPosPIDController::AsyncPosPIDController(
   const double ikI,
   const double ikD,
   const double ikBias,
-  std::unique_ptr<Filter> iderivativeFilter)
+  const double iratio,
+  std::unique_ptr<Filter> iderivativeFilter,
+  const std::shared_ptr<Logger> &ilogger)
+  : AsyncPosPIDController(std::make_shared<OffsetableControllerInput>(iinput),
+                          ioutput,
+                          itimeUtil,
+                          ikP,
+                          ikI,
+                          ikD,
+                          ikBias,
+                          iratio,
+                          std::move(iderivativeFilter),
+                          ilogger) {
+}
+
+AsyncPosPIDController::AsyncPosPIDController(
+  const std::shared_ptr<OffsetableControllerInput> &iinput,
+  const std::shared_ptr<ControllerOutput<double>> &ioutput,
+  const TimeUtil &itimeUtil,
+  const double ikP,
+  const double ikI,
+  const double ikD,
+  const double ikBias,
+  const double iratio,
+  std::unique_ptr<Filter> iderivativeFilter,
+  const std::shared_ptr<Logger> &ilogger)
   : AsyncWrapper<double, double>(
       iinput,
       ioutput,
@@ -26,6 +51,13 @@ AsyncPosPIDController::AsyncPosPIDController(
                                                   ikBias,
                                                   itimeUtil,
                                                   std::move(iderivativeFilter)),
-      itimeUtil.getRateSupplier()) {
+      itimeUtil.getRateSupplier(),
+      iratio,
+      ilogger),
+    offsettableInput(iinput) {
+}
+
+void AsyncPosPIDController::tarePosition() {
+  offsettableInput->tarePosition();
 }
 } // namespace okapi

@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -18,24 +18,29 @@ class AbstractMotor : public ControllerOutput<double> {
    * Indicates the 'brake mode' of a motor.
    */
   enum class brakeMode {
-    coast = 0, // Motor coasts when stopped, traditional behavior
-    brake = 1, // Motor brakes when stopped
-    hold = 2,  // Motor actively holds position when stopped
+    coast = 0, ///< Motor coasts when stopped, traditional behavior
+    brake = 1, ///< Motor brakes when stopped
+    hold = 2,  ///< Motor actively holds position when stopped
     invalid = INT32_MAX
   };
 
   /**
    * Indicates the units used by the motor encoders.
    */
-  enum class encoderUnits { degrees = 0, rotations = 1, counts = 2, invalid = INT32_MAX };
+  enum class encoderUnits {
+    degrees = 0,        ///< degrees
+    rotations = 1,      ///< rotations
+    counts = 2,         ///< counts
+    invalid = INT32_MAX ///< invalid
+  };
 
   /**
    * Indicates the internal gear ratio of a motor.
    */
   enum class gearset {
-    red = 100,   // 36:1, 100 RPM, Red gear set
-    green = 200, // 18:1, 200 RPM, Green gear set
-    blue = 600,  // 6:1,  600 RPM, Blue gear set
+    red = 100,   ///< 36:1, 100 RPM, Red gear set
+    green = 200, ///< 18:1, 200 RPM, Green gear set
+    blue = 600,  ///< 6:1,  600 RPM, Blue gear set
     invalid = INT32_MAX
   };
 
@@ -46,11 +51,11 @@ class AbstractMotor : public ControllerOutput<double> {
     /**
      * A simple structure representing the full ratio between motor and wheel.
      *
-     * The ratio is motor rotation : wheel rotation. So for example, if one motor rotation
-     * corresponds to two wheel rotations, the ratio is 1.0/2.0.
+     * The ratio is `motor rotation : wheel rotation`, e.x., if one motor rotation
+     * corresponds to two wheel rotations, the ratio is `1.0/2.0`.
      *
-     * @param igearset the motor's gearset
-     * @param iratio the ratio of motor rotation to wheel rotation
+     * @param igearset The gearset in the motor.
+     * @param iratio The ratio of motor rotation to wheel rotation.
      */
     GearsetRatioPair(const gearset igearset, const double iratio = 1)
       : internalGearset(igearset), ratio(iratio) {
@@ -58,8 +63,8 @@ class AbstractMotor : public ControllerOutput<double> {
 
     ~GearsetRatioPair() = default;
 
-    const gearset internalGearset;
-    const double ratio = 1;
+    gearset internalGearset;
+    double ratio = 1;
   };
 
   virtual ~AbstractMotor();
@@ -178,6 +183,18 @@ class AbstractMotor : public ControllerOutput<double> {
   virtual double getPosition() = 0;
 
   /**
+   * Gets the positional error (target position minus actual position) of the motor in its encoder
+   * units.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @return The motor's positional error in its encoder units or PROS_ERR_F if the operation
+   * failed, setting errno.
+   */
+  double getPositionError();
+
+  /**
    * Sets the "absolute" zero position of the motor to its current position.
    *
    * This function uses the following values of errno when an error state is reached:
@@ -208,6 +225,18 @@ class AbstractMotor : public ControllerOutput<double> {
    * errno.
    */
   virtual double getActualVelocity() = 0;
+
+  /**
+   * Gets the difference between the target velocity of the motor and the actual velocity of the
+   * motor.
+   *
+   * This function uses the following values of errno when an error state is reached:
+   * EACCES - Another resource is currently trying to access the port.
+   *
+   * @return The motor's velocity error in RPM or PROS_ERR_F if the operation failed, setting
+   * errno.
+   */
+  double getVelocityError();
 
   /**
    * Gets the current drawn by the motor in mA.
@@ -496,72 +525,6 @@ class AbstractMotor : public ControllerOutput<double> {
    * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
    */
   virtual std::int32_t setVoltageLimit(std::int32_t ilimit) = 0;
-
-  /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
-   */
-  virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) = 0;
-
-  /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @param ifilter a constant used for filtering the profile acceleration
-   * @param ilimit the integral limit
-   * @param ithreshold the threshold for determining if a position movement has reached its goal
-   * @param iloopSpeed the rate at which the PID computation is run (in ms)
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
-   */
-  virtual std::int32_t setPosPIDFull(double ikF,
-                                     double ikP,
-                                     double ikI,
-                                     double ikD,
-                                     double ifilter,
-                                     double ilimit,
-                                     double ithreshold,
-                                     double iloopSpeed) = 0;
-
-  /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
-   */
-  virtual std::int32_t setVelPID(double ikF, double ikP, double ikI, double ikD) = 0;
-
-  /**
-   * Sets new PID constants.
-   *
-   * @param ikF the feed-forward constant
-   * @param ikP the proportional constant
-   * @param ikI the integral constant
-   * @param ikD the derivative constant
-   * @param ifilter a constant used for filtering the profile acceleration
-   * @param ilimit the integral limit
-   * @param ithreshold the threshold for determining if a position movement has reached its goal
-   * @param iloopSpeed the rate at which the PID computation is run (in ms)
-   * @return 1 if the operation was successful or PROS_ERR if the operation failed, setting errno.
-   */
-  virtual std::int32_t setVelPIDFull(double ikF,
-                                     double ikP,
-                                     double ikI,
-                                     double ikD,
-                                     double ifilter,
-                                     double ilimit,
-                                     double ithreshold,
-                                     double iloopSpeed) = 0;
 
   /**
    * Returns the encoder associated with this motor.

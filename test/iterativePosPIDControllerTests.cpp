@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -140,9 +140,18 @@ TEST_F(IterativePosPIDControllerTest, SampleTime) {
 }
 
 TEST_F(IterativePosPIDControllerTest, TestDerivativeTermWithDefaultFilter) {
-  controller->setGains(0, 0, 1, 0);
-  EXPECT_EQ(controller->step(1), -1);
+  controller->setGains({0, 0, 0.0001, 0});
+  EXPECT_EQ(controller->step(1), -0.01);
   EXPECT_EQ(controller->step(1), 0);
-  EXPECT_EQ(controller->step(2), -1);
+  EXPECT_EQ(controller->step(2), -0.01);
   EXPECT_EQ(controller->step(2), 0);
+}
+
+TEST_F(IterativePosPIDControllerTest, TestGetGainsReturnsTheOriginalGains) {
+  controller->setGains({0.1, 0.2, 0.3, 0.4});
+  auto gains = controller->getGains();
+  EXPECT_FLOAT_EQ(gains.kP, 0.1);
+  EXPECT_FLOAT_EQ(gains.kI, 0.2);
+  EXPECT_FLOAT_EQ(gains.kD, 0.3);
+  EXPECT_FLOAT_EQ(gains.kBias, 0.4);
 }

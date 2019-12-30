@@ -1,4 +1,4 @@
-/**
+/*
  * @author Jonathan Bayless, Team BLRS
  * @author Ryan Benasutti, WPI
  *
@@ -27,7 +27,8 @@ class PIDTunerFactory {
                          std::int32_t inumIterations = 5,
                          std::int32_t inumParticles = 16,
                          double ikSettle = 1,
-                         double ikITAE = 2);
+                         double ikITAE = 2,
+                         const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   static std::unique_ptr<PIDTuner>
   createPtr(const std::shared_ptr<ControllerInput<double>> &iinput,
@@ -43,6 +44,7 @@ class PIDTunerFactory {
             std::int32_t inumIterations = 5,
             std::int32_t inumParticles = 16,
             double ikSettle = 1,
-            double ikITAE = 2);
+            double ikITAE = 2,
+            const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 };
 } // namespace okapi

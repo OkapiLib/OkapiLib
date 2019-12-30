@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -34,7 +34,7 @@ class IterativeMotorVelocityControllerTest : public ::testing::Test {
       0,
       0,
       std::make_unique<VelMath>(1800,
-                                std::make_shared<PassthroughFilter>(),
+                                std::make_unique<PassthroughFilter>(),
                                 0_ms,
                                 std::make_unique<ConstantMockTimer>(10_ms)),
       createTimeUtil(Supplier<std::unique_ptr<AbstractTimer>>(
@@ -52,17 +52,17 @@ class IterativeMotorVelocityControllerTest : public ::testing::Test {
 };
 
 TEST_F(IterativeMotorVelocityControllerTest, SettledWhenDisabled) {
-  velController->setGains(0.1, 0.1, 0.1, 0.1);
+  velController->setGains({0.1, 0.1, 0.1, 0.1});
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
 
 TEST_F(IterativeMotorVelocityControllerTest, DisabledLifecycle) {
-  velController->setGains(0.1, 0, 0, 0);
+  velController->setGains({0.1, 0, 0, 0});
   assertIterativeControllerFollowsDisableLifecycle(*controller);
 }
 
 TEST_F(IterativeMotorVelocityControllerTest, TargetLifecycle) {
-  velController->setGains(0.1, 0, 0, 0);
+  velController->setGains({0.1, 0, 0, 0});
   assertControllerFollowsTargetLifecycle(*controller);
 }
 
@@ -71,7 +71,7 @@ TEST_F(IterativeMotorVelocityControllerTest, ScalesControllerSetTarget) {
 }
 
 TEST_F(IterativeMotorVelocityControllerTest, StaticFrictionGainUsesTargetSign) {
-  velController->setGains(0, 0, 0, 0.1);
+  velController->setGains({0, 0, 0, 0.1});
 
   controller->setTarget(1);
   EXPECT_DOUBLE_EQ(controller->step(0), 1 * 0.1);

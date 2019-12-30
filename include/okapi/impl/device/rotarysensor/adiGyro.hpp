@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -46,7 +46,7 @@ class ADIGyro : public ContinuousRotarySensor {
   /**
    * Reset the sensor to zero.
    *
-   * @return 1 on success, PROS_ERR on fail
+   * @return `1` on success, `PROS_ERR` on fail
    */
   std::int32_t reset() override;
 
@@ -59,6 +59,6 @@ class ADIGyro : public ContinuousRotarySensor {
   double controllerGet() override;
 
   protected:
-  pros::ADIGyro gyro;
+  pros::c::adi_gyro_t gyro;
 };
 } // namespace okapi

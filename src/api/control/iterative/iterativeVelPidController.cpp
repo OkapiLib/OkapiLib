@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -17,23 +17,27 @@ IterativeVelPIDController::IterativeVelPIDController(const double ikP,
                                                      const double ikSF,
                                                      std::unique_ptr<VelMath> ivelMath,
                                                      const TimeUtil &itimeUtil,
-                                                     std::unique_ptr<Filter> iderivativeFilter)
-  : logger(Logger::instance()),
+                                                     std::unique_ptr<Filter> iderivativeFilter,
+                                                     std::shared_ptr<Logger> ilogger)
+  : IterativeVelPIDController({ikP, ikD, ikF, ikSF},
+                              std::move(ivelMath),
+                              itimeUtil,
+                              std::move(iderivativeFilter),
+                              std::move(ilogger)) {
+}
+
+IterativeVelPIDController::IterativeVelPIDController(const Gains &igains,
+                                                     std::unique_ptr<VelMath> ivelMath,
+                                                     const TimeUtil &itimeUtil,
+                                                     std::unique_ptr<Filter> iderivativeFilter,
+                                                     std::shared_ptr<Logger> ilogger)
+  : logger(std::move(ilogger)),
     velMath(std::move(ivelMath)),
     derivativeFilter(std::move(iderivativeFilter)),
     loopDtTimer(itimeUtil.getTimer()),
     settledUtil(itimeUtil.getSettledUtil()) {
-  setGains(ikP, ikD, ikF, ikSF);
-}
-
-void IterativeVelPIDController::setGains(const double ikP,
-                                         const double ikD,
-                                         const double ikF,
-                                         const double ikSF) {
-  kP = ikP;
-  kD = ikD * sampleTime.convert(second);
-  kF = ikF;
-  kSF = ikSF;
+  setOutputLimits(1, -1);
+  setGains(igains);
 }
 
 void IterativeVelPIDController::setSampleTime(const QTime isampleTime) {
@@ -58,6 +62,18 @@ void IterativeVelPIDController::setOutputLimits(double imax, double imin) {
   output = std::clamp(output, outputMin, outputMax);
 }
 
+void IterativeVelPIDController::setControllerSetTargetLimits(double itargetMax, double itargetMin) {
+  // Always use larger value as max
+  if (itargetMin > itargetMax) {
+    const double temp = itargetMax;
+    itargetMax = itargetMin;
+    itargetMin = temp;
+  }
+
+  controllerSetTargetMax = itargetMax;
+  controllerSetTargetMin = itargetMin;
+}
+
 QAngularSpeed IterativeVelPIDController::stepVel(const double inewReading) {
   return velMath->step(inewReading);
 }
@@ -67,10 +83,7 @@ double IterativeVelPIDController::step(const double inewReading) {
     loopDtTimer->placeHardMark();
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
-      if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
-        stepVel(inewReading);
-      }
-
+      stepVel(inewReading);
       error = getError();
 
       // Derivative over measurement to eliminate derivative kick on setpoint change
@@ -93,16 +106,24 @@ double IterativeVelPIDController::step(const double inewReading) {
 }
 
 void IterativeVelPIDController::setTarget(const double itarget) {
-  logger->info("IterativeVelPIDController: Set target to " + std::to_string(itarget));
+  LOG_INFO("IterativeVelPIDController: Set target to " + std::to_string(itarget));
   target = itarget;
 }
 
 void IterativeVelPIDController::controllerSet(const double ivalue) {
-  target = remapRange(ivalue, -1, 1, outputMin, outputMax);
+  target = remapRange(ivalue, -1, 1, controllerSetTargetMin, controllerSetTargetMax);
 }
 
 double IterativeVelPIDController::getTarget() {
   return target;
+}
+
+double IterativeVelPIDController::getTarget() const {
+  return target;
+}
+
+double IterativeVelPIDController::getProcessValue() const {
+  return velMath->getVelocity().convert(rpm);
 }
 
 double IterativeVelPIDController::getOutput() const {
@@ -118,7 +139,7 @@ double IterativeVelPIDController::getMinOutput() {
 }
 
 double IterativeVelPIDController::getError() const {
-  return target - velMath->getVelocity().convert(rpm);
+  return getTarget() - getProcessValue();
 }
 
 bool IterativeVelPIDController::isSettled() {
@@ -126,7 +147,8 @@ bool IterativeVelPIDController::isSettled() {
 }
 
 void IterativeVelPIDController::reset() {
-  logger->info("IterativeVelPIDController: Reset");
+  LOG_INFO_S("IterativeVelPIDController: Reset");
+
   error = 0;
   outputSum = 0;
   output = 0;
@@ -138,12 +160,23 @@ void IterativeVelPIDController::flipDisable() {
 }
 
 void IterativeVelPIDController::flipDisable(const bool iisDisabled) {
-  logger->info("IterativeVelPIDController: flipDisable " + std::to_string(iisDisabled));
+  LOG_INFO("IterativeVelPIDController: flipDisable " + std::to_string(iisDisabled));
   controllerIsDisabled = iisDisabled;
 }
 
 bool IterativeVelPIDController::isDisabled() const {
   return controllerIsDisabled;
+}
+
+void IterativeVelPIDController::setGains(const Gains &igains) {
+  kP = igains.kP;
+  kD = igains.kD / sampleTime.convert(second);
+  kF = igains.kF;
+  kSF = igains.kSF;
+}
+
+IterativeVelPIDController::Gains IterativeVelPIDController::getGains() const {
+  return {kP, kD * sampleTime.convert(second), kF, kSF};
 }
 
 void IterativeVelPIDController::setTicksPerRev(const double tpr) {

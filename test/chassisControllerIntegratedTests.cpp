@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -12,31 +12,28 @@
 
 using namespace okapi;
 
-class MockSkidSteerModel : public SkidSteerModel {
-  public:
-  using SkidSteerModel::maxVelocity;
-  using SkidSteerModel::SkidSteerModel;
-};
-
-class ChassisControllerIntegratedTest : public ::testing::Test {
+class ChassisControllerIntegratedTest : public ::testing::Test { // NOLINT(hicpp-member-init)
   protected:
   void SetUp() override {
-    scales = new ChassisScales({2, 2});
-    leftMotor = new MockMotor();
-    rightMotor = new MockMotor();
+    scales = new ChassisScales({wheelDiam, wheelTrack}, gearsetToTPR(gearset));
 
     leftController = new MockAsyncPosIntegratedController();
     rightController = new MockAsyncPosIntegratedController();
 
-    model = new MockSkidSteerModel(
-      std::unique_ptr<AbstractMotor>(leftMotor), std::unique_ptr<AbstractMotor>(rightMotor), 100);
+    leftController->isSettledOverride = IsSettledOverride::alwaysSettled;
+    rightController->isSettledOverride = IsSettledOverride::alwaysSettled;
+
+    model = new MockSkidSteerModel();
+    model->setMaxVelocity(101);
+    leftMotor = model->leftMtr.get();
+    rightMotor = model->rightMtr.get();
 
     controller = new ChassisControllerIntegrated(
       createTimeUtil(),
       std::shared_ptr<ChassisModel>(model),
       std::unique_ptr<AsyncPosIntegratedController>(leftController),
       std::unique_ptr<AsyncPosIntegratedController>(rightController),
-      AbstractMotor::gearset::red,
+      gearset,
       *scales);
   }
 
@@ -45,8 +42,11 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
     delete controller;
   }
 
+  QLength wheelDiam = 4_in;
+  QLength wheelTrack = 8_in;
+  AbstractMotor::gearset gearset = AbstractMotor::gearset::green;
   ChassisScales *scales;
-  ChassisController *controller;
+  ChassisControllerIntegrated *controller;
   MockMotor *leftMotor;
   MockMotor *rightMotor;
   MockAsyncPosIntegratedController *leftController;
@@ -54,8 +54,19 @@ class ChassisControllerIntegratedTest : public ::testing::Test {
   MockSkidSteerModel *model;
 };
 
+TEST_F(ChassisControllerIntegratedTest, InitialMaxVelocityIsPropagatedToControllers) {
+  EXPECT_EQ(leftController->maxVelocity, 101);
+  EXPECT_EQ(rightController->maxVelocity, 101);
+}
+
+TEST_F(ChassisControllerIntegratedTest, GearsetIsCorrect) {
+  EXPECT_EQ(AbstractMotor::gearset::green, controller->getGearsetRatioPair().internalGearset);
+  EXPECT_EQ(imev5GreenTPR, gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_EQ(1, controller->getGearsetRatioPair().ratio);
+}
+
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceRawUnitsTest) {
-  controller->moveDistance(100);
+  controller->moveRaw(100);
 
   EXPECT_DOUBLE_EQ(leftController->getTarget(), 100);
   EXPECT_DOUBLE_EQ(rightController->getTarget(), 100);
@@ -67,10 +78,12 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceUnitsTest) {
-  controller->moveDistance(1_m);
+  controller->moveDistance(wheelDiam * 1_pi);
 
-  EXPECT_DOUBLE_EQ(leftController->getTarget(), 2);
-  EXPECT_DOUBLE_EQ(rightController->getTarget(), 2);
+  EXPECT_DOUBLE_EQ(leftController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_DOUBLE_EQ(rightController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   EXPECT_TRUE(leftController->isDisabled());
   EXPECT_TRUE(rightController->isDisabled());
@@ -79,7 +92,7 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceUnitsTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceAsyncRawUnitsTest) {
-  controller->moveDistanceAsync(100);
+  controller->moveRawAsync(100);
 
   EXPECT_DOUBLE_EQ(leftController->getTarget(), 100);
   EXPECT_DOUBLE_EQ(rightController->getTarget(), 100);
@@ -96,18 +109,22 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceAsyncRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceAsyncUnitsTest) {
-  controller->moveDistanceAsync(1_m);
+  controller->moveDistanceAsync(wheelDiam * 1_pi);
 
-  EXPECT_DOUBLE_EQ(leftController->getTarget(), 2);
-  EXPECT_DOUBLE_EQ(rightController->getTarget(), 2);
+  EXPECT_DOUBLE_EQ(leftController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_DOUBLE_EQ(rightController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   EXPECT_FALSE(leftController->isDisabled());
   EXPECT_FALSE(rightController->isDisabled());
 
   controller->waitUntilSettled();
 
-  EXPECT_DOUBLE_EQ(leftController->getTarget(), 2);
-  EXPECT_DOUBLE_EQ(rightController->getTarget(), 2);
+  EXPECT_DOUBLE_EQ(leftController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_DOUBLE_EQ(rightController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   EXPECT_TRUE(leftController->isDisabled());
   EXPECT_TRUE(rightController->isDisabled());
@@ -116,7 +133,7 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceAsyncUnitsTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, TurnAngleRawUnitsTest) {
-  controller->turnAngle(100);
+  controller->turnRaw(100);
 
   EXPECT_DOUBLE_EQ(leftController->getTarget(), 100);
   EXPECT_DOUBLE_EQ(rightController->getTarget(), -100);
@@ -128,10 +145,12 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, TurnAngleUnitsTest) {
-  controller->turnAngle(45_deg);
+  controller->turnAngle(wheelDiam / wheelTrack * 360_deg);
 
-  EXPECT_DOUBLE_EQ(leftController->getTarget(), 90);
-  EXPECT_DOUBLE_EQ(rightController->getTarget(), -90);
+  EXPECT_DOUBLE_EQ(leftController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_DOUBLE_EQ(rightController->getTarget(),
+                   -1 * gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   EXPECT_TRUE(leftController->isDisabled());
   EXPECT_TRUE(rightController->isDisabled());
@@ -140,7 +159,7 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleUnitsTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, TurnAngleAsyncRawUnitsTest) {
-  controller->turnAngleAsync(100);
+  controller->turnRawAsync(100);
 
   EXPECT_DOUBLE_EQ(leftController->getTarget(), 100);
   EXPECT_DOUBLE_EQ(rightController->getTarget(), -100);
@@ -157,10 +176,12 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleAsyncRawUnitsTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, TurnAngleAsyncUnitsTest) {
-  controller->turnAngleAsync(45_deg);
+  controller->turnAngleAsync(wheelDiam / wheelTrack * 360_deg);
 
-  EXPECT_DOUBLE_EQ(leftController->getTarget(), 90);
-  EXPECT_DOUBLE_EQ(rightController->getTarget(), -90);
+  EXPECT_DOUBLE_EQ(leftController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_DOUBLE_EQ(rightController->getTarget(),
+                   -1 * gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 
   EXPECT_FALSE(leftController->isDisabled());
   EXPECT_FALSE(rightController->isDisabled());
@@ -175,14 +196,16 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleAsyncUnitsTest) {
 
 TEST_F(ChassisControllerIntegratedTest, MirrorTurnTest) {
   controller->setTurnsMirrored(true);
-  controller->turnAngle(45_deg);
+  controller->turnAngle(wheelDiam / wheelTrack * 360_deg);
 
-  EXPECT_DOUBLE_EQ(leftController->getTarget(), -90);
-  EXPECT_DOUBLE_EQ(rightController->getTarget(), 90);
+  EXPECT_DOUBLE_EQ(leftController->getTarget(),
+                   -1 * gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
+  EXPECT_DOUBLE_EQ(rightController->getTarget(),
+                   gearsetToTPR(controller->getGearsetRatioPair().internalGearset));
 }
 
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceThenTurnAngleAsyncTest) {
-  controller->moveDistanceAsync(100);
+  controller->moveRawAsync(100);
 
   EXPECT_DOUBLE_EQ(leftController->getTarget(), 100);
   EXPECT_DOUBLE_EQ(rightController->getTarget(), 100);
@@ -190,7 +213,7 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceThenTurnAngleAsyncTest) {
   EXPECT_FALSE(leftController->isDisabled());
   EXPECT_FALSE(rightController->isDisabled());
 
-  controller->turnAngleAsync(200);
+  controller->turnRawAsync(200);
 
   EXPECT_DOUBLE_EQ(leftController->getTarget(), 200);
   EXPECT_DOUBLE_EQ(rightController->getTarget(), -200);
@@ -207,7 +230,7 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceThenTurnAngleAsyncTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, TurnAngleThenMoveDistanceAsyncTest) {
-  controller->turnAngleAsync(200);
+  controller->turnRawAsync(200);
 
   EXPECT_DOUBLE_EQ(leftController->getTarget(), 200);
   EXPECT_DOUBLE_EQ(rightController->getTarget(), -200);
@@ -215,7 +238,7 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleThenMoveDistanceAsyncTest) {
   EXPECT_FALSE(leftController->isDisabled());
   EXPECT_FALSE(rightController->isDisabled());
 
-  controller->moveDistanceAsync(100);
+  controller->moveRawAsync(100);
 
   EXPECT_DOUBLE_EQ(leftController->getTarget(), 100);
   EXPECT_DOUBLE_EQ(rightController->getTarget(), 100);
@@ -232,14 +255,14 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleThenMoveDistanceAsyncTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceAndWaitTest) {
-  controller->moveDistance(100);
+  controller->moveRaw(100);
   controller->waitUntilSettled();
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceGetPushedAndWaitTest) {
-  controller->moveDistance(100);
+  controller->moveRaw(100);
 
   // First bump
   leftMotor->encoder->value = 500;
@@ -255,14 +278,14 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceGetPushedAndWaitTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, TurnAngleAndWaitTest) {
-  controller->turnAngle(100);
+  controller->turnRaw(100);
   controller->waitUntilSettled();
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
 }
 
 TEST_F(ChassisControllerIntegratedTest, TurnAngleGetPushedAndWaitTest) {
-  controller->turnAngle(100);
+  controller->turnRaw(100);
 
   // First bump
   leftMotor->encoder->value = 500;
@@ -278,7 +301,7 @@ TEST_F(ChassisControllerIntegratedTest, TurnAngleGetPushedAndWaitTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, MoveDistanceAndStopTest) {
-  controller->moveDistanceAsync(100);
+  controller->moveRawAsync(100);
   controller->stop();
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
@@ -287,7 +310,7 @@ TEST_F(ChassisControllerIntegratedTest, MoveDistanceAndStopTest) {
 }
 
 TEST_F(ChassisControllerIntegratedTest, TurnAngleAndStopTest) {
-  controller->turnAngleAsync(100);
+  controller->turnRawAsync(100);
   controller->stop();
 
   assertMotorsHaveBeenStopped(leftMotor, rightMotor);
@@ -299,5 +322,77 @@ TEST_F(ChassisControllerIntegratedTest, SetMaxVelocityTest) {
   controller->setMaxVelocity(42);
   EXPECT_EQ(leftController->maxVelocity, 42);
   EXPECT_EQ(rightController->maxVelocity, 42);
-  EXPECT_EQ(model->maxVelocity, 42);
+  EXPECT_EQ(model->getMaxVelocity(), 42);
+}
+
+TEST_F(ChassisControllerIntegratedTest, isNotSettledWhenLeftControllerIsNotSettled) {
+  leftController->isSettledOverride = IsSettledOverride::neverSettled;
+  rightController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  EXPECT_FALSE(controller->isSettled());
+}
+
+TEST_F(ChassisControllerIntegratedTest, isNotSettledWhenRightControllerIsNotSettled) {
+  leftController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  rightController->isSettledOverride = IsSettledOverride::neverSettled;
+  EXPECT_FALSE(controller->isSettled());
+}
+
+TEST_F(ChassisControllerIntegratedTest, isSettledWhenLeftAndRightControllersAreSettled) {
+  leftController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  rightController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  EXPECT_TRUE(controller->isSettled());
+}
+
+TEST_F(ChassisControllerIntegratedTest, SetsTheCorrectTargetWhenCustomSensorsAreOnTheModelForMove) {
+  auto model = new MockSkidSteerModel();
+  // Set the values on the model (which we are pretending has ADI encoders) to be nonzero
+  // to check that CCI is not reading from them. The motors' integrated encoders should still be
+  // at zero.
+  model->leftEnc->value = 100;
+  model->rightEnc->value = -100;
+
+  auto leftController = new MockAsyncPosIntegratedController();
+  auto rightController = new MockAsyncPosIntegratedController();
+  leftController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  rightController->isSettledOverride = IsSettledOverride::alwaysSettled;
+
+  ChassisControllerIntegrated chassis(
+    createTimeUtil(),
+    std::shared_ptr<ChassisModel>(model),
+    std::unique_ptr<AsyncPosIntegratedController>(leftController),
+    std::unique_ptr<AsyncPosIntegratedController>(rightController),
+    gearset,
+    ChassisScales({wheelDiam, wheelTrack}, gearsetToTPR(gearset)));
+
+  chassis.moveRaw(200);
+
+  EXPECT_DOUBLE_EQ(leftController->getTarget(), 200);
+  EXPECT_DOUBLE_EQ(rightController->getTarget(), 200);
+}
+
+TEST_F(ChassisControllerIntegratedTest, SetsTheCorrectTargetWhenCustomSensorsAreOnTheModelForTurn) {
+  auto model = new MockSkidSteerModel();
+  // Set the values on the model (which we are pretending has ADI encoders) to be nonzero
+  // to check that CCI is not reading from them. The motors' integrated encoders should still be
+  // at zero.
+  model->leftEnc->value = 100;
+  model->rightEnc->value = -100;
+
+  auto leftController = new MockAsyncPosIntegratedController();
+  auto rightController = new MockAsyncPosIntegratedController();
+  leftController->isSettledOverride = IsSettledOverride::alwaysSettled;
+  rightController->isSettledOverride = IsSettledOverride::alwaysSettled;
+
+  ChassisControllerIntegrated chassis(
+    createTimeUtil(),
+    std::shared_ptr<ChassisModel>(model),
+    std::unique_ptr<AsyncPosIntegratedController>(leftController),
+    std::unique_ptr<AsyncPosIntegratedController>(rightController),
+    gearset,
+    ChassisScales({wheelDiam, wheelTrack}, gearsetToTPR(gearset)));
+
+  chassis.turnRaw(200);
+
+  EXPECT_DOUBLE_EQ(leftController->getTarget(), 200);
+  EXPECT_DOUBLE_EQ(rightController->getTarget(), -200);
 }

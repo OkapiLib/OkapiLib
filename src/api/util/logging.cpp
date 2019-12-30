@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -6,90 +6,45 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/util/logging.hpp"
-#include "okapi/api/util/mathUtil.hpp"
-#include <stdio.h>
 
 namespace okapi {
-Logger *Logger::s_instance;
-std::unique_ptr<AbstractTimer> Logger::timer;
-Logger::LogLevel Logger::logLevel;
-FILE *Logger::logfile;
+std::shared_ptr<Logger> defaultLogger;
 
-Logger::Logger() = default;
+int DefaultLoggerInitializer::count;
 
-Logger *Logger::instance() noexcept {
-  if (!s_instance) {
-    s_instance = new Logger();
-  }
-
-  return s_instance;
+Logger::Logger() noexcept : Logger(nullptr, nullptr, LogLevel::off) {
 }
 
-void Logger::initialize(std::unique_ptr<AbstractTimer> itimer,
-                        std::string_view filename,
-                        Logger::LogLevel level) noexcept {
-  timer = std::move(itimer);
-  logLevel = level;
-
-  FILE *log = fopen(filename.data(), "w");
-  if (log) {
-    logfile = log;
-  }
+Logger::Logger(std::unique_ptr<AbstractTimer> itimer,
+               std::string_view ifileName,
+               const Logger::LogLevel &ilevel) noexcept
+  : Logger(std::move(itimer),
+           fopen(ifileName.data(), isSerialStream(ifileName) ? "w" : "a"),
+           ilevel) {
 }
 
-void Logger::initialize(std::unique_ptr<AbstractTimer> itimer,
-                        FILE *file,
-                        Logger::LogLevel level) noexcept {
-  timer = std::move(itimer);
-  logLevel = level;
+Logger::Logger(std::unique_ptr<AbstractTimer> itimer,
+               FILE *const ifile,
+               const Logger::LogLevel &ilevel) noexcept
+  : timer(std::move(itimer)), logLevel(ilevel), logfile(ifile) {
+}
 
-  if (file) {
-    logfile = file;
+Logger::~Logger() {
+  if (logfile) {
+    fclose(logfile);
+    logfile = nullptr;
   }
 }
 
-void Logger::setLogLevel(Logger::LogLevel level) noexcept {
-  logLevel = level;
+std::shared_ptr<Logger> Logger::getDefaultLogger() {
+  return defaultLogger;
 }
 
-void Logger::debug(std::string_view message) const noexcept {
-  if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info) && logfile && timer) {
-    fprintf(logfile,
-            "%ld DEBUG: %s\n",
-            static_cast<long>(timer->millis().convert(millisecond)),
-            message.data());
-  }
+void Logger::setDefaultLogger(std::shared_ptr<Logger> ilogger) {
+  defaultLogger = std::move(ilogger);
 }
 
-void Logger::info(std::string_view message) const noexcept {
-  if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::info) && logfile && timer) {
-    fprintf(logfile,
-            "%ld INFO: %s\n",
-            static_cast<long>(timer->millis().convert(millisecond)),
-            message.data());
-  }
-}
-
-void Logger::warn(std::string_view message) const noexcept {
-  if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::warn) && logfile && timer) {
-    fprintf(logfile,
-            "%ld WARN: %s\n",
-            static_cast<long>(timer->millis().convert(millisecond)),
-            message.data());
-  }
-}
-
-void Logger::error(std::string_view message) const noexcept {
-  if (toUnderlyingType(logLevel) >= toUnderlyingType(LogLevel::error) && logfile && timer) {
-    fprintf(logfile,
-            "%ld ERROR: %s\n",
-            static_cast<long>(timer->millis().convert(millisecond)),
-            message.data());
-  }
-}
-
-void Logger::close() noexcept {
-  fclose(logfile);
-  logfile = nullptr;
+bool Logger::isSerialStream(std::string_view filename) {
+  return filename.find("/ser/") != std::string::npos;
 }
 } // namespace okapi

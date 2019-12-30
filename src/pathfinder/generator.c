@@ -78,8 +78,5 @@ int pathfinder_generate(TrajectoryCandidate *c, Segment *segments) {
         }
     }
     
-    free(c->saptr);
-    free(c->laptr);
-    
     return trajectory_length;
 }

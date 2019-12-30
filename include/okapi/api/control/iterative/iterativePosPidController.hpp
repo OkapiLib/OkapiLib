@@ -1,4 +1,4 @@
-/**
+/*
  * Based on the Arduino PID controller: https://github.com/br3ttb/Arduino-PID-Library
  *
  * @author Ryan Benasutti, WPI
@@ -37,6 +37,7 @@ class IterativePosPIDController : public IterativePositionController<double, dou
    * @param ikBias the controller bias
    * @param itimeUtil see TimeUtil docs
    * @param iderivativeFilter a filter for filtering the derivative term
+   * @param ilogger The logger this instance will log to.
    */
   IterativePosPIDController(
     double ikP,
@@ -44,7 +45,8 @@ class IterativePosPIDController : public IterativePositionController<double, dou
     double ikD,
     double ikBias,
     const TimeUtil &itimeUtil,
-    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+    std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   /**
    * Position PID controller.
@@ -56,7 +58,8 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   IterativePosPIDController(
     const Gains &igains,
     const TimeUtil &itimeUtil,
-    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>());
+    std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+    std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
 
   /**
    * Do one iteration of the controller. Returns the reading in the range [-1, 1] unless the
@@ -88,6 +91,18 @@ class IterativePosPIDController : public IterativePositionController<double, dou
    * @return the last target
    */
   double getTarget() override;
+
+  /**
+   * Gets the last set target, or the default target if none was set.
+   *
+   * @return the last target
+   */
+  double getTarget() const;
+
+  /**
+   * @return The most recent value of the process variable.
+   */
+  double getProcessValue() const override;
 
   /**
    * Returns the last calculated output of the controller. Output is in the range [-1, 1]
@@ -125,16 +140,6 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   bool isSettled() override;
 
   /**
-   * Set controller gains.
-   *
-   * @param ikP proportional gain
-   * @param ikI integral gain
-   * @param ikD derivative gain
-   * @param ikBias bias (constant offset added to the output)
-   */
-  virtual void setGains(double ikP, double ikI, double ikD, double ikBias = 0);
-
-  /**
    * Set time between loops in ms.
    *
    * @param isampleTime time between loops
@@ -150,35 +155,19 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   void setOutputLimits(double imax, double imin) override;
 
   /**
-   * Set integrator bounds. Default bounds are [-1, 1].
+   * Sets the (soft) limits for the target range that controllerSet() scales into. The target
+   * computed by controllerSet() is scaled into the range [-itargetMin, itargetMax].
    *
-   * @param imax max integrator value
-   * @param imin min integrator value
+   * @param itargetMax The new max target for controllerSet().
+   * @param itargetMin The new min target for controllerSet().
    */
-  virtual void setIntegralLimits(double imax, double imin);
-
-  /**
-   * Set the error sum bounds. Default bounds are [0, std::numeric_limits<double>::max()]. Error
-   * will only be added to the integral term when its absolute value is between these bounds of
-   * either side of the target.
-   *
-   * @param imax max error value that will be summed
-   * @param imin min error value that will be summed
-   */
-  virtual void setErrorSumLimits(double imax, double imin);
+  void setControllerSetTargetLimits(double itargetMax, double itargetMin) override;
 
   /**
    * Resets the controller's internal state so it is similar to when it was first initialized, while
    * keeping any user-configured information.
    */
   void reset() override;
-
-  /**
-   * Set whether the integrator should be reset when error is 0 or changes sign.
-   *
-   * @param iresetOnZero true to reset
-   */
-  virtual void setIntegratorReset(bool iresetOnZero);
 
   /**
    * Changes whether the controller is off or on. Turning the controller on after it was off will
@@ -208,8 +197,47 @@ class IterativePosPIDController : public IterativePositionController<double, dou
    */
   QTime getSampleTime() const override;
 
+  /**
+   * Set integrator bounds. Default bounds are [-1, 1].
+   *
+   * @param imax max integrator value
+   * @param imin min integrator value
+   */
+  virtual void setIntegralLimits(double imax, double imin);
+
+  /**
+   * Set the error sum bounds. Default bounds are [0, std::numeric_limits<double>::max()]. Error
+   * will only be added to the integral term when its absolute value is between these bounds of
+   * either side of the target.
+   *
+   * @param imax max error value that will be summed
+   * @param imin min error value that will be summed
+   */
+  virtual void setErrorSumLimits(double imax, double imin);
+
+  /**
+   * Set whether the integrator should be reset when error is 0 or changes sign.
+   *
+   * @param iresetOnZero true to reset
+   */
+  virtual void setIntegratorReset(bool iresetOnZero);
+
+  /**
+   * Set controller gains.
+   *
+   * @param igains The new gains.
+   */
+  virtual void setGains(const Gains &igains);
+
+  /**
+   * Gets the current gains.
+   *
+   * @return The current gains.
+   */
+  Gains getGains() const;
+
   protected:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
   double kP, kI, kD, kBias;
   QTime sampleTime{10_ms};
   double target{0};
@@ -233,6 +261,8 @@ class IterativePosPIDController : public IterativePositionController<double, dou
   double output{0};
   double outputMax{1};
   double outputMin{-1};
+  double controllerSetTargetMax{1};
+  double controllerSetTargetMin{-1};
 
   // Reset the integrated when the controller crosses 0 or not
   bool shouldResetOnCross{true};

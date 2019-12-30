@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -13,10 +13,6 @@ Rate::Rate() = default;
 
 void Rate::delay(const QFrequency ihz) {
   delayUntil(1000 / ihz.convert(Hz));
-}
-
-void Rate::delay(const int ihz) {
-  delayUntil(1000 / ihz);
 }
 
 void Rate::delayUntil(const QTime itime) {

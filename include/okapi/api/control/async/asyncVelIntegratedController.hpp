@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -20,8 +20,22 @@ namespace okapi {
  */
 class AsyncVelIntegratedController : public AsyncVelocityController<double, double> {
   public:
+  /**
+   * Closed-loop controller that uses the V5 motor's onboard control to move. Input units are
+   * whatever units the motor is in. Throws a std::invalid_argument exception if the gear ratio is
+   * zero.
+   *
+   * @param imotor The motor to control.
+   * @param ipair The gearset.
+   * @param imaxVelocity The maximum velocity after gearing.
+   * @param itimeUtil The TimeUtil.
+   * @param ilogger The logger this instance will log to.
+   */
   AsyncVelIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
-                               const TimeUtil &itimeUtil);
+                               const AbstractMotor::GearsetRatioPair &ipair,
+                               std::int32_t imaxVelocity,
+                               const TimeUtil &itimeUtil,
+                               const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
    * Sets the target for the controller.
@@ -34,6 +48,11 @@ class AsyncVelIntegratedController : public AsyncVelocityController<double, doub
    * @return the last target
    */
   double getTarget() override;
+
+  /**
+   * @return The most recent value of the process variable.
+   */
+  double getProcessValue() const override;
 
   /**
    * Returns the last error of the controller. Does not update when disabled.
@@ -92,13 +111,15 @@ class AsyncVelIntegratedController : public AsyncVelocityController<double, doub
   void controllerSet(double ivalue) override;
 
   protected:
-  Logger *logger;
+  std::shared_ptr<Logger> logger;
+  TimeUtil timeUtil;
   std::shared_ptr<AbstractMotor> motor;
+  AbstractMotor::GearsetRatioPair pair;
+  std::int32_t maxVelocity;
   double lastTarget = 0;
   bool controllerIsDisabled = false;
   bool hasFirstTarget = false;
   std::unique_ptr<SettledUtil> settledUtil;
-  std::unique_ptr<AbstractRate> rate;
 
   virtual void resumeMovement();
 };

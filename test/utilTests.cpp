@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -25,10 +25,10 @@ TEST(IpowTest, FloatingPointTests) {
 }
 
 TEST(CutRangeTest, Tests) {
-  EXPECT_DOUBLE_EQ(cutRange(1, -2, 2), 2) << "1 : [-2, 2] -> 0";
-  EXPECT_DOUBLE_EQ(cutRange(2, -2, 2), 2) << "2 : [-2, 2] -> 0";
-  EXPECT_DOUBLE_EQ(cutRange(0, -2, 2), 2) << "0 : [-2, 2] -> 0";
-  EXPECT_DOUBLE_EQ(cutRange(-2, -2, 2), -2) << "-2 : [-2, 2] -> 0";
+  EXPECT_DOUBLE_EQ(cutRange(1, -2, 2), 2) << "1 : [-2, 2] -> 2";
+  EXPECT_DOUBLE_EQ(cutRange(2, -2, 2), 2) << "2 : [-2, 2] -> 2";
+  EXPECT_DOUBLE_EQ(cutRange(0, -2, 2), 2) << "0 : [-2, 2] -> 2";
+  EXPECT_DOUBLE_EQ(cutRange(-2, -2, 2), -2) << "-2 : [-2, 2] -> -2";
   EXPECT_DOUBLE_EQ(cutRange(-3, -2, 2), -3) << "-3 : [-2, 2] -> -3";
   EXPECT_DOUBLE_EQ(cutRange(3, -2, 2), 3) << "3 : [-2, 2] -> 3";
 }
@@ -43,10 +43,10 @@ TEST(DeadbandTest, Tests) {
 }
 
 TEST(RemapRangeTest, Tests) {
-  EXPECT_FLOAT_EQ(remapRange(0, -1, 1, -2, 2), 0) << "0 : [-1, 1] -> [-2, 2]";
-  EXPECT_FLOAT_EQ(remapRange(0.1, -1, 1, -2, 2), 0.2) << "0.1 : [-1, 1] -> [-2, 2]";
-  EXPECT_FLOAT_EQ(remapRange(-0.1, -1, 1, 2, -2), 0.2) << "-0.1 : [-1, 1] -> [2, -2]";
-  EXPECT_FLOAT_EQ(remapRange(0, -1, 1, -5, 2), -1.5) << "0 : [-1, 1] -> [-5, 2]";
+  EXPECT_FLOAT_EQ(remapRange(0, -1, 1, -2, 2), 0) << "0 : [-1, 1] -> [-2, 2] -> 0";
+  EXPECT_FLOAT_EQ(remapRange(0.1, -1, 1, -2, 2), 0.2) << "0.1 : [-1, 1] -> [-2, 2] -> 0.2";
+  EXPECT_FLOAT_EQ(remapRange(-0.1, -1, 1, 2, -2), 0.2) << "-0.1 : [-1, 1] -> [2, -2] -> 0.2";
+  EXPECT_FLOAT_EQ(remapRange(0, -1, 1, -5, 2), -1.5) << "0 : [-1, 1] -> [-5, 2] -> -1.5";
 }
 
 TEST(TrueModTest, Tests) {

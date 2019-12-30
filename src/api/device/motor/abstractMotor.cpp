@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -13,5 +13,13 @@ AbstractMotor::~AbstractMotor() = default;
 AbstractMotor::GearsetRatioPair operator*(const AbstractMotor::gearset gearset,
                                           const double ratio) {
   return AbstractMotor::GearsetRatioPair(gearset, ratio);
+}
+
+double AbstractMotor::getPositionError() {
+  return getTargetPosition() - getPosition();
+}
+
+double AbstractMotor::getVelocityError() {
+  return getTargetVelocity() - getActualVelocity();
 }
 } // namespace okapi

@@ -1,4 +1,4 @@
-/**
+/*
  * Based on the Arduino PID controller: https://github.com/br3ttb/Arduino-PID-Library
  *
  * @author Ryan Benasutti, WPI
@@ -18,40 +18,48 @@ IterativePosPIDController::IterativePosPIDController(const double ikP,
                                                      const double ikD,
                                                      const double ikBias,
                                                      const TimeUtil &itimeUtil,
-                                                     std::unique_ptr<Filter> iderivativeFilter)
-  : logger(Logger::instance()),
-    derivativeFilter(std::move(iderivativeFilter)),
-    loopDtTimer(itimeUtil.getTimer()),
-    settledUtil(itimeUtil.getSettledUtil()) {
-  if (ikI != 0) {
-    setIntegralLimits(1 / ikI, -1 / ikI);
-  }
-  setOutputLimits(-1, 1);
-  setGains(ikP, ikI, ikD, ikBias);
+                                                     std::unique_ptr<Filter> iderivativeFilter,
+                                                     std::shared_ptr<Logger> ilogger)
+  : IterativePosPIDController({ikP, ikI, ikD, ikBias},
+                              itimeUtil,
+                              std::move(iderivativeFilter),
+                              std::move(ilogger)) {
 }
 
 IterativePosPIDController::IterativePosPIDController(const Gains &igains,
                                                      const TimeUtil &itimeUtil,
-                                                     std::unique_ptr<Filter> iderivativeFilter)
-  : IterativePosPIDController(igains.kP,
-                              igains.kI,
-                              igains.kD,
-                              igains.kBias,
-                              itimeUtil,
-                              std::move(iderivativeFilter)) {
+                                                     std::unique_ptr<Filter> iderivativeFilter,
+                                                     std::shared_ptr<Logger> ilogger)
+  : logger(std::move(ilogger)),
+    derivativeFilter(std::move(iderivativeFilter)),
+    loopDtTimer(itimeUtil.getTimer()),
+    settledUtil(itimeUtil.getSettledUtil()) {
+  if (igains.kI != 0) {
+    setIntegralLimits(1 / igains.kI, -1 / igains.kI);
+  }
+  setOutputLimits(1, -1);
+  setGains(igains);
 }
 
 void IterativePosPIDController::setTarget(const double itarget) {
-  logger->info("IterativePosPIDController: Set target to " + std::to_string(itarget));
+  LOG_INFO("IterativePosPIDController: Set target to " + std::to_string(itarget));
   target = itarget;
 }
 
 void IterativePosPIDController::controllerSet(const double ivalue) {
-  target = remapRange(ivalue, -1, 1, outputMin, outputMax);
+  target = remapRange(ivalue, -1, 1, controllerSetTargetMin, controllerSetTargetMax);
 }
 
 double IterativePosPIDController::getTarget() {
   return target;
+}
+
+double IterativePosPIDController::getTarget() const {
+  return target;
+}
+
+double IterativePosPIDController::getProcessValue() const {
+  return lastReading;
 }
 
 double IterativePosPIDController::getOutput() const {
@@ -67,7 +75,7 @@ double IterativePosPIDController::getMinOutput() {
 }
 
 double IterativePosPIDController::getError() const {
-  return target - lastReading;
+  return getTarget() - getProcessValue();
 }
 
 bool IterativePosPIDController::isSettled() {
@@ -97,23 +105,16 @@ void IterativePosPIDController::setOutputLimits(double imax, double imin) {
   output = std::clamp(output, outputMin, outputMax);
 }
 
-void IterativePosPIDController::setIntegralLimits(double imax, double imin) {
+void IterativePosPIDController::setControllerSetTargetLimits(double itargetMax, double itargetMin) {
   // Always use larger value as max
-  if (imin > imax) {
-    const double temp = imax;
-    imax = imin;
-    imin = temp;
+  if (itargetMin > itargetMax) {
+    const double temp = itargetMax;
+    itargetMax = itargetMin;
+    itargetMin = temp;
   }
 
-  integralMax = imax;
-  integralMin = imin;
-
-  integral = std::clamp(integral, integralMin, integralMax);
-}
-
-void IterativePosPIDController::setErrorSumLimits(const double imax, const double imin) {
-  errorSumMax = imax;
-  errorSumMin = imin;
+  controllerSetTargetMax = itargetMax;
+  controllerSetTargetMin = itargetMin;
 }
 
 double IterativePosPIDController::step(const double inewReading) {
@@ -123,6 +124,7 @@ double IterativePosPIDController::step(const double inewReading) {
     loopDtTimer->placeHardMark();
 
     if (loopDtTimer->getDtFromHardMark() >= sampleTime) {
+      // lastReading must only be updated here so its updates are time-gated by sampleTime
       const double readingDiff = inewReading - lastReading;
       lastReading = inewReading;
 
@@ -154,19 +156,9 @@ double IterativePosPIDController::step(const double inewReading) {
   return output;
 }
 
-void IterativePosPIDController::setGains(const double ikP,
-                                         const double ikI,
-                                         const double ikD,
-                                         const double ikBias) {
-  const double sampleTimeSec = sampleTime.convert(second);
-  kP = ikP;
-  kI = ikI * sampleTimeSec;
-  kD = ikD / sampleTimeSec;
-  kBias = ikBias;
-}
-
 void IterativePosPIDController::reset() {
-  logger->info("IterativePosPIDController: Reset");
+  LOG_INFO_S("IterativePosPIDController: Reset");
+
   error = 0;
   lastError = 0;
   lastReading = 0;
@@ -184,7 +176,7 @@ void IterativePosPIDController::flipDisable() {
 }
 
 void IterativePosPIDController::flipDisable(const bool iisDisabled) {
-  logger->info("IterativePosPIDController: flipDisable " + std::to_string(iisDisabled));
+  LOG_INFO("IterativePosPIDController: flipDisable " + std::to_string(iisDisabled));
   controllerIsDisabled = iisDisabled;
 }
 
@@ -194,5 +186,36 @@ bool IterativePosPIDController::isDisabled() const {
 
 QTime IterativePosPIDController::getSampleTime() const {
   return sampleTime;
+}
+
+void IterativePosPIDController::setIntegralLimits(double imax, double imin) {
+  // Always use larger value as max
+  if (imin > imax) {
+    const double temp = imax;
+    imax = imin;
+    imin = temp;
+  }
+
+  integralMax = imax;
+  integralMin = imin;
+
+  integral = std::clamp(integral, integralMin, integralMax);
+}
+
+void IterativePosPIDController::setErrorSumLimits(const double imax, const double imin) {
+  errorSumMax = imax;
+  errorSumMin = imin;
+}
+
+void IterativePosPIDController::setGains(const Gains &igains) {
+  const double sampleTimeSec = sampleTime.convert(second);
+  kP = igains.kP;
+  kI = igains.kI * sampleTimeSec;
+  kD = igains.kD / sampleTimeSec;
+  kBias = igains.kBias;
+}
+
+IterativePosPIDController::Gains IterativePosPIDController::getGains() const {
+  return {kP, kI / sampleTime.convert(second), kD * sampleTime.convert(second), kBias};
 }
 } // namespace okapi

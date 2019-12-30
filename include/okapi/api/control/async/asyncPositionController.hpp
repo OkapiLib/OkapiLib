@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -12,5 +12,11 @@
 
 namespace okapi {
 template <typename Input, typename Output>
-class AsyncPositionController : virtual public AsyncController<Input, Output> {};
+class AsyncPositionController : virtual public AsyncController<Input, Output> {
+  public:
+  /**
+   * Sets the "absolute" zero position of the controller to its current position.
+   */
+  virtual void tarePosition() = 0;
+};
 } // namespace okapi

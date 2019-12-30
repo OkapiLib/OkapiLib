@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -7,7 +7,6 @@
  */
 #include "okapi/impl/control/util/pidTunerFactory.hpp"
 #include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
-#include "okapi/impl/control/util/settledUtilFactory.hpp"
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
@@ -24,10 +23,11 @@ PIDTuner PIDTunerFactory::create(const std::shared_ptr<ControllerInput<double>> 
                                  std::int32_t inumIterations,
                                  std::int32_t inumParticles,
                                  double ikSettle,
-                                 double ikITAE) {
+                                 double ikITAE,
+                                 const std::shared_ptr<Logger> &ilogger) {
   return PIDTuner(iinput,
                   ioutput,
-                  TimeUtilFactory::create(),
+                  TimeUtilFactory::createDefault(),
                   itimeout,
                   igoal,
                   ikPMin,
@@ -39,7 +39,8 @@ PIDTuner PIDTunerFactory::create(const std::shared_ptr<ControllerInput<double>> 
                   inumIterations,
                   inumParticles,
                   ikSettle,
-                  ikITAE);
+                  ikITAE,
+                  ilogger);
 }
 
 std::unique_ptr<PIDTuner>
@@ -56,10 +57,11 @@ PIDTunerFactory::createPtr(const std::shared_ptr<ControllerInput<double>> &iinpu
                            std::int32_t inumIterations,
                            std::int32_t inumParticles,
                            double ikSettle,
-                           double ikITAE) {
+                           double ikITAE,
+                           const std::shared_ptr<Logger> &ilogger) {
   return std::make_unique<PIDTuner>(iinput,
                                     ioutput,
-                                    TimeUtilFactory::create(),
+                                    TimeUtilFactory::createDefault(),
                                     itimeout,
                                     igoal,
                                     ikPMin,
@@ -71,6 +73,7 @@ PIDTunerFactory::createPtr(const std::shared_ptr<ControllerInput<double>> &iinpu
                                     inumIterations,
                                     inumParticles,
                                     ikSettle,
-                                    ikITAE);
+                                    ikITAE,
+                                    ilogger);
 }
 } // namespace okapi
