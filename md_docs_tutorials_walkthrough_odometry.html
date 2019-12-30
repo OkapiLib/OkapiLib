@@ -77,8 +77,8 @@
     <span class="c1">// green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
     <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
     <span class="p">.</span><span class="n">withSensors</span><span class="p">(</span>
-        <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// left encoder in ADI ports A &amp; B</span>
-        <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// right encoder in ADI ports C &amp; D (reversed)</span>
+        <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// left encoder in ADI ports A &amp; B</span>
+        <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// right encoder in ADI ports C &amp; D (reversed)</span>
     <span class="p">)</span>
     <span class="c1">// specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)</span>
     <span class="p">.</span><span class="n">withOdometry</span><span class="p">({{</span><span class="mi">3</span><span class="n">_in</span><span class="p">,</span> <span class="mi">7</span><span class="n">_in</span><span class="p">},</span> <span class="n">quadEncoderTPR</span><span class="p">})</span>
@@ -90,8 +90,8 @@
         <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">}</span>  <span class="c1">// angle controller gains (helps drive straight)</span>
     <span class="p">)</span>
     <span class="p">.</span><span class="n">withSensors</span><span class="p">(</span>
-        <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// left encoder in ADI ports A &amp; B</span>
-        <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// right encoder in ADI ports C &amp; D (reversed)</span>
+        <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// left encoder in ADI ports A &amp; B</span>
+        <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// right encoder in ADI ports C &amp; D (reversed)</span>
     <span class="p">)</span>
     <span class="c1">// green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
     <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
@@ -101,9 +101,9 @@
     <span class="c1">// green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
     <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
     <span class="p">.</span><span class="n">withSensors</span><span class="p">(</span>
-        <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// left encoder in ADI ports A &amp; B</span>
-        <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// right encoder in ADI ports C &amp; D (reversed)</span>
-        <span class="p">{</span><span class="sc">&#39;E&#39;</span><span class="p">,</span> <span class="sc">&#39;F&#39;</span><span class="p">}</span>  <span class="c1">// middle encoder in ADI ports E &amp; F</span>
+        <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// left encoder in ADI ports A &amp; B</span>
+        <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">},</span>  <span class="c1">// right encoder in ADI ports C &amp; D (reversed)</span>
+        <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;E&#39;</span><span class="p">,</span> <span class="sc">&#39;F&#39;</span><span class="p">}</span>  <span class="c1">// middle encoder in ADI ports E &amp; F</span>
     <span class="p">)</span>
     <span class="c1">// specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)</span>
     <span class="c1">// specify the middle encoder distance (1 in) and diameter (2.75 in)</span>
@@ -116,9 +116,9 @@
         <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">}</span>  <span class="c1">// angle controller gains (helps drive straight)</span>
     <span class="p">)</span>
     <span class="p">.</span><span class="n">withSensors</span><span class="p">(</span>
-        <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// left encoder in ADI ports A &amp; B</span>
-        <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// right encoder in ADI ports C &amp; D (reversed)</span>
-        <span class="p">{</span><span class="sc">&#39;E&#39;</span><span class="p">,</span> <span class="sc">&#39;F&#39;</span><span class="p">}</span>  <span class="c1">// middle encoder in ADI ports E &amp; F</span>
+        <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// left encoder in ADI ports A &amp; B</span>
+        <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">},</span>  <span class="c1">// right encoder in ADI ports C &amp; D (reversed)</span>
+        <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;E&#39;</span><span class="p">,</span> <span class="sc">&#39;F&#39;</span><span class="p">}</span>  <span class="c1">// middle encoder in ADI ports E &amp; F</span>
     <span class="p">)</span>
     <span class="c1">// green gearset, 4 inch wheel diameter, 11 inch wheelbase</span>
     <span class="c1">// 1 inch middle encoder distance, and 2.75 inch middle wheel diameter</span>
@@ -131,7 +131,7 @@
     <span class="c1">// green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
     <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
     <span class="c1">// left encoder in ADI ports A &amp; B, right encoder in ADI ports C &amp; D (reversed)</span>
-    <span class="p">.</span><span class="n">withSensors</span><span class="p">({</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">withSensors</span><span class="p">(</span><span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">})</span>
     <span class="c1">// specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)</span>
     <span class="p">.</span><span class="n">withOdometry</span><span class="p">({{</span><span class="mi">3</span><span class="n">_in</span><span class="p">,</span> <span class="mi">7</span><span class="n">_in</span><span class="p">},</span> <span class="n">quadEncoderTPR</span><span class="p">},</span> <span class="n">StateMode</span><span class="o">::</span><span class="n">FRAME_TRANSFORMATION</span><span class="p">)</span>
     <span class="p">.</span><span class="n">buildOdometry</span><span class="p">();</span>
