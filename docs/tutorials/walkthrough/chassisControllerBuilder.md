@@ -100,8 +100,8 @@ integrated control (and therefore, the encoders built-in to the motors).
 ```cpp
 ChassisControllerBuilder()
     .withSensors(
-        {'A', 'B'}, // Left encoder in ADI ports A & B
-        {'C', 'D', true}  // Right encoder in ADI ports C & D (reversed)
+        ADIEncoder{'A', 'B'}, // Left encoder in ADI ports A & B
+        ADIEncoder{'C', 'D', true}  // Right encoder in ADI ports C & D (reversed)
     )
 ```
 
@@ -141,8 +141,8 @@ ChassisControllerBuilder()
     // Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withSensors(
-        {'A', 'B'}, // Left encoder in ADI ports A & B
-        {'C', 'D', true}  // Right encoder in ADI ports C & D (reversed)
+        ADIEncoder{'A', 'B'}, // Left encoder in ADI ports A & B
+        ADIEncoder{'C', 'D', true}  // Right encoder in ADI ports C & D (reversed)
     )
     // Specify the tracking wheels diam (3 in), track (7 in), and TPR (360)
     .withOdometry({{3_in, 7_in}, quadEncoderTPR})

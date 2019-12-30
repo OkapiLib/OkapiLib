@@ -66,8 +66,8 @@ ChassisControllerBuilder()
     // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withSensors(
-        {'A', 'B'}, // left encoder in ADI ports A & B
-        {'C', 'D', true}  // right encoder in ADI ports C & D (reversed)
+        ADIEncoder{'A', 'B'}, // left encoder in ADI ports A & B
+        ADIEncoder{'C', 'D', true}  // right encoder in ADI ports C & D (reversed)
     )
     // specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)
     .withOdometry({{3_in, 7_in}, quadEncoderTPR})
@@ -86,8 +86,8 @@ ChassisControllerBuilder()
         {0.001, 0, 0.0001}  // angle controller gains (helps drive straight)
     )
     .withSensors(
-        {'A', 'B'}, // left encoder in ADI ports A & B
-        {'C', 'D', true}  // right encoder in ADI ports C & D (reversed)
+        ADIEncoder{'A', 'B'}, // left encoder in ADI ports A & B
+        ADIEncoder{'C', 'D', true}  // right encoder in ADI ports C & D (reversed)
     )
     // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
@@ -107,9 +107,9 @@ ChassisControllerBuilder()
     // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withSensors(
-        {'A', 'B'}, // left encoder in ADI ports A & B
-        {'C', 'D', true}  // right encoder in ADI ports C & D (reversed)
-        {'E', 'F'}  // middle encoder in ADI ports E & F
+        ADIEncoder{'A', 'B'}, // left encoder in ADI ports A & B
+        ADIEncoder{'C', 'D', true},  // right encoder in ADI ports C & D (reversed)
+        ADIEncoder{'E', 'F'}  // middle encoder in ADI ports E & F
     )
     // specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)
     // specify the middle encoder distance (1 in) and diameter (2.75 in)
@@ -128,9 +128,9 @@ ChassisControllerBuilder()
         {0.001, 0, 0.0001}  // angle controller gains (helps drive straight)
     )
     .withSensors(
-        {'A', 'B'}, // left encoder in ADI ports A & B
-        {'C', 'D', true}  // right encoder in ADI ports C & D (reversed)
-        {'E', 'F'}  // middle encoder in ADI ports E & F
+        ADIEncoder{'A', 'B'}, // left encoder in ADI ports A & B
+        ADIEncoder{'C', 'D', true},  // right encoder in ADI ports C & D (reversed)
+        ADIEncoder{'E', 'F'}  // middle encoder in ADI ports E & F
     )
     // green gearset, 4 inch wheel diameter, 11 inch wheelbase
     // 1 inch middle encoder distance, and 2.75 inch middle wheel diameter
@@ -193,7 +193,7 @@ auto chassis =
     // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     // left encoder in ADI ports A & B, right encoder in ADI ports C & D (reversed)
-    .withSensors({'A', 'B'}, {'C', 'D', true})
+    .withSensors(ADIEncoder{'A', 'B'}, ADIEncoder{'C', 'D', true})
     // specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)
     .withOdometry({{3_in, 7_in}, quadEncoderTPR}, StateMode::FRAME_TRANSFORMATION)
     .buildOdometry();
