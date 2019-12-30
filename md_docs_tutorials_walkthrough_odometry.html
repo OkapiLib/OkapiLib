@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Odometry | OkapiLib A PROS library for programming VEX robots</title>
+  <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
+  <link rel="stylesheet" href="okapi-docs.css" />
+  <link rel="icon" href="logo-doxygen.jpeg" type="image/jpeg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#22272e" />
+</head>
+<body>
+<header><nav id="navigation">
+  <div class="m-container">
+    <div class="m-row">
+      <a href="index.html" id="m-navbar-brand" class="m-col-t-8 m-col-m-none m-left-m">OkapiLib <span class="m-thin">A PROS library for programming VEX robots</span></a>
+      <div class="m-col-t-4 m-hide-m m-text-right m-nopadr">
+        <a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+          <path d="m6 0c-3.3144 0-6 2.6856-6 6 0 3.3144 2.6856 6 6 6 1.4858 0 2.8463-0.54083 3.8945-1.4355-0.0164 0.33797 0.14734 0.75854 0.5 1.1504l3.2227 3.7891c0.55185 0.6139 1.4517 0.66544 2.002 0.11524 0.55022-0.55022 0.49866-1.4501-0.11524-2.002l-3.7891-3.2246c-0.39184-0.35266-0.81242-0.51469-1.1504-0.5 0.89472-1.0482 1.4355-2.4088 1.4355-3.8945 0-3.3128-2.6856-5.998-6-5.998zm0 1.5625a4.4375 4.4375 0 0 1 4.4375 4.4375 4.4375 4.4375 0 0 1-4.4375 4.4375 4.4375 4.4375 0 0 1-4.4375-4.4375 4.4375 4.4375 0 0 1 4.4375-4.4375z"/>
+        </svg></a>
+        <a id="m-navbar-show" href="#navigation" title="Show navigation"></a>
+        <a id="m-navbar-hide" href="#" title="Hide navigation"></a>
+      </div>
+      <div id="m-navbar-collapse" class="m-col-t-12 m-show-m m-col-m-none m-right-m">
+        <div class="m-row">
+          <ol class="m-col-t-6 m-col-m-none">
+            <li><a href="md_docs_tutorials_index.html">Tutorials</a></li>
+            <li>
+              <a href="md_docs_api_index.html">API</a>
+              <ol>
+                <li><a href="md_docs_api_chassis.html">Chassis API</a></li>
+                <li><a href="md_docs_api_control.html">Control API</a></li>
+                <li><a href="md_docs_api_devices.html">Devices API</a></li>
+                <li><a href="md_docs_api_filters.html">Filters API</a></li>
+                <li><a href="md_docs_api_units.html">Units API</a></li>
+                <li><a href="md_docs_api_utility.html">Utility API</a></li>
+              </ol>
+            </li>
+          </ol>
+          <ol class="m-col-t-6 m-col-m-none" start="3">
+            <li><a href="pages.html">Pages</a></li>
+            <li><a href="annotated.html">Classes</a></li>
+            <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
+              <path d="m6 0c-3.3144 0-6 2.6856-6 6 0 3.3144 2.6856 6 6 6 1.4858 0 2.8463-0.54083 3.8945-1.4355-0.0164 0.33797 0.14734 0.75854 0.5 1.1504l3.2227 3.7891c0.55185 0.6139 1.4517 0.66544 2.002 0.11524 0.55022-0.55022 0.49866-1.4501-0.11524-2.002l-3.7891-3.2246c-0.39184-0.35266-0.81242-0.51469-1.1504-0.5 0.89472-1.0482 1.4355-2.4088 1.4355-3.8945 0-3.3128-2.6856-5.998-6-5.998zm0 1.5625a4.4375 4.4375 0 0 1 4.4375 4.4375 4.4375 4.4375 0 0 1-4.4375 4.4375 4.4375 4.4375 0 0 1-4.4375-4.4375 4.4375 4.4375 0 0 1 4.4375-4.4375z"/>
+            </svg></a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav></header>
+<main><article>
+  <div class="m-container m-container-inflatable">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <h1>
+          Odometry
+        </h1>
+<p>Odometry is the act of tracking a robot&#x27;s absolute position. This information can be used by motion algorithms to drive to positions or turn to absolute angles.</p><p>An excellent overview of the odometry tracking algorithm can be found <a href="https://www.vexforum.com/t/team-5225-introduction-to-position-tracking-document/49640">here</a>.</p><h3>Configuring Odometry</h3><p>OkapiLib supports odometry for all chassis configurations. A chassis controller that uses odometry is configured using the <a href="classokapi_1_1ChassisControllerBuilder.html" class="m-doc">ChassisControllerBuilder</a>.</p><p>There are three general types of odometry supported by OkapiLib, though most feasible configurations are possible:</p><ul><li><strong>Two Integrated Encoder</strong>: Works out of the box with most chassis configurations and uses integrated motor encoders. Using the integrated encoders makes the odometry prone to wheel slip and inexact turning causing this odometry method to have limited accuracy. This method cannot track sideways movement.</li><li><strong>Two External Encoder</strong>: Requires two external tracking wheels which track the ground. Minimizes wheel slip and often improves turning accuracy. This method cannot track sideways movement.</li><li><strong>Three External Encoder</strong>: Requires three external tracking wheels to measure the robot&#x27;s movement in all directions. Recommended for a holonomic chassis or any skid-steer chassis using omni wheels. This method will have the highest accuracy.</li></ul><h3>Odometry using integrated encoders:</h3><p>If you are using integrated encoders, then the odometry scales are the same as your chassis scales. Don&#x27;t pass an extra <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> to <a href="classokapi_1_1ChassisControllerBuilder.html#aeb585b3b9f21b9e83ce52fa29bc133dd" class="m-doc">withOdometry</a>. Here is an example using <a href="classokapi_1_1ChassisControllerIntegrated.html" class="m-doc">ChassisControllerIntegrated</a>:</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// left motor is 1, right motor is 2 (reversed)</span>
+    <span class="c1">// green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
+    <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">withOdometry</span><span class="p">()</span> <span class="c1">// use the same scales as the chassis (above)</span>
+    <span class="p">.</span><span class="n">buildOdometry</span><span class="p">();</span> <span class="c1">// build an odometry chassis</span></pre><p>Here is the same example using <a href="classokapi_1_1ChassisControllerPID.html" class="m-doc">ChassisControllerPID</a>:</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// left motor is 1, right motor is 2 (reversed)</span>
+    <span class="p">.</span><span class="n">withGains</span><span class="p">(</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Distance controller gains</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Turn controller gains</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">}</span>  <span class="c1">// Angle controller gains (helps drive straight)</span>
+    <span class="p">)</span>
+    <span class="c1">// green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
+    <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">withOdometry</span><span class="p">()</span> <span class="c1">// use the same scales as the chassis (above)</span>
+    <span class="p">.</span><span class="n">buildOdometry</span><span class="p">();</span> <span class="c1">// build an odometry chassis</span></pre><h3>Odometry using external encoders:</h3><p>If you are using a <a href="classokapi_1_1ChassisControllerIntegrated.html" class="m-doc">ChassisControllerIntegrated</a>, the chassis dimensions will be different than the odometry scales given to <a href="classokapi_1_1ChassisControllerBuilder.html#a399b462e1c380ea834011f1b467ede6c" class="m-doc">withDimensions</a>. This is because <a href="classokapi_1_1ChassisControllerIntegrated.html" class="m-doc">ChassisControllerIntegrated</a> still requires scales for the powered wheels, while the tracking wheels have a different set of scales. You will need to pass an extra <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> to <a href="classokapi_1_1ChassisControllerBuilder.html#aeb585b3b9f21b9e83ce52fa29bc133dd" class="m-doc">withOdometry</a> to specify the scales for the tracking wheels.</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// left motor is 1, right motor is 2 (reversed)</span>
+    <span class="c1">// green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
+    <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">withSensors</span><span class="p">(</span>
+        <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// left encoder in ADI ports A &amp; B</span>
+        <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// right encoder in ADI ports C &amp; D (reversed)</span>
+    <span class="p">)</span>
+    <span class="c1">// specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)</span>
+    <span class="p">.</span><span class="n">withOdometry</span><span class="p">({{</span><span class="mi">3</span><span class="n">_in</span><span class="p">,</span> <span class="mi">7</span><span class="n">_in</span><span class="p">},</span> <span class="n">quadEncoderTPR</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">buildOdometry</span><span class="p">();</span></pre><p>If you are using a <a href="classokapi_1_1ChassisControllerPID.html" class="m-doc">ChassisControllerPID</a> with external sensors, the odometry scales will be the same as the ones given to <a href="classokapi_1_1ChassisControllerBuilder.html#a399b462e1c380ea834011f1b467ede6c" class="m-doc">withDimensions</a>.</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// left motor is 1, right motor is 2 (reversed)</span>
+    <span class="p">.</span><span class="n">withGains</span><span class="p">(</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// distance controller gains</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// turn controller gains</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">}</span>  <span class="c1">// angle controller gains (helps drive straight)</span>
+    <span class="p">)</span>
+    <span class="p">.</span><span class="n">withSensors</span><span class="p">(</span>
+        <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// left encoder in ADI ports A &amp; B</span>
+        <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// right encoder in ADI ports C &amp; D (reversed)</span>
+    <span class="p">)</span>
+    <span class="c1">// green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
+    <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">withOdometry</span><span class="p">()</span> <span class="c1">// use the same scales as the chassis (above)</span>
+    <span class="p">.</span><span class="n">buildOdometry</span><span class="p">();</span> <span class="c1">// build an odometry chassis</span></pre><h3>Odometry using three tracking wheels:</h3><p><a href="classokapi_1_1ThreeEncoderOdometry.html" class="m-doc">ThreeEncoderOdometry</a> is enabled by providing a third sensor to <a href="classokapi_1_1ChassisControllerBuilder.html#a0197aa35c2c36dd82476bc70c5824a56" class="m-doc">withSensors</a>. The scales then need to be expanded to incorporate the third sensor. Here is an example using <a href="classokapi_1_1ChassisControllerIntegrated.html" class="m-doc">ChassisControllerIntegrated</a>:</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// left motor is 1, right motor is 2 (reversed)</span>
+    <span class="c1">// green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
+    <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">withSensors</span><span class="p">(</span>
+        <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// left encoder in ADI ports A &amp; B</span>
+        <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// right encoder in ADI ports C &amp; D (reversed)</span>
+        <span class="p">{</span><span class="sc">&#39;E&#39;</span><span class="p">,</span> <span class="sc">&#39;F&#39;</span><span class="p">}</span>  <span class="c1">// middle encoder in ADI ports E &amp; F</span>
+    <span class="p">)</span>
+    <span class="c1">// specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)</span>
+    <span class="c1">// specify the middle encoder distance (1 in) and diameter (2.75 in)</span>
+    <span class="p">.</span><span class="n">withOdometry</span><span class="p">({{</span><span class="mi">3</span><span class="n">_in</span><span class="p">,</span> <span class="mi">7</span><span class="n">_in</span><span class="p">,</span> <span class="mi">1</span><span class="n">_in</span><span class="p">,</span> <span class="mf">2.75</span><span class="n">_in</span><span class="p">},</span> <span class="n">quadEncoderTPR</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">buildOdometry</span><span class="p">();</span></pre><p>Here is the same example using <a href="classokapi_1_1ChassisControllerPID.html" class="m-doc">ChassisControllerPID</a>:</p><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// left motor is 1, right motor is 2 (reversed)</span>
+    <span class="p">.</span><span class="n">withGains</span><span class="p">(</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// distance controller gains</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// turn controller gains</span>
+        <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">}</span>  <span class="c1">// angle controller gains (helps drive straight)</span>
+    <span class="p">)</span>
+    <span class="p">.</span><span class="n">withSensors</span><span class="p">(</span>
+        <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// left encoder in ADI ports A &amp; B</span>
+        <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// right encoder in ADI ports C &amp; D (reversed)</span>
+        <span class="p">{</span><span class="sc">&#39;E&#39;</span><span class="p">,</span> <span class="sc">&#39;F&#39;</span><span class="p">}</span>  <span class="c1">// middle encoder in ADI ports E &amp; F</span>
+    <span class="p">)</span>
+    <span class="c1">// green gearset, 4 inch wheel diameter, 11 inch wheelbase</span>
+    <span class="c1">// 1 inch middle encoder distance, and 2.75 inch middle wheel diameter</span>
+    <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mi">11</span><span class="n">_in</span><span class="p">,</span> <span class="mi">1</span><span class="n">_in</span><span class="p">,</span> <span class="mf">2.75</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">withOdometry</span><span class="p">()</span> <span class="c1">// use the same scales as the chassis (above)</span>
+    <span class="p">.</span><span class="n">buildOdometry</span><span class="p">();</span> <span class="c1">// build an odometry chassis</span></pre><h3>Using Odometry</h3><p>The odometry controller built by <a href="classokapi_1_1ChassisControllerBuilder.html#a9c631ea817466483aa2cfcb886f6d892" class="m-doc">buildOdometry</a> is a <a href="classokapi_1_1DefaultOdomChassisController.html" class="m-doc">DefaultOdomChassisController</a>, which inherits from <a href="classokapi_1_1OdomChassisController.html" class="m-doc">OdomChassisController</a>. It supports all methods from <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a> such as <a href="classokapi_1_1DefaultOdomChassisController.html#a3143bc60f72ab8ff8f63aad9a810a1c6" class="m-doc">moveDistance</a> or <a href="classokapi_1_1DefaultOdomChassisController.html#a4ba07ac4bea9ff2d8aea30be72f6a0ea" class="m-doc">turnAngle</a>, and adds odometry commands such as <a href="classokapi_1_1DefaultOdomChassisController.html#ad89098abcab5e9f333cb3c70c9e8299f" class="m-doc">driveToPoint</a>, <a href="classokapi_1_1DefaultOdomChassisController.html#a6692219d4f4c264346c5c8096be41610" class="m-doc">turnToPoint</a>, and <a href="classokapi_1_1DefaultOdomChassisController.html#aaf6e4d74384b87510d35b639e45f9dc2" class="m-doc">turnToAngle</a>.</p><h4>Coordinates</h4><p>OkapiLib supports two methods of representing a coordinate. which are defined in <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>. The default is <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>, where positive x is forward and positive y is to the right. You can specify the <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a> to be used for odometry as a parameter to <a href="classokapi_1_1ChassisControllerBuilder.html#aeb585b3b9f21b9e83ce52fa29bc133dd" class="m-doc">withOdometry</a>.</p><p>To get and set the odometry state, use <a href="classokapi_1_1OdomChassisController.html#a4f4a588ea6e302e9cf13fb776ce0c5e4" class="m-doc">getState</a> and <a href="classokapi_1_1OdomChassisController.html#a1e3a4b62e89ab0869c4046983ab7d11b" class="m-doc">setState</a>.</p><h4>Moving</h4><p>OkapiLib moves by calculating necessary chassis movement given a desired state and an odometry state, and then forwarding those commands to a <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>. For example, typing</p><pre class="m-code"><span class="n">chassis</span><span class="o">-&gt;</span><span class="n">driveToPoint</span><span class="p">({</span><span class="mi">1</span><span class="n">_ft</span><span class="p">,</span> <span class="mi">1</span><span class="n">_ft</span><span class="p">});</span> <span class="c1">// assume starting position of {0, 0, 0}</span></pre><p>is equivalent to typing</p><pre class="m-code"><span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnAngle</span><span class="p">(</span><span class="mi">45</span><span class="n">_deg</span><span class="p">);</span>
+<span class="n">chassis</span><span class="o">-&gt;</span><span class="n">moveDistance</span><span class="p">(</span><span class="mf">1.4</span><span class="n">_ft</span><span class="p">);</span> <span class="c1">// sqrt(1^2 + 1^2)</span></pre><p>The advantage of using these algorithms is that if the odometry state is slightly different than expected, OkapiLib will try to compensate so that the next position is accurate. Programming using odometry is much nicer, as the user can visualize the field and changing a movement will not affect the following movements.</p><h3>Full Example:</h3><p>Here is is a full example of odometry using <a href="classokapi_1_1ChassisControllerIntegrated.html" class="m-doc">ChassisControllerIntegrated</a> and two tracking wheels:</p><pre class="m-code"><span class="k">auto</span> <span class="n">chassis</span> <span class="o">=</span>
+  <span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// left motor is 1, right motor is 2 (reversed)</span>
+    <span class="c1">// green gearset, 4 inch wheel diameter, 11.5 inch wheelbase</span>
+    <span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span><span class="n">AbstractMotor</span><span class="o">::</span><span class="n">gearset</span><span class="o">::</span><span class="n">green</span><span class="p">,</span> <span class="p">{{</span><span class="mi">4</span><span class="n">_in</span><span class="p">,</span> <span class="mf">11.5</span><span class="n">_in</span><span class="p">},</span> <span class="n">imev5GreenTPR</span><span class="p">})</span>
+    <span class="c1">// left encoder in ADI ports A &amp; B, right encoder in ADI ports C &amp; D (reversed)</span>
+    <span class="p">.</span><span class="n">withSensors</span><span class="p">({</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">})</span>
+    <span class="c1">// specify the tracking wheels diameter (3 in), track (7 in), and TPR (360)</span>
+    <span class="p">.</span><span class="n">withOdometry</span><span class="p">({{</span><span class="mi">3</span><span class="n">_in</span><span class="p">,</span> <span class="mi">7</span><span class="n">_in</span><span class="p">},</span> <span class="n">quadEncoderTPR</span><span class="p">},</span> <span class="n">StateMode</span><span class="o">::</span><span class="n">FRAME_TRANSFORMATION</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">buildOdometry</span><span class="p">();</span>
+
+<span class="c1">// set the state to zero</span>
+<span class="n">chassis</span><span class="o">-&gt;</span><span class="n">setState</span><span class="p">({</span><span class="mi">0</span><span class="n">_in</span><span class="p">,</span> <span class="mi">0</span><span class="n">_in</span><span class="p">,</span> <span class="mi">0</span><span class="n">_deg</span><span class="p">});</span>
+<span class="c1">// turn 45 degrees and drive approximately 1.4 ft</span>
+<span class="n">chassis</span><span class="o">-&gt;</span><span class="n">driveToPoint</span><span class="p">({</span><span class="mi">1</span><span class="n">_ft</span><span class="p">,</span> <span class="mi">1</span><span class="n">_ft</span><span class="p">});</span>
+<span class="c1">// turn approximately 45 degrees to end up at 90 degrees</span>
+<span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnToAngle</span><span class="p">(</span><span class="mi">90</span><span class="n">_deg</span><span class="p">);</span>
+<span class="c1">// turn approximately -90 degrees to face {5_ft, 0_ft} which is to the north of the robot</span>
+<span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnToPoint</span><span class="p">({</span><span class="mi">5</span><span class="n">_ft</span><span class="p">,</span> <span class="mi">0</span><span class="n">_ft</span><span class="p">});</span></pre>
+      </div>
+    </div>
+  </div>
+</article></main>
+<div class="m-doc-search" id="search">
+  <a href="#!" onclick="return hideSearch()"></a>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-m-8 m-push-m-2">
+        <div class="m-doc-search-header m-text m-small">
+          <div><span class="m-label m-default">Tab</span> / <span class="m-label m-default">T</span> to search, <span class="m-label m-default">Esc</span> to close</div>
+          <div id="search-symbolcount">&hellip;</div>
+        </div>
+        <div class="m-doc-search-content">
+          <form>
+            <input type="search" name="q" id="search-input" placeholder="Loading &hellip;" disabled="disabled" autofocus="autofocus" autocomplete="off" spellcheck="false" />
+          </form>
+          <noscript class="m-text m-danger m-text-center">Unlike everything else in the docs, the search functionality <em>requires</em> JavaScript.</noscript>
+          <div id="search-help" class="m-text m-dim m-text-center">
+            <p class="m-noindent">Search for symbols, directories, files, pages or
+            modules. You can omit any prefix from the symbol or file path; adding a
+            <code>:</code> or <code>/</code> suffix lists all members of given symbol or
+            directory.</p>
+            <p class="m-noindent">Use <span class="m-label m-dim">&darr;</span>
+            / <span class="m-label m-dim">&uarr;</span> to navigate through the list,
+            <span class="m-label m-dim">Enter</span> to go.
+            <span class="m-label m-dim">Tab</span> autocompletes common prefix, you can
+            copy a link to the result using <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">L</span> while <span class="m-label m-dim">⌘</span>
+            <span class="m-label m-dim">M</span> produces a Markdown link.</p>
+          </div>
+          <div id="search-notfound" class="m-text m-warning m-text-center">Sorry, nothing was found.</div>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="search.js"></script>
+<script src="searchdata-v1.js" async="async"></script>
+<footer><nav>
+  <div class="m-container">
+    <div class="m-row">
+      <div class="m-col-l-10 m-push-l-1">
+        <p>OkapiLib A PROS library for programming VEX robots. Created with <a href="https://doxygen.org/">Doxygen</a> 1.8.13 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+      </div>
+    </div>
+  </div>
+</nav></footer>
+</body>
+</html>
