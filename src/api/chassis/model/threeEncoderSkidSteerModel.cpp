@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -9,15 +9,20 @@
 
 namespace okapi {
 ThreeEncoderSkidSteerModel::ThreeEncoderSkidSteerModel(
-  const std::shared_ptr<AbstractMotor> &ileftSideMotor,
-  const std::shared_ptr<AbstractMotor> &irightSideMotor,
-  const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
-  const std::shared_ptr<ContinuousRotarySensor> &imiddleEnc,
-  const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
+  std::shared_ptr<AbstractMotor> ileftSideMotor,
+  std::shared_ptr<AbstractMotor> irightSideMotor,
+  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+  std::shared_ptr<ContinuousRotarySensor> irightEnc,
+  std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
   const double imaxVelocity,
   const double imaxVoltage)
-  : SkidSteerModel(ileftSideMotor, irightSideMotor, ileftEnc, irightEnc, imaxVelocity, imaxVoltage),
-    middleSensor(imiddleEnc) {
+  : SkidSteerModel(std::move(ileftSideMotor),
+                   std::move(irightSideMotor),
+                   std::move(ileftEnc),
+                   std::move(irightEnc),
+                   imaxVelocity,
+                   imaxVoltage),
+    middleSensor(std::move(imiddleEnc)) {
 }
 
 std::valarray<std::int32_t> ThreeEncoderSkidSteerModel::getSensorVals() const {
@@ -27,7 +32,7 @@ std::valarray<std::int32_t> ThreeEncoderSkidSteerModel::getSensorVals() const {
                                      static_cast<std::int32_t>(middleSensor->get())};
 }
 
-void ThreeEncoderSkidSteerModel::resetSensors() const {
+void ThreeEncoderSkidSteerModel::resetSensors() {
   SkidSteerModel::resetSensors();
   middleSensor->reset();
 }

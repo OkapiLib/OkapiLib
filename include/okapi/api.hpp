@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -7,15 +7,48 @@
  */
 #pragma once
 
+/** @mainpage OkapiLib Index Page
+ *
+ * @section intro_sec Introduction
+ *
+ * **OkapiLib** is a PROS library for programming VEX V5 robots. This library is intended to raise
+ * the floor for teams with all levels of experience. New teams should have an easier time getting
+ * their robot up and running, and veteran teams should find that OkapiLib doesn't get in the way or
+ * place any limits on functionality.
+ *
+ * For tutorials on how to get the most out of OkapiLib, see the
+ * [Tutorials](docs/tutorials/index.md) section. For documentation on using the OkapiLib API, see
+ * the [API](docs/api/index.md) section.
+ *
+ * @section getting_started Getting Started
+ * Not sure where to start? Take a look at the
+ * [Getting Started](docs/tutorials/walkthrough/gettingStarted.md) tutorial.
+ * Once you have OkapiLib set up, check out the
+ * [Clawbot](docs/tutorials/walkthrough/clawbot.md) tutorial.
+ *
+ * @section using_docs Using The Documentation
+ *
+ * Start with reading the [Tutorials](docs/tutorials/index.md). Use the [API](docs/api/index.md)
+ * section to explore the class hierarchy. To see a list of all available classes, use the
+ * [Classes](html/annotated.html) section.
+ *
+ * This documentation has a powerful search feature, which can be brought up with the keyboard
+ * shortcuts `Tab` or `T`. All exports to the `okapi` namespace such as enums, constants, units, or
+ * functions can be found [here](@ref okapi).
+ */
+
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/chassisControllerPid.hpp"
 #include "okapi/api/chassis/controller/chassisScales.hpp"
+#include "okapi/api/chassis/controller/defaultOdomChassisController.hpp"
+#include "okapi/api/chassis/controller/odomChassisController.hpp"
+#include "okapi/api/chassis/model/hDriveModel.hpp"
 #include "okapi/api/chassis/model/readOnlyChassisModel.hpp"
 #include "okapi/api/chassis/model/skidSteerModel.hpp"
 #include "okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp"
+#include "okapi/api/chassis/model/threeEncoderXDriveModel.hpp"
 #include "okapi/api/chassis/model/xDriveModel.hpp"
-#include "okapi/impl/chassis/controller/chassisControllerFactory.hpp"
-#include "okapi/impl/chassis/model/chassisModelFactory.hpp"
+#include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 
 #include "okapi/api/control/async/asyncLinearMotionProfileController.hpp"
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
@@ -33,11 +66,16 @@
 #include "okapi/api/control/util/flywheelSimulator.hpp"
 #include "okapi/api/control/util/pidTuner.hpp"
 #include "okapi/api/control/util/settledUtil.hpp"
-#include "okapi/impl/control/async/asyncControllerFactory.hpp"
+#include "okapi/impl/control/async/asyncMotionProfileControllerBuilder.hpp"
+#include "okapi/impl/control/async/asyncPosControllerBuilder.hpp"
+#include "okapi/impl/control/async/asyncVelControllerBuilder.hpp"
 #include "okapi/impl/control/iterative/iterativeControllerFactory.hpp"
 #include "okapi/impl/control/util/controllerRunnerFactory.hpp"
 #include "okapi/impl/control/util/pidTunerFactory.hpp"
-#include "okapi/impl/control/util/settledUtilFactory.hpp"
+
+#include "okapi/api/odometry/odomMath.hpp"
+#include "okapi/api/odometry/odometry.hpp"
+#include "okapi/api/odometry/threeEncoderOdometry.hpp"
 
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
 #include "okapi/api/device/rotarysensor/rotarySensor.hpp"
@@ -51,7 +89,6 @@
 #include "okapi/impl/device/rotarysensor/adiGyro.hpp"
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/potentiometer.hpp"
-#include "okapi/impl/device/vision.hpp"
 
 #include "okapi/api/filter/averageFilter.hpp"
 #include "okapi/api/filter/composableFilter.hpp"

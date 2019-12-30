@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -7,15 +7,27 @@
  */
 #include "test/tests/impl/allImplTests.hpp"
 #include "test/testRunner.hpp"
+#include "test/tests/impl/asyncMotionProfileControllerBuilderIntegrationTests.hpp"
+#include "test/tests/impl/asyncPosControllerBuilderIntegrationTests.hpp"
 #include "test/tests/impl/asyncPosIntegratedControllerTests.hpp"
+#include "test/tests/impl/asyncVelControllerBuilderIntegrationTests.hpp"
+#include "test/tests/impl/chassisControllerBuilderIntegrationTests.hpp"
+#include "test/tests/impl/chassisControllerIntegratedTests.hpp"
 #include "test/tests/impl/chassisControllerPidTests.hpp"
 #include "test/tests/impl/controllerTests.hpp"
 #include "test/tests/impl/utilTests.hpp"
 
+using namespace okapi;
+
 void runAllImplTests() {
-  runAsyncPosIntegratedControllerTests();
-  runUtilTests();
+  //  runChassisControllerBuilderIntegrationTests();
+  //  runAsyncPosControllerBuilderIntegrationTests();
+  //  runAsyncMotionProfileControllerBuilderIntegrationTests();
+  //  runAsyncPosIntegratedControllerTests();
+  //  runAsyncVelControllerBuilderIntegrationTests();
+  //  runUtilTests();
   runControllerTests();
-  runChassisControllerPidTests();
-  okapi::test_print_report();
+  //  runChassisControllerPidTests();
+  //  runChassisControllerIntegratedTests();
+  test_print_report();
 }

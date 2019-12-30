@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,18 +8,20 @@
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 
 namespace okapi {
-IntegratedEncoder::IntegratedEncoder(const pros::Motor &imotor) : motor(imotor) {
+IntegratedEncoder::IntegratedEncoder(const okapi::Motor &imotor)
+  : IntegratedEncoder(imotor.getPort(), imotor.isReversed()) {
 }
 
-IntegratedEncoder::IntegratedEncoder(const okapi::Motor &imotor) : motor(imotor) {
+IntegratedEncoder::IntegratedEncoder(const std::int8_t iport, const bool ireversed)
+  : port(iport), reversed(ireversed ? -1 : 1) {
 }
 
 double IntegratedEncoder::get() const {
-  return motor.get_position();
+  return pros::c::motor_get_position(port) * reversed;
 }
 
 std::int32_t IntegratedEncoder::reset() {
-  return motor.tare_position();
+  return pros::c::motor_tare_position(port);
 }
 
 double IntegratedEncoder::controllerGet() {

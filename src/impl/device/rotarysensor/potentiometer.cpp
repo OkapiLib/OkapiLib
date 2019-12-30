@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,13 +8,14 @@
 #include "okapi/impl/device/rotarysensor/potentiometer.hpp"
 
 namespace okapi {
-Potentiometer::Potentiometer(const std::uint8_t iport) : pot(iport) {
+Potentiometer::Potentiometer(const std::uint8_t iport) : port(iport) {
+  pros::c::adi_port_set_config(port, pros::E_ADI_ANALOG_IN);
 }
 
 Potentiometer::~Potentiometer() = default;
 
 double Potentiometer::get() const {
-  return pot.get_value();
+  return pros::c::adi_analog_read(port);
 }
 
 double Potentiometer::controllerGet() {

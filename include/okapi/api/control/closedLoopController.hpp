@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -37,6 +37,11 @@ class ClosedLoopController : public ControllerOutput<Input> {
   virtual Input getTarget() = 0;
 
   /**
+   * @return The most recent value of the process variable.
+   */
+  virtual Input getProcessValue() const = 0;
+
+  /**
    * Returns the last error of the controller. Does not update when disabled.
    *
    * @return the last error
@@ -47,7 +52,7 @@ class ClosedLoopController : public ControllerOutput<Input> {
    * Returns whether the controller has settled at the target. Determining what settling means is
    * implementation-dependent.
    *
-   * If the controller is disabled, this method must return true.
+   * If the controller is disabled, this method must return `true`.
    *
    * @return whether the controller is settled
    */

@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -37,9 +37,9 @@ class IterativeMotorVelocityController : public IterativeVelocityController<doub
 
   /**
    * Writes the value of the controller output. This method might be automatically called in another
-   * thread by the controller. The range of input values is expected to be [-1, 1].
+   * thread by the controller. The range of input values is expected to be `[-1, 1]`.
    *
-   * @param ivalue the controller's output in the range [-1, 1]
+   * @param ivalue the controller's output in the range `[-1, 1]`
    */
   void controllerSet(double ivalue) override;
 
@@ -49,6 +49,11 @@ class IterativeMotorVelocityController : public IterativeVelocityController<doub
    * @return the last target
    */
   double getTarget() override;
+
+  /**
+   * @return The most recent value of the process variable.
+   */
+  double getProcessValue() const override;
 
   /**
    * Returns the last calculated output of the controller.
@@ -96,6 +101,15 @@ class IterativeMotorVelocityController : public IterativeVelocityController<doub
    * @param imin min output
    */
   void setOutputLimits(double imax, double imin) override;
+
+  /**
+   * Sets the (soft) limits for the target range that controllerSet() scales into. The target
+   * computed by controllerSet() is scaled into the range [-itargetMin, itargetMax].
+   *
+   * @param itargetMax The new max target for controllerSet().
+   * @param itargetMin The new min target for controllerSet().
+   */
+  void setControllerSetTargetLimits(double itargetMax, double itargetMin) override;
 
   /**
    * Resets the controller's internal state so it is similar to when it was first initialized, while

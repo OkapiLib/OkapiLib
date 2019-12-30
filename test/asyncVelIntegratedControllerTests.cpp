@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -17,7 +17,8 @@ class AsyncVelIntegratedControllerTest : public ::testing::Test {
   protected:
   void SetUp() override {
     motor = std::make_shared<MockMotor>();
-    controller = new AsyncVelIntegratedController(motor, createTimeUtil());
+    controller = new AsyncVelIntegratedController(
+      motor, motor->gearset * 1.5, toUnderlyingType(motor->gearset), createTimeUtil());
   }
 
   void TearDown() override {
@@ -33,6 +34,11 @@ TEST_F(AsyncVelIntegratedControllerTest, GetTargetTest) {
   EXPECT_EQ(controller->getTarget(), 10);
 }
 
+TEST_F(AsyncVelIntegratedControllerTest, GetErrorTest) {
+  controller->setTarget(10);
+  EXPECT_EQ(controller->getError(), 10);
+}
+
 TEST_F(AsyncVelIntegratedControllerTest, SettledWhenDisabled) {
   assertControllerIsSettledWhenDisabled(*controller, 100.0);
 }
@@ -43,7 +49,7 @@ TEST_F(AsyncVelIntegratedControllerTest, WaitUntilSettledWorksWhenDisabled) {
 
 TEST_F(AsyncVelIntegratedControllerTest, FollowsDisableLifecycle) {
   assertAsyncControllerFollowsDisableLifecycle(
-    *controller, motor->lastVelocity, motor->lastVoltage, 100);
+    *controller, motor->lastVelocity, motor->lastVoltage, 150);
 }
 
 TEST_F(AsyncVelIntegratedControllerTest, FollowsTargetLifecycle) {
@@ -53,4 +59,25 @@ TEST_F(AsyncVelIntegratedControllerTest, FollowsTargetLifecycle) {
 TEST_F(AsyncVelIntegratedControllerTest, ControllerSetScalesTarget) {
   controller->controllerSet(1);
   EXPECT_EQ(controller->getTarget(), toUnderlyingType(motor->getGearing()));
+}
+
+TEST_F(AsyncVelIntegratedControllerTest, ExternalRatioWorksForPositiveInteger) {
+  motor->setGearing(AbstractMotor::gearset::red);
+  AsyncVelIntegratedController newController(
+    motor, motor->gearset * 2, toUnderlyingType(motor->gearset), createTimeUtil());
+  newController.setTarget(5);
+  EXPECT_EQ(motor->lastVelocity, 10);
+}
+
+TEST_F(AsyncVelIntegratedControllerTest, ExternalRatioWorksForFraction) {
+  motor->setGearing(AbstractMotor::gearset::red);
+  AsyncVelIntegratedController newController(
+    motor, motor->gearset * (2.0 / 3), toUnderlyingType(motor->gearset), createTimeUtil());
+  newController.setTarget(5);
+  EXPECT_EQ(motor->lastVelocity, static_cast<std::int16_t>(5 * (2.0 / 3)));
+}
+
+TEST_F(AsyncVelIntegratedControllerTest, GearRatioOfZeroThrowsException) {
+  EXPECT_THROW(AsyncVelIntegratedController(motor, motor->gearset * 0, 100, createTimeUtil()),
+               std::invalid_argument);
 }

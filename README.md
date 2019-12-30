@@ -1,8 +1,7 @@
-[![Build Status](https://travis-ci.org/OkapiLib/OkapiLib.svg?branch=develop)](https://travis-ci.org/OkapiLib/OkapiLib)
+[![Build Status](https://dev.azure.com/OkapiLib/OkapiLib/_apis/build/status/OkapiLib.OkapiLib?branchName=develop)](https://dev.azure.com/OkapiLib/OkapiLib/_build/latest?definitionId=1&branchName=develop)
 [![codecov](https://codecov.io/gh/OkapiLib/OkapiLib/branch/develop/graph/badge.svg)](https://codecov.io/gh/OkapiLib/OkapiLib)
 [![Github All Releases](https://img.shields.io/github/downloads/OkapiLib/OkapiLib/total.svg)](https://github.com/OkapiLib/OkapiLib/releases)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
-
 
 # OkapiLib
 
@@ -11,8 +10,10 @@ with all levels of experience. New teams should have an easier time getting thei
 running, and veteran teams should find that OkapiLib doesn't get in the way or place any limits on
 functionality.
 
-Documentation is hosted on the PROS website: [OkapiLib
-Docs](https://pros.cs.purdue.edu/v5/okapi/index.html)
+OkapiLib documentation is hosted on GitHub Pages
+[here](https://okapilib.github.io/OkapiLib/index.html).
+PROS documentation is hosted on the Purdue site
+[here](https://pros.cs.purdue.edu/v5).
 
 ## Installing
 

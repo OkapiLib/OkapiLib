@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -9,13 +9,14 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-ADIGyro::ADIGyro(const std::uint8_t iport, const double imultiplier) : gyro(iport, imultiplier) {
+ADIGyro::ADIGyro(const std::uint8_t iport, const double imultiplier)
+  : gyro(pros::c::adi_gyro_init(iport, imultiplier)) {
 }
 
 ADIGyro::~ADIGyro() = default;
 
 double ADIGyro::get() const {
-  return gyro.get_value();
+  return pros::c::adi_gyro_get(gyro);
 }
 
 double ADIGyro::getRemapped(const double iupperBound, const double ilowerBound) const {
@@ -29,7 +30,7 @@ double ADIGyro::getRemapped(const double iupperBound, const double ilowerBound) 
 }
 
 std::int32_t ADIGyro::reset() {
-  return gyro.reset();
+  return pros::c::adi_gyro_reset(gyro);
 }
 
 double ADIGyro::controllerGet() {

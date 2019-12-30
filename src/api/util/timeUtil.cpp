@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -28,15 +28,15 @@ std::unique_ptr<SettledUtil> TimeUtil::getSettledUtil() const {
   return settledUtilSupplier.get();
 }
 
-const Supplier<std::unique_ptr<AbstractTimer>> TimeUtil::getTimerSupplier() const {
+Supplier<std::unique_ptr<AbstractTimer>> TimeUtil::getTimerSupplier() const {
   return timerSupplier;
 }
 
-const Supplier<std::unique_ptr<AbstractRate>> TimeUtil::getRateSupplier() const {
+Supplier<std::unique_ptr<AbstractRate>> TimeUtil::getRateSupplier() const {
   return rateSupplier;
 }
 
-const Supplier<std::unique_ptr<SettledUtil>> TimeUtil::getSettledUtilSupplier() const {
+Supplier<std::unique_ptr<SettledUtil>> TimeUtil::getSettledUtilSupplier() const {
   return settledUtilSupplier;
 }
 } // namespace okapi

@@ -15,3 +15,8 @@ okapilib@*.zip
 .project
 .settings/
 cmake-build-debug/
+html/
+latex/
+xml/
+venv/
+*.d/

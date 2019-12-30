@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -18,7 +18,9 @@ AsyncVelPIDController::AsyncVelPIDController(
   const double ikF,
   const double ikSF,
   std::unique_ptr<VelMath> ivelMath,
-  std::unique_ptr<Filter> iderivativeFilter)
+  const double iratio,
+  std::unique_ptr<Filter> iderivativeFilter,
+  const std::shared_ptr<Logger> &ilogger)
   : AsyncWrapper<double, double>(
       iinput,
       ioutput,
@@ -29,6 +31,8 @@ AsyncVelPIDController::AsyncVelPIDController(
                                                   std::move(ivelMath),
                                                   itimeUtil,
                                                   std::move(iderivativeFilter)),
-      itimeUtil.getRateSupplier()) {
+      itimeUtil.getRateSupplier(),
+      iratio,
+      ilogger) {
 }
 } // namespace okapi

@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -14,7 +14,7 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
   public:
   /**
    * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +100%, the robot should move forward in a straight line.
+   * motors are powered +127, the robot should move forward in a straight line.
    *
    * @param ileftSideMotor left side motor
    * @param irightSideMotor right side motor
@@ -22,13 +22,13 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
    * @param imiddleEnc middle encoder (mounted perpendicular to the left and right side encoders)
    * @param irightEnc right side encoder
    */
-  ThreeEncoderSkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
-                             const std::shared_ptr<AbstractMotor> &irightSideMotor,
-                             const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
-                             const std::shared_ptr<ContinuousRotarySensor> &imiddleEnc,
-                             const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
+  ThreeEncoderSkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                             std::shared_ptr<AbstractMotor> irightSideMotor,
+                             std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                             std::shared_ptr<ContinuousRotarySensor> irightEnc,
+                             std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
                              double imaxVelocity,
-                             double imaxVoltage = 12000);
+                             double imaxVoltage);
 
   /**
    * Read the sensors.
@@ -40,7 +40,7 @@ class ThreeEncoderSkidSteerModel : public SkidSteerModel {
   /**
    * Reset the sensors to their zero point.
    */
-  void resetSensors() const override;
+  void resetSensors() override;
 
   protected:
   std::shared_ptr<ContinuousRotarySensor> middleSensor;

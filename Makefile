@@ -12,20 +12,20 @@ BINDIR=$(ROOT)/bin
 SRCDIR=$(ROOT)/src
 INCDIR=$(ROOT)/include
 
-WARNFLAGS+=-Wall -Wextra -Wno-implicit-fallthrough -Wno-psabi -pedantic # -Wconversion #-Wmissing-include-dirs
+WARNFLAGS+=-Wall -Wextra -Wno-implicit-fallthrough -Wno-psabi -pedantic -Werror=return-type # -Wconversion #-Wmissing-include-dirs
 EXTRA_CFLAGS=
 EXTRA_CXXFLAGS=
 
 # Set to 1 to enable hot/cold linking
-USE_PACKAGE:=0
+USE_PACKAGE:=1
 
 # Set this to 1 to add additional rules to compile your project as a PROS library template
 IS_LIBRARY:=1
 LIBNAME:=okapilib
-VERSION:=3.3.13
+VERSION:=4.0.0
 EXCLUDE_SRC_FROM_LIB=$(call rwildcard,$(SRCDIR)/test,*.*)
 # this line excludes opcontrol.c and similar files
-EXCLUDE_SRC_FROM_LIB+= $(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize $(SRCDIR)/autonomous,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
+EXCLUDE_SRC_FROM_LIB+= $(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize $(SRCDIR)/autonomous $(SRCDIR)/main,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
 
 # files that get distributed to every user (beyond your source archive) - add
 # whatever files you want here. This line is configured to add all header files

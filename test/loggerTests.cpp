@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -19,25 +19,28 @@ class LoggerTest : public ::testing::Test {
 
   virtual void TearDown() {
     // Call close after every case so other tests don't end up with a NULL logfile pointer
-    Logger::instance()->close();
+    if (logger) {
+      logger->close();
+    }
     free(logBuffer);
   }
 
-  void logData(Logger *logger) const {
-    logger->error("MSG");
-    logger->warn("MSG");
-    logger->info("MSG");
-    logger->debug("MSG");
+  void logData(const std::shared_ptr<Logger> &) const {
+    LOG_ERROR_S("MSG");
+    LOG_WARN_S("MSG");
+    LOG_INFO_S("MSG");
+    LOG_DEBUG_S("MSG");
   }
 
   FILE *logFile;
   char *logBuffer;
   size_t logSize;
+  std::shared_ptr<Logger> logger;
 };
 
 TEST_F(LoggerTest, OffLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::off);
-  auto logger = Logger::instance();
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::off);
 
   logData(logger);
 
@@ -55,8 +58,8 @@ TEST_F(LoggerTest, OffLevel) {
 }
 
 TEST_F(LoggerTest, ErrorLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::error);
-  auto logger = Logger::instance();
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::error);
 
   logData(logger);
 
@@ -64,7 +67,8 @@ TEST_F(LoggerTest, ErrorLevel) {
   size_t len;
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 ERROR: MSG\n");
+  std::string expected = "0 (" + CrossplatformThread::getName() + ") ERROR: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   if (line) {
     free(line);
@@ -72,8 +76,8 @@ TEST_F(LoggerTest, ErrorLevel) {
 }
 
 TEST_F(LoggerTest, WarningLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::warn);
-  auto logger = Logger::instance();
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::warn);
 
   logData(logger);
 
@@ -81,10 +85,12 @@ TEST_F(LoggerTest, WarningLevel) {
   size_t len;
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 ERROR: MSG\n");
+  std::string expected = "0 (" + CrossplatformThread::getName() + ") ERROR: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 WARN: MSG\n");
+  expected = "0 (" + CrossplatformThread::getName() + ") WARN: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   if (line) {
     free(line);
@@ -92,8 +98,8 @@ TEST_F(LoggerTest, WarningLevel) {
 }
 
 TEST_F(LoggerTest, InfoLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::info);
-  auto logger = Logger::instance();
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::info);
 
   logData(logger);
 
@@ -101,13 +107,16 @@ TEST_F(LoggerTest, InfoLevel) {
   size_t len;
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 ERROR: MSG\n");
+  std::string expected = "0 (" + CrossplatformThread::getName() + ") ERROR: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 WARN: MSG\n");
+  expected = "0 (" + CrossplatformThread::getName() + ") WARN: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 INFO: MSG\n");
+  expected = "0 (" + CrossplatformThread::getName() + ") INFO: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   if (line) {
     free(line);
@@ -115,8 +124,8 @@ TEST_F(LoggerTest, InfoLevel) {
 }
 
 TEST_F(LoggerTest, DebugLevel) {
-  Logger::initialize(std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::debug);
-  auto logger = Logger::instance();
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::debug);
 
   logData(logger);
 
@@ -124,16 +133,42 @@ TEST_F(LoggerTest, DebugLevel) {
   size_t len;
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 ERROR: MSG\n");
+  std::string expected = "0 (" + CrossplatformThread::getName() + ") ERROR: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 WARN: MSG\n");
+  expected = "0 (" + CrossplatformThread::getName() + ") WARN: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 INFO: MSG\n");
+  expected = "0 (" + CrossplatformThread::getName() + ") INFO: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
 
   getline(&line, &len, logFile);
-  EXPECT_STREQ(line, "0 DEBUG: MSG\n");
+  expected = "0 (" + CrossplatformThread::getName() + ") DEBUG: MSG\n";
+  EXPECT_STREQ(line, expected.c_str());
+
+  if (line) {
+    free(line);
+  }
+}
+
+TEST_F(LoggerTest, TestLazyLogging) {
+  logger = std::make_shared<Logger>(
+    std::make_unique<ConstantMockTimer>(0_ms), logFile, Logger::LogLevel::info);
+
+  int x = 0;
+  logger->debug([=, &x]() {
+    x++;
+    return std::string("");
+  });
+
+  EXPECT_EQ(x, 0);
+
+  char *line = nullptr;
+  size_t len;
+
+  getline(&line, &len, logFile);
 
   if (line) {
     free(line);

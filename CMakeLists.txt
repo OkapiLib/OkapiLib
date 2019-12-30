@@ -7,7 +7,7 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     setup_target_for_coverage(${PROJECT_NAME}_coverage tests coverage)
 endif()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -Wall -Wextra -Wshadow -Wnull-dereference -Wno-psabi -pthread -g -O0 -fprofile-arcs -ftest-coverage -D THREADS_STD")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -Wall -Wextra -Wshadow -Wnull-dereference -Wno-psabi -Wno-unused-function -pthread -g -O0 -fprofile-arcs -ftest-coverage -D THREADS_STD")
 
 enable_testing()
 
@@ -50,10 +50,14 @@ add_executable(OkapiLibV5
         include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp
         include/okapi/api/chassis/controller/chassisControllerPid.hpp
         include/okapi/api/chassis/controller/chassisScales.hpp
+        include/okapi/api/chassis/controller/odomChassisController.hpp
+        include/okapi/api/chassis/controller/defaultOdomChassisController.hpp
         include/okapi/api/chassis/model/chassisModel.hpp
+        include/okapi/api/chassis/model/hDriveModel.hpp
         include/okapi/api/chassis/model/readOnlyChassisModel.hpp
         include/okapi/api/chassis/model/skidSteerModel.hpp
         include/okapi/api/chassis/model/threeEncoderSkidSteerModel.hpp
+        include/okapi/api/chassis/model/threeEncoderXDriveModel.hpp
         include/okapi/api/chassis/model/xDriveModel.hpp
         include/okapi/api/control/async/asyncController.hpp
         include/okapi/api/control/async/asyncLinearMotionProfileController.hpp
@@ -73,11 +77,13 @@ add_executable(OkapiLibV5
         include/okapi/api/control/iterative/iterativeVelPidController.hpp
         include/okapi/api/control/util/controllerRunner.hpp
         include/okapi/api/control/util/flywheelSimulator.hpp
+        include/okapi/api/control/util/pathfinderUtil.hpp
         include/okapi/api/control/util/pidTuner.hpp
         include/okapi/api/control/util/settledUtil.hpp
         include/okapi/api/control/closedLoopController.hpp
         include/okapi/api/control/controllerInput.hpp
         include/okapi/api/control/controllerOutput.hpp
+        include/okapi/api/control/offsettableControllerInput.hpp
         include/okapi/api/device/button/abstractButton.hpp
         include/okapi/api/device/button/buttonBase.hpp
         include/okapi/api/device/motor/abstractMotor.hpp
@@ -93,6 +99,10 @@ add_executable(OkapiLibV5
         include/okapi/api/filter/medianFilter.hpp
         include/okapi/api/filter/passthroughFilter.hpp
         include/okapi/api/filter/velMath.hpp
+        include/okapi/api/odometry/odometry.hpp
+        include/okapi/api/odometry/twoEncoderOdometry.hpp
+        include/okapi/api/odometry/odomMath.hpp
+        include/okapi/api/odometry/threeEncoderOdometry.hpp
         include/okapi/api/units/QAcceleration.hpp
         include/okapi/api/units/QAngle.hpp
         include/okapi/api/units/QAngularAcceleration.hpp
@@ -118,13 +128,16 @@ add_executable(OkapiLibV5
         include/okapi/api/util/supplier.hpp
         include/okapi/api/coreProsAPI.hpp
         include/test/tests/api/implMocks.hpp
-        src/api/chassis/controller/chassisController.cpp
         src/api/chassis/controller/chassisControllerIntegrated.cpp
         src/api/chassis/controller/chassisControllerPid.cpp
-        src/api/chassis/model/chassisModel.cpp
+        src/api/chassis/controller/chassisScales.cpp
+        src/api/chassis/controller/chassisScales.cpp
+        src/api/chassis/controller/odomChassisController.cpp
+        src/api/chassis/controller/defaultOdomChassisController.cpp
+        src/api/chassis/model/hDriveModel.cpp
         src/api/chassis/model/skidSteerModel.cpp
-        src/api/chassis/model/readOnlyChassisModel.cpp
         src/api/chassis/model/threeEncoderSkidSteerModel.cpp
+        src/api/chassis/model/threeEncoderXDriveModel.cpp
         src/api/chassis/model/xDriveModel.cpp
         src/api/control/async/asyncLinearMotionProfileController.cpp
         src/api/control/async/asyncMotionProfileController.cpp
@@ -136,6 +149,7 @@ add_executable(OkapiLibV5
         src/api/control/iterative/iterativePosPidController.cpp
         src/api/control/iterative/iterativeVelPidController.cpp
         src/api/control/util/flywheelSimulator.cpp
+        src/api/control/offsettableControllerInput.cpp
         src/api/control/util/pidTuner.cpp
         src/api/control/util/settledUtil.cpp
         src/api/device/button/abstractButton.cpp
@@ -149,34 +163,13 @@ add_executable(OkapiLibV5
         src/api/filter/filter.cpp
         src/api/filter/passthroughFilter.cpp
         src/api/filter/velMath.cpp
+        src/api/odometry/twoEncoderOdometry.cpp
+        src/api/odometry/odomMath.cpp
+        src/api/odometry/threeEncoderOdometry.cpp
         src/api/util/abstractRate.cpp
         src/api/util/abstractTimer.cpp
-        src/api/util/timeUtil.cpp
         src/api/util/logging.cpp
-        test/buttonTests.cpp
-        test/controllerTests.cpp
-        test/controlTests.cpp
-        test/filterTests.cpp
-        test/utilTests.cpp
-        test/unitTests.cpp
-        test/loggerTests.cpp
-        test/implMocks.cpp
-        test/skidSteerModelTests.cpp
-        test/xDriveModelTests.cpp
-        test/threeEncoderSkidSteerModelTests.cpp
-        test/chassisControllerIntegratedTests.cpp
-        test/chassisControllerPidTest.cpp
-        test/chassisControllerPidIntegrationTest.cpp
-        test/chassisControllerTests.cpp
-        test/chassisScalesTests.cpp
-        test/asyncPosIntegratedControllerTests.cpp
-        test/asyncVelIntegratedControllerTests.cpp
-        test/asyncMotionProfileControllerTests.cpp
-        test/asyncLinearMotionProfileControllerTests.cpp
-        test/iterativeVelPIDControllerTests.cpp
-        test/iterativeMotorVelocityControllerTest.cpp
-        test/iterativePosPIDControllerTests.cpp
-        test/asyncWrapperTests.cpp
+        src/api/util/timeUtil.cpp
         src/pathfinder/generator.c
         src/pathfinder/io.c
         src/pathfinder/mathutil.c
@@ -186,7 +179,41 @@ add_executable(OkapiLibV5
         src/pathfinder/followers/distance.c
         src/pathfinder/followers/encoder.c
         src/pathfinder/modifiers/swerve.c
-        src/pathfinder/modifiers/tank.c)
+        src/pathfinder/modifiers/tank.c
+        test/buttonTests.cpp
+        test/controllerTests.cpp
+        test/controlTests.cpp
+        test/filterTests.cpp
+        test/hDriveModelTests.cpp
+        test/implMocks.cpp
+        test/twoEncoderOdometryTests.cpp
+        test/utilTests.cpp
+        test/unitTests.cpp
+        test/loggerTests.cpp
+        test/skidSteerModelTests.cpp
+        test/xDriveModelTests.cpp
+        test/threeEncoderSkidSteerModelTests.cpp
+        test/chassisControllerIntegratedTests.cpp
+        test/chassisControllerPidTest.cpp
+        test/chassisScalesTests.cpp
+        test/asyncPosIntegratedControllerTests.cpp
+        test/asyncVelIntegratedControllerTests.cpp
+        test/asyncMotionProfileControllerTests.cpp
+        test/asyncLinearMotionProfileControllerTests.cpp
+        test/iterativeVelPIDControllerTests.cpp
+        test/iterativeMotorVelocityControllerTest.cpp
+        test/iterativePosPIDControllerTests.cpp
+        test/defaultOdomChassisControllerTest.cpp
+        test/asyncWrapperTests.cpp
+        test/offsettableControllerInputTests.cpp
+        test/asyncPosPIDControllerTests.cpp
+        test/threeEncoderOdometryTests.cpp
+        include/okapi/api/odometry/point.hpp
+        test/odomMathTests.cpp
+        include/okapi/api/odometry/stateMode.hpp
+        include/okapi/api/odometry/odomState.hpp
+        src/api/odometry/odomState.cpp
+        test/threeEncoderXDriveModelTests.cpp)
 
 # Link against gtest
 target_link_libraries(OkapiLibV5 gtest_main)

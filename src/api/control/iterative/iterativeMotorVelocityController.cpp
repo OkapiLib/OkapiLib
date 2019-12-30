@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -31,6 +31,10 @@ double IterativeMotorVelocityController::getTarget() {
   return controller->getTarget();
 }
 
+double IterativeMotorVelocityController::getProcessValue() const {
+  return controller->getProcessValue();
+}
+
 double IterativeMotorVelocityController::getOutput() const {
   return controller->getOutput();
 }
@@ -57,6 +61,11 @@ void IterativeMotorVelocityController::setSampleTime(const QTime isampleTime) {
 
 void IterativeMotorVelocityController::setOutputLimits(double imax, double imin) {
   controller->setOutputLimits(imax, imin);
+}
+
+void IterativeMotorVelocityController::setControllerSetTargetLimits(double itargetMax,
+                                                                    double itargetMin) {
+  controller->setControllerSetTargetLimits(itargetMax, itargetMin);
 }
 
 void IterativeMotorVelocityController::reset() {

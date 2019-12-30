@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -96,6 +96,10 @@ std::shared_ptr<ContinuousRotarySensor> MockMotor::getEncoder() {
   return encoder;
 }
 
+std::shared_ptr<MockContinuousRotarySensor> MockMotor::getMockEncoder() {
+  return encoder;
+}
+
 std::int32_t MockMotor::moveVelocity(const std::int16_t ivelocity) {
   lastVelocity = ivelocity;
   if (ivelocity > maxVelocity) {
@@ -166,22 +170,6 @@ int32_t MockMotor::getVoltage() {
 }
 
 int32_t MockMotor::modifyProfiledVelocity(std::int32_t) {
-  return 0;
-}
-
-int32_t MockMotor::setPosPID(double, double, double, double) {
-  return 0;
-}
-
-int32_t MockMotor::setPosPIDFull(double, double, double, double, double, double, double, double) {
-  return 0;
-}
-
-int32_t MockMotor::setVelPID(double, double, double, double) {
-  return 0;
-}
-
-int32_t MockMotor::setVelPIDFull(double, double, double, double, double, double, double, double) {
   return 0;
 }
 
@@ -267,11 +255,7 @@ QTime ConstantMockTimer::clearMark() {
 MockRate::MockRate() = default;
 
 void MockRate::delay(QFrequency ihz) {
-  delay(static_cast<int>(ihz.convert(Hz)));
-}
-
-void MockRate::delay(int ihz) {
-  std::this_thread::sleep_for(std::chrono::milliseconds(1000 / ihz));
+  std::this_thread::sleep_for(std::chrono::milliseconds(1000 / static_cast<int>(ihz.convert(Hz))));
 }
 
 void MockRate::delayUntil(QTime itime) {
@@ -356,23 +340,46 @@ void SimulatedSystem::join() {
 }
 
 MockAsyncPosIntegratedController::MockAsyncPosIntegratedController()
-  : AsyncPosIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
+  : AsyncPosIntegratedController(std::make_shared<MockMotor>(),
+                                 AbstractMotor::gearset::green,
+                                 200,
+                                 createTimeUtil()) {
 }
 
 MockAsyncPosIntegratedController::MockAsyncPosIntegratedController(const TimeUtil &itimeUtil)
-  : AsyncPosIntegratedController(std::make_shared<MockMotor>(), itimeUtil) {
+  : AsyncPosIntegratedController(std::make_shared<MockMotor>(),
+                                 AbstractMotor::gearset::green,
+                                 200,
+                                 itimeUtil) {
 }
 
 bool MockAsyncPosIntegratedController::isSettled() {
-  return isSettledOverride || AsyncPosIntegratedController::isSettled();
+  switch (isSettledOverride) {
+  case IsSettledOverride::none:
+    return AsyncPosIntegratedController::isSettled();
+  case IsSettledOverride::alwaysSettled:
+    return true;
+  case IsSettledOverride::neverSettled:
+    return false;
+  }
 }
 
 MockAsyncVelIntegratedController::MockAsyncVelIntegratedController()
-  : AsyncVelIntegratedController(std::make_shared<MockMotor>(), createTimeUtil()) {
+  : AsyncVelIntegratedController(std::make_shared<MockMotor>(),
+                                 AbstractMotor::gearset::green,
+                                 200,
+                                 createTimeUtil()) {
 }
 
 bool MockAsyncVelIntegratedController::isSettled() {
-  return isSettledOverride || AsyncVelIntegratedController::isSettled();
+  switch (isSettledOverride) {
+  case IsSettledOverride::none:
+    return AsyncVelIntegratedController::isSettled();
+  case IsSettledOverride::alwaysSettled:
+    return true;
+  case IsSettledOverride::neverSettled:
+    return false;
+  }
 }
 
 void MockAsyncVelIntegratedController::setTarget(const double itarget) {
@@ -404,7 +411,14 @@ MockIterativeController::MockIterativeController(const double ikP)
 }
 
 bool MockIterativeController::isSettled() {
-  return isSettledOverride || IterativePosPIDController::isSettled();
+  switch (isSettledOverride) {
+  case IsSettledOverride::none:
+    return IterativePosPIDController::isSettled();
+  case IsSettledOverride::alwaysSettled:
+    return true;
+  case IsSettledOverride::neverSettled:
+    return false;
+  }
 }
 
 void assertMotorsHaveBeenStopped(MockMotor *leftMotor, MockMotor *rightMotor) {
@@ -507,14 +521,14 @@ void assertControllerFollowsTargetLifecycle(ClosedLoopController<double, double>
 void assertIterativeControllerScalesControllerSetTargets(
   IterativeController<double, double> &controller) {
   EXPECT_DOUBLE_EQ(controller.getTarget(), 0);
-  controller.setOutputLimits(-100, 100);
+  controller.setControllerSetTargetLimits(-100, 100);
   controller.controllerSet(0.5);
   EXPECT_DOUBLE_EQ(controller.getTarget(), 50);
 }
 
 void assertAsyncWrapperScalesControllerSetTargets(AsyncWrapper<double, double> &controller) {
   EXPECT_DOUBLE_EQ(controller.getTarget(), 0);
-  controller.setOutputLimits(-100, 100);
+  controller.setControllerSetTargetLimits(-100, 100);
   controller.controllerSet(0.5);
   EXPECT_DOUBLE_EQ(controller.getTarget(), 50);
 }
@@ -685,24 +699,6 @@ int32_t ThreadedMockMotor::setVoltageLimit(std::int32_t ilimit) {
   return 1;
 }
 
-int32_t ThreadedMockMotor::setPosPID(double, double, double, double) {
-  return 0;
-}
-
-int32_t
-ThreadedMockMotor::setPosPIDFull(double, double, double, double, double, double, double, double) {
-  return 0;
-}
-
-int32_t ThreadedMockMotor::setVelPID(double, double, double, double) {
-  return 0;
-}
-
-int32_t
-ThreadedMockMotor::setVelPIDFull(double, double, double, double, double, double, double, double) {
-  return 0;
-}
-
 std::shared_ptr<ContinuousRotarySensor> ThreadedMockMotor::getEncoder() {
   return encoder;
 }
@@ -755,5 +751,18 @@ void ThreadedMockMotor::threadFunc() {
 
     std::this_thread::sleep_for(std::chrono::milliseconds(dt));
   }
+}
+
+void assertOdomStateEquals(double x, double y, double theta, const OdomState &actual) {
+  EXPECT_DOUBLE_EQ(actual.x.convert(meter), x);
+  EXPECT_DOUBLE_EQ(actual.y.convert(meter), y);
+  EXPECT_DOUBLE_EQ(actual.theta.convert(degree), theta);
+}
+
+void assertOdomStateEquals(Odometry *odom, QLength x, QLength y, QAngle theta) {
+  const auto error = 1e-4;
+  EXPECT_NEAR(odom->getState().x.convert(meter), x.convert(meter), error);
+  EXPECT_NEAR(odom->getState().y.convert(meter), y.convert(meter), error);
+  EXPECT_NEAR(odom->getState().theta.convert(degree), theta.convert(degree), error);
 }
 } // namespace okapi

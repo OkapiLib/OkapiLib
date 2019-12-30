@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -12,6 +12,10 @@
 namespace okapi {
 class ButtonBase : public AbstractButton {
   public:
+  /**
+   * @param iinverted Whether the button is inverted (`true` meaning default pressed and `false`
+   * meaning default not pressed).
+   */
   explicit ButtonBase(bool iinverted = false);
 
   /**

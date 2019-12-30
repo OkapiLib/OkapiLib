@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -8,6 +8,7 @@
 #pragma once
 
 #include "api.h"
+#include "okapi/api.hpp"
 #include "test/FakeIt/single_header/standalone/fakeit.hpp"
 #include "test/snowhouse/snowhouse.h"
 #include <functional>
@@ -27,16 +28,22 @@
 namespace okapi {
 static const int MOTOR_1_PORT = 18;
 static const int MOTOR_2_PORT = 19;
+static const auto MOTOR_GEARSET = AbstractMotor::gearset::green;
 
 /**
- * Print the input string with an underline made from hypens ("-").
+ * Setup hardware before a test.
+ */
+void resetHardware();
+
+/**
+ * Print the input string with an underline made from hyphens ("-").
  *
  * @param istring string to print
  */
 void test_printf(const std::string &istring);
 
 /**
- * Run a test. The lambda can have any body, or it can be a sinlge function call. In that case, use
+ * Run a test. The lambda can have any body, or it can be a single function call. In that case, use
  * TEST_BODY for a more succinct way of writing the test.
  *
  * @param iname test name (describe what it does)

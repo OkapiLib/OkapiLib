@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -11,17 +11,39 @@
 namespace okapi {
 AsyncVelIntegratedController::AsyncVelIntegratedController(
   const std::shared_ptr<AbstractMotor> &imotor,
-  const TimeUtil &itimeUtil)
-  : motor(imotor), settledUtil(itimeUtil.getSettledUtil()), rate(itimeUtil.getRate()) {
+  const AbstractMotor::GearsetRatioPair &ipair,
+  const std::int32_t imaxVelocity,
+  const TimeUtil &itimeUtil,
+  const std::shared_ptr<Logger> &ilogger)
+  : logger(ilogger),
+    timeUtil(itimeUtil),
+    motor(imotor),
+    pair(ipair),
+    maxVelocity(imaxVelocity),
+    settledUtil(itimeUtil.getSettledUtil()) {
+  if (ipair.ratio == 0) {
+    std::string msg("AsyncVelIntegratedController: The gear ratio cannot be zero! Check if you are "
+                    "using integer division.");
+    LOG_ERROR(msg);
+    throw std::invalid_argument(msg);
+  }
+
+  motor->setGearing(ipair.internalGearset);
 }
 
 void AsyncVelIntegratedController::setTarget(const double itarget) {
-  logger->info("AsyncVelIntegratedController: Set target to " + std::to_string(itarget));
+  double boundedTarget = itarget * pair.ratio;
+
+  if (boundedTarget > maxVelocity) {
+    boundedTarget = maxVelocity;
+  }
+
+  LOG_INFO("AsyncVelIntegratedController: Set target to " + std::to_string(boundedTarget));
 
   hasFirstTarget = true;
 
   if (!controllerIsDisabled) {
-    motor->moveVelocity((std::int16_t)itarget);
+    motor->moveVelocity(static_cast<int16_t>(boundedTarget));
   }
 
   lastTarget = itarget;
@@ -31,8 +53,12 @@ double AsyncVelIntegratedController::getTarget() {
   return lastTarget;
 }
 
+double AsyncVelIntegratedController::getProcessValue() const {
+  return motor->getActualVelocity();
+}
+
 double AsyncVelIntegratedController::getError() const {
-  return lastTarget - motor->getActualVelocity();
+  return lastTarget - getProcessValue() / pair.ratio;
 }
 
 bool AsyncVelIntegratedController::isSettled() {
@@ -40,7 +66,7 @@ bool AsyncVelIntegratedController::isSettled() {
 }
 
 void AsyncVelIntegratedController::reset() {
-  logger->info("AsyncVelIntegratedController: Reset");
+  LOG_INFO_S("AsyncVelIntegratedController: Reset");
   hasFirstTarget = false;
   settledUtil->reset();
 }
@@ -50,7 +76,7 @@ void AsyncVelIntegratedController::flipDisable() {
 }
 
 void AsyncVelIntegratedController::flipDisable(const bool iisDisabled) {
-  logger->info("AsyncVelIntegratedController: flipDisable " + std::to_string(iisDisabled));
+  LOG_INFO("AsyncVelIntegratedController: flipDisable " + std::to_string(iisDisabled));
   controllerIsDisabled = iisDisabled;
   resumeMovement();
 }
@@ -70,11 +96,14 @@ void AsyncVelIntegratedController::resumeMovement() {
 }
 
 void AsyncVelIntegratedController::waitUntilSettled() {
-  logger->info("AsyncVelIntegratedController: Waiting to settle");
+  LOG_INFO_S("AsyncVelIntegratedController: Waiting to settle");
+
+  auto rate = timeUtil.getRate();
   while (!isSettled()) {
     rate->delayUntil(motorUpdateRate);
   }
-  logger->info("AsyncVelIntegratedController: Done waiting to settle");
+
+  LOG_INFO_S("AsyncVelIntegratedController: Done waiting to settle");
 }
 
 void AsyncVelIntegratedController::controllerSet(double ivalue) {

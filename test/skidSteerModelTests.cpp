@@ -1,4 +1,4 @@
-/**
+/*
  * @author Ryan Benasutti, WPI
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -13,7 +13,8 @@ using namespace okapi;
 
 class SkidSteerModelTest : public ::testing::Test {
   public:
-  SkidSteerModelTest() : model(leftMotor, rightMotor, leftSensor, rightSensor, 127) {
+  SkidSteerModelTest()
+    : model(leftMotor, rightMotor, leftSensor, rightSensor, 127, v5MotorMaxVoltage) {
   }
 
   void assertAllMotorsLastVelocity(const std::int16_t expectedLastVelocity) const {
@@ -75,6 +76,28 @@ TEST_F(SkidSteerModelTest, DriveVectorHalfPower) {
 TEST_F(SkidSteerModelTest, DriveVectorBoundsInput) {
   model.driveVector(0.9, 0.25);
   assertLeftAndRightMotorsLastVelocity(127, 71);
+}
+
+TEST_F(SkidSteerModelTest, DriveVectorAndRotateAreEquivalent) {
+  for (double i = -1; i < 1;) {
+    model.driveVector(0, i);
+    auto lastLeft = leftMotor->lastVelocity;
+    auto lastRight = rightMotor->lastVelocity;
+    model.rotate(i);
+    EXPECT_FLOAT_EQ(leftMotor->lastVelocity, lastLeft);
+    EXPECT_FLOAT_EQ(rightMotor->lastVelocity, lastRight);
+    i += 0.001;
+  }
+}
+
+TEST_F(SkidSteerModelTest, DriveVectorVoltageHalfPower) {
+  model.driveVectorVoltage(0.25, 0.25);
+  assertLeftAndRightMotorsLastVoltage(6000, 0);
+}
+
+TEST_F(SkidSteerModelTest, DriveVectorVoltageBoundsInput) {
+  model.driveVectorVoltage(0.9, 0.25);
+  assertLeftAndRightMotorsLastVoltage(12000, 6782);
 }
 
 TEST_F(SkidSteerModelTest, StopTest) {
@@ -157,7 +180,7 @@ TEST_F(SkidSteerModelTest, ArcadeThresholds) {
 
 TEST_F(SkidSteerModelTest, ArcadeNegativeZero) {
   model.arcade(-0.0, -1.0);
-  
+
   assertAllMotorsLastVelocity(0);
   assertLeftAndRightMotorsLastVoltage(-12000, 12000);
 }
@@ -205,4 +228,19 @@ TEST_F(SkidSteerModelTest, Reset) {
 
   EXPECT_EQ(leftSensor->get(), 0);
   EXPECT_EQ(rightSensor->get(), 0);
+}
+
+TEST_F(SkidSteerModelTest, SetMaxVoltageGreaterThan12000) {
+  model.setMaxVoltage(12001);
+  EXPECT_EQ(model.getMaxVoltage(), 12000);
+}
+
+TEST_F(SkidSteerModelTest, SetMaxVoltageLessThan0) {
+  model.setMaxVoltage(-1);
+  EXPECT_EQ(model.getMaxVoltage(), 0);
+}
+
+TEST_F(SkidSteerModelTest, SetMaxVelocityLessThan0) {
+  model.setMaxVelocity(-1);
+  EXPECT_EQ(model.getMaxVelocity(), 0);
 }
