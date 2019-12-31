@@ -83,7 +83,7 @@ There are two main subclasses we can use:
 V5 motor's built-in position and velocity control to move the robot around.
 **This class is the easiest to use**, so we will use it for this tutorial. The
 other class, [ChassisControllerPID](@ref okapi::ChassisControllerPID), uses
-three PID controllers running on the V5 brain and sends velocity commands to the
+three PID controllers running on the V5 brain and sends velocity or voltage commands to the
 motors. This class can give you more accurate chassis control, but requires
 tuning the PID controllers.
 
@@ -96,10 +96,10 @@ in the drive motors and the chassis dimensions.
 ```cpp
 // Chassis Controller - lets us drive the robot around with open- or closed-loop control
 auto drive = ChassisControllerBuilder()
-                 .withMotors(1, -10)
-                 // Green gearset, 4 in wheel diam, 11.5 in wheel track
-                 .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
-                 .build();
+    .withMotors(1, -10)
+    // Green gearset, 4 in wheel diam, 11.5 in wheel track
+    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+    .build();
 ```
 
 Next, let's setup tank or arcade control.
@@ -173,7 +173,7 @@ Then we can check if it's pressed and stop powering the arm motor:
 ```cpp
 // Don't power the arm if it is all the way down
 if (armLimitSwitch.isPressed()) {
-    armMotor.moveVoltage(0);
+    armMotor.moveVelocity(0);
 } else {
     // Normal arm control
 }
@@ -194,7 +194,7 @@ arm:
 ```cpp
 // Don't power the arm if it is all the way down
 if (armLimitSwitch.isPressed()) {
-    armMotor.moveVoltage(0);
+    armMotor.moveVelocity(0);
 } else {
     // Else, the arm isn't all the way down
     if (armUpButton.isPressed()) {
@@ -237,10 +237,10 @@ using namespace okapi;
 void opcontrol() {
     // Chassis Controller - lets us drive the robot around with open- or closed-loop control
     auto drive = ChassisControllerBuilder()
-                     .withMotors(1, -10)
-                     // Green gearset, 4 in wheel diam, 11.5 in wheel track
-                     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
-                     .build();
+        .withMotors(1, -10)
+        // Green gearset, 4 in wheel diam, 11.5 in wheel track
+        .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+        .build();
 
     // Joystick to read analog values for tank or arcade control
     // Master controller by default
@@ -262,7 +262,7 @@ void opcontrol() {
 
         // Don't power the arm if it is all the way down
         if (armLimitSwitch.isPressed()) {
-            armMotor.moveVoltage(0);
+            armMotor.moveVelocity(0);
         } else {
             // else, the arm isn't all the way down
             if (armUpButton.isPressed()) {
@@ -299,10 +299,10 @@ using namespace okapi;
 void opcontrol() {
     // Chassis Controller - lets us drive the robot around with open- or closed-loop control
     auto drive = ChassisControllerBuilder()
-                     .withMotors(1, -10)
-                     // Green gearset, 4 in wheel diam, 11.5 in wheel track
-                     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
-                     .build();
+        .withMotors(1, -10)
+        // Green gearset, 4 in wheel diam, 11.5 in wheel track
+        .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+        .build();
 
     // Joystick to read analog values for tank or arcade control
     // Master controller by default
@@ -324,7 +324,7 @@ void opcontrol() {
 
         // Don't power the arm if it is all the way down
         if (armLimitSwitch.isPressed()) {
-            armMotor.moveVoltage(0);
+            armMotor.moveVelocity(0);
         } else {
             // else, the arm isn't all the way down
             if (armUpButton.isPressed()) {
