@@ -163,16 +163,14 @@ class ChassisControllerIntegrated : public ChassisController {
   /**
    * Sets a new maximum velocity in RPM [0-600].
    *
-   * @param imaxVelocity the new maximum velocity
+   * @param imaxVelocity The new maximum velocity.
    */
-  virtual void setMaxVelocity(double imaxVelocity);
+  void setMaxVelocity(double imaxVelocity) override;
 
   /**
-   * Returns the maximum velocity in RPM [0-600].
-   *
    * @return The maximum velocity in RPM [0-600].
    */
-  virtual double getMaxVelocity() const;
+  double getMaxVelocity() const override;
 
   protected:
   std::shared_ptr<Logger> logger;

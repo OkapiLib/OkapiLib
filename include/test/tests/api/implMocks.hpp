@@ -619,6 +619,12 @@ class MockChassisController : public ChassisController {
   void stop() override {
     stopCalled++;
   }
+  void setMaxVelocity(double imaxVelocity) override {
+    chassisModel->setMaxVelocity(imaxVelocity);
+  }
+  double getMaxVelocity() const override {
+    return chassisModel->getMaxVelocity();
+  }
   ChassisScales getChassisScales() const override {
     return scales;
   }

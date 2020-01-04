@@ -148,11 +148,13 @@ std::shared_ptr<ChassisModel> ChassisControllerIntegrated::getModel() {
 ChassisModel &ChassisControllerIntegrated::model() {
   return *chassisModel;
 }
+
 void ChassisControllerIntegrated::setMaxVelocity(double imaxVelocity) {
   leftController->setMaxVelocity(imaxVelocity);
   rightController->setMaxVelocity(imaxVelocity);
   chassisModel->setMaxVelocity(imaxVelocity);
 }
+
 double ChassisControllerIntegrated::getMaxVelocity() const {
   return chassisModel->getMaxVelocity();
 }
