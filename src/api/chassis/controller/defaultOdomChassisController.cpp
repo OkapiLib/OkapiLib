@@ -145,6 +145,14 @@ void DefaultOdomChassisController::stop() {
   controller->stop();
 }
 
+void DefaultOdomChassisController::setMaxVelocity(double imaxVelocity) {
+  controller->setMaxVelocity(imaxVelocity);
+}
+
+double DefaultOdomChassisController::getMaxVelocity() const {
+  return controller->getMaxVelocity();
+}
+
 ChassisScales DefaultOdomChassisController::getChassisScales() const {
   return controller->getChassisScales();
 }
