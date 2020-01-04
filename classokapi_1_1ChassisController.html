@@ -154,6 +154,14 @@
             </dt>
             <dd></dd>
             <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a973c79ed60f4b0a25fe5273ba4146427" class="m-doc">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a3306e5e19cafb3d231edcfef23c36e3e" class="m-doc">getMaxVelocity</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a0a8e32fc7adad8567f550954505aaa06" class="m-doc">getChassisScales</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
             <dd></dd>
@@ -357,6 +365,36 @@
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac67edbbbe1c8480c4503b9875a3719cd" class="m-doc-self">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
 <p>Interrupts the current movement to stop the robot.</p>
+          </div></section>
+          <section class="m-doc-details" id="a973c79ed60f4b0a25fe5273ba4146427"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a973c79ed60f4b0a25fe5273ba4146427" class="m-doc-self">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">imaxVelocity</td>
+                  <td>The new maximum velocity.</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Sets a new maximum velocity in RPM [0-600].</p>
+          </div></section>
+          <section class="m-doc-details" id="a3306e5e19cafb3d231edcfef23c36e3e"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">double okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3306e5e19cafb3d231edcfef23c36e3e" class="m-doc-self">getMaxVelocity</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The maximum velocity in RPM [0-600].</td>
+                </tr>
+              </tfoot>
+            </table>
           </div></section>
           <section class="m-doc-details" id="a0a8e32fc7adad8567f550954505aaa06"><div>
             <h3>

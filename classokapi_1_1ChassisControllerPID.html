@@ -203,6 +203,14 @@
             </dt>
             <dd></dd>
             <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a460500469efac5015feac674b57948c0" class="m-doc">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a34cffe02f0b3fe0636a3f91741cc1dde" class="m-doc">getMaxVelocity</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#adffe6c9a65b6bd7664e0a884638d9097" class="m-doc">getModel</a>(</span><span class="m-doc-wrap">) -&gt; std::shared_ptr&lt;<a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&gt; <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
@@ -655,6 +663,36 @@
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerPID::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a852462fc20fb2322bbb3fd984b01a121" class="m-doc-self">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
 <p>Interrupts the current movement to stop the robot.</p>
+          </div></section>
+          <section class="m-doc-details" id="a460500469efac5015feac674b57948c0"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerPID::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a460500469efac5015feac674b57948c0" class="m-doc-self">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">imaxVelocity</td>
+                  <td>The new maximum velocity.</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Sets a new maximum velocity in RPM [0-600]. In voltage mode, the max velocity is ignored and a max voltage should be set on the underlying <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a> instead.</p>
+          </div></section>
+          <section class="m-doc-details" id="a34cffe02f0b3fe0636a3f91741cc1dde"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">double okapi::<wbr />ChassisControllerPID::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a34cffe02f0b3fe0636a3f91741cc1dde" class="m-doc-self">getMaxVelocity</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The maximum velocity in RPM [0-600].</td>
+                </tr>
+              </tfoot>
+            </table>
           </div></section>
           <section class="m-doc-details" id="adffe6c9a65b6bd7664e0a884638d9097"><div>
             <h3>
