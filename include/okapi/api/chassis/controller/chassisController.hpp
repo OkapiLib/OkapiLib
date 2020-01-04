@@ -110,6 +110,18 @@ class ChassisController {
   virtual void stop() = 0;
 
   /**
+   * Sets a new maximum velocity in RPM [0-600].
+   *
+   * @param imaxVelocity The new maximum velocity.
+   */
+  virtual void setMaxVelocity(double imaxVelocity) = 0;
+
+  /**
+   * @return The maximum velocity in RPM [0-600].
+   */
+  virtual double getMaxVelocity() const = 0;
+
+  /**
    * Get the ChassisScales.
    */
   virtual ChassisScales getChassisScales() const = 0;

@@ -208,6 +208,18 @@ class ChassisControllerPID : public ChassisController {
   void stop() override;
 
   /**
+   * Sets a new maximum velocity in RPM [0-600].
+   *
+   * @param imaxVelocity The new maximum velocity.
+   */
+  void setMaxVelocity(double imaxVelocity) override;
+
+  /**
+   * @return The maximum velocity in RPM [0-600].
+   */
+  double getMaxVelocity() const override;
+
+  /**
    * @return The internal ChassisModel.
    */
   std::shared_ptr<ChassisModel> getModel() override;

@@ -342,6 +342,14 @@ void ChassisControllerPID::stop() {
   chassisModel->stop();
 }
 
+void ChassisControllerPID::setMaxVelocity(double imaxVelocity) {
+  chassisModel->setMaxVelocity(imaxVelocity);
+}
+
+double ChassisControllerPID::getMaxVelocity() const {
+  return chassisModel->getMaxVelocity();
+}
+
 std::shared_ptr<ChassisModel> ChassisControllerPID::getModel() {
   return chassisModel;
 }
