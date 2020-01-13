@@ -365,6 +365,9 @@ bool AsyncMotionProfileController::isDisabled() const {
 void AsyncMotionProfileController::tarePosition() {
 }
 
+void AsyncMotionProfileController::setMaxVelocity(std::int32_t) {
+}
+
 void AsyncMotionProfileController::startThread() {
   if (!task) {
     task = new CrossplatformThread(trampoline, this, "AsyncMotionProfileController");

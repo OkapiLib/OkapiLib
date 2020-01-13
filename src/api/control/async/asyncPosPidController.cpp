@@ -60,4 +60,7 @@ AsyncPosPIDController::AsyncPosPIDController(
 void AsyncPosPIDController::tarePosition() {
   offsettableInput->tarePosition();
 }
+
+void AsyncPosPIDController::setMaxVelocity(std::int32_t) {
+}
 } // namespace okapi
