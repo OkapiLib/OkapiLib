@@ -205,6 +205,10 @@
             </dt>
             <dd></dd>
             <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#aaeecb68c5bfdc32a7d50b9f1691a0c9c" class="m-doc">setMaxVelocity</a>(</span><span class="m-doc-wrap">std::int32_t imaxVelocity) <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd></dd>
+            <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a6b9c0bc4fc13623225f0c02b992b3ed6" class="m-doc">startThread</a>(</span><span class="m-doc-wrap">)</span>
             </dt>
             <dd></dd>
@@ -694,7 +698,24 @@
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncLinearMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6cfe67f9e4db556fbed1f2c4c4252b0a" class="m-doc-self">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Sets the &quot;absolute&quot; zero position of the controller to its current position.</p><p>This implementation does nothing because the API always requires the starting position to be specified.</p>
+<p>This implementation does nothing because the API always requires the starting position to be specified.</p>
+          </div></section>
+          <section class="m-doc-details" id="aaeecb68c5bfdc32a7d50b9f1691a0c9c"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncLinearMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aaeecb68c5bfdc32a7d50b9f1691a0c9c" class="m-doc-self">setMaxVelocity</a>(</span><span class="m-doc-wrap">std::int32_t imaxVelocity) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">imaxVelocity</td>
+                  <td>Ignored.</td>
+                </tr>
+              </tbody>
+            </table>
+<p>This implementation does nothing because the maximum velocity is configured using <a href="structokapi_1_1PathfinderLimits.html" class="m-doc">PathfinderLimits</a> elsewhere.</p>
           </div></section>
           <section class="m-doc-details" id="a6b9c0bc4fc13623225f0c02b992b3ed6"><div>
             <h3>
