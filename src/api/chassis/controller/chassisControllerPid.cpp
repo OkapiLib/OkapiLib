@@ -107,6 +107,8 @@ void ChassisControllerPID::loop() {
     rate->delayUntil(threadSleepTime);
   }
 
+  stop();
+
   LOG_INFO_S("Stopped ChassisControllerPID task.");
 }
 
@@ -243,11 +245,6 @@ void ChassisControllerPID::waitUntilSettled() {
   LOG_INFO_S("ChassisControllerPID: Done waiting to settle");
 }
 
-/**
- * Wait for the distance setup (distancePid and anglePid) to settle.
- *
- * @return true if done settling; false if settling should be tried again
- */
 bool ChassisControllerPID::waitForDistanceSettled() {
   LOG_INFO_S("ChassisControllerPID: Waiting to settle in distance mode");
 
@@ -266,11 +263,6 @@ bool ChassisControllerPID::waitForDistanceSettled() {
   return true;
 }
 
-/**
- * Wait for the angle setup (anglePid) to settle.
- *
- * @return true if done settling; false if settling should be tried again
- */
 bool ChassisControllerPID::waitForAngleSettled() {
   LOG_INFO_S("ChassisControllerPID: Waiting to settle in angle mode");
 
@@ -339,7 +331,6 @@ void ChassisControllerPID::stop() {
   mode = none;
   doneLooping.store(true, std::memory_order_release);
   stopAfterSettled();
-  chassisModel->stop();
 }
 
 void ChassisControllerPID::setMaxVelocity(double imaxVelocity) {

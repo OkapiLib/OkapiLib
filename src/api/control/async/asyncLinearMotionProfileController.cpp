@@ -220,6 +220,10 @@ void AsyncLinearMotionProfileController::loop() {
                   std::to_string(path->second.length));
 
         executeSinglePath(path->second, timeUtil.getRate());
+
+        // Set 0 after the path because:
+        // 1. We only support an exit velocity of zero
+        // 2. Because of (1), we should make sure the system is stopped
         output->controllerSet(0);
 
         LOG_INFO_S("AsyncLinearMotionProfileController: Done moving");
@@ -358,6 +362,9 @@ CrossplatformThread *AsyncLinearMotionProfileController::getThread() const {
 }
 
 void AsyncLinearMotionProfileController::tarePosition() {
+}
+
+void AsyncLinearMotionProfileController::setMaxVelocity(std::int32_t) {
 }
 
 void AsyncLinearMotionProfileController::forceRemovePath(const std::string &ipathId) {
