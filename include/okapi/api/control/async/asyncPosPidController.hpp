@@ -74,6 +74,13 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
    */
   void tarePosition() override;
 
+  /**
+   * This implementation does not respect the maximum velocity.
+   *
+   * @param imaxVelocity Ignored.
+   */
+  void setMaxVelocity(std::int32_t imaxVelocity) override;
+
   protected:
   std::shared_ptr<OffsetableControllerInput> offsettableInput;
 };
