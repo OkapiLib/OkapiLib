@@ -250,8 +250,23 @@ class ChassisControllerPID : public ChassisController {
   static void trampoline(void *context);
   void loop();
 
+  /**
+   * Wait for the distance setup (distancePid and anglePid) to settle.
+   *
+   * @return true if done settling; false if settling should be tried again
+   */
   bool waitForDistanceSettled();
+
+  /**
+   * Wait for the angle setup (anglePid) to settle.
+   *
+   * @return true if done settling; false if settling should be tried again
+   */
   bool waitForAngleSettled();
+
+  /**
+   * Stops all the controllers and the ChassisModel.
+   */
   void stopAfterSettled();
 
   typedef enum { distance, angle, none } modeType;
