@@ -234,6 +234,10 @@ void AsyncMotionProfileController::loop() {
                   std::to_string(path->second.length));
 
         executeSinglePath(path->second, timeUtil.getRate());
+
+        // Stop the chassis after the path because:
+        // 1. We only support an exit velocity of zero
+        // 2. Because of (1), we should make sure the system is stopped
         model->stop();
 
         LOG_INFO_S("AsyncMotionProfileController: Done moving");
