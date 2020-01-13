@@ -18,11 +18,11 @@ class ADIUltrasonic : public ControllerInput<double> {
   /**
    * An ultrasonic sensor in the ADI (3-wire) ports.
    *
-   * @param iportPing The port connected to the orange OUTPUT cable. This should be in the next
-   * highest port following iportEcho.
-   * @param iportEcho The port connected to the yellow INPUT cable. This should be in port 1, 3,
+   * @param iportPing The port connected to the orange OUTPUT cable. This should be in port 1, 3,
    * 5, or 7 ('A', 'C', 'E', 'G').
-   * @param ifilter the filter to use for filtering measurements
+   * @param iportEcho The port connected to the yellow INPUT cable. This should be in the next
+   * highest port following iportPing.
+   * @param ifilter The filter to use for filtering the distance measurements.
    */
   ADIUltrasonic(std::uint8_t iportPing,
                 std::uint8_t iportEcho,
