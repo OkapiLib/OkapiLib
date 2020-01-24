@@ -144,8 +144,8 @@ ChassisControllerBuilder()
         ADIEncoder{'A', 'B'}, // Left encoder in ADI ports A & B
         ADIEncoder{'C', 'D', true}  // Right encoder in ADI ports C & D (reversed)
     )
-    // Specify the tracking wheels diam (3 in), track (7 in), and TPR (360)
-    .withOdometry({{3_in, 7_in}, quadEncoderTPR})
+    // Specify the tracking wheels diam (2.75 in), track (7 in), and TPR (360)
+    .withOdometry({{2.75_in, 7_in}, quadEncoderTPR})
     .buildOdometry()
 ```
 
