@@ -96,8 +96,8 @@
         <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="c1">// Left encoder in ADI ports A &amp; B</span>
         <span class="n">ADIEncoder</span><span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">}</span>  <span class="c1">// Right encoder in ADI ports C &amp; D (reversed)</span>
     <span class="p">)</span>
-    <span class="c1">// Specify the tracking wheels diam (3 in), track (7 in), and TPR (360)</span>
-    <span class="p">.</span><span class="n">withOdometry</span><span class="p">({{</span><span class="mi">3</span><span class="n">_in</span><span class="p">,</span> <span class="mi">7</span><span class="n">_in</span><span class="p">},</span> <span class="n">quadEncoderTPR</span><span class="p">})</span>
+    <span class="c1">// Specify the tracking wheels diam (2.75 in), track (7 in), and TPR (360)</span>
+    <span class="p">.</span><span class="n">withOdometry</span><span class="p">({{</span><span class="mf">2.75</span><span class="n">_in</span><span class="p">,</span> <span class="mi">7</span><span class="n">_in</span><span class="p">},</span> <span class="n">quadEncoderTPR</span><span class="p">})</span>
     <span class="p">.</span><span class="n">buildOdometry</span><span class="p">()</span></pre><h3>Configuring PID gains</h3><p>If you want to use OkapiLib&#x27;s PID control instead of the built-in control, you need to pass in two or three sets of PID gains.</p><h4>Two sets:</h4><pre class="m-code"><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
     <span class="p">.</span><span class="n">withGains</span><span class="p">(</span>
         <span class="p">{</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">},</span> <span class="c1">// Distance controller gains</span>
