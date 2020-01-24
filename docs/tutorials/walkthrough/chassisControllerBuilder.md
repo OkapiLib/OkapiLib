@@ -130,9 +130,10 @@ If you have external sensors, you need to pass an extra [ChassisScales](@ref oka
 to [withOdometry](@ref okapi::ChassisControllerBuilder::withOdometry) to specify the dimensions
 for the tracking wheels. If you are using a
 [ChassisControllerPID](@ref okapi::ChassisControllerPID), these dimensions will be the same as
-the ones given to [withDimensions](@ref okapi::ChassisControllerBuilder::withDimensions). If you are
-using a [ChassisControllerIntegrated](@ref okapi::ChassisControllerIntegrated), these dimensions
-will be different than the ones given to
+the ones given to [withDimensions](@ref okapi::ChassisControllerBuilder::withDimensions), so you do
+not need to pass any dimensions to [withOdometry](@ref okapi::ChassisControllerBuilder::withOdometry).
+If you are using a [ChassisControllerIntegrated](@ref okapi::ChassisControllerIntegrated), these
+dimensions will be different than the ones given to
 [withDimensions](@ref okapi::ChassisControllerBuilder::withDimensions).
 
 ```cpp
