@@ -26,7 +26,7 @@ class DefaultOdomChassisControllerTest : public ::testing::Test {
     controller = std::make_shared<MockChassisController>();
 
     drive = new MockDefaultOdomChassisController(
-      createTimeUtil(), std::unique_ptr<Odometry>(odom), controller);
+      createTimeUtil(), std::shared_ptr<Odometry>(odom), controller);
     drive->odomTaskRunning = true;
   }
 

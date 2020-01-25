@@ -235,7 +235,7 @@ ChassisControllerBuilder &ChassisControllerBuilder::withOdometry(const ChassisSc
 }
 
 ChassisControllerBuilder &
-ChassisControllerBuilder::withOdometry(std::unique_ptr<Odometry> iodometry,
+ChassisControllerBuilder::withOdometry(std::shared_ptr<Odometry> iodometry,
                                        const StateMode &imode,
                                        const QLength &imoveThreshold,
                                        const QAngle &iturnThreshold) {
@@ -369,12 +369,12 @@ std::shared_ptr<DefaultOdomChassisController>
 ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisController) {
   if (odometry == nullptr) {
     if (middleSensor == nullptr) {
-      odometry = std::make_unique<TwoEncoderOdometry>(odometryTimeUtilFactory.create(),
+      odometry = std::make_shared<TwoEncoderOdometry>(odometryTimeUtilFactory.create(),
                                                       chassisController->getModel(),
                                                       odomScales,
                                                       controllerLogger);
     } else {
-      odometry = std::make_unique<ThreeEncoderOdometry>(odometryTimeUtilFactory.create(),
+      odometry = std::make_shared<ThreeEncoderOdometry>(odometryTimeUtilFactory.create(),
                                                         chassisController->getModel(),
                                                         odomScales,
                                                         controllerLogger);
