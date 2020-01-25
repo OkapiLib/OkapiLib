@@ -55,7 +55,7 @@ class ChassisScales {
    * @param ilogger The logger this instance will log to.
    */
   ChassisScales(const std::initializer_list<QLength> &idimensions,
-                std::int32_t itpr,
+                double itpr,
                 const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
@@ -72,7 +72,7 @@ class ChassisScales {
    * @param ilogger The logger this instance will log to.
    */
   ChassisScales(const std::initializer_list<double> &iscales,
-                std::int32_t itpr,
+                double itpr,
                 const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   QLength wheelDiameter;
@@ -82,9 +82,9 @@ class ChassisScales {
   double straight;
   double turn;
   double middle;
-  std::int32_t tpr;
+  double tpr;
 
   protected:
-  void validateInputSize(std::size_t inputSize, const std::shared_ptr<Logger> &logger);
+  static void validateInputSize(std::size_t inputSize, const std::shared_ptr<Logger> &logger);
 };
 } // namespace okapi
