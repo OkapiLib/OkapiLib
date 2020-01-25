@@ -273,7 +273,7 @@ class ChassisControllerBuilder {
    * @param iturnThreshold The minimum angle turn.
    * @return An ongoing builder.
    */
-  ChassisControllerBuilder &withOdometry(std::unique_ptr<Odometry> iodometry,
+  ChassisControllerBuilder &withOdometry(std::shared_ptr<Odometry> iodometry,
                                          const StateMode &imode = StateMode::FRAME_TRANSFORMATION,
                                          const QLength &imoveThreshold = 0_mm,
                                          const QAngle &iturnThreshold = 0_deg);
@@ -461,7 +461,7 @@ class ChassisControllerBuilder {
   std::shared_ptr<Logger> controllerLogger = Logger::getDefaultLogger();
 
   bool hasOdom{false}; // Whether odometry was passed
-  std::unique_ptr<Odometry> odometry;
+  std::shared_ptr<Odometry> odometry;
   StateMode stateMode;
   QLength moveThreshold;
   QAngle turnThreshold;

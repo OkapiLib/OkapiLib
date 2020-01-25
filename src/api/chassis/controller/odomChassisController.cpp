@@ -9,7 +9,7 @@
 
 namespace okapi {
 OdomChassisController::OdomChassisController(TimeUtil itimeUtil,
-                                             std::unique_ptr<Odometry> iodometry,
+                                             std::shared_ptr<Odometry> iodometry,
                                              const StateMode &imode,
                                              const QLength &imoveThreshold,
                                              const QAngle &iturnThreshold,
@@ -83,5 +83,9 @@ void OdomChassisController::loop() {
 
 CrossplatformThread *OdomChassisController::getOdomThread() const {
   return odomTask;
+}
+
+std::shared_ptr<Odometry> OdomChassisController::getOdometry() {
+  return odom;
 }
 } // namespace okapi
