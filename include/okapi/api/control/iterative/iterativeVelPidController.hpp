@@ -22,6 +22,9 @@ class IterativeVelPIDController : public IterativeVelocityController<double, dou
     double kD{0};
     double kF{0};
     double kSF{0};
+
+    bool operator==(const Gains &rhs) const;
+    bool operator!=(const Gains &rhs) const;
   };
 
   /**

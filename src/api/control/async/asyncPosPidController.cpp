@@ -45,7 +45,7 @@ AsyncPosPIDController::AsyncPosPIDController(
   : AsyncWrapper<double, double>(
       iinput,
       ioutput,
-      std::make_unique<IterativePosPIDController>(ikP,
+      std::make_shared<IterativePosPIDController>(ikP,
                                                   ikI,
                                                   ikD,
                                                   ikBias,
@@ -54,7 +54,8 @@ AsyncPosPIDController::AsyncPosPIDController(
       itimeUtil.getRateSupplier(),
       iratio,
       ilogger),
-    offsettableInput(iinput) {
+    offsettableInput(iinput),
+    internalController(std::static_pointer_cast<IterativePosPIDController>(controller)) {
 }
 
 void AsyncPosPIDController::tarePosition() {
@@ -62,5 +63,13 @@ void AsyncPosPIDController::tarePosition() {
 }
 
 void AsyncPosPIDController::setMaxVelocity(std::int32_t) {
+}
+
+void AsyncPosPIDController::setGains(const IterativePosPIDController::Gains &igains) {
+  internalController->setGains(igains);
+}
+
+IterativePosPIDController::Gains AsyncPosPIDController::getGains() const {
+  return internalController->getGains();
 }
 } // namespace okapi
