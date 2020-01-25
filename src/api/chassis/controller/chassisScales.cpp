@@ -9,7 +9,7 @@
 
 namespace okapi {
 ChassisScales::ChassisScales(const std::initializer_list<QLength> &idimensions,
-                             const std::int32_t itpr,
+                             const double itpr,
                              const std::shared_ptr<Logger> &logger)
   : tpr(itpr) {
   validateInputSize(idimensions.size(), logger);
@@ -42,7 +42,7 @@ ChassisScales::ChassisScales(const std::initializer_list<QLength> &idimensions,
 }
 
 ChassisScales::ChassisScales(const std::initializer_list<double> &iscales,
-                             const std::int32_t itpr,
+                             const double itpr,
                              const std::shared_ptr<Logger> &logger)
   : tpr(itpr) {
   validateInputSize(iscales.size(), logger);
@@ -63,9 +63,9 @@ ChassisScales::ChassisScales(const std::initializer_list<double> &iscales,
     middle = straight;
   }
 
-  wheelDiameter = (tpr / (straight * 1_pi)) * meter;
+  wheelDiameter = static_cast<double>(tpr / (straight * 1_pi)) * meter;
   wheelTrack = turn * wheelDiameter;
-  middleWheelDiameter = (tpr / (middle * 1_pi)) * meter;
+  middleWheelDiameter = static_cast<double>(tpr / (middle * 1_pi)) * meter;
 
   if (vec.size() >= 4) {
     middleWheelDistance = vec.at(2) * meter;
