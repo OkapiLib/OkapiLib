@@ -26,6 +26,9 @@ class IterativePosPIDController : public IterativePositionController<double, dou
     double kI{0};
     double kD{0};
     double kBias{0};
+
+    bool operator==(const Gains &rhs) const;
+    bool operator!=(const Gains &rhs) const;
   };
 
   /**

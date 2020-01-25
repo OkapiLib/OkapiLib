@@ -198,6 +198,7 @@ add_executable(OkapiLibV5
         test/chassisScalesTests.cpp
         test/asyncPosIntegratedControllerTests.cpp
         test/asyncVelIntegratedControllerTests.cpp
+        test/asyncVelPIDControllerTests.cpp
         test/asyncMotionProfileControllerTests.cpp
         test/asyncLinearMotionProfileControllerTests.cpp
         test/iterativeVelPIDControllerTests.cpp
