@@ -36,7 +36,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
    */
   AsyncWrapper(const std::shared_ptr<ControllerInput<Input>> &iinput,
                const std::shared_ptr<ControllerOutput<Output>> &ioutput,
-               std::unique_ptr<IterativeController<Input, Output>> icontroller,
+               const std::shared_ptr<IterativeController<Input, Output>> &icontroller,
                const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
                const double iratio = 1,
                std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger())
@@ -44,7 +44,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
       rateSupplier(irateSupplier),
       input(iinput),
       output(ioutput),
-      controller(std::move(icontroller)),
+      controller(icontroller),
       ratio(iratio) {
   }
 
@@ -247,7 +247,7 @@ class AsyncWrapper : virtual public AsyncController<Input, Output> {
   Supplier<std::unique_ptr<AbstractRate>> rateSupplier;
   std::shared_ptr<ControllerInput<Input>> input;
   std::shared_ptr<ControllerOutput<Output>> output;
-  std::unique_ptr<IterativeController<Input, Output>> controller;
+  std::shared_ptr<IterativeController<Input, Output>> controller;
   bool hasFirstTarget{false};
   Input lastTarget;
   double ratio;

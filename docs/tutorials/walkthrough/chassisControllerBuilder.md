@@ -130,9 +130,10 @@ If you have external sensors, you need to pass an extra [ChassisScales](@ref oka
 to [withOdometry](@ref okapi::ChassisControllerBuilder::withOdometry) to specify the dimensions
 for the tracking wheels. If you are using a
 [ChassisControllerPID](@ref okapi::ChassisControllerPID), these dimensions will be the same as
-the ones given to [withDimensions](@ref okapi::ChassisControllerBuilder::withDimensions). If you are
-using a [ChassisControllerIntegrated](@ref okapi::ChassisControllerIntegrated), these dimensions
-will be different than the ones given to
+the ones given to [withDimensions](@ref okapi::ChassisControllerBuilder::withDimensions), so you do
+not need to pass any dimensions to [withOdometry](@ref okapi::ChassisControllerBuilder::withOdometry).
+If you are using a [ChassisControllerIntegrated](@ref okapi::ChassisControllerIntegrated), these
+dimensions will be different than the ones given to
 [withDimensions](@ref okapi::ChassisControllerBuilder::withDimensions).
 
 ```cpp
@@ -144,8 +145,8 @@ ChassisControllerBuilder()
         ADIEncoder{'A', 'B'}, // Left encoder in ADI ports A & B
         ADIEncoder{'C', 'D', true}  // Right encoder in ADI ports C & D (reversed)
     )
-    // Specify the tracking wheels diam (3 in), track (7 in), and TPR (360)
-    .withOdometry({{3_in, 7_in}, quadEncoderTPR})
+    // Specify the tracking wheels diam (2.75 in), track (7 in), and TPR (360)
+    .withOdometry({{2.75_in, 7_in}, quadEncoderTPR})
     .buildOdometry()
 ```
 

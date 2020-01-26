@@ -28,7 +28,7 @@ class ChassisScales {
    * meaning the width between the centers of both wheels). For example, if you are using four inch
    * omni wheels and there are 11.5 inches between the centers of each wheel, you would call the
    * constructor like so:
-   *   ChassisScales scales({4_in, 11.5_in});
+   *   `ChassisScales scales({4_in, 11.5_in}, imev5GreenTPR); // imev5GreenTPR for a green gearset`
    *
    *                             Wheel diameter
    *
@@ -55,7 +55,7 @@ class ChassisScales {
    * @param ilogger The logger this instance will log to.
    */
   ChassisScales(const std::initializer_list<QLength> &idimensions,
-                std::int32_t itpr,
+                double itpr,
                 const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   /**
@@ -72,7 +72,7 @@ class ChassisScales {
    * @param ilogger The logger this instance will log to.
    */
   ChassisScales(const std::initializer_list<double> &iscales,
-                std::int32_t itpr,
+                double itpr,
                 const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
 
   QLength wheelDiameter;
@@ -82,9 +82,9 @@ class ChassisScales {
   double straight;
   double turn;
   double middle;
-  std::int32_t tpr;
+  double tpr;
 
   protected:
-  void validateInputSize(std::size_t inputSize, const std::shared_ptr<Logger> &logger);
+  static void validateInputSize(std::size_t inputSize, const std::shared_ptr<Logger> &logger);
 };
 } // namespace okapi

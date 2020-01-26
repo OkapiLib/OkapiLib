@@ -34,7 +34,7 @@ class DefaultOdomChassisController : public OdomChassisController {
    * @param ilogger The logger this instance will log to.
    */
   DefaultOdomChassisController(const TimeUtil &itimeUtil,
-                               std::unique_ptr<Odometry> iodometry,
+                               std::shared_ptr<Odometry> iodometry,
                                std::shared_ptr<ChassisController> icontroller,
                                const StateMode &imode = StateMode::FRAME_TRANSFORMATION,
                                QLength imoveThreshold = 0_mm,
