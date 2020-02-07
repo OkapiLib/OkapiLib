@@ -114,6 +114,6 @@ class Controller {
   protected:
   ControllerId okapiId;
   pros::controller_id_e_t prosId;
-  std::array<ControllerButton *, 12> buttonArray;
+  std::array<ControllerButton *, 12> buttonArray{};
 };
 } // namespace okapi
