@@ -24,7 +24,7 @@ AsyncVelPIDController::AsyncVelPIDController(
   : AsyncWrapper<double, double>(
       iinput,
       ioutput,
-      std::make_unique<IterativeVelPIDController>(ikP,
+      std::make_shared<IterativeVelPIDController>(ikP,
                                                   ikD,
                                                   ikF,
                                                   ikSF,
@@ -33,6 +33,15 @@ AsyncVelPIDController::AsyncVelPIDController(
                                                   std::move(iderivativeFilter)),
       itimeUtil.getRateSupplier(),
       iratio,
-      ilogger) {
+      ilogger),
+    internalController(std::static_pointer_cast<IterativeVelPIDController>(controller)) {
+}
+
+void AsyncVelPIDController::setGains(const IterativeVelPIDController::Gains &igains) {
+  internalController->setGains(igains);
+}
+
+IterativeVelPIDController::Gains AsyncVelPIDController::getGains() const {
+  return internalController->getGains();
 }
 } // namespace okapi

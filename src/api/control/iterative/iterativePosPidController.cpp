@@ -218,4 +218,14 @@ void IterativePosPIDController::setGains(const Gains &igains) {
 IterativePosPIDController::Gains IterativePosPIDController::getGains() const {
   return {kP, kI / sampleTime.convert(second), kD * sampleTime.convert(second), kBias};
 }
+
+bool IterativePosPIDController::Gains::
+operator==(const IterativePosPIDController::Gains &rhs) const {
+  return kP == rhs.kP && kI == rhs.kI && kD == rhs.kD && kBias == rhs.kBias;
+}
+
+bool IterativePosPIDController::Gains::
+operator!=(const IterativePosPIDController::Gains &rhs) const {
+  return !(rhs == *this);
+}
 } // namespace okapi

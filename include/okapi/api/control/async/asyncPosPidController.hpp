@@ -81,7 +81,22 @@ class AsyncPosPIDController : public AsyncWrapper<double, double>,
    */
   void setMaxVelocity(std::int32_t imaxVelocity) override;
 
+  /**
+   * Set controller gains.
+   *
+   * @param igains The new gains.
+   */
+  void setGains(const IterativePosPIDController::Gains &igains);
+
+  /**
+   * Gets the current gains.
+   *
+   * @return The current gains.
+   */
+  IterativePosPIDController::Gains getGains() const;
+
   protected:
   std::shared_ptr<OffsetableControllerInput> offsettableInput;
+  std::shared_ptr<IterativePosPIDController> internalController;
 };
 } // namespace okapi

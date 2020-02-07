@@ -45,5 +45,22 @@ class AsyncVelPIDController : public AsyncWrapper<double, double>,
     double iratio = 1,
     std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
     const std::shared_ptr<Logger> &ilogger = Logger::getDefaultLogger());
+
+  /**
+   * Set controller gains.
+   *
+   * @param igains The new gains.
+   */
+  void setGains(const IterativeVelPIDController::Gains &igains);
+
+  /**
+   * Gets the current gains.
+   *
+   * @return The current gains.
+   */
+  IterativeVelPIDController::Gains getGains() const;
+
+  protected:
+  std::shared_ptr<IterativeVelPIDController> internalController;
 };
 } // namespace okapi
