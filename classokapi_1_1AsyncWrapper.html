@@ -90,9 +90,9 @@
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a0e4536c264d401b4656a9a4ea8aa6231" class="m-doc">AsyncWrapper</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1ControllerInput.html" class="m-doc">ControllerInput</a>&lt;Input&gt;&gt;&amp; iinput,
+              <span class="m-doc-wrap-bumper"><a href="#aa1b6ec6ead574fd04309673765de36a0" class="m-doc">AsyncWrapper</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1ControllerInput.html" class="m-doc">ControllerInput</a>&lt;Input&gt;&gt;&amp; iinput,
               const std::shared_ptr&lt;<a href="classokapi_1_1ControllerOutput.html" class="m-doc">ControllerOutput</a>&lt;Output&gt;&gt;&amp; ioutput,
-              std::unique_ptr&lt;<a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a>&lt;Input, Output&gt;&gt; icontroller,
+              const std::shared_ptr&lt;<a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a>&lt;Input, Output&gt;&gt;&amp; icontroller,
               const <a href="classokapi_1_1Supplier.html" class="m-doc">Supplier</a>&lt;std::unique_ptr&lt;<a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>&gt;&gt;&amp; irateSupplier,
               const double iratio = 1,
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
@@ -236,8 +236,8 @@
               std::shared_ptr&lt;<a href="classokapi_1_1ControllerOutput.html" class="m-doc">ControllerOutput</a>&lt;Output&gt;&gt; <a href="#a7bbdffe660513797a479cb22018fd7bf" class="m-doc-self">output</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a0a6e4e3e58a885ce74a2d0f729f679c3">
-              std::unique_ptr&lt;<a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a>&lt;Input, Output&gt;&gt; <a href="#a0a6e4e3e58a885ce74a2d0f729f679c3" class="m-doc-self">controller</a>
+            <dt id="a4f8e6be2568912c1906753482cce2199">
+              std::shared_ptr&lt;<a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a>&lt;Input, Output&gt;&gt; <a href="#a4f8e6be2568912c1906753482cce2199" class="m-doc-self">controller</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a75812fac3f252bf5e8d3d4e466d085b8">
@@ -264,14 +264,14 @@
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a0e4536c264d401b4656a9a4ea8aa6231"><div>
+          <section class="m-doc-details" id="aa1b6ec6ead574fd04309673765de36a0"><div>
             <h3>
               <div class="m-doc-template">
                 template&lt;typename Input, typename Output&gt;
               </div>
-              <span class="m-doc-wrap-bumper"> okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0e4536c264d401b4656a9a4ea8aa6231" class="m-doc-self">AsyncWrapper</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1ControllerInput.html" class="m-doc">ControllerInput</a>&lt;Input&gt;&gt;&amp; iinput,
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa1b6ec6ead574fd04309673765de36a0" class="m-doc-self">AsyncWrapper</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1ControllerInput.html" class="m-doc">ControllerInput</a>&lt;Input&gt;&gt;&amp; iinput,
               const std::shared_ptr&lt;<a href="classokapi_1_1ControllerOutput.html" class="m-doc">ControllerOutput</a>&lt;Output&gt;&gt;&amp; ioutput,
-              std::unique_ptr&lt;<a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a>&lt;Input, Output&gt;&gt; icontroller,
+              const std::shared_ptr&lt;<a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a>&lt;Input, Output&gt;&gt;&amp; icontroller,
               const <a href="classokapi_1_1Supplier.html" class="m-doc">Supplier</a>&lt;std::unique_ptr&lt;<a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>&gt;&gt;&amp; irateSupplier,
               const double iratio = 1,
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>

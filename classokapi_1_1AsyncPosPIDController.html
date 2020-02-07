@@ -130,6 +130,14 @@
               <span class="m-doc-wrap-bumper">void <a href="#a4e4d599f04780e0e980116f38d8044fa" class="m-doc">setMaxVelocity</a>(</span><span class="m-doc-wrap">std::int32_t imaxVelocity) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#aa2b247484df4a9f2e1964309f8cb95c3" class="m-doc">setGains</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1IterativePosPIDController_1_1Gains.html" class="m-doc">IterativePosPIDController::<wbr />Gains</a>&amp; igains)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a9c8fcd888cfb8f42bb4cf0bfca1bfcf2" class="m-doc">getGains</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1IterativePosPIDController_1_1Gains.html" class="m-doc">IterativePosPIDController::<wbr />Gains</a></span>
+            </dt>
+            <dd></dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -137,6 +145,10 @@
           <dl class="m-doc">
             <dt id="a6e7a064075af197d89f4369e3c8e48b6">
               std::shared_ptr&lt;<a href="classokapi_1_1OffsetableControllerInput.html" class="m-doc">OffsetableControllerInput</a>&gt; <a href="#a6e7a064075af197d89f4369e3c8e48b6" class="m-doc-self">offsettableInput</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="a3c661138bab5c2abe14e2f395e9349ec">
+              std::shared_ptr&lt;<a href="classokapi_1_1IterativePosPIDController.html" class="m-doc">IterativePosPIDController</a>&gt; <a href="#a3c661138bab5c2abe14e2f395e9349ec" class="m-doc-self">internalController</a>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -289,6 +301,37 @@
               </tbody>
             </table>
 <p>This implementation does not respect the maximum velocity.</p>
+          </div></section>
+          <section class="m-doc-details" id="aa2b247484df4a9f2e1964309f8cb95c3"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncPosPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa2b247484df4a9f2e1964309f8cb95c3" class="m-doc-self">setGains</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1IterativePosPIDController_1_1Gains.html" class="m-doc">IterativePosPIDController::<wbr />Gains</a>&amp; igains)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">igains</td>
+                  <td>The new gains.</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Set controller gains.</p>
+          </div></section>
+          <section class="m-doc-details" id="a9c8fcd888cfb8f42bb4cf0bfca1bfcf2"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="structokapi_1_1IterativePosPIDController_1_1Gains.html" class="m-doc">IterativePosPIDController::<wbr />Gains</a> okapi::<wbr />AsyncPosPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9c8fcd888cfb8f42bb4cf0bfca1bfcf2" class="m-doc-self">getGains</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The current gains.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the current gains.</p>
           </div></section>
         </section>
       </div>

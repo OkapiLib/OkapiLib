@@ -67,6 +67,8 @@
               <ul>
                 <li><a href="#base-classes">Base classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#pro-attribs">Protected variables</a></li>
               </ul>
             </li>
           </ul>
@@ -103,6 +105,28 @@
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
             <dd></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a18b0097f55bd1d04e2e757faa8f84ad7" class="m-doc">setGains</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1IterativeVelPIDController_1_1Gains.html" class="m-doc">IterativeVelPIDController::<wbr />Gains</a>&amp; igains)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#ae58c57c3483e9b6aad7898cbfd93806d" class="m-doc">getGains</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1IterativeVelPIDController_1_1Gains.html" class="m-doc">IterativeVelPIDController::<wbr />Gains</a></span>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
+        <section id="pro-attribs">
+          <h2><a href="#pro-attribs">Protected variables</a></h2>
+          <dl class="m-doc">
+            <dt id="adadfc6e395b36459af42f9cc4d6bafe1">
+              std::shared_ptr&lt;<a href="classokapi_1_1IterativeVelPIDController.html" class="m-doc">IterativeVelPIDController</a>&gt; <a href="#adadfc6e395b36459af42f9cc4d6bafe1" class="m-doc-self">internalController</a>
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section>
@@ -173,6 +197,37 @@
               </tbody>
             </table>
 <p>An async velocity PID controller.</p>
+          </div></section>
+          <section class="m-doc-details" id="a18b0097f55bd1d04e2e757faa8f84ad7"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a18b0097f55bd1d04e2e757faa8f84ad7" class="m-doc-self">setGains</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1IterativeVelPIDController_1_1Gains.html" class="m-doc">IterativeVelPIDController::<wbr />Gains</a>&amp; igains)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">igains</td>
+                  <td>The new gains.</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Set controller gains.</p>
+          </div></section>
+          <section class="m-doc-details" id="ae58c57c3483e9b6aad7898cbfd93806d"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"><a href="structokapi_1_1IterativeVelPIDController_1_1Gains.html" class="m-doc">IterativeVelPIDController::<wbr />Gains</a> okapi::<wbr />AsyncVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae58c57c3483e9b6aad7898cbfd93806d" class="m-doc-self">getGains</a>(</span><span class="m-doc-wrap">) const</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The current gains.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Gets the current gains.</p>
           </div></section>
         </section>
       </div>

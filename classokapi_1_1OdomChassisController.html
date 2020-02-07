@@ -98,8 +98,8 @@
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a3916292fddf4c824937db9ab13a36416" class="m-doc">OdomChassisController</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a> itimeUtil,
-              std::unique_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; iodometry,
+              <span class="m-doc-wrap-bumper"><a href="#ae637214075365e3b1316abacea499175" class="m-doc">OdomChassisController</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a> itimeUtil,
+              std::shared_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; iodometry,
               const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
               const QLength&amp; imoveThreshold = 0_mm,
               const QAngle&amp; iturnThreshold = 0_deg,
@@ -181,6 +181,10 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a6ab78730e502dc551894e7efdb9f4edf" class="m-doc">getOdomThread</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classCrossplatformThread.html" class="m-doc">CrossplatformThread</a>*</span>
             </dt>
             <dd></dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#aab7163485e61dfd86a9854af53e03a2c" class="m-doc">getOdometry</a>(</span><span class="m-doc-wrap">) -&gt; std::shared_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt;</span>
+            </dt>
+            <dd></dd>
           </dl>
         </section>
         <section id="pro-static-methods">
@@ -220,8 +224,8 @@
               QAngle <a href="#ac0d74721713d2928a047562675ae25ef" class="m-doc-self">turnThreshold</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a7167160f48f0f75fb1bc7964c4cc608b">
-              std::unique_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; <a href="#a7167160f48f0f75fb1bc7964c4cc608b" class="m-doc-self">odom</a>
+            <dt id="ae75e4713de4650ae2e6a6409b4ba60f0">
+              std::shared_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; <a href="#ae75e4713de4650ae2e6a6409b4ba60f0" class="m-doc-self">odom</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a75246d7a17442c9a63afaef68bbf95e0">
@@ -244,10 +248,10 @@
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a3916292fddf4c824937db9ab13a36416"><div>
+          <section class="m-doc-details" id="ae637214075365e3b1316abacea499175"><div>
             <h3>
-              <span class="m-doc-wrap-bumper"> okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3916292fddf4c824937db9ab13a36416" class="m-doc-self">OdomChassisController</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a> itimeUtil,
-              std::unique_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; iodometry,
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae637214075365e3b1316abacea499175" class="m-doc-self">OdomChassisController</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a> itimeUtil,
+              std::shared_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; iodometry,
               const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>,
               const QLength&amp; imoveThreshold = 0_mm,
               const QAngle&amp; iturnThreshold = 0_deg,
@@ -469,6 +473,19 @@
                 <tr>
                   <th style="width: 1%">Returns</th>
                   <td>The underlying thread handle.</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="aab7163485e61dfd86a9854af53e03a2c"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::shared_ptr&lt;<a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>&gt; okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aab7163485e61dfd86a9854af53e03a2c" class="m-doc-self">getOdometry</a>(</span><span class="m-doc-wrap">)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <tfoot>
+                <tr>
+                  <th style="width: 1%">Returns</th>
+                  <td>The internal odometry.</td>
                 </tr>
               </tfoot>
             </table>
