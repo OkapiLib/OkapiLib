@@ -95,11 +95,12 @@ in the drive motors and the chassis dimensions.
 
 ```cpp
 // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-auto drive = ChassisControllerBuilder()
-    .withMotors(1, -10)
-    // Green gearset, 4 in wheel diam, 11.5 in wheel track
-    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
-    .build();
+std::shared_ptr<ChassisController> drive =
+    ChassisControllerBuilder()
+        .withMotors(1, -10)
+        // Green gearset, 4 in wheel diam, 11.5 in wheel track
+        .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+        .build();
 ```
 
 Next, let's setup tank or arcade control.
@@ -236,11 +237,12 @@ using namespace okapi;
 
 void opcontrol() {
     // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-    auto drive = ChassisControllerBuilder()
-        .withMotors(1, -10)
-        // Green gearset, 4 in wheel diam, 11.5 in wheel track
-        .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
-        .build();
+    std::shared_ptr<ChassisController> drive =
+        ChassisControllerBuilder()
+            .withMotors(1, -10)
+            // Green gearset, 4 in wheel diam, 11.5 in wheel track
+            .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+            .build();
 
     // Joystick to read analog values for tank or arcade control
     // Master controller by default
@@ -298,11 +300,12 @@ using namespace okapi;
 
 void opcontrol() {
     // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-    auto drive = ChassisControllerBuilder()
-        .withMotors(1, -10)
-        // Green gearset, 4 in wheel diam, 11.5 in wheel track
-        .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
-        .build();
+    std::shared_ptr<ChassisController> drive =
+        ChassisControllerBuilder()
+            .withMotors(1, -10)
+            // Green gearset, 4 in wheel diam, 11.5 in wheel track
+            .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
+            .build();
 
     // Joystick to read analog values for tank or arcade control
     // Master controller by default
