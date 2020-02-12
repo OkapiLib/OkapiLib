@@ -87,7 +87,8 @@
 
 <span class="n">ControllerButton</span> <span class="nf">btnUp</span><span class="p">(</span><span class="n">ControllerDigital</span><span class="o">::</span><span class="n">R1</span><span class="p">);</span>
 <span class="n">ControllerButton</span> <span class="nf">btnDown</span><span class="p">(</span><span class="n">ControllerDigital</span><span class="o">::</span><span class="n">R2</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">liftControl</span> <span class="o">=</span> <span class="n">AsyncPosControllerBuilder</span><span class="p">().</span><span class="n">withMotor</span><span class="p">(</span><span class="n">LIFT_MOTOR_PORT</span><span class="p">).</span><span class="n">build</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">AsyncPositionController</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;&gt;</span> <span class="n">liftControl</span> <span class="o">=</span>
+  <span class="n">AsyncPosControllerBuilder</span><span class="p">().</span><span class="n">withMotor</span><span class="p">(</span><span class="n">LIFT_MOTOR_PORT</span><span class="p">).</span><span class="n">build</span><span class="p">();</span>
 
 <span class="kt">void</span> <span class="nf">opcontrol</span><span class="p">()</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">goalHeight</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
