@@ -259,7 +259,7 @@ ChassisControllerBuilder::withDimensions(const AbstractMotor::GearsetRatioPair &
   gearset = igearset;
 
   if (!maxVelSetByUser) {
-    maxVelocity = toUnderlyingType(igearset);
+    maxVelocity = toUnderlyingType(igearset.internalGearset);
   }
 
   driveScales = iscales;
