@@ -298,7 +298,7 @@ class ChassisControllerBuilder {
    * @param iscales The ChassisScales for the base.
    * @return An ongoing builder.
    */
-  ChassisControllerBuilder &withDimensions(const AbstractMotor::gearset &igearset,
+  ChassisControllerBuilder &withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
                                            const ChassisScales &iscales);
 
   /**

@@ -254,7 +254,7 @@ ChassisControllerBuilder::withOdometry(std::shared_ptr<Odometry> iodometry,
 }
 
 ChassisControllerBuilder &
-ChassisControllerBuilder::withDimensions(const AbstractMotor::gearset &igearset,
+ChassisControllerBuilder::withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
                                          const ChassisScales &iscales) {
   gearset = igearset;
 
@@ -337,11 +337,12 @@ std::shared_ptr<ChassisController> ChassisControllerBuilder::build() {
     throw std::runtime_error(msg);
   }
 
-  if (maxVelSetByUser && maxVelocity > toUnderlyingType(gearset.internalGearset)) {
-    LOG_WARN(
-      "ChassisControllerBuilder: The custom maximum velocity (" + std::to_string(maxVelocity) +
-      ") is greater than the maximum velocity of the selected gearset (" +
-      std::to_string(toUnderlyingType(gearset.internalGearset)) + "). This is probably a bug.");
+  if (maxVelSetByUser && maxVelocity > toUnderlyingType(gearset.internalGearset) * gearset.ratio) {
+    LOG_WARN("ChassisControllerBuilder: The custom maximum velocity (" +
+             std::to_string(maxVelocity) +
+             ") is greater than the maximum velocity of the selected gearset (" +
+             std::to_string(toUnderlyingType(gearset.internalGearset) * gearset.ratio) +
+             "). This is probably a bug.");
   }
 
   std::shared_ptr<ChassisController> out;
