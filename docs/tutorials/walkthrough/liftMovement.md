@@ -47,7 +47,8 @@ const int heights[NUM_HEIGHTS] = {height1, height2, height3, height4};
 
 ControllerButton btnUp(ControllerDigital::R1);
 ControllerButton btnDown(ControllerDigital::R2);
-auto liftControl = AsyncPosControllerBuilder().withMotor(LIFT_MOTOR_PORT).build();
+std::shared_ptr<AsyncPositionController<double, double>> liftControl =
+  AsyncPosControllerBuilder().withMotor(LIFT_MOTOR_PORT).build();
 
 void opcontrol() {
   int goalHeight = 0;

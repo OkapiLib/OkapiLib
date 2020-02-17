@@ -187,7 +187,7 @@ as the user can visualize the field and changing a movement will not affect the 
 Here is is a full example of odometry using [ChassisControllerIntegrated](@ref okapi::ChassisControllerIntegrated) and two tracking wheels: 
 
 ```cpp
-auto chassis =
+std::shared_ptr<OdomChassisController> chassis =
   ChassisControllerBuilder()
     .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
     // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase

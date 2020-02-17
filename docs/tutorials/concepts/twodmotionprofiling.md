@@ -21,7 +21,7 @@ for other simpler movements. Because OkapiLib's motion profile generation uses
 [Pathfinder](https://github.com/JacisNonsense/Pathfinder), there are a few open
 issues you should know about:
 
-- Pathfinder cannot generate negative velocities, so backward movements and very tight turns do not work
+- Pathfinder cannot generate negative velocities, so generating backward movements and very tight turns do not work
   - Moving backwards: <https://github.com/JacisNonsense/Pathfinder/issues/39>
   - Tight turns: <https://github.com/JacisNonsense/Pathfinder/issues/38>
 - Very long movements (typically movements much longer than a VEX field) can potentially never reach maximum speed: <https://github.com/JacisNonsense/Pathfinder/issues/43>
@@ -41,14 +41,14 @@ pass into the
 
 
 ```cpp
-auto myChassis =
+std::shared_ptr<ChassisController> myChassis =
   ChassisControllerBuilder()
     .withMotors({1, 2}, {-3, -4})
     // Green gearset, 4 in wheel diam, 11.5 in wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .build();
 
-auto profileController =
+std::shared_ptr<AsyncMotionProfileController> profileController =
   AsyncMotionProfileControllerBuilder()
     .withLimits({1.0, 2.0, 10.0})
     .withOutput(myChassis)
@@ -99,17 +99,18 @@ profileController->waitUntilSettled();
 In total, here is how to initialize and use a 2D motion profiling controller:
 
 ```cpp
-auto myChassis =
+std::shared_ptr<ChassisController> myChassis =
   ChassisControllerBuilder()
     .withMotors({1, 2}, {-3, -4})
     // Green gearset, 4 in wheel diam, 11.5 in wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .build();
 
-auto profileController = AsyncMotionProfileControllerBuilder()
-                           .withLimits({1.0, 2.0, 10.0})
-                           .withOutput(myChassis)
-                           .buildMotionProfileController();
+std::shared_ptr<AsyncMotionProfileController> profileController = 
+  AsyncMotionProfileControllerBuilder()
+    .withLimits({1.0, 2.0, 10.0})
+    .withOutput(myChassis)
+    .buildMotionProfileController();
 
 void opcontrol() {
   profileController->generatePath(
