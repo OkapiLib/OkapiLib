@@ -18,7 +18,7 @@ Let's start by creating the
 drive motors in ports 1 and 2:
 
 ```cpp
-auto chassis = 
+std::shared_ptr<ChassisController> chassis = 
     ChassisControllerBuilder()
         .withMotors(1, -2)
         // Green gearset, 4 in wheel diam, 11.5 in wheel track, 5:3 external gear ratio

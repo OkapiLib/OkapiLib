@@ -8,7 +8,7 @@ To create a [ChassisController](@ref okapi::ChassisController) for a given syste
 modify the below example to fit your subsystem.
 
 ```cpp
-auto driveController =
+std::shared_ptr<ChassisController> driveController =
     ChassisControllerBuilder()
         .withMotors(1, -2)
         // Green gearset, 4 in wheel diam, 11.5 in wheel track, 5:3 external gear ratio
@@ -26,7 +26,7 @@ const double liftkP = 0.001;
 const double liftkI = 0.0001;
 const double liftkD = 0.0001;
 
-auto liftController = 
+std::shared_ptr<AsyncPositionController<double, double>> liftController = 
     AsyncPosControllerBuilder()
         .withMotor(3) // lift motor port 3
         .withGains({liftkP, liftkI, liftkD})
