@@ -8,7 +8,7 @@ a variable in global scope and then you try to use it in `opcontrol`, **it will 
 the object's internal tasks will be stopped when `autonomous` ends.
 
 This is the case for every task except for `initialize`. To work around this limitation, you can:
+- **Preferred:** Use the builder in `initialize` and save the built object to a variable in global scope
 - Use the builder in global scope and save the built object to a variable also in global scope
-- Use the builder in `initialize` and save the built object to a variable in global scope
 - Use the builder in a local scope and save the built object to a variable _also in the same local
 scope_ 

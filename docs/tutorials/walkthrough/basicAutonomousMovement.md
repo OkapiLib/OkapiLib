@@ -18,11 +18,15 @@ Let's start by creating the
 drive motors in ports 1 and 2:
 
 ```cpp
-auto chassis = ChassisControllerBuilder()
-                .withMotors(1, -2)
-                // Green gearset, 4 in wheel diam, 11.5 in wheel track
-                .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
-                .build();
+auto chassis = 
+    ChassisControllerBuilder()
+        .withMotors(1, -2)
+        // Green gearset, 4 in wheel diam, 11.5 in wheel track, 5:3 external gear ratio
+        .withDimensions(
+            AbstractMotor::gearset::green * (5.0 / 3.0),
+            {{4_in, 11.5_in}, imev5GreenTPR * (5.0 / 3.0)}
+        )
+        .build();
 ```
 
 Now that we've created a ChassisController, let's start moving around. There are

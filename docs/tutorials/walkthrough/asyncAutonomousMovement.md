@@ -8,11 +8,15 @@ To create a [ChassisController](@ref okapi::ChassisController) for a given syste
 modify the below example to fit your subsystem.
 
 ```cpp
-auto driveController = ChassisControllerBuilder()
-                        .withMotors(1, -2)
-                        // Green gearset, 4 in wheel diam, 11.5 in wheel track
-                        .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
-                        .build();
+auto driveController =
+    ChassisControllerBuilder()
+        .withMotors(1, -2)
+        // Green gearset, 4 in wheel diam, 11.5 in wheel track, 5:3 external gear ratio
+        .withDimensions(
+            AbstractMotor::gearset::green * (5.0 / 3.0),
+            {{4_in, 11.5_in}, imev5GreenTPR * (5.0 / 3.0)}
+        )
+        .build();
 ```
 
 And then we'll add a lift subsystem as an Async Controller:
@@ -22,10 +26,11 @@ const double liftkP = 0.001;
 const double liftkI = 0.0001;
 const double liftkD = 0.0001;
 
-auto liftController = AsyncPosControllerBuilder()
-                        .withMotor(3) // lift motor port 3
-                        .withGains({liftkP, liftkI, liftkD})
-                        .build();
+auto liftController = 
+    AsyncPosControllerBuilder()
+        .withMotor(3) // lift motor port 3
+        .withGains({liftkP, liftkI, liftkD})
+        .build();
 ```
 
 Now that we have two subsystems to run, let's execute a few different movements.

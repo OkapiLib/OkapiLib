@@ -42,17 +42,20 @@ pass into the
 
 ```cpp
 auto myChassis =
-  ChassisControllerBuilder()
-    .withMotors({1, 2}, {-3, -4})
-    // Green gearset, 4 in wheel diam, 11.5 in wheel track
-    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
-    .build();
+    ChassisControllerBuilder()
+        .withMotors({1, 2}, {-3, -4})
+        // Green gearset, 4 in wheel diam, 11.5 in wheel track, 5:3 external gear ratio
+        .withDimensions(
+            AbstractMotor::gearset::green * (5.0 / 3.0),
+            {{4_in, 11.5_in}, imev5GreenTPR * (5.0 / 3.0)}
+        )
+        .build();
 
 auto profileController =
-  AsyncMotionProfileControllerBuilder()
-    .withLimits({1.0, 2.0, 10.0})
-    .withOutput(myChassis)
-    .buildMotionProfileController();
+    AsyncMotionProfileControllerBuilder()
+        .withLimits({1.0, 2.0, 10.0})
+        .withOutput(myChassis)
+        .buildMotionProfileController();
 ```
 
 Next, let's create a motion profile. A profile is created with a list of points
@@ -100,11 +103,14 @@ In total, here is how to initialize and use a 2D motion profiling controller:
 
 ```cpp
 auto myChassis =
-  ChassisControllerBuilder()
-    .withMotors({1, 2}, {-3, -4})
-    // Green gearset, 4 in wheel diam, 11.5 in wheel track
-    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
-    .build();
+    ChassisControllerBuilder()
+        .withMotors({1, 2}, {-3, -4})
+        // Green gearset, 4 in wheel diam, 11.5 in wheel track, 5:3 external gear ratio
+        .withDimensions(
+            AbstractMotor::gearset::green * (5.0 / 3.0),
+            {{4_in, 11.5_in}, imev5GreenTPR * (5.0 / 3.0)}
+        )
+        .build();
 
 auto profileController = AsyncMotionProfileControllerBuilder()
                            .withLimits({1.0, 2.0, 10.0})
@@ -112,9 +118,11 @@ auto profileController = AsyncMotionProfileControllerBuilder()
                            .buildMotionProfileController();
 
 void opcontrol() {
-  profileController->generatePath(
-    {{0_ft, 0_ft, 0_deg}, {3_ft, 0_ft, 0_deg}}, "A");
-  profileController->setTarget("A");
-  profileController->waitUntilSettled();
+    profileController->generatePath(
+        {{0_ft, 0_ft, 0_deg}, {3_ft, 0_ft, 0_deg}}, 
+        "A"
+    );
+    profileController->setTarget("A");
+    profileController->waitUntilSettled();
 }
 ```

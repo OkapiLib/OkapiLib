@@ -76,10 +76,15 @@ ChassisControllerBuilder()
 
 ### Gearset with an external ratio and dimensions:
 
+**If you have an external ratio, it must be specified on both the gearset and the TPR.**
+
 ```cpp
 ChassisControllerBuilder()
     // Green gearset, external ratio of (2.0 / 3.0), 4 inch wheel diameter, 11.5 inch wheelbase
-    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR * (2.0 / 3.0)})
+    .withDimensions(
+        AbstractMotor::gearset::green * (2.0 / 3.0),
+        {{4_in, 11.5_in}, imev5GreenTPR * (2.0 / 3.0)}
+    )
 ```
 
 ### Gearset and raw scales:
