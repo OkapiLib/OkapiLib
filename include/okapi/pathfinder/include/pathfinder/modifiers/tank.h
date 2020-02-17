@@ -12,7 +12,7 @@ extern "C"
 CAPI void pathfinder_modify_tank(Segment *original, int length, Segment *left, Segment *right, double wheelbase_width);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
 #endif

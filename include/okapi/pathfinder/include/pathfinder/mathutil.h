@@ -23,7 +23,7 @@ CAPI double r2d(double angleInRads);
 CAPI double d2r(double angleInDegrees);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
 #endif

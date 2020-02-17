@@ -23,7 +23,7 @@ CAPI double pathfinder_follow_distance(FollowerConfig c, DistanceFollower *follo
 CAPI double pathfinder_follow_distance2(FollowerConfig c, DistanceFollower *follower, Segment segment, int trajectory_length, double distance);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
 #endif

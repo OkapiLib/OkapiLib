@@ -31,7 +31,7 @@ CAPI void pathfinder_serialize_csv(FILE *fp, Segment *trajectory, int trajectory
 CAPI int pathfinder_deserialize_csv(FILE *fp, Segment *target);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
 #endif

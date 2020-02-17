@@ -25,7 +25,7 @@ double pathfinder_follow_encoder(EncoderConfig c, EncoderFollower *follower, Seg
 double pathfinder_follow_encoder2(EncoderConfig c, EncoderFollower *follower, Segment segment, int trajectory_length, int encoder_tick);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
 #endif

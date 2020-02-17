@@ -17,7 +17,7 @@ CAPI void pathfinder_modify_swerve(Segment *original, int length, Segment *front
         Segment *back_left, Segment *back_right, double wheelbase_width, double wheelbase_depth, SWERVE_MODE mode);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
 #endif

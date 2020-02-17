@@ -21,7 +21,7 @@ CAPI int pf_trajectory_fromSecondOrderFilter(int filter_1_l, int filter_2_l,
         double dt, double u, double v, double impulse, int len, Segment *t);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
 #endif
