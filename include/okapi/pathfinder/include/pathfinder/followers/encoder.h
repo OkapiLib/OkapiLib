@@ -1,6 +1,11 @@
 #ifndef PATHFINDER_FOL_ENCODER_H_DEF
 #define PATHFINDER_FOL_ENCODER_H_DEF
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 #include "okapi/pathfinder/include/pathfinder/structs.h"
 
 typedef struct {
@@ -14,8 +19,13 @@ typedef struct {
     int segment, finished;
 } EncoderFollower;
 
+
 double pathfinder_follow_encoder(EncoderConfig c, EncoderFollower *follower, Segment *trajectory, int trajectory_length, int encoder_tick);
 
 double pathfinder_follow_encoder2(EncoderConfig c, EncoderFollower *follower, Segment segment, int trajectory_length, int encoder_tick);
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif

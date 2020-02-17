@@ -3,8 +3,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "okapi/pathfinder/include/pathfinder/structs.h"
 #include <string.h>
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+#include "okapi/pathfinder/include/pathfinder/structs.h"
 #include "okapi/pathfinder/include/pathfinder/lib.h"
 
 #define CSV_LEADING_STRING "dt,x,y,position,velocity,acceleration,jerk,heading\n"
@@ -23,5 +29,9 @@ CAPI int pathfinder_deserialize(FILE *fp, Segment *target);
 
 CAPI void pathfinder_serialize_csv(FILE *fp, Segment *trajectory, int trajectory_length);
 CAPI int pathfinder_deserialize_csv(FILE *fp, Segment *target);
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif

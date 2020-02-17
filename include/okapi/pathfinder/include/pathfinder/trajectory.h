@@ -1,6 +1,11 @@
 #ifndef PATHFINDER_TRAJECTORY_H_DEF
 #define PATHFINDER_TRAJECTORY_H_DEF
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 #include "okapi/pathfinder/include/pathfinder/lib.h"
 #include "okapi/pathfinder/include/pathfinder/structs.h"
 
@@ -14,5 +19,9 @@ CAPI TrajectoryInfo pf_trajectory_prepare(TrajectoryConfig c);
 CAPI int pf_trajectory_create(TrajectoryInfo info, TrajectoryConfig c, Segment *seg);
 CAPI int pf_trajectory_fromSecondOrderFilter(int filter_1_l, int filter_2_l, 
         double dt, double u, double v, double impulse, int len, Segment *t);
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif
