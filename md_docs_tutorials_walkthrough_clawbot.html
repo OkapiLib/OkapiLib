@@ -194,7 +194,7 @@
     <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// Arcade drive with the left stick</span>
         <span class="n">drive</span><span class="o">-&gt;</span><span class="n">getModel</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">arcade</span><span class="p">(</span><span class="n">controller</span><span class="p">.</span><span class="n">getAnalog</span><span class="p">(</span><span class="n">ControllerAnalog</span><span class="o">::</span><span class="n">leftY</span><span class="p">),</span>
-                                  <span class="n">controller</span><span class="p">.</span><span class="n">getAnalog</span><span class="p">(</span><span class="n">ControllerAnalog</span><span class="o">::</span><span class="n">rightY</span><span class="p">));</span>
+                                  <span class="n">controller</span><span class="p">.</span><span class="n">getAnalog</span><span class="p">(</span><span class="n">ControllerAnalog</span><span class="o">::</span><span class="n">leftX</span><span class="p">));</span>
 
         <span class="c1">// Don&#39;t power the arm if it is all the way down</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">armLimitSwitch</span><span class="p">.</span><span class="n">isPressed</span><span class="p">())</span> <span class="p">{</span>
