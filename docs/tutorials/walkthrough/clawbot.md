@@ -323,7 +323,7 @@ void opcontrol() {
     while (true) {
         // Arcade drive with the left stick
         drive->getModel()->arcade(controller.getAnalog(ControllerAnalog::leftY),
-                                  controller.getAnalog(ControllerAnalog::rightY));
+                                  controller.getAnalog(ControllerAnalog::leftX));
 
         // Don't power the arm if it is all the way down
         if (armLimitSwitch.isPressed()) {
