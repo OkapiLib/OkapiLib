@@ -66,7 +66,11 @@
 
 <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">AsyncMotionProfileController</span><span class="o">&gt;</span> <span class="n">profileController</span> <span class="o">=</span>
   <span class="n">AsyncMotionProfileControllerBuilder</span><span class="p">()</span>
-    <span class="p">.</span><span class="n">withLimits</span><span class="p">({</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">withLimits</span><span class="p">({</span>
+      <span class="mf">1.0</span><span class="p">,</span> <span class="c1">// Maximum linear velocity of the Chassis in m/s</span>
+      <span class="mf">2.0</span><span class="p">,</span> <span class="c1">// Maximum linear acceleration of the Chassis in m/s/s</span>
+      <span class="mf">10.0</span> <span class="c1">// Maximum linear jerk of the Chassis in m/s/s/s</span>
+    <span class="p">})</span>
     <span class="p">.</span><span class="n">withOutput</span><span class="p">(</span><span class="n">myChassis</span><span class="p">)</span>
     <span class="p">.</span><span class="n">buildMotionProfileController</span><span class="p">();</span></pre><p>Next, let&#x27;s create a motion profile. A profile is created with a list of points and a name. Each of the points contains the desired coordinates and heading. The points given to the controller form a path from the first given point to the last, with the first point assumed to be the current position of the robot. The path will be generated assuming that all of the points are relative to the first, so if you pass in an x value of <code>-4_ft</code> for the first point, then passing an x value of <code>0_ft</code> for the second point will result in a forward movement of <code>4</code> feet.</p><blockquote><p>This function computes the set of steps for the desired profile, which may take some time.</p></blockquote><pre class="m-code"><span class="n">profileController</span><span class="o">-&gt;</span><span class="n">generatePath</span><span class="p">({</span>
   <span class="p">{</span><span class="mi">0</span><span class="n">_ft</span><span class="p">,</span> <span class="mi">0</span><span class="n">_ft</span><span class="p">,</span> <span class="mi">0</span><span class="n">_deg</span><span class="p">},</span>  <span class="c1">// Profile starting position, this will normally be (0, 0, 0)</span>
@@ -81,7 +85,11 @@
 
 <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">AsyncMotionProfileController</span><span class="o">&gt;</span> <span class="n">profileController</span> <span class="o">=</span> 
   <span class="n">AsyncMotionProfileControllerBuilder</span><span class="p">()</span>
-    <span class="p">.</span><span class="n">withLimits</span><span class="p">({</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">})</span>
+    <span class="p">.</span><span class="n">withLimits</span><span class="p">({</span>
+      <span class="mf">1.0</span><span class="p">,</span> <span class="c1">// Maximum linear velocity of the Chassis in m/s</span>
+      <span class="mf">2.0</span><span class="p">,</span> <span class="c1">// Maximum linear acceleration of the Chassis in m/s/s</span>
+      <span class="mf">10.0</span> <span class="c1">// Maximum linear jerk of the Chassis in m/s/s/s</span>
+    <span class="p">})</span>
     <span class="p">.</span><span class="n">withOutput</span><span class="p">(</span><span class="n">myChassis</span><span class="p">)</span>
     <span class="p">.</span><span class="n">buildMotionProfileController</span><span class="p">();</span>
 
