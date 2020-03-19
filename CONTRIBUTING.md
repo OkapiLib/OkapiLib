@@ -95,10 +95,7 @@ cd OkapiLib
 git submodule update --init --recursive
 ```
 
-Unsure where to begin contributing? You can start by looking through these `beginner` and `help-wanted` issues:
-
-* [Beginner issues][good first issue] - issues which should only require a few lines of code
-* [Help wanted issues][help wanted] - issues which should be a bit more involved than `beginner` issues.
+Unsure where to begin contributing? You can start by looking through [these issues](https://github.com/OkapiLib/OkapiLib/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
 
 ### Pull Requests
 
