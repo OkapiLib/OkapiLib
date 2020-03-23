@@ -44,4 +44,13 @@ double OdomMath::computeDistance(double xDiff, double yDiff) {
 double OdomMath::computeAngle(double xDiff, double yDiff, double theta) {
   return std::atan2(yDiff, xDiff) - theta;
 }
+
+double OdomMath::constrainAngle360(double theta) {
+  return theta - 360.0 * std::floor(theta / 360.0);
+}
+
+double OdomMath::constrainAngle180(double theta) {
+  return theta - 360.0 * std::floor((theta + 180.0) / 360.0);
+}
+
 } // namespace okapi
