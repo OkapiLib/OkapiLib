@@ -88,10 +88,14 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 
 ### Your First Code Contribution
 
-Unsure where to begin contributing? You can start by looking through these `beginner` and `help-wanted` issues:
+To check out the source code, run these `git` commands:
+```
+git clone https://github.com/OkapiLib/OkapiLib.git
+cd OkapiLib
+git submodule update --init --recursive
+```
 
-* [Beginner issues][good first issue] - issues which should only require a few lines of code
-* [Help wanted issues][help wanted] - issues which should be a bit more involved than `beginner` issues.
+Unsure where to begin contributing? You can start by looking through [these issues](https://github.com/OkapiLib/OkapiLib/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
 
 ### Pull Requests
 
