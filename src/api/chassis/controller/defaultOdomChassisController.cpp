@@ -49,8 +49,6 @@ void DefaultOdomChassisController::driveToPoint(const Point &ipoint,
     angle += 180_deg;
   }
 
-  angle = OdomMath::constrainAngle180(angle);
-
   LOG_INFO("DefaultOdomChassisController: Computed length of " +
            std::to_string(length.convert(meter)) + " meters and angle of " +
            std::to_string(angle.convert(degree)) + " degrees");
@@ -71,9 +69,8 @@ void DefaultOdomChassisController::driveToPoint(const Point &ipoint,
 void DefaultOdomChassisController::turnToPoint(const Point &ipoint) {
   waitForOdomTask();
 
-  auto angle = OdomMath::computeAngleToPoint(ipoint.inFT(defaultStateMode),
-                                             odom->getState(StateMode::FRAME_TRANSFORMATION));
-  angle = OdomMath::constrainAngle180(angle);
+  const auto angle = OdomMath::computeAngleToPoint(ipoint.inFT(defaultStateMode),
+                                                   odom->getState(StateMode::FRAME_TRANSFORMATION));
 
   LOG_INFO("DefaultOdomChassisController: Computed angle of " +
            std::to_string(angle.convert(degree)) + " degrees");

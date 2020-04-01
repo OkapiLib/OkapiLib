@@ -6,7 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/api/chassis/controller/defaultOdomChassisController.hpp"
-#include "okapi/api/odometry/odomMath.hpp"
 #include "okapi/api/odometry/twoEncoderOdometry.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <gtest/gtest.h>
@@ -96,18 +95,6 @@ TEST_F(DefaultOdomChassisControllerTest, TurnToPointAboveThreshold) {
   drive->turnToPoint({1_m, 2_m});
   EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree),
                   atan2(2, 1) * radianToDegree);
-}
-
-TEST_F(DefaultOdomChassisControllerTest, NonZeroHeadingTurnToPointAboveThreshold) {
-  drive->setTurnThreshold(5_deg);
-  EXPECT_EQ(drive->getTurnThreshold(), 5_deg);
-
-  drive->setState({1_ft, 0_ft, 177_deg});
-
-  drive->turnToPoint({0.7_ft, -0.4_ft});
-  auto desiredAngle = atan2(-0.4, 0.7 - 1.0) * radian - 177_deg;
-  EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree),
-                  OdomMath::constrainAngle180(desiredAngle).convert(degree));
 }
 
 TEST_F(DefaultOdomChassisControllerTest, TurnToPointAboveThresholdInCartesianMode) {
