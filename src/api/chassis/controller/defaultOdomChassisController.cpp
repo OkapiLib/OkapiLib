@@ -72,7 +72,7 @@ void DefaultOdomChassisController::turnToPoint(const Point &ipoint) {
   waitForOdomTask();
 
   auto angle = OdomMath::computeAngleToPoint(ipoint.inFT(defaultStateMode),
-                                                   odom->getState(StateMode::FRAME_TRANSFORMATION));
+                                             odom->getState(StateMode::FRAME_TRANSFORMATION));
   angle = OdomMath::constrainAngle180(angle);
 
   LOG_INFO("DefaultOdomChassisController: Computed angle of " +
