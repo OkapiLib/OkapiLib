@@ -105,8 +105,7 @@ TEST_F(DefaultOdomChassisControllerTest, NonZeroHeadingTurnToPointAboveThreshold
   drive->setState({1_ft, 0_ft, 177_deg});
 
   drive->turnToPoint({0.7_ft, -0.4_ft});
-  double desiredAngleDegrees = atan2(-0.4, 0.7-1.0) * radianToDegree - 177.0;
-  QAngle desiredAngle = QAngle(desiredAngleDegrees * degreeToRadian);
+  auto desiredAngle = atan2(-0.4, 0.7 - 1.0) * radian - 177_deg;
   EXPECT_FLOAT_EQ(controller->lastTurnAngleTargetQAngle.convert(degree),
                   OdomMath::constrainAngle180(desiredAngle).convert(degree));
 }

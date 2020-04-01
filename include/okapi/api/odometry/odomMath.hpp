@@ -47,20 +47,20 @@ class OdomMath {
                                                                    const OdomState &istate);
 
   /**
-   * Constraints the angle to [0,360] degrees
+   * Constraints the angle to [0,360] degrees.
    *
-   * @param angle - The input angle
-   * @return The angle normalized to [0,360] degrees
+   * @param angle The input angle.
+   * @return The angle normalized to [0,360] degrees.
    */
-  static QAngle constrainAngle360(const QAngle angle);
+  static QAngle constrainAngle360(const QAngle &angle);
 
   /**
-   * Constraints the angle to [-180,180) degrees
+   * Constraints the angle to [-180,180) degrees.
    *
-   * @param angle - The input angle
-   * @return The angle normalized to [-180,180) degrees
+   * @param angle The input angle.
+   * @return The angle normalized to [-180,180) degrees.
    */
-  static QAngle constrainAngle180(const QAngle angle);
+  static QAngle constrainAngle180(const QAngle &angle);
 
   private:
   OdomMath();
