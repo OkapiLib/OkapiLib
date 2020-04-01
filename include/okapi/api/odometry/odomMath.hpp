@@ -46,6 +46,22 @@ class OdomMath {
   static std::pair<QLength, QAngle> computeDistanceAndAngleToPoint(const Point &ipoint,
                                                                    const OdomState &istate);
 
+  /**
+   * Constraints the angle to [0,360] degrees.
+   *
+   * @param angle The input angle.
+   * @return The angle normalized to [0,360] degrees.
+   */
+  static QAngle constrainAngle360(const QAngle &angle);
+
+  /**
+   * Constraints the angle to [-180,180) degrees.
+   *
+   * @param angle The input angle.
+   * @return The angle normalized to [-180,180) degrees.
+   */
+  static QAngle constrainAngle180(const QAngle &angle);
+
   private:
   OdomMath();
   ~OdomMath();

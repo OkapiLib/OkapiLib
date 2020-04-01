@@ -35,7 +35,6 @@ AsyncLinearMotionProfileController::AsyncLinearMotionProfileController(
 
 AsyncLinearMotionProfileController::~AsyncLinearMotionProfileController() {
   dtorCalled.store(true, std::memory_order_release);
-  isDisabled();
 
   // Free paths before deleting the task
   std::scoped_lock lock(currentPathMutex);

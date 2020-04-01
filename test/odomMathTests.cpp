@@ -28,3 +28,31 @@ TEST(OdomMathTests, ComputeDistanceAndAngleToPoint) {
   EXPECT_FLOAT_EQ(sqrt(26), dist.convert(meter));
   EXPECT_FLOAT_EQ(atan2(5, 1) * radianToDegree - 75, angle.convert(degree));
 }
+
+TEST(OdomMathTests, ConstrainAngle360) {
+  QAngle angle = OdomMath::constrainAngle360(75.0_deg);
+  EXPECT_FLOAT_EQ(75.0, angle.convert(degree));
+  angle = OdomMath::constrainAngle360(0.0_deg);
+  EXPECT_FLOAT_EQ(0.0, angle.convert(degree));
+  angle = OdomMath::constrainAngle360(360.0_deg);
+  EXPECT_FLOAT_EQ(0.0, angle.convert(degree));
+  angle = OdomMath::constrainAngle360(720.0_deg);
+  EXPECT_FLOAT_EQ(0.0, angle.convert(degree));
+  angle = OdomMath::constrainAngle360(-90.0_deg);
+  EXPECT_FLOAT_EQ(270.0, angle.convert(degree));
+}
+
+TEST(OdomMathTests, ConstrainAngle180) {
+  QAngle angle = OdomMath::constrainAngle180(75.0_deg);
+  EXPECT_FLOAT_EQ(75.0, angle.convert(degree));
+  angle = OdomMath::constrainAngle180(-75.0_deg);
+  EXPECT_FLOAT_EQ(-75.0, angle.convert(degree));
+  angle = OdomMath::constrainAngle180(270.0_deg);
+  EXPECT_FLOAT_EQ(-90.0, angle.convert(degree));
+  angle = OdomMath::constrainAngle180(270.0_deg + 360.0_deg);
+  EXPECT_FLOAT_EQ(-90.0, angle.convert(degree));
+  angle = OdomMath::constrainAngle180(180.0_deg);
+  EXPECT_FLOAT_EQ(-180.0, angle.convert(degree));
+  angle = OdomMath::constrainAngle180(181.0_deg);
+  EXPECT_FLOAT_EQ(-179.0, angle.convert(degree));
+}
