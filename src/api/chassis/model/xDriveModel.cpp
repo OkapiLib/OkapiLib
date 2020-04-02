@@ -84,6 +84,41 @@ void XDriveModel::rotate(const double ispeed) {
   bottomLeftMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
 }
 
+void XDriveModel::strafe(const double ispeed) {
+  const double speed = std::clamp(ispeed, -1.0, 1.0);
+  topLeftMotor->moveVelocity(static_cast<int16_t>(-1 * speed * maxVelocity));
+  topRightMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
+  bottomRightMotor->moveVelocity(static_cast<int16_t>(-1 * speed * maxVelocity));
+  bottomLeftMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
+}
+
+void XDriveModel::strafeVector(const double istrafeSpeed, const double iyaw) {
+  // This code is taken from WPIlib. All credit goes to them. Link:
+  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  const double forwardSpeed = std::clamp(istrafeSpeed, -1.0, 1.0);
+  const double yaw = std::clamp(iyaw, -1.0, 1.0);
+
+  double topLeftOutput = -1 * forwardSpeed + yaw;
+  double topRightOutput = forwardSpeed - yaw;
+  double bottomRightOutput = -1 * forwardSpeed - yaw;
+  double bottomLeftOutput = forwardSpeed + yaw;
+
+  double maxInputMag = std::max<double>(std::abs(topLeftOutput), std::abs(topRightOutput));
+  maxInputMag = std::max<double>(std::abs(maxInputMag), std::abs(bottomRightOutput));
+  maxInputMag = std::max<double>(std::abs(maxInputMag), std::abs(bottomLeftOutput));
+  if (maxInputMag > 1) {
+    topLeftOutput /= maxInputMag;
+    topRightOutput /= maxInputMag;
+    bottomRightOutput /= maxInputMag;
+    bottomLeftOutput /= maxInputMag;
+  }
+
+  topLeftMotor->moveVelocity(static_cast<int16_t>(topLeftOutput * maxVelocity));
+  topRightMotor->moveVelocity(static_cast<int16_t>(topRightOutput * maxVelocity));
+  bottomRightMotor->moveVelocity(static_cast<int16_t>(bottomRightOutput * maxVelocity));
+  bottomLeftMotor->moveVelocity(static_cast<int16_t>(bottomLeftOutput * maxVelocity));
+}
+
 void XDriveModel::stop() {
   topLeftMotor->moveVelocity(0);
   topRightMotor->moveVelocity(0);
