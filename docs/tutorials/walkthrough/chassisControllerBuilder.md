@@ -220,12 +220,16 @@ You can change the default maximum velocity or voltage.
 
 ### Max velocity:
 
+The default max velocity depends on the [gearset](@ref okapi::AbstractMotor::gearset).
+
 ```cpp
 ChassisControllerBuilder()
     .withMaxVelocity(100)
 ```
 
 ### Max voltage:
+
+The default max voltage is `12000`.
 
 ```cpp
 ChassisControllerBuilder()
