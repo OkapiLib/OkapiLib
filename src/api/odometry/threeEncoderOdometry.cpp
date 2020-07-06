@@ -52,19 +52,19 @@ OdomState ThreeEncoderOdometry::odomMathStep(const std::valarray<std::int32_t> &
     localOffX = deltaM;
     localOffY = deltaR;
   } else {
-    localOffX = 2 * sin(deltaTheta / 2) *
+    localOffX = 2 * std::sin(deltaTheta / 2) *
                 (deltaM / deltaTheta + chassisScales.middleWheelDistance.convert(meter) * 2);
-    localOffY =
-      2 * sin(deltaTheta / 2) * (deltaR / deltaTheta + chassisScales.wheelTrack.convert(meter) / 2);
+    localOffY = 2 * std::sin(deltaTheta / 2) *
+                (deltaR / deltaTheta + chassisScales.wheelTrack.convert(meter) / 2);
   }
 
   double avgA = state.theta.convert(radian) + (deltaTheta / 2);
 
-  double polarR = sqrt((localOffX * localOffX) + (localOffY * localOffY));
-  double polarA = atan2(localOffY, localOffX) - avgA;
+  double polarR = std::sqrt((localOffX * localOffX) + (localOffY * localOffY));
+  double polarA = std::atan2(localOffY, localOffX) - avgA;
 
-  double dX = sin(polarA) * polarR;
-  double dY = cos(polarA) * polarR;
+  double dX = std::sin(polarA) * polarR;
+  double dY = std::cos(polarA) * polarR;
 
   if (isnan(dX)) {
     dX = 0;
