@@ -265,76 +265,70 @@ constexpr RQuantity<M1, L1, T1, A1> copysign(const RQuantity<M1, L1, T1, A1> &lh
 // Common trig functions:
 // ------------------------------
 
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, std::ratio_subtract<A, std::ratio<1>>>
-sin(const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, std::ratio_subtract<A, std::ratio<1>>>(std::sin(rhs.getValue()));
+constexpr Number
+sin(const RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>> &rhs) {
+  return Number(std::sin(rhs.getValue()));
 }
 
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, std::ratio_subtract<A, std::ratio<1>>>
-cos(const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, std::ratio_subtract<A, std::ratio<1>>>(std::cos(rhs.getValue()));
+constexpr Number
+cos(const RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>> &rhs) {
+  return Number(std::cos(rhs.getValue()));
 }
 
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, std::ratio_subtract<A, std::ratio<1>>>
-tan(const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, std::ratio_subtract<A, std::ratio<1>>>(std::tan(rhs.getValue()));
+constexpr Number
+tan(const RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>> &rhs) {
+  return Number(std::tan(rhs.getValue()));
 }
 
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, std::ratio_add<A, std::ratio<1>>>
-asin(const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, std::ratio_add<A, std::ratio<1>>>(std::asin(rhs.getValue()));
+constexpr RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>>
+asin(const Number &rhs) {
+  return RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>>(
+    std::asin(rhs.getValue()));
 }
 
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, std::ratio_add<A, std::ratio<1>>>
-acos(const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, std::ratio_add<A, std::ratio<1>>>(std::acos(rhs.getValue()));
+constexpr RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>>
+acos(const Number &rhs) {
+  return RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>>(
+    std::acos(rhs.getValue()));
 }
 
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, std::ratio_add<A, std::ratio<1>>>
-atan(const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, std::ratio_add<A, std::ratio<1>>>(std::atan(rhs.getValue()));
+constexpr RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>>
+atan(const Number &rhs) {
+  return RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>>(
+    std::atan(rhs.getValue()));
 }
 
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, std::ratio_subtract<A, std::ratio<1>>>
-sinh(const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, std::ratio_subtract<A, std::ratio<1>>>(std::sinh(rhs.getValue()));
+constexpr Number
+sinh(const RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>> &rhs) {
+  return Number(std::sinh(rhs.getValue()));
 }
 
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, std::ratio_subtract<A, std::ratio<1>>>
-cosh(const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, std::ratio_subtract<A, std::ratio<1>>>(std::cosh(rhs.getValue()));
+constexpr Number
+cosh(const RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>> &rhs) {
+  return Number(std::cosh(rhs.getValue()));
 }
 
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, std::ratio_subtract<A, std::ratio<1>>>
-tanh(const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, std::ratio_subtract<A, std::ratio<1>>>(std::tanh(rhs.getValue()));
+constexpr Number
+tanh(const RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>> &rhs) {
+  return Number(std::tanh(rhs.getValue()));
 }
 
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, std::ratio_add<A, std::ratio<1>>>
-asinh(const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, std::ratio_add<A, std::ratio<1>>>(std::asinh(rhs.getValue()));
+constexpr RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>>
+asinh(const Number &rhs) {
+  return RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>>(
+    std::asinh(rhs.getValue()));
 }
 
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, std::ratio_add<A, std::ratio<1>>>
-acosh(const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, std::ratio_add<A, std::ratio<1>>>(std::acosh(rhs.getValue()));
+constexpr RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>>
+acosh(const Number &rhs) {
+  return RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>>(
+    std::acosh(rhs.getValue()));
 }
 
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, std::ratio_add<A, std::ratio<1>>>
-atanh(const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, std::ratio_add<A, std::ratio<1>>>(std::atanh(rhs.getValue()));
+constexpr RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>>
+atanh(const Number &rhs) {
+  return RQuantity<std::ratio<0>, std::ratio<0>, std::ratio<0>, std::ratio<1>>(
+    std::atanh(rhs.getValue()));
 }
 
 template <typename M, typename L, typename T, typename A>
