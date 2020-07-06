@@ -232,18 +232,6 @@ constexpr RQuantity<M, L, T, A> hypot(const RQuantity<M, L, T, A> &lhs,
 }
 
 template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, A> max(const RQuantity<M, L, T, A> &lhs,
-                                    const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, A>(std::max(lhs.getValue(), rhs.getValue()));
-}
-
-template <typename M, typename L, typename T, typename A>
-constexpr RQuantity<M, L, T, A> min(const RQuantity<M, L, T, A> &lhs,
-                                    const RQuantity<M, L, T, A> &rhs) {
-  return RQuantity<M, L, T, A>(std::min(lhs.getValue(), rhs.getValue()));
-}
-
-template <typename M, typename L, typename T, typename A>
 constexpr RQuantity<M, L, T, A> mod(const RQuantity<M, L, T, A> &lhs,
                                     const RQuantity<M, L, T, A> &rhs) {
   return RQuantity<M, L, T, A>(std::fmod(lhs.getValue(), rhs.getValue()));
