@@ -201,6 +201,18 @@ constexpr RQuantity<M, L, T, A> abs(const RQuantity<M, L, T, A> &rhs) {
   return RQuantity<M, L, T, A>(std::abs(rhs.getValue()));
 }
 
+template <typename R, typename M, typename L, typename T, typename A>
+constexpr RQuantity<std::ratio_multiply<M, R>,
+                    std::ratio_multiply<L, R>,
+                    std::ratio_multiply<T, R>,
+                    std::ratio_multiply<A, R>>
+pow(const RQuantity<M, L, T, A> &lhs) {
+  return RQuantity<std::ratio_multiply<M, R>,
+                   std::ratio_multiply<L, R>,
+                   std::ratio_multiply<T, R>,
+                   std::ratio_multiply<A, R>>(std::pow(lhs.getValue(), double(R::num) / R::den));
+}
+
 template <typename M, typename L, typename T, typename A>
 constexpr RQuantity<std::ratio_divide<M, std::ratio<2>>,
                     std::ratio_divide<L, std::ratio<2>>,
@@ -226,6 +238,30 @@ cbrt(const RQuantity<M, L, T, A> &rhs) {
 }
 
 template <typename M, typename L, typename T, typename A>
+constexpr RQuantity<std::ratio_multiply<M, std::ratio<2>>,
+                    std::ratio_multiply<L, std::ratio<2>>,
+                    std::ratio_multiply<T, std::ratio<2>>,
+                    std::ratio_multiply<A, std::ratio<2>>>
+square(const RQuantity<M, L, T, A> &rhs) {
+  return RQuantity<std::ratio_multiply<M, std::ratio<2>>,
+                   std::ratio_multiply<L, std::ratio<2>>,
+                   std::ratio_multiply<T, std::ratio<2>>,
+                   std::ratio_multiply<A, std::ratio<2>>>(std::pow(rhs.getValue(), 2));
+}
+
+template <typename M, typename L, typename T, typename A>
+constexpr RQuantity<std::ratio_multiply<M, std::ratio<3>>,
+                    std::ratio_multiply<L, std::ratio<3>>,
+                    std::ratio_multiply<T, std::ratio<3>>,
+                    std::ratio_multiply<A, std::ratio<3>>>
+cube(const RQuantity<M, L, T, A> &rhs) {
+  return RQuantity<std::ratio_multiply<M, std::ratio<3>>,
+                   std::ratio_multiply<L, std::ratio<3>>,
+                   std::ratio_multiply<T, std::ratio<3>>,
+                   std::ratio_multiply<A, std::ratio<3>>>(std::pow(rhs.getValue(), 3));
+}
+
+template <typename M, typename L, typename T, typename A>
 constexpr RQuantity<M, L, T, A> hypot(const RQuantity<M, L, T, A> &lhs,
                                       const RQuantity<M, L, T, A> &rhs) {
   return RQuantity<M, L, T, A>(std::hypot(lhs.getValue(), rhs.getValue()));
@@ -248,6 +284,30 @@ template <typename M1,
 constexpr RQuantity<M1, L1, T1, A1> copysign(const RQuantity<M1, L1, T1, A1> &lhs,
                                              const RQuantity<M2, L2, T2, A2> &rhs) {
   return RQuantity<M1, L1, T1, A1>(std::copysign(lhs.getValue(), rhs.getValue()));
+}
+
+template <typename M, typename L, typename T, typename A>
+constexpr RQuantity<M, L, T, A> ceil(const RQuantity<M, L, T, A> &lhs,
+                                    const RQuantity<M, L, T, A> &rhs) {
+  return RQuantity<M, L, T, A>(std::ceil(lhs.getValue() / rhs.getValue()) * rhs.getValue());
+}
+
+template <typename M, typename L, typename T, typename A>
+constexpr RQuantity<M, L, T, A> floor(const RQuantity<M, L, T, A> &lhs,
+                                    const RQuantity<M, L, T, A> &rhs) {
+  return RQuantity<M, L, T, A>(std::floor(lhs.getValue() / rhs.getValue()) * rhs.getValue());
+}
+
+template <typename M, typename L, typename T, typename A>
+constexpr RQuantity<M, L, T, A> trunc(const RQuantity<M, L, T, A> &lhs,
+                                    const RQuantity<M, L, T, A> &rhs) {
+  return RQuantity<M, L, T, A>(std::trunc(lhs.getValue() / rhs.getValue()) * rhs.getValue());
+}
+
+template <typename M, typename L, typename T, typename A>
+constexpr RQuantity<M, L, T, A> round(const RQuantity<M, L, T, A> &lhs,
+                                    const RQuantity<M, L, T, A> &rhs) {
+  return RQuantity<M, L, T, A>(std::round(lhs.getValue() / rhs.getValue()) * rhs.getValue());
 }
 
 // Common trig functions:
