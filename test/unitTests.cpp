@@ -5,6 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+#include "okapi/api/units/QAngle.hpp"
 #include "okapi/api/units/QArea.hpp"
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/QTime.hpp"
@@ -58,15 +59,15 @@ TEST(UnitTests, PowRootTest) {
 }
 
 TEST(UnitTests, SquareCubeTest) {
-  EXPECT_EQ(square(QLength(3)), QArea(9));
-  EXPECT_EQ(cube(QLength(4)), QVolume(64));
-  EXPECT_EQ(sqrt(QArea(25)), QLength(5));
-  EXPECT_EQ(cbrt(QVolume(8)), QLength(2));
-  EXPECT_EQ(hypot(QLength(3), QLength(4)), QLength(5));
+  EXPECT_EQ(square(QLength(3.0)), QArea(9.0));
+  EXPECT_EQ(cube(QLength(4.0)), QVolume(64.0));
+  EXPECT_EQ(sqrt(QArea(25.0)), QLength(5.0));
+  EXPECT_EQ(cbrt(QVolume(8.0)), QLength(2.0));
+  EXPECT_EQ(hypot(QLength(3.0), QLength(4.0)), QLength(5.0));
 }
 
 TEST(UnitTests, ModTest) {
-  EXPECT_EQ(mod(QLength(4), QLength(2)), QLength(0));
+  EXPECT_EQ(mod(QLength(4.0), QLength(2.0)), QLength(0.0));
   EXPECT_EQ(mod(10_in, 3_in), 1_in);
 }
 
@@ -94,13 +95,13 @@ TEST(UnitTests, RoundTest) {
 TEST(UnitTests, TrigTest) {
   EXPECT_EQ(sin(30_deg), Number(0.5));
   EXPECT_EQ(cos(60_deg), Number(0.5));
-  EXPECT_EQ(tan(45_deg), Number(1));
+  EXPECT_EQ(tan(45_deg), Number(1.0));
 }
 
 TEST(UnitTests, InverseTrigTest) {
   EXPECT_EQ(asin(Number(0.5)), 30_deg);
   EXPECT_EQ(acos(Number(0.5)), 60_deg);
-  EXPECT_EQ(atan(Number(1)), 45_deg);
+  EXPECT_EQ(atan(Number(1.0)), 45_deg);
 }
 
 TEST(UnitTests, HyperbTest) {
