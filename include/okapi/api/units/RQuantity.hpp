@@ -234,7 +234,7 @@ root(const RQuantity<M, L, T, A> &lhs) {
   return RQuantity<std::ratio_divide<M, std::ratio<R>>,
                    std::ratio_divide<L, std::ratio<R>>,
                    std::ratio_divide<T, std::ratio<R>>,
-                   std::ratio_divide<A, std::ratio<R>>>(std::pow(lhs.getValue(), 1/R));
+                   std::ratio_divide<A, std::ratio<R>>>(std::pow(lhs.getValue(), 1.0/R));
 }
 
 template <typename M, typename L, typename T, typename A>
