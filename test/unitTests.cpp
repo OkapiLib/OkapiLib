@@ -53,12 +53,12 @@ TEST(UnitTests, AbsFreeFunction) {
 }
 
 TEST(UnitTests, PowRootTest) {
-  EXPECT_EQ(pow<2>(3_in), 3_in * 3_in);
-  EXPECT_EQ(root<3>(3_in * 3_in * 3_in), 3_in);
+  EXPECT_DOUBLE_EQ((pow<2>(3_in)).convert(inch2), 9.0);
+  EXPECT_DOUBLE_EQ(root<3>(3_in * 3_in * 3_in).convert(inch), 3.0);
 
   RQuantity three_halves_power = pow<std::ratio<3, 2>>(3_in);
   RQuantity cube_of_sqrt = pow<3>(root<2>(3_in));
-  EXPECT_EQ(three_halves_power, cube_of_sqrt);
+  EXPECT_DOUBLE_EQ(three_halves_power.getValue(), cube_of_sqrt.getValue());
 }
 
 TEST(UnitTests, SquareCubeTest) {
@@ -70,8 +70,8 @@ TEST(UnitTests, SquareCubeTest) {
 }
 
 TEST(UnitTests, ModTest) {
-  EXPECT_EQ(mod(QLength(4.0), QLength(2.0)), QLength(0.0));
-  EXPECT_EQ(mod(10_in, 3_in), 1_in);
+  EXPECT_DOUBLE_EQ(mod(QLength(4.0), QLength(2.0)).convert(meter), 0.0);
+  EXPECT_DOUBLE_EQ(mod(10_in, 3_in).convert(inch), 1.0);
 }
 
 TEST(UnitTests, CopysignTest) {
@@ -80,31 +80,31 @@ TEST(UnitTests, CopysignTest) {
 }
 
 TEST(UnitTests, RoundTest) {
-  EXPECT_EQ(ceil(4.1_in, inch), 5_in);
-  EXPECT_EQ(ceil(-4.1_in, inch), -4_in);
+  EXPECT_DOUBLE_EQ(ceil(4.1_in, inch).convert(inch), 5.0);
+  EXPECT_DOUBLE_EQ(ceil(-4.1_in, inch).convert(inch), -4.0);
 
-  EXPECT_EQ(floor(1.17_s, 100_ms), 1.1_s);
-  EXPECT_EQ(floor(-1.17_s, 100_ms), -1.2_s);
+  EXPECT_DOUBLE_EQ(floor(1.17_s, 100_ms).convert(second), 1.1);
+  EXPECT_DOUBLE_EQ(floor(-1.17_s, 100_ms).convert(second), -1.2);
 
-  EXPECT_EQ(trunc(5.8_cm, centimeter), 5_cm);
-  EXPECT_EQ(trunc(-5.8_cm, centimeter), -5_cm);
+  EXPECT_DOUBLE_EQ(trunc(5.8_cm, centimeter).convert(centimeter), 5.0);
+  EXPECT_DOUBLE_EQ(trunc(-5.8_cm, centimeter).convert(centimeter), -5.0);
 
-  EXPECT_EQ(round(2.4_in, inch), 2_in);
-  EXPECT_EQ(round(2.6_in, inch), 3_in);
-  EXPECT_EQ(round(-2.4_in, inch), -2_in);
-  EXPECT_EQ(round(-2.6_in, inch), -3_in);
+  EXPECT_DOUBLE_EQ(round(2.4_in, inch).convert(inch), 2.0);
+  EXPECT_DOUBLE_EQ(round(2.6_in, inch).convert(inch), 3.0);
+  EXPECT_DOUBLE_EQ(round(-2.4_in, inch).convert(inch), -2.0);
+  EXPECT_DOUBLE_EQ(round(-2.6_in, inch).convert(inch), -3.0);
 }
 
 TEST(UnitTests, TrigTest) {
-  EXPECT_EQ(sin(30_deg), Number(0.5));
-  EXPECT_EQ(cos(60_deg), Number(0.5));
-  EXPECT_EQ(tan(45_deg), Number(1.0));
+  EXPECT_DOUBLE_EQ(sin(30_deg).convert(number), 0.5);
+  EXPECT_DOUBLE_EQ(cos(60_deg).convert(number), 0.5);
+  EXPECT_DOUBLE_EQ(tan(45_deg).convert(number), 1.0);
 }
 
 TEST(UnitTests, InverseTrigTest) {
-  EXPECT_EQ(asin(Number(0.5)), 30_deg);
-  EXPECT_EQ(acos(Number(0.5)), 60_deg);
-  EXPECT_EQ(atan(Number(1.0)), 45_deg);
+  EXPECT_DOUBLE_EQ(asin(Number(0.5)).convert(degree), 30.0);
+  EXPECT_DOUBLE_EQ(acos(Number(0.5)).convert(degree), 60.0);
+  EXPECT_DOUBLE_EQ(atan(Number(1.0)).convert(degree), 45.0);
 }
 
 TEST(UnitTests, HyperbTest) {
