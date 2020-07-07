@@ -213,6 +213,30 @@ pow(const RQuantity<M, L, T, A> &lhs) {
                    std::ratio_multiply<A, R>>(std::pow(lhs.getValue(), double(R::num) / R::den));
 }
 
+template <int R, typename M, typename L, typename T, typename A>
+constexpr RQuantity<std::ratio_multiply<M, std::ratio<R>>,
+                    std::ratio_multiply<L, std::ratio<R>>,
+                    std::ratio_multiply<T, std::ratio<R>>,
+                    std::ratio_multiply<A, std::ratio<R>>>
+pow(const RQuantity<M, L, T, A> &lhs) {
+  return RQuantity<std::ratio_multiply<M, std::ratio<R>>,
+                   std::ratio_multiply<L, std::ratio<R>>,
+                   std::ratio_multiply<T, std::ratio<R>>,
+                   std::ratio_multiply<A, std::ratio<R>>>(std::pow(lhs.getValue(), R));
+}
+
+template <int R, typename M, typename L, typename T, typename A>
+constexpr RQuantity<std::ratio_divide<M, std::ratio<R>>,
+                    std::ratio_divide<L, std::ratio<R>>,
+                    std::ratio_divide<T, std::ratio<R>>,
+                    std::ratio_divide<A, std::ratio<R>>>
+root(const RQuantity<M, L, T, A> &lhs) {
+  return RQuantity<std::ratio_divide<M, std::ratio<R>>,
+                   std::ratio_divide<L, std::ratio<R>>,
+                   std::ratio_divide<T, std::ratio<R>>,
+                   std::ratio_divide<A, std::ratio<R>>>(std::pow(lhs.getValue(), 1/R));
+}
+
 template <typename M, typename L, typename T, typename A>
 constexpr RQuantity<std::ratio_divide<M, std::ratio<2>>,
                     std::ratio_divide<L, std::ratio<2>>,
