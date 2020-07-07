@@ -55,7 +55,10 @@ TEST(UnitTests, AbsFreeFunction) {
 TEST(UnitTests, PowRootTest) {
   EXPECT_EQ(pow<2>(3_in), 3_in * 3_in);
   EXPECT_EQ(root<3>(3_in * 3_in * 3_in), 3_in);
-  EXPECT_EQ(pow<std::ratio<3, 2>>(3_in), pow<3>(root<2>(3_in)));
+
+  RQuantity three_halves_power = pow<std::ratio<3, 2>>(3_in);
+  RQuantity cube_of_sqrt = pow<3>(root<2>(3_in));
+  EXPECT_EQ(three_halves_power, cube_of_sqrt);
 }
 
 TEST(UnitTests, SquareCubeTest) {
@@ -105,9 +108,9 @@ TEST(UnitTests, InverseTrigTest) {
 }
 
 TEST(UnitTests, HyperbTest) {
-  EXPECT_DOUBLE_EQ(sinh(37_deg).convert(radian), 0.6916004653045855);
-  EXPECT_DOUBLE_EQ(cosh(37_deg).convert(radian), 1.2158582169025791);
-  EXPECT_DOUBLE_EQ(tanh(37_deg).convert(radian), 0.5688167055090109);
+  EXPECT_DOUBLE_EQ(sinh(37_deg).convert(number), 0.6916004653045855);
+  EXPECT_DOUBLE_EQ(cosh(37_deg).convert(number), 1.2158582169025791);
+  EXPECT_DOUBLE_EQ(tanh(37_deg).convert(number), 0.5688167055090109);
 }
 
 TEST(UnitTests, InverseHyperbTest) {
