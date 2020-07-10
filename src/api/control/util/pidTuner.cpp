@@ -118,7 +118,7 @@ PIDTuner::Output PIDTuner::autotune() {
         const double outputVal = testController.step(inputVal);
         const double error = testController.getError();
         // sum of the error emphasizing later error
-        itae += (settleTime.convert(millisecond) * abs((int)error)) / divisor;
+        itae += (settleTime.convert(millisecond) * std::abs((int)error)) / divisor;
 
         output->controllerSet(outputVal);
         rate->delayUntil(loopDelta);
