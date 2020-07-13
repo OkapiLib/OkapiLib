@@ -234,7 +234,7 @@ root(const RQuantity<M, L, T, A> &lhs) {
   return RQuantity<std::ratio_divide<M, std::ratio<R>>,
                    std::ratio_divide<L, std::ratio<R>>,
                    std::ratio_divide<T, std::ratio<R>>,
-                   std::ratio_divide<A, std::ratio<R>>>(std::pow(lhs.getValue(), 1.0/R));
+                   std::ratio_divide<A, std::ratio<R>>>(std::pow(lhs.getValue(), 1.0 / R));
 }
 
 template <typename M, typename L, typename T, typename A>
@@ -312,25 +312,25 @@ constexpr RQuantity<M1, L1, T1, A1> copysign(const RQuantity<M1, L1, T1, A1> &lh
 
 template <typename M, typename L, typename T, typename A>
 constexpr RQuantity<M, L, T, A> ceil(const RQuantity<M, L, T, A> &lhs,
-                                    const RQuantity<M, L, T, A> &rhs) {
+                                     const RQuantity<M, L, T, A> &rhs) {
   return RQuantity<M, L, T, A>(std::ceil(lhs.getValue() / rhs.getValue()) * rhs.getValue());
 }
 
 template <typename M, typename L, typename T, typename A>
 constexpr RQuantity<M, L, T, A> floor(const RQuantity<M, L, T, A> &lhs,
-                                    const RQuantity<M, L, T, A> &rhs) {
+                                      const RQuantity<M, L, T, A> &rhs) {
   return RQuantity<M, L, T, A>(std::floor(lhs.getValue() / rhs.getValue()) * rhs.getValue());
 }
 
 template <typename M, typename L, typename T, typename A>
 constexpr RQuantity<M, L, T, A> trunc(const RQuantity<M, L, T, A> &lhs,
-                                    const RQuantity<M, L, T, A> &rhs) {
+                                      const RQuantity<M, L, T, A> &rhs) {
   return RQuantity<M, L, T, A>(std::trunc(lhs.getValue() / rhs.getValue()) * rhs.getValue());
 }
 
 template <typename M, typename L, typename T, typename A>
 constexpr RQuantity<M, L, T, A> round(const RQuantity<M, L, T, A> &lhs,
-                                    const RQuantity<M, L, T, A> &rhs) {
+                                      const RQuantity<M, L, T, A> &rhs) {
   return RQuantity<M, L, T, A>(std::round(lhs.getValue() / rhs.getValue()) * rhs.getValue());
 }
 

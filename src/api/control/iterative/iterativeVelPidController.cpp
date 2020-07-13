@@ -191,13 +191,13 @@ QTime IterativeVelPIDController::getSampleTime() const {
   return sampleTime;
 }
 
-bool IterativeVelPIDController::Gains::
-operator==(const IterativeVelPIDController::Gains &rhs) const {
+bool IterativeVelPIDController::Gains::operator==(
+  const IterativeVelPIDController::Gains &rhs) const {
   return kP == rhs.kP && kD == rhs.kD && kF == rhs.kF && kSF == rhs.kSF;
 }
 
-bool IterativeVelPIDController::Gains::
-operator!=(const IterativeVelPIDController::Gains &rhs) const {
+bool IterativeVelPIDController::Gains::operator!=(
+  const IterativeVelPIDController::Gains &rhs) const {
   return !(rhs == *this);
 }
 } // namespace okapi
