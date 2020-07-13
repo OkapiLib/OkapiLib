@@ -310,7 +310,7 @@ class ChassisControllerBuilder {
   ChassisControllerBuilder &withMaxVelocity(double imaxVelocity);
 
   /**
-   * Sets the max voltage.
+   * Sets the max voltage. The default is `12000`.
    *
    * @param imaxVoltage The max voltage.
    * @return An ongoing builder.
