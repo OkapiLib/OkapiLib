@@ -47,7 +47,7 @@ class XDriveModelTest : public ::testing::Test {
   }
 
   void assertTLBRAndTRBLMotorsLastVelocity(const std::int16_t expectedTopLeftLastVelocity,
-                                            const std::int16_t expectedTopRightLastVelocity) const {
+                                           const std::int16_t expectedTopRightLastVelocity) const {
     EXPECT_EQ(topLeftMotor->lastVelocity, expectedTopLeftLastVelocity);
     EXPECT_EQ(topRightMotor->lastVelocity, expectedTopRightLastVelocity);
     EXPECT_EQ(bottomRightMotor->lastVelocity, expectedTopLeftLastVelocity);
