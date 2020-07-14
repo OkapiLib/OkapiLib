@@ -27,6 +27,11 @@ jobs:
           mkdir template
           cp okapilib@*.zip template/
 
+      - name: Verify Template
+        run: |
+          prosv5 c f okapilib@*.zip
+          prosv5 c n verify-template
+
       - name: Archive production artifacts
         uses: actions/upload-artifact@v1
         with:
