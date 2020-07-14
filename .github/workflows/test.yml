@@ -22,17 +22,16 @@ jobs:
         run: make
 
       - name: Make Template
-        run: make template
-
-      - name: Dump Files
-        run:
-          ls -l
+        run: |
+          make template
+          mkdir template
+          cp okapilib@*.zip template/
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v1
         with:
           name: template
-          path: 'okapilib@*.zip'
+          path: template
 
       - name: Build and Test
         env:
