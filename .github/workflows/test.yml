@@ -24,6 +24,10 @@ jobs:
       - name: Make Template
         run: make template
 
+      - name: Dump Files
+        run:
+          ls -l
+
       - name: Archive production artifacts
         uses: actions/upload-artifact@v1
         with:

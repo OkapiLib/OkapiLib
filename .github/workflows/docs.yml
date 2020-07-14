@@ -1,11 +1,9 @@
 name: Docs
 
-#on:
-#  push:
-#    branches:
-#      - master
-
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   docs:
@@ -26,7 +24,7 @@ jobs:
       - name: Build Docs
         run: ./run_doxygen.sh
 
-      - name: Publish Docs
+      - name: Commit Changes
         run: |
           rm -rf /tmp/html
           cp -r html /tmp/
@@ -38,13 +36,9 @@ jobs:
           git add .
           git commit -m "Publishing GitHub Pages"
 
-      - name: Dump ref
-        run: |
-          echo "${{ github.ref }}"
-
-#      - name: Push changes
-#        uses: ad-m/github-push-action@master
-#        if: ${{ success() && github.ref == "master" }}
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#          force: true
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          force: true
