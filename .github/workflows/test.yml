@@ -39,11 +39,11 @@ jobs:
           cmake --build . --target OkapiLibV5 -- -j 2
 
       - name: Test
-        working-dir: cmake-build-debug
+        working-directory: cmake-build-debug
         run: ./OkapiLibV5
 
       - name: Valgrind
-        working-dir: cmake-build-debug
+        working-directory: cmake-build-debug
         run: valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
 
       - name: Collect Coverage
