@@ -94,7 +94,7 @@
               double imaxVelocity,
               double imaxVoltage)</span>
             </dt>
-            <dd></dd>
+            <dd>Model for a skid steer drive (wheels parallel with robot&#x27;s direction of motion).</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -103,11 +103,11 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a39af35aa25e5385584b3834911aed341" class="m-doc">getSensorVals</a>(</span><span class="m-doc-wrap">) const -&gt; std::valarray&lt;std::int32_t&gt; <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a6e4d43a1f3027798c0451c93f8cde057" class="m-doc">resetSensors</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>Read the sensors.</dd>
+            <dt id="a6e4d43a1f3027798c0451c93f8cde057">
+              <span class="m-doc-wrap-bumper">void <a href="#a6e4d43a1f3027798c0451c93f8cde057" class="m-doc-self">resetSensors</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Reset the sensors to their zero point.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -131,6 +131,7 @@
               double imaxVelocity,
               double imaxVoltage)</span></span>
             </h3>
+            <p>Model for a skid steer drive (wheels parallel with robot&#x27;s direction of motion).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -166,12 +167,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Model for a skid steer drive (wheels parallel with robot&#x27;s direction of motion). When all motors are powered +127, the robot should move forward in a straight line.</p>
+<p>When all motors are powered +127, the robot should move forward in a straight line.</p>
           </div></section>
           <section class="m-doc-details" id="a39af35aa25e5385584b3834911aed341"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::valarray&lt;std::int32_t&gt; okapi::<wbr />ThreeEncoderSkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a39af35aa25e5385584b3834911aed341" class="m-doc-self">getSensorVals</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Read the sensors.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -180,13 +182,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Read the sensors.</p>
-          </div></section>
-          <section class="m-doc-details" id="a6e4d43a1f3027798c0451c93f8cde057"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />ThreeEncoderSkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6e4d43a1f3027798c0451c93f8cde057" class="m-doc-self">resetSensors</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Reset the sensors to their zero point.</p>
           </div></section>
         </section>
       </div>

@@ -58,6 +58,7 @@
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>ReadOnlyChassisModel <span class="m-thin">class</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="readOnlyChassisModel_8hpp.html">&lt;include/okapi/api/chassis/model/readOnlyChassisModel.hpp&gt;</a></div>
         </h1>
+        <p>A version of the <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a> that only supports read methods, such as querying sensor values.</p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -71,14 +72,14 @@
             </li>
           </ul>
         </div>
-<p>A version of the <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a> that only supports read methods, such as querying sensor values. This class does not let you write to motors, so it supports having multiple owners and as a result copying is enabled.</p>
+<p>This class does not let you write to motors, so it supports having multiple owners and as a result copying is enabled.</p>
         <section id="derived-classes">
           <h2><a href="#derived-classes">Derived classes</a></h2>
           <dl class="m-doc">
             <dt>
               class <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>
             </dt>
-            <dd></dd>
+            <dd>A version of the <a href="classokapi_1_1ReadOnlyChassisModel.html" class="m-doc">ReadOnlyChassisModel</a> that also supports write methods, such as setting motor speed.</dd>
           </dl>
         </section>
         <section id="typeless-methods">
@@ -96,7 +97,7 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#af2d844d9e12bb7c778ac9a5a0074f848" class="m-doc">getSensorVals</a>(</span><span class="m-doc-wrap">) const -&gt; std::valarray&lt;std::int32_t&gt; <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Read the sensors.</dd>
           </dl>
         </section>
         <section>
@@ -105,6 +106,7 @@
             <h3>
               <span class="m-doc-wrap-bumper">std::valarray&lt;std::int32_t&gt; okapi::<wbr />ReadOnlyChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af2d844d9e12bb7c778ac9a5a0074f848" class="m-doc-self">getSensorVals</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Read the sensors.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -113,7 +115,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Read the sensors.</p>
           </div></section>
         </section>
       </div>

@@ -94,7 +94,7 @@
               const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; iscales = <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>({1, 1}, <a href="namespaceokapi.html#a5263bab3bfecd482a573b6d04fb584ac" class="m-doc">imev5GreenTPR</a>),
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd></dd>
+            <dd><a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a> using the V5 motor&#x27;s integrated control.</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -103,59 +103,59 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aa9af3fb56afdb940f92bd8016ef63925" class="m-doc">moveDistance</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drives the robot straight for a distance (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a5feffd32d60a2b56d07f0d97ad218a49" class="m-doc">moveRaw</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drives the robot straight for a distance (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#afc97bc450a090d91b57bc6353b4a6972" class="m-doc">moveDistanceAsync</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target distance for the robot to drive straight (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a6a686449818623cb9a3bb0efef73872f" class="m-doc">moveRawAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target distance for the robot to drive straight (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a3c2ae782167fd9c6b27d637563e3a066" class="m-doc">turnAngle</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Turns the robot clockwise in place (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a42801c5f37d892f8410af8c672387da8" class="m-doc">turnRaw</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Turns the robot clockwise in place (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a773a99fe7a1540da856ad6b6008ba24f" class="m-doc">turnAngleAsync</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a753e4fbe3ca152c5d1ba544e26c93e92" class="m-doc">turnRawAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a37d538f92439644efa50a226c3cefd6d" class="m-doc">setTurnsMirrored</a>(</span><span class="m-doc-wrap">bool ishouldMirror) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets whether turns should be mirrored.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aa1eb8a819454c89497432a846577053e" class="m-doc">isSettled</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a2af994f5ddc68a48d7692fd16ca590c0" class="m-doc">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>Checks whether the internal controllers are currently settled.</dd>
+            <dt id="a2af994f5ddc68a48d7692fd16ca590c0">
+              <span class="m-doc-wrap-bumper">void <a href="#a2af994f5ddc68a48d7692fd16ca590c0" class="m-doc-self">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#aab2f5d5cfb8ad96bd32be26a5a4e7113" class="m-doc">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>Delays until the currently executing movement completes.</dd>
+            <dt id="aab2f5d5cfb8ad96bd32be26a5a4e7113">
+              <span class="m-doc-wrap-bumper">void <a href="#aab2f5d5cfb8ad96bd32be26a5a4e7113" class="m-doc-self">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a6bbab5d22753736b0507d5fd4deb3982" class="m-doc">getChassisScales</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> <span class="m-label m-flat m-warning">override</span></span>
+            <dd>Interrupts the current movement to stop the robot.</dd>
+            <dt id="a6bbab5d22753736b0507d5fd4deb3982">
+              <span class="m-doc-wrap-bumper">auto <a href="#a6bbab5d22753736b0507d5fd4deb3982" class="m-doc-self">getChassisScales</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a42cab9878235cdb4bea46e69f7ccd75d" class="m-doc">getGearsetRatioPair</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a> <span class="m-label m-flat m-warning">override</span></span>
+            <dd>Get the <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>.</dd>
+            <dt id="a42cab9878235cdb4bea46e69f7ccd75d">
+              <span class="m-doc-wrap-bumper">auto <a href="#a42cab9878235cdb4bea46e69f7ccd75d" class="m-doc-self">getGearsetRatioPair</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a> <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the GearsetRatioPair.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a60c9a11616a2a41400c17952c36a5b57" class="m-doc">getModel</a>(</span><span class="m-doc-wrap">) -&gt; std::shared_ptr&lt;<a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&gt; <span class="m-label m-flat m-warning">override</span></span>
             </dt>
@@ -167,7 +167,7 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a9cf06cccbb0389607f953aac5a29238c" class="m-doc">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets a new maximum velocity in RPM [0-600].</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aa19ac09d42b09100e49e77c82ab1e05b" class="m-doc">getMaxVelocity</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
@@ -227,6 +227,7 @@
               const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; iscales = <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>({1, 1}, <a href="namespaceokapi.html#a5263bab3bfecd482a573b6d04fb584ac" class="m-doc">imev5GreenTPR</a>),
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p><a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a> using the V5 motor&#x27;s integrated control.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -262,12 +263,13 @@
                 </tr>
               </tbody>
             </table>
-<p><a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a> using the V5 motor&#x27;s integrated control. Puts the motors into encoder count units. Throws a <code>std::invalid_argument</code> exception if the gear ratio is zero. The initial model&#x27;s max velocity will be propagated to the controllers.</p>
+<p>Puts the motors into encoder count units. Throws a <code>std::invalid_argument</code> exception if the gear ratio is zero. The initial model&#x27;s max velocity will be propagated to the controllers.</p>
           </div></section>
           <section class="m-doc-details" id="aa9af3fb56afdb940f92bd8016ef63925"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa9af3fb56afdb940f92bd8016ef63925" class="m-doc-self">moveDistance</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Drives the robot straight for a distance (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -279,7 +281,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Drives the robot straight for a distance (using closed-loop control).</p><pre class="m-code"><span class="c1">// Drive forward 6 inches</span>
+<pre class="m-code"><span class="c1">// Drive forward 6 inches</span>
 <span class="n">chassis</span><span class="o">-&gt;</span><span class="n">moveDistance</span><span class="p">(</span><span class="mi">6</span><span class="n">_in</span><span class="p">);</span>
 
 <span class="c1">// Drive backward 0.2 meters</span>
@@ -289,6 +291,7 @@
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5feffd32d60a2b56d07f0d97ad218a49" class="m-doc-self">moveRaw</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Drives the robot straight for a distance (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -300,13 +303,14 @@
                 </tr>
               </tbody>
             </table>
-<p>Drives the robot straight for a distance (using closed-loop control).</p><pre class="m-code"><span class="c1">// Drive forward by spinning the motors 400 degrees</span>
+<pre class="m-code"><span class="c1">// Drive forward by spinning the motors 400 degrees</span>
 <span class="n">chassis</span><span class="o">-&gt;</span><span class="n">moveRaw</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span></pre>
           </div></section>
           <section class="m-doc-details" id="afc97bc450a090d91b57bc6353b4a6972"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afc97bc450a090d91b57bc6353b4a6972" class="m-doc-self">moveDistanceAsync</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -318,12 +322,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
           </div></section>
           <section class="m-doc-details" id="a6a686449818623cb9a3bb0efef73872f"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6a686449818623cb9a3bb0efef73872f" class="m-doc-self">moveRawAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -335,12 +339,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
           </div></section>
           <section class="m-doc-details" id="a3c2ae782167fd9c6b27d637563e3a066"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3c2ae782167fd9c6b27d637563e3a066" class="m-doc-self">turnAngle</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Turns the robot clockwise in place (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -352,13 +356,14 @@
                 </tr>
               </tbody>
             </table>
-<p>Turns the robot clockwise in place (using closed-loop control).</p><pre class="m-code"><span class="c1">// Turn 90 degrees clockwise</span>
+<pre class="m-code"><span class="c1">// Turn 90 degrees clockwise</span>
 <span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnAngle</span><span class="p">(</span><span class="mi">90</span><span class="n">_deg</span><span class="p">);</span></pre>
           </div></section>
           <section class="m-doc-details" id="a42801c5f37d892f8410af8c672387da8"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a42801c5f37d892f8410af8c672387da8" class="m-doc-self">turnRaw</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Turns the robot clockwise in place (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -370,13 +375,14 @@
                 </tr>
               </tbody>
             </table>
-<p>Turns the robot clockwise in place (using closed-loop control).</p><pre class="m-code"><span class="c1">// Turn clockwise by spinning the motors 200 degrees</span>
+<pre class="m-code"><span class="c1">// Turn clockwise by spinning the motors 200 degrees</span>
 <span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnRaw</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span></pre>
           </div></section>
           <section class="m-doc-details" id="a773a99fe7a1540da856ad6b6008ba24f"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a773a99fe7a1540da856ad6b6008ba24f" class="m-doc-self">turnAngleAsync</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -388,12 +394,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
           </div></section>
           <section class="m-doc-details" id="a753e4fbe3ca152c5d1ba544e26c93e92"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a753e4fbe3ca152c5d1ba544e26c93e92" class="m-doc-self">turnRawAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -405,12 +411,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
           </div></section>
           <section class="m-doc-details" id="a37d538f92439644efa50a226c3cefd6d"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a37d538f92439644efa50a226c3cefd6d" class="m-doc-self">setTurnsMirrored</a>(</span><span class="m-doc-wrap">bool ishouldMirror) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets whether turns should be mirrored.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -422,12 +428,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets whether turns should be mirrored.</p>
           </div></section>
           <section class="m-doc-details" id="aa1eb8a819454c89497432a846577053e"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa1eb8a819454c89497432a846577053e" class="m-doc-self">isSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Checks whether the internal controllers are currently settled.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -436,31 +442,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Checks whether the internal controllers are currently settled.</p>
-          </div></section>
-          <section class="m-doc-details" id="a2af994f5ddc68a48d7692fd16ca590c0"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2af994f5ddc68a48d7692fd16ca590c0" class="m-doc-self">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Delays until the currently executing movement completes.</p>
-          </div></section>
-          <section class="m-doc-details" id="aab2f5d5cfb8ad96bd32be26a5a4e7113"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aab2f5d5cfb8ad96bd32be26a5a4e7113" class="m-doc-self">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Interrupts the current movement to stop the robot.</p>
-          </div></section>
-          <section class="m-doc-details" id="a6bbab5d22753736b0507d5fd4deb3982"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6bbab5d22753736b0507d5fd4deb3982" class="m-doc-self">getChassisScales</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Get the <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a42cab9878235cdb4bea46e69f7ccd75d"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a> okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a42cab9878235cdb4bea46e69f7ccd75d" class="m-doc-self">getGearsetRatioPair</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Get the GearsetRatioPair.</p>
           </div></section>
           <section class="m-doc-details" id="a60c9a11616a2a41400c17952c36a5b57"><div>
             <h3>
@@ -492,6 +473,7 @@
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisControllerIntegrated::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9cf06cccbb0389607f953aac5a29238c" class="m-doc-self">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets a new maximum velocity in RPM [0-600].</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -503,7 +485,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets a new maximum velocity in RPM [0-600].</p>
           </div></section>
           <section class="m-doc-details" id="aa19ac09d42b09100e49e77c82ab1e05b"><div>
             <h3>

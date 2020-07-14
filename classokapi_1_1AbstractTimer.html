@@ -88,7 +88,7 @@
             <dt>
               <span class="m-doc-wrap-bumper"><a href="#aec03f7e11e25f300ec1fd44aaff3596f" class="m-doc">AbstractTimer</a>(</span><span class="m-doc-wrap">QTime ifirstCalled) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd></dd>
+            <dd>A <a href="classokapi_1_1Timer.html" class="m-doc">Timer</a> base class which implements its methods in terms of <a href="classokapi_1_1AbstractTimer.html#a6871e119f74d8b6a8c928244e837e762" class="m-doc">millis()</a>.</dd>
             <dt id="a720f854545bab2158135149174758736">
               <span class="m-doc-wrap-bumper"><a href="#a720f854545bab2158135149174758736" class="m-doc-self">~AbstractTimer</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -101,55 +101,55 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a6871e119f74d8b6a8c928244e837e762" class="m-doc">millis</a>(</span><span class="m-doc-wrap">) const -&gt; QTime <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the current time in units of QTime.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a6c79c35780dbc4e04e356167bb175424" class="m-doc">getDt</a>(</span><span class="m-doc-wrap">) -&gt; QTime <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the time passed in ms since the previous call of this function.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a4208d7ef0b828422ba02dfd563306ab1" class="m-doc">readDt</a>(</span><span class="m-doc-wrap">) const -&gt; QTime <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the time passed in ms since the previous call of <a href="classokapi_1_1AbstractTimer.html#a6c79c35780dbc4e04e356167bb175424" class="m-doc">getDt()</a>.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a4707dcc563e750ee491918d7c5755bc3" class="m-doc">getStartingTime</a>(</span><span class="m-doc-wrap">) const -&gt; QTime <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the time the timer was first constructed.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ac681cdd9a5147df0b796e9af836502c8" class="m-doc">getDtFromStart</a>(</span><span class="m-doc-wrap">) const -&gt; QTime <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the time since the timer was first constructed.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a34c9be79510d23d702fd22188d542ec9" class="m-doc">placeMark</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Place a time marker.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a78d62559bbd51a71372f37920af78261" class="m-doc">clearMark</a>(</span><span class="m-doc-wrap">) -&gt; QTime <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Clears the marker.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a177197191296d0d7a5c49c86d5a514fc" class="m-doc">placeHardMark</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Place a hard time marker.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#af462e941170d1659dd04ab9d1ead3968" class="m-doc">clearHardMark</a>(</span><span class="m-doc-wrap">) -&gt; QTime <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Clears the hard marker.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a11b84685aac3247ce5abdd11419e350e" class="m-doc">getDtFromMark</a>(</span><span class="m-doc-wrap">) const -&gt; QTime <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the time since the time marker.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ae32d95df73d640f248f987757163a164" class="m-doc">getDtFromHardMark</a>(</span><span class="m-doc-wrap">) const -&gt; QTime <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the time since the hard time marker.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a452be1d251e938ab4c69801ea2d52e20" class="m-doc">repeat</a>(</span><span class="m-doc-wrap">QTime time) -&gt; bool <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns true when the input time period has passed, then resets.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a9153fc8d0b6daf843fa533bf601a15dd" class="m-doc">repeat</a>(</span><span class="m-doc-wrap">QFrequency frequency) -&gt; bool <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns true when the input time period has passed, then resets.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -183,6 +183,7 @@
             <h3>
               <span class="m-doc-wrap-bumper"> okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aec03f7e11e25f300ec1fd44aaff3596f" class="m-doc-self">AbstractTimer</a>(</span><span class="m-doc-wrap">QTime ifirstCalled) <span class="m-label m-info">explicit</span> </span></span>
             </h3>
+            <p>A <a href="classokapi_1_1Timer.html" class="m-doc">Timer</a> base class which implements its methods in terms of <a href="classokapi_1_1AbstractTimer.html#a6871e119f74d8b6a8c928244e837e762" class="m-doc">millis()</a>.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -194,12 +195,12 @@
                 </tr>
               </tbody>
             </table>
-<p>A <a href="classokapi_1_1Timer.html" class="m-doc">Timer</a> base class which implements its methods in terms of <a href="classokapi_1_1AbstractTimer.html#a6871e119f74d8b6a8c928244e837e762" class="m-doc">millis()</a>.</p>
           </div></section>
           <section class="m-doc-details" id="a6871e119f74d8b6a8c928244e837e762"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QTime okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6871e119f74d8b6a8c928244e837e762" class="m-doc-self">millis</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Returns the current time in units of QTime.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -208,12 +209,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the current time in units of QTime.</p>
           </div></section>
           <section class="m-doc-details" id="a6c79c35780dbc4e04e356167bb175424"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QTime okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6c79c35780dbc4e04e356167bb175424" class="m-doc-self">getDt</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns the time passed in ms since the previous call of this function.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -222,12 +223,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the time passed in ms since the previous call of this function.</p>
           </div></section>
           <section class="m-doc-details" id="a4208d7ef0b828422ba02dfd563306ab1"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QTime okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4208d7ef0b828422ba02dfd563306ab1" class="m-doc-self">readDt</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns the time passed in ms since the previous call of <a href="classokapi_1_1AbstractTimer.html#a6c79c35780dbc4e04e356167bb175424" class="m-doc">getDt()</a>.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -236,12 +237,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the time passed in ms since the previous call of <a href="classokapi_1_1AbstractTimer.html#a6c79c35780dbc4e04e356167bb175424" class="m-doc">getDt()</a>. Does not change the time recorded by <a href="classokapi_1_1AbstractTimer.html#a6c79c35780dbc4e04e356167bb175424" class="m-doc">getDt()</a>.</p>
+<p>Does not change the time recorded by <a href="classokapi_1_1AbstractTimer.html#a6c79c35780dbc4e04e356167bb175424" class="m-doc">getDt()</a>.</p>
           </div></section>
           <section class="m-doc-details" id="a4707dcc563e750ee491918d7c5755bc3"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QTime okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4707dcc563e750ee491918d7c5755bc3" class="m-doc-self">getStartingTime</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns the time the timer was first constructed.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -250,12 +252,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the time the timer was first constructed.</p>
           </div></section>
           <section class="m-doc-details" id="ac681cdd9a5147df0b796e9af836502c8"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QTime okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac681cdd9a5147df0b796e9af836502c8" class="m-doc-self">getDtFromStart</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns the time since the timer was first constructed.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -264,18 +266,19 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the time since the timer was first constructed.</p>
           </div></section>
           <section class="m-doc-details" id="a34c9be79510d23d702fd22188d542ec9"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a34c9be79510d23d702fd22188d542ec9" class="m-doc-self">placeMark</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
-<p>Place a time marker. Placing another marker will overwrite the previous one.</p>
+            <p>Place a time marker.</p>
+<p>Placing another marker will overwrite the previous one.</p>
           </div></section>
           <section class="m-doc-details" id="a78d62559bbd51a71372f37920af78261"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QTime okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a78d62559bbd51a71372f37920af78261" class="m-doc-self">clearMark</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Clears the marker.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -284,18 +287,19 @@
                 </tr>
               </tfoot>
             </table>
-<p>Clears the marker.</p>
           </div></section>
           <section class="m-doc-details" id="a177197191296d0d7a5c49c86d5a514fc"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a177197191296d0d7a5c49c86d5a514fc" class="m-doc-self">placeHardMark</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
-<p>Place a hard time marker. Placing another hard marker will not overwrite the previous one; instead, call <a href="classokapi_1_1AbstractTimer.html#af462e941170d1659dd04ab9d1ead3968" class="m-doc">clearHardMark()</a> and then place another.</p>
+            <p>Place a hard time marker.</p>
+<p>Placing another hard marker will not overwrite the previous one; instead, call <a href="classokapi_1_1AbstractTimer.html#af462e941170d1659dd04ab9d1ead3968" class="m-doc">clearHardMark()</a> and then place another.</p>
           </div></section>
           <section class="m-doc-details" id="af462e941170d1659dd04ab9d1ead3968"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QTime okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af462e941170d1659dd04ab9d1ead3968" class="m-doc-self">clearHardMark</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Clears the hard marker.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -304,12 +308,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Clears the hard marker.</p>
           </div></section>
           <section class="m-doc-details" id="a11b84685aac3247ce5abdd11419e350e"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QTime okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a11b84685aac3247ce5abdd11419e350e" class="m-doc-self">getDtFromMark</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns the time since the time marker.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -318,12 +322,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the time since the time marker. Returns 0_ms if there is no marker.</p>
+<p>Returns 0_ms if there is no marker.</p>
           </div></section>
           <section class="m-doc-details" id="ae32d95df73d640f248f987757163a164"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QTime okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae32d95df73d640f248f987757163a164" class="m-doc-self">getDtFromHardMark</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns the time since the hard time marker.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -332,12 +337,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the time since the hard time marker. Returns 0_ms if there is no hard marker set.</p>
+<p>Returns 0_ms if there is no hard marker set.</p>
           </div></section>
           <section class="m-doc-details" id="a452be1d251e938ab4c69801ea2d52e20"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a452be1d251e938ab4c69801ea2d52e20" class="m-doc-self">repeat</a>(</span><span class="m-doc-wrap">QTime time) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns true when the input time period has passed, then resets.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -355,12 +361,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns true when the input time period has passed, then resets. Meant to be used in loops to run an action every time period without blocking.</p>
+<p>Meant to be used in loops to run an action every time period without blocking.</p>
           </div></section>
           <section class="m-doc-details" id="a9153fc8d0b6daf843fa533bf601a15dd"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />AbstractTimer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9153fc8d0b6daf843fa533bf601a15dd" class="m-doc-self">repeat</a>(</span><span class="m-doc-wrap">QFrequency frequency) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns true when the input time period has passed, then resets.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -378,7 +385,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns true when the input time period has passed, then resets. Meant to be used in loops to run an action every time period without blocking.</p>
+<p>Meant to be used in loops to run an action every time period without blocking.</p>
           </div></section>
         </section>
       </div>

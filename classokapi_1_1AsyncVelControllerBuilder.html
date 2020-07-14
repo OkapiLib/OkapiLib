@@ -77,7 +77,7 @@
             <dt>
               <span class="m-doc-wrap-bumper"><a href="#a2240959e5feeb59b630fe93e6e993996" class="m-doc">AsyncVelControllerBuilder</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>()) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd></dd>
+            <dd>A builder that creates async velocity controllers.</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -86,67 +86,67 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a64b047406f6aa211691f99b2da80fd29" class="m-doc">withMotor</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1Motor.html" class="m-doc">Motor</a>&amp; imotor) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a8c818cb67b99b64722df86a1e391c7da" class="m-doc">withMotor</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a>&amp; imotor) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aadd1a0eb89fb1c5dad47b1700f953ff1" class="m-doc">withMotor</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;&amp; imotor) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a611d50478ee813ce9b0c5b5ed113d6db" class="m-doc">withSensor</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1ADIEncoder.html" class="m-doc">ADIEncoder</a>&amp; isensor) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the sensor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a3f21552feaedb4592289c32d3cd20b05" class="m-doc">withSensor</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1IntegratedEncoder.html" class="m-doc">IntegratedEncoder</a>&amp; isensor) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the sensor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a4bfe71bea3ec45c6b10ec66047b06c4c" class="m-doc">withSensor</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1RotarySensor.html" class="m-doc">RotarySensor</a>&gt;&amp; isensor) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the sensor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#af919e427baf0c06790895f5cb9ce333d" class="m-doc">withGains</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1IterativeVelPIDController_1_1Gains.html" class="m-doc">IterativeVelPIDController::<wbr />Gains</a>&amp; igains) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the controller gains, causing the builder to generate an <a href="classokapi_1_1AsyncVelPIDController.html" class="m-doc">AsyncVelPIDController</a>.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aa385c0ae6f8464955a950465b7cff1b6" class="m-doc">withVelMath</a>(</span><span class="m-doc-wrap">std::unique_ptr&lt;<a href="classokapi_1_1VelMath.html" class="m-doc">VelMath</a>&gt; ivelMath) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the <a href="classokapi_1_1VelMath.html" class="m-doc">VelMath</a> which calculates and filters velocity.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ae3d54b49f57ed29410013d112f6141cc" class="m-doc">withDerivativeFilter</a>(</span><span class="m-doc-wrap">std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the derivative filter which filters the derivative term before it is scaled by kD.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a128d0a52035c576258bc3ca10958c45f" class="m-doc">withGearset</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a>&amp; igearset) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the gearset.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a7e4651e36c2a2dffa425a95c70bdd703" class="m-doc">withMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the maximum velocity.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a4996a83333f1affdd0b77054ece7d07d" class="m-doc">withTimeUtilFactory</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a>&amp; itimeUtilFactory) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a> used when building the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a39fc6798e638b770cd10674bfebbb844" class="m-doc">withLogger</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the logger.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#af9f2734578c8300b409fb27543b75a18" class="m-doc">parentedToCurrentTask</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Parents the internal tasks started by this builder to the current task, meaning they will be deleted once the current task is deleted.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a49799282479ad7f29645265838b99ae0" class="m-doc">notParentedToCurrentTask</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp;</span>
             </dt>
-            <dd></dd>
+            <dd>Prevents parenting the internal tasks started by this builder to the current task, meaning they will not be deleted once the current task is deleted.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a23ecaa0969360f45c4f0266ff81fdb6d" class="m-doc">build</a>(</span><span class="m-doc-wrap">) -&gt; std::shared_ptr&lt;<a href="classokapi_1_1AsyncVelocityController.html" class="m-doc">AsyncVelocityController</a>&lt;double, double&gt;&gt;</span>
             </dt>
-            <dd></dd>
+            <dd>Builds the <a href="classokapi_1_1AsyncVelocityController.html" class="m-doc">AsyncVelocityController</a>.</dd>
           </dl>
         </section>
         <section>
@@ -155,6 +155,7 @@
             <h3>
               <span class="m-doc-wrap-bumper"> okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2240959e5feeb59b630fe93e6e993996" class="m-doc-self">AsyncVelControllerBuilder</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>()) <span class="m-label m-info">explicit</span> </span></span>
             </h3>
+            <p>A builder that creates async velocity controllers.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -166,12 +167,13 @@
                 </tr>
               </tbody>
             </table>
-<p>A builder that creates async velocity controllers. Use this to create an <a href="classokapi_1_1AsyncVelIntegratedController.html" class="m-doc">AsyncVelIntegratedController</a> or an <a href="classokapi_1_1AsyncVelPIDController.html" class="m-doc">AsyncVelPIDController</a>.</p>
+<p>Use this to create an <a href="classokapi_1_1AsyncVelIntegratedController.html" class="m-doc">AsyncVelIntegratedController</a> or an <a href="classokapi_1_1AsyncVelPIDController.html" class="m-doc">AsyncVelPIDController</a>.</p>
           </div></section>
           <section class="m-doc-details" id="a64b047406f6aa211691f99b2da80fd29"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a64b047406f6aa211691f99b2da80fd29" class="m-doc-self">withMotor</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1Motor.html" class="m-doc">Motor</a>&amp; imotor)</span></span>
             </h3>
+            <p>Sets the motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -189,12 +191,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the motor.</p>
           </div></section>
           <section class="m-doc-details" id="a8c818cb67b99b64722df86a1e391c7da"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8c818cb67b99b64722df86a1e391c7da" class="m-doc-self">withMotor</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a>&amp; imotor)</span></span>
             </h3>
+            <p>Sets the motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -212,12 +214,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the motor.</p>
           </div></section>
           <section class="m-doc-details" id="aadd1a0eb89fb1c5dad47b1700f953ff1"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aadd1a0eb89fb1c5dad47b1700f953ff1" class="m-doc-self">withMotor</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;&amp; imotor)</span></span>
             </h3>
+            <p>Sets the motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -235,12 +237,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the motor.</p>
           </div></section>
           <section class="m-doc-details" id="a611d50478ee813ce9b0c5b5ed113d6db"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a611d50478ee813ce9b0c5b5ed113d6db" class="m-doc-self">withSensor</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1ADIEncoder.html" class="m-doc">ADIEncoder</a>&amp; isensor)</span></span>
             </h3>
+            <p>Sets the sensor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -258,12 +260,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the sensor. The default sensor is the motor&#x27;s integrated encoder.</p>
+<p>The default sensor is the motor&#x27;s integrated encoder.</p>
           </div></section>
           <section class="m-doc-details" id="a3f21552feaedb4592289c32d3cd20b05"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3f21552feaedb4592289c32d3cd20b05" class="m-doc-self">withSensor</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1IntegratedEncoder.html" class="m-doc">IntegratedEncoder</a>&amp; isensor)</span></span>
             </h3>
+            <p>Sets the sensor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -281,12 +284,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the sensor. The default sensor is the motor&#x27;s integrated encoder.</p>
+<p>The default sensor is the motor&#x27;s integrated encoder.</p>
           </div></section>
           <section class="m-doc-details" id="a4bfe71bea3ec45c6b10ec66047b06c4c"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4bfe71bea3ec45c6b10ec66047b06c4c" class="m-doc-self">withSensor</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1RotarySensor.html" class="m-doc">RotarySensor</a>&gt;&amp; isensor)</span></span>
             </h3>
+            <p>Sets the sensor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -304,12 +308,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the sensor. The default sensor is the motor&#x27;s integrated encoder.</p>
+<p>The default sensor is the motor&#x27;s integrated encoder.</p>
           </div></section>
           <section class="m-doc-details" id="af919e427baf0c06790895f5cb9ce333d"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af919e427baf0c06790895f5cb9ce333d" class="m-doc-self">withGains</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1IterativeVelPIDController_1_1Gains.html" class="m-doc">IterativeVelPIDController::<wbr />Gains</a>&amp; igains)</span></span>
             </h3>
+            <p>Sets the controller gains, causing the builder to generate an <a href="classokapi_1_1AsyncVelPIDController.html" class="m-doc">AsyncVelPIDController</a>.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -327,12 +332,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the controller gains, causing the builder to generate an <a href="classokapi_1_1AsyncVelPIDController.html" class="m-doc">AsyncVelPIDController</a>. This does not set the integrated control&#x27;s gains.</p>
+<p>This does not set the integrated control&#x27;s gains.</p>
           </div></section>
           <section class="m-doc-details" id="aa385c0ae6f8464955a950465b7cff1b6"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa385c0ae6f8464955a950465b7cff1b6" class="m-doc-self">withVelMath</a>(</span><span class="m-doc-wrap">std::unique_ptr&lt;<a href="classokapi_1_1VelMath.html" class="m-doc">VelMath</a>&gt; ivelMath)</span></span>
             </h3>
+            <p>Sets the <a href="classokapi_1_1VelMath.html" class="m-doc">VelMath</a> which calculates and filters velocity.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -350,12 +356,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the <a href="classokapi_1_1VelMath.html" class="m-doc">VelMath</a> which calculates and filters velocity. This is ignored when using integrated controller. If using a PID controller (by setting the gains), this is required.</p>
+<p>This is ignored when using integrated controller. If using a PID controller (by setting the gains), this is required.</p>
           </div></section>
           <section class="m-doc-details" id="ae3d54b49f57ed29410013d112f6141cc"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae3d54b49f57ed29410013d112f6141cc" class="m-doc-self">withDerivativeFilter</a>(</span><span class="m-doc-wrap">std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter)</span></span>
             </h3>
+            <p>Sets the derivative filter which filters the derivative term before it is scaled by kD.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -373,12 +380,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the derivative filter which filters the derivative term before it is scaled by kD. The filter is ignored when using integrated control. The default derivative filter is a <a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>.</p>
+<p>The filter is ignored when using integrated control. The default derivative filter is a <a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>.</p>
           </div></section>
           <section class="m-doc-details" id="a128d0a52035c576258bc3ca10958c45f"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a128d0a52035c576258bc3ca10958c45f" class="m-doc-self">withGearset</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a>&amp; igearset)</span></span>
             </h3>
+            <p>Sets the gearset.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -396,12 +404,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the gearset. The default gearset is derived from the motor&#x27;s.</p>
+<p>The default gearset is derived from the motor&#x27;s.</p>
           </div></section>
           <section class="m-doc-details" id="a7e4651e36c2a2dffa425a95c70bdd703"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7e4651e36c2a2dffa425a95c70bdd703" class="m-doc-self">withMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity)</span></span>
             </h3>
+            <p>Sets the maximum velocity.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -419,12 +428,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the maximum velocity. The default maximum velocity is derived from the motor&#x27;s gearset. This parameter is ignored when using an <a href="classokapi_1_1AsyncVelPIDController.html" class="m-doc">AsyncVelPIDController</a>.</p>
+<p>The default maximum velocity is derived from the motor&#x27;s gearset. This parameter is ignored when using an <a href="classokapi_1_1AsyncVelPIDController.html" class="m-doc">AsyncVelPIDController</a>.</p>
           </div></section>
           <section class="m-doc-details" id="a4996a83333f1affdd0b77054ece7d07d"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4996a83333f1affdd0b77054ece7d07d" class="m-doc-self">withTimeUtilFactory</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a>&amp; itimeUtilFactory)</span></span>
             </h3>
+            <p>Sets the <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a> used when building the controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -442,12 +452,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a> used when building the controller. The default is the static <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a>.</p>
+<p>The default is the static <a href="classokapi_1_1TimeUtilFactory.html" class="m-doc">TimeUtilFactory</a>.</p>
           </div></section>
           <section class="m-doc-details" id="a39fc6798e638b770cd10674bfebbb844"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a39fc6798e638b770cd10674bfebbb844" class="m-doc-self">withLogger</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger)</span></span>
             </h3>
+            <p>Sets the logger.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -465,12 +476,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets the logger.</p>
           </div></section>
           <section class="m-doc-details" id="af9f2734578c8300b409fb27543b75a18"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af9f2734578c8300b409fb27543b75a18" class="m-doc-self">parentedToCurrentTask</a>(</span><span class="m-doc-wrap">)</span></span>
             </h3>
+            <p>Parents the internal tasks started by this builder to the current task, meaning they will be deleted once the current task is deleted.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -479,12 +490,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Parents the internal tasks started by this builder to the current task, meaning they will be deleted once the current task is deleted. The <code>initialize</code> and <code>competition_initialize</code> tasks are never parented to. This is the default behavior.</p><p>Read more about this in the <a href="md_docs_tutorials_concepts_builders-and-tasks.html" class="m-doc">builders and tasks tutorial</a>.</p>
+<p>The <code>initialize</code> and <code>competition_initialize</code> tasks are never parented to. This is the default behavior.</p><p>Read more about this in the <a href="md_docs_tutorials_concepts_builders-and-tasks.html" class="m-doc">builders and tasks tutorial</a>.</p>
           </div></section>
           <section class="m-doc-details" id="a49799282479ad7f29645265838b99ae0"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1AsyncVelControllerBuilder.html" class="m-doc">AsyncVelControllerBuilder</a>&amp; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a49799282479ad7f29645265838b99ae0" class="m-doc-self">notParentedToCurrentTask</a>(</span><span class="m-doc-wrap">)</span></span>
             </h3>
+            <p>Prevents parenting the internal tasks started by this builder to the current task, meaning they will not be deleted once the current task is deleted.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -493,12 +505,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Prevents parenting the internal tasks started by this builder to the current task, meaning they will not be deleted once the current task is deleted. This can cause runaway tasks, but is sometimes the desired behavior (e.x., if you want to use this builder once in <code>autonomous</code> and then again in <code>opcontrol</code>).</p><p>Read more about this in the <a href="md_docs_tutorials_concepts_builders-and-tasks.html" class="m-doc">builders and tasks tutorial</a>.</p>
+<p>This can cause runaway tasks, but is sometimes the desired behavior (e.x., if you want to use this builder once in <code>autonomous</code> and then again in <code>opcontrol</code>).</p><p>Read more about this in the <a href="md_docs_tutorials_concepts_builders-and-tasks.html" class="m-doc">builders and tasks tutorial</a>.</p>
           </div></section>
           <section class="m-doc-details" id="a23ecaa0969360f45c4f0266ff81fdb6d"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::shared_ptr&lt;<a href="classokapi_1_1AsyncVelocityController.html" class="m-doc">AsyncVelocityController</a>&lt;double, double&gt;&gt; okapi::<wbr />AsyncVelControllerBuilder::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a23ecaa0969360f45c4f0266ff81fdb6d" class="m-doc-self">build</a>(</span><span class="m-doc-wrap">)</span></span>
             </h3>
+            <p>Builds the <a href="classokapi_1_1AsyncVelocityController.html" class="m-doc">AsyncVelocityController</a>.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -507,7 +520,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Builds the <a href="classokapi_1_1AsyncVelocityController.html" class="m-doc">AsyncVelocityController</a>. Throws a std::runtime_exception is no motors were set.</p>
+<p>Throws a std::runtime_exception is no motors were set.</p>
           </div></section>
         </section>
       </div>

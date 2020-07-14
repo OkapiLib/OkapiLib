@@ -83,7 +83,7 @@
               double imuDynamic = 0.9,
               double itimestep = 0.01) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd></dd>
+            <dd>A simulator for an inverted pendulum.</dd>
             <dt id="a915315e7bb395844e41d0bc9ae86409a">
               <span class="m-doc-wrap-bumper"><a href="#a915315e7bb395844e41d0bc9ae86409a" class="m-doc-self">~FlywheelSimulator</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -96,63 +96,63 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a05ea33d225b636b14c7c8aab9ffb7fa8" class="m-doc">step</a>(</span><span class="m-doc-wrap">) -&gt; double</span>
             </dt>
-            <dd></dd>
+            <dd>Step the simulation by the timestep.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a5da369045882dc962b1aff79eeaf1905" class="m-doc">step</a>(</span><span class="m-doc-wrap">double itorque) -&gt; double</span>
             </dt>
-            <dd></dd>
+            <dd>Step the simulation by the timestep.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a288c47223f4e558c0081c91db1180430" class="m-doc">setExternalTorqueFunction</a>(</span><span class="m-doc-wrap">std::function&lt;double(double <a href="classokapi_1_1FlywheelSimulator.html#ab52c0add6fc410b93ce91ff29bf3c85b" class="m-doc">angle</a>, double <a href="classokapi_1_1FlywheelSimulator.html#a889583a4674ea4e9a611c88a621deb3b" class="m-doc">mass</a>, double linkLength)&gt; itorqueFunc)</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the torque function used to calculate the torque due to external forces.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a0e26fda9b8d46a12942a7ed5b8a0e399" class="m-doc">setTorque</a>(</span><span class="m-doc-wrap">double itorque)</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the input torque.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a3b7178f2680fa6533e1056db8f6b1656" class="m-doc">setMaxTorque</a>(</span><span class="m-doc-wrap">double imaxTorque)</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the max torque.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ad9decd27371e9058f97a49944f06b4a1" class="m-doc">setAngle</a>(</span><span class="m-doc-wrap">double iangle)</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the current angle.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a0a4b88f87de82603f49e49610fee1eb6" class="m-doc">setMass</a>(</span><span class="m-doc-wrap">double imass)</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the mass (kg).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a54ebeed8e7eefd19b0d476a3215b18e7" class="m-doc">setLinkLength</a>(</span><span class="m-doc-wrap">double ilinkLen)</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the link length (m).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a60d44d13592af17e4490245868e8db5a" class="m-doc">setStaticFriction</a>(</span><span class="m-doc-wrap">double imuStatic)</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the static friction (N*m).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#abc346f1446a476dc0c3571deabc79581" class="m-doc">setDynamicFriction</a>(</span><span class="m-doc-wrap">double imuDynamic)</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the dynamic friction (N*m).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aba93a3606887d59536c47b0a1b1c6c6e" class="m-doc">setTimestep</a>(</span><span class="m-doc-wrap">double itimestep)</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the timestep (sec).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a506f126c88bf66759d2d31844b7f50e6" class="m-doc">getAngle</a>(</span><span class="m-doc-wrap">) const -&gt; double</span>
             </dt>
-            <dd></dd>
+            <dd>Returns the current angle (angle in rad).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a27636d62f018187f5858f2244d2b3f82" class="m-doc">getOmega</a>(</span><span class="m-doc-wrap">) const -&gt; double</span>
             </dt>
-            <dd></dd>
+            <dd>Returns the current omgea (angular velocity in rad / sec).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#af7ce5da6fcafa314cb2372d6e6a98e28" class="m-doc">getAcceleration</a>(</span><span class="m-doc-wrap">) const -&gt; double</span>
             </dt>
-            <dd></dd>
+            <dd>Returns the current acceleration (angular acceleration in rad / sec^2).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a028341fbfce013426a70fe74a7b0b584" class="m-doc">getMaxTorque</a>(</span><span class="m-doc-wrap">) const -&gt; double</span>
             </dt>
-            <dd></dd>
+            <dd>Returns the maximum torque input.</dd>
           </dl>
         </section>
         <section id="pro-methods">
@@ -231,12 +231,14 @@
               double imuDynamic = 0.9,
               double itimestep = 0.01) <span class="m-label m-info">explicit</span> </span></span>
             </h3>
-<p>A simulator for an inverted pendulum. The center of mass of the system changes as the link rotates (by default, you can set a new torque function with <a href="classokapi_1_1FlywheelSimulator.html#a288c47223f4e558c0081c91db1180430" class="m-doc">setExternalTorqueFunction()</a>).</p>
+            <p>A simulator for an inverted pendulum.</p>
+<p>The center of mass of the system changes as the link rotates (by default, you can set a new torque function with <a href="classokapi_1_1FlywheelSimulator.html#a288c47223f4e558c0081c91db1180430" class="m-doc">setExternalTorqueFunction()</a>).</p>
           </div></section>
           <section class="m-doc-details" id="a05ea33d225b636b14c7c8aab9ffb7fa8"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a05ea33d225b636b14c7c8aab9ffb7fa8" class="m-doc-self">step</a>(</span><span class="m-doc-wrap">)</span></span>
             </h3>
+            <p>Step the simulation by the timestep.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -245,12 +247,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Step the simulation by the timestep.</p>
           </div></section>
           <section class="m-doc-details" id="a5da369045882dc962b1aff79eeaf1905"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5da369045882dc962b1aff79eeaf1905" class="m-doc-self">step</a>(</span><span class="m-doc-wrap">double itorque)</span></span>
             </h3>
+            <p>Step the simulation by the timestep.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -268,12 +270,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Step the simulation by the timestep.</p>
           </div></section>
           <section class="m-doc-details" id="a288c47223f4e558c0081c91db1180430"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a288c47223f4e558c0081c91db1180430" class="m-doc-self">setExternalTorqueFunction</a>(</span><span class="m-doc-wrap">std::function&lt;double(double <a href="classokapi_1_1FlywheelSimulator.html#ab52c0add6fc410b93ce91ff29bf3c85b" class="m-doc">angle</a>, double <a href="classokapi_1_1FlywheelSimulator.html#a889583a4674ea4e9a611c88a621deb3b" class="m-doc">mass</a>, double linkLength)&gt; itorqueFunc)</span></span>
             </h3>
+            <p>Sets the torque function used to calculate the torque due to external forces.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -285,12 +287,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the torque function used to calculate the torque due to external forces. This torque gets summed with the input torque.</p><p>For example, the default torque function has the torque due to gravity vary as the link swings: [](double angle, double mass, double linkLength) { return (linkLength * std::cos(angle)) * (mass * -1 * gravity); }</p>
+<p>This torque gets summed with the input torque.</p><p>For example, the default torque function has the torque due to gravity vary as the link swings: [](double angle, double mass, double linkLength) { return (linkLength * std::cos(angle)) * (mass * -1 * gravity); }</p>
           </div></section>
           <section class="m-doc-details" id="a0e26fda9b8d46a12942a7ed5b8a0e399"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0e26fda9b8d46a12942a7ed5b8a0e399" class="m-doc-self">setTorque</a>(</span><span class="m-doc-wrap">double itorque)</span></span>
             </h3>
+            <p>Sets the input torque.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -302,12 +305,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the input torque. The input will be bounded by the max torque.</p>
+<p>The input will be bounded by the max torque.</p>
           </div></section>
           <section class="m-doc-details" id="a3b7178f2680fa6533e1056db8f6b1656"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3b7178f2680fa6533e1056db8f6b1656" class="m-doc-self">setMaxTorque</a>(</span><span class="m-doc-wrap">double imaxTorque)</span></span>
             </h3>
+            <p>Sets the max torque.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -319,12 +323,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the max torque. The input torque cannot exceed this maximum torque.</p>
+<p>The input torque cannot exceed this maximum torque.</p>
           </div></section>
           <section class="m-doc-details" id="ad9decd27371e9058f97a49944f06b4a1"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad9decd27371e9058f97a49944f06b4a1" class="m-doc-self">setAngle</a>(</span><span class="m-doc-wrap">double iangle)</span></span>
             </h3>
+            <p>Sets the current angle.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -336,12 +341,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the current angle.</p>
           </div></section>
           <section class="m-doc-details" id="a0a4b88f87de82603f49e49610fee1eb6"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0a4b88f87de82603f49e49610fee1eb6" class="m-doc-self">setMass</a>(</span><span class="m-doc-wrap">double imass)</span></span>
             </h3>
+            <p>Sets the mass (kg).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -353,12 +358,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the mass (kg).</p>
           </div></section>
           <section class="m-doc-details" id="a54ebeed8e7eefd19b0d476a3215b18e7"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a54ebeed8e7eefd19b0d476a3215b18e7" class="m-doc-self">setLinkLength</a>(</span><span class="m-doc-wrap">double ilinkLen)</span></span>
             </h3>
+            <p>Sets the link length (m).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -370,12 +375,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the link length (m).</p>
           </div></section>
           <section class="m-doc-details" id="a60d44d13592af17e4490245868e8db5a"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a60d44d13592af17e4490245868e8db5a" class="m-doc-self">setStaticFriction</a>(</span><span class="m-doc-wrap">double imuStatic)</span></span>
             </h3>
+            <p>Sets the static friction (N*m).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -387,12 +392,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the static friction (N*m).</p>
           </div></section>
           <section class="m-doc-details" id="abc346f1446a476dc0c3571deabc79581"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abc346f1446a476dc0c3571deabc79581" class="m-doc-self">setDynamicFriction</a>(</span><span class="m-doc-wrap">double imuDynamic)</span></span>
             </h3>
+            <p>Sets the dynamic friction (N*m).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -404,12 +409,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the dynamic friction (N*m).</p>
           </div></section>
           <section class="m-doc-details" id="aba93a3606887d59536c47b0a1b1c6c6e"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aba93a3606887d59536c47b0a1b1c6c6e" class="m-doc-self">setTimestep</a>(</span><span class="m-doc-wrap">double itimestep)</span></span>
             </h3>
+            <p>Sets the timestep (sec).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -421,12 +426,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the timestep (sec).</p>
           </div></section>
           <section class="m-doc-details" id="a506f126c88bf66759d2d31844b7f50e6"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a506f126c88bf66759d2d31844b7f50e6" class="m-doc-self">getAngle</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Returns the current angle (angle in rad).</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -435,12 +440,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the current angle (angle in rad).</p>
           </div></section>
           <section class="m-doc-details" id="a27636d62f018187f5858f2244d2b3f82"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a27636d62f018187f5858f2244d2b3f82" class="m-doc-self">getOmega</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Returns the current omgea (angular velocity in rad / sec).</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -449,12 +454,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the current omgea (angular velocity in rad / sec).</p>
           </div></section>
           <section class="m-doc-details" id="af7ce5da6fcafa314cb2372d6e6a98e28"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af7ce5da6fcafa314cb2372d6e6a98e28" class="m-doc-self">getAcceleration</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Returns the current acceleration (angular acceleration in rad / sec^2).</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -463,12 +468,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the current acceleration (angular acceleration in rad / sec^2).</p>
           </div></section>
           <section class="m-doc-details" id="a028341fbfce013426a70fe74a7b0b584"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />FlywheelSimulator::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a028341fbfce013426a70fe74a7b0b584" class="m-doc-self">getMaxTorque</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Returns the maximum torque input.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -477,7 +482,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the maximum torque input.</p>
           </div></section>
         </section>
       </div>

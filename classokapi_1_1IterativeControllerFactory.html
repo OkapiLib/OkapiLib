@@ -81,7 +81,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>()) -&gt; <a href="classokapi_1_1IterativePosPIDController.html" class="m-doc">IterativePosPIDController</a></span>
             </dt>
-            <dd></dd>
+            <dd>Position PID controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">static auto <a href="#a7b9d88febe596e3fd11eca8a91f2c05c" class="m-doc">velPID</a>(</span><span class="m-doc-wrap">double ikP,
               double ikD,
@@ -91,7 +91,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>()) -&gt; <a href="classokapi_1_1IterativeVelPIDController.html" class="m-doc">IterativeVelPIDController</a></span>
             </dt>
-            <dd></dd>
+            <dd>Velocity PD controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">static auto <a href="#a55d93373ed17166b0f5747a76690d1de" class="m-doc">motorVelocity</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1Motor.html" class="m-doc">Motor</a> imotor,
               double ikP,
@@ -102,7 +102,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>()) -&gt; <a href="classokapi_1_1IterativeMotorVelocityController.html" class="m-doc">IterativeMotorVelocityController</a></span>
             </dt>
-            <dd></dd>
+            <dd>Velocity PD controller that automatically writes to the motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">static auto <a href="#a5227fff05674d0165c02e02730a2a4c6" class="m-doc">motorVelocity</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a> imotor,
               double ikP,
@@ -113,17 +113,17 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>()) -&gt; <a href="classokapi_1_1IterativeMotorVelocityController.html" class="m-doc">IterativeMotorVelocityController</a></span>
             </dt>
-            <dd></dd>
+            <dd>Velocity PD controller that automatically writes to the motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">static auto <a href="#a10580d88f6c4d2f4b7355068c1ab3def" class="m-doc">motorVelocity</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1Motor.html" class="m-doc">Motor</a> imotor,
               std::shared_ptr&lt;<a href="classokapi_1_1IterativeVelocityController.html" class="m-doc">IterativeVelocityController</a>&lt;double, double&gt;&gt; icontroller) -&gt; <a href="classokapi_1_1IterativeMotorVelocityController.html" class="m-doc">IterativeMotorVelocityController</a></span>
             </dt>
-            <dd></dd>
+            <dd>Velocity PD controller that automatically writes to the motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">static auto <a href="#ac8c7d72464d57e7d891b13aab9d9efbb" class="m-doc">motorVelocity</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a> imotor,
               std::shared_ptr&lt;<a href="classokapi_1_1IterativeVelocityController.html" class="m-doc">IterativeVelocityController</a>&lt;double, double&gt;&gt; icontroller) -&gt; <a href="classokapi_1_1IterativeMotorVelocityController.html" class="m-doc">IterativeMotorVelocityController</a></span>
             </dt>
-            <dd></dd>
+            <dd>Velocity PD controller that automatically writes to the motor.</dd>
           </dl>
         </section>
         <section>
@@ -137,6 +137,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>Position PID controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -168,7 +169,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Position PID controller.</p>
           </div></section>
           <section class="m-doc-details" id="a7b9d88febe596e3fd11eca8a91f2c05c"><div>
             <h3>
@@ -180,6 +180,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>Velocity PD controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -215,7 +216,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Velocity PD controller.</p>
           </div></section>
           <section class="m-doc-details" id="a55d93373ed17166b0f5747a76690d1de"><div>
             <h3>
@@ -228,6 +228,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>Velocity PD controller that automatically writes to the motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -267,7 +268,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Velocity PD controller that automatically writes to the motor.</p>
           </div></section>
           <section class="m-doc-details" id="a5227fff05674d0165c02e02730a2a4c6"><div>
             <h3>
@@ -280,6 +280,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>Velocity PD controller that automatically writes to the motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -319,13 +320,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Velocity PD controller that automatically writes to the motor.</p>
           </div></section>
           <section class="m-doc-details" id="a10580d88f6c4d2f4b7355068c1ab3def"><div>
             <h3>
               <span class="m-doc-wrap-bumper">static <a href="classokapi_1_1IterativeMotorVelocityController.html" class="m-doc">IterativeMotorVelocityController</a> okapi::<wbr />IterativeControllerFactory::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a10580d88f6c4d2f4b7355068c1ab3def" class="m-doc-self">motorVelocity</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1Motor.html" class="m-doc">Motor</a> imotor,
               std::shared_ptr&lt;<a href="classokapi_1_1IterativeVelocityController.html" class="m-doc">IterativeVelocityController</a>&lt;double, double&gt;&gt; icontroller)</span></span>
             </h3>
+            <p>Velocity PD controller that automatically writes to the motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -341,13 +342,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Velocity PD controller that automatically writes to the motor.</p>
           </div></section>
           <section class="m-doc-details" id="ac8c7d72464d57e7d891b13aab9d9efbb"><div>
             <h3>
               <span class="m-doc-wrap-bumper">static <a href="classokapi_1_1IterativeMotorVelocityController.html" class="m-doc">IterativeMotorVelocityController</a> okapi::<wbr />IterativeControllerFactory::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac8c7d72464d57e7d891b13aab9d9efbb" class="m-doc-self">motorVelocity</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1MotorGroup.html" class="m-doc">MotorGroup</a> imotor,
               std::shared_ptr&lt;<a href="classokapi_1_1IterativeVelocityController.html" class="m-doc">IterativeVelocityController</a>&lt;double, double&gt;&gt; icontroller)</span></span>
             </h3>
+            <p>Velocity PD controller that automatically writes to the motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -363,7 +364,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Velocity PD controller that automatically writes to the motor.</p>
           </div></section>
         </section>
       </div>

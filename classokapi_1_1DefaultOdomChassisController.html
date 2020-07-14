@@ -95,7 +95,7 @@
               QAngle iturnThreshold = 0_deg,
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd></dd>
+            <dd><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> based chassis controller that moves using a separately constructed chassis controller.</dd>
             <dt id="a93e8f16e2f9d162d14a2aec69e969cdb">
               <span class="m-doc-wrap-bumper"><a href="#a93e8f16e2f9d162d14a2aec69e969cdb" class="m-doc-self">DefaultOdomChassisController</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1DefaultOdomChassisController.html" class="m-doc">DefaultOdomChassisController</a>&amp;) <span class="m-label m-flat m-danger">deleted</span></span>
             </dt>
@@ -122,11 +122,11 @@
               bool ibackwards = false,
               const QLength&amp; ioffset = 0_mm) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drives the robot straight to a point in the odom frame.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a6692219d4f4c264346c5c8096be41610" class="m-doc">turnToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Turns the robot to face a point in the odom frame.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a2b5fc33c7fbe8d6fd49f4fd46fb84a2d" class="m-doc">getChassisController</a>(</span><span class="m-doc-wrap">) -&gt; std::shared_ptr&lt;<a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>&gt;</span>
             </dt>
@@ -135,82 +135,82 @@
               <span class="m-doc-wrap-bumper">auto <a href="#add1bed5d02d3da37306ef0016b7ad8a2" class="m-doc">chassisController</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>&amp;</span>
             </dt>
             <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#aaf6e4d74384b87510d35b639e45f9dc2" class="m-doc">turnToAngle</a>(</span><span class="m-doc-wrap">const QAngle&amp; iangle) <span class="m-label m-flat m-warning">override</span></span>
+            <dt id="aaf6e4d74384b87510d35b639e45f9dc2">
+              <span class="m-doc-wrap-bumper">void <a href="#aaf6e4d74384b87510d35b639e45f9dc2" class="m-doc-self">turnToAngle</a>(</span><span class="m-doc-wrap">const QAngle&amp; iangle) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a3143bc60f72ab8ff8f63aad9a810a1c6" class="m-doc">moveDistance</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="a3143bc60f72ab8ff8f63aad9a810a1c6">
+              <span class="m-doc-wrap-bumper">void <a href="#a3143bc60f72ab8ff8f63aad9a810a1c6" class="m-doc-self">moveDistance</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a21123336d2f2cb2fcd8c42db309c9f6c" class="m-doc">moveRaw</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="a21123336d2f2cb2fcd8c42db309c9f6c">
+              <span class="m-doc-wrap-bumper">void <a href="#a21123336d2f2cb2fcd8c42db309c9f6c" class="m-doc-self">moveRaw</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a61ca0d303fcbfd08932157af9adbbb12" class="m-doc">moveDistanceAsync</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="a61ca0d303fcbfd08932157af9adbbb12">
+              <span class="m-doc-wrap-bumper">void <a href="#a61ca0d303fcbfd08932157af9adbbb12" class="m-doc-self">moveDistanceAsync</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#aec3f30b75ae403601de320a5b376ef0a" class="m-doc">moveRawAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="aec3f30b75ae403601de320a5b376ef0a">
+              <span class="m-doc-wrap-bumper">void <a href="#aec3f30b75ae403601de320a5b376ef0a" class="m-doc-self">moveRawAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a4ba07ac4bea9ff2d8aea30be72f6a0ea" class="m-doc">turnAngle</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="a4ba07ac4bea9ff2d8aea30be72f6a0ea">
+              <span class="m-doc-wrap-bumper">void <a href="#a4ba07ac4bea9ff2d8aea30be72f6a0ea" class="m-doc-self">turnAngle</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a2546087ed9bf13794235509bc8a2503f" class="m-doc">turnRaw</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="a2546087ed9bf13794235509bc8a2503f">
+              <span class="m-doc-wrap-bumper">void <a href="#a2546087ed9bf13794235509bc8a2503f" class="m-doc-self">turnRaw</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a18d748097a7938e3102638d17be54c76" class="m-doc">turnAngleAsync</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="a18d748097a7938e3102638d17be54c76">
+              <span class="m-doc-wrap-bumper">void <a href="#a18d748097a7938e3102638d17be54c76" class="m-doc-self">turnAngleAsync</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a3a69b57e67a178c2fdafbe31f64e44b4" class="m-doc">turnRawAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="a3a69b57e67a178c2fdafbe31f64e44b4">
+              <span class="m-doc-wrap-bumper">void <a href="#a3a69b57e67a178c2fdafbe31f64e44b4" class="m-doc-self">turnRawAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#aed92ba0b7a9fc15bf645f3789e8598ae" class="m-doc">setTurnsMirrored</a>(</span><span class="m-doc-wrap">bool ishouldMirror) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="aed92ba0b7a9fc15bf645f3789e8598ae">
+              <span class="m-doc-wrap-bumper">void <a href="#aed92ba0b7a9fc15bf645f3789e8598ae" class="m-doc-self">setTurnsMirrored</a>(</span><span class="m-doc-wrap">bool ishouldMirror) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ab6ddd200dc7a08a8e0dc95826ee9c36e" class="m-doc">isSettled</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="ab6ddd200dc7a08a8e0dc95826ee9c36e">
+              <span class="m-doc-wrap-bumper">auto <a href="#ab6ddd200dc7a08a8e0dc95826ee9c36e" class="m-doc-self">isSettled</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a44599379129060bdb44e6f603ee5777b" class="m-doc">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="a44599379129060bdb44e6f603ee5777b">
+              <span class="m-doc-wrap-bumper">void <a href="#a44599379129060bdb44e6f603ee5777b" class="m-doc-self">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#af6a98415e2c4e17dfec77e215efb1a41" class="m-doc">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="af6a98415e2c4e17dfec77e215efb1a41">
+              <span class="m-doc-wrap-bumper">void <a href="#af6a98415e2c4e17dfec77e215efb1a41" class="m-doc-self">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#affec1fead5eb3f3f2da197ecb72243fd" class="m-doc">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="affec1fead5eb3f3f2da197ecb72243fd">
+              <span class="m-doc-wrap-bumper">void <a href="#affec1fead5eb3f3f2da197ecb72243fd" class="m-doc-self">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a92b9ca10cd10b8b41904a2bcab7e88e5" class="m-doc">getMaxVelocity</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="a92b9ca10cd10b8b41904a2bcab7e88e5">
+              <span class="m-doc-wrap-bumper">auto <a href="#a92b9ca10cd10b8b41904a2bcab7e88e5" class="m-doc-self">getMaxVelocity</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#afa07913b30d47c790fcdce8c2b85a468" class="m-doc">getChassisScales</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="afa07913b30d47c790fcdce8c2b85a468">
+              <span class="m-doc-wrap-bumper">auto <a href="#afa07913b30d47c790fcdce8c2b85a468" class="m-doc-self">getChassisScales</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a6912dbe99776f79fb3a6990e2fbea2ff" class="m-doc">getGearsetRatioPair</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a> <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="a6912dbe99776f79fb3a6990e2fbea2ff">
+              <span class="m-doc-wrap-bumper">auto <a href="#a6912dbe99776f79fb3a6990e2fbea2ff" class="m-doc-self">getGearsetRatioPair</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a> <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a83e8bf7115086c331ada990ceb872bf1" class="m-doc">getModel</a>(</span><span class="m-doc-wrap">) -&gt; std::shared_ptr&lt;<a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&gt; <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="a83e8bf7115086c331ada990ceb872bf1">
+              <span class="m-doc-wrap-bumper">auto <a href="#a83e8bf7115086c331ada990ceb872bf1" class="m-doc-self">getModel</a>(</span><span class="m-doc-wrap">) -&gt; std::shared_ptr&lt;<a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&gt; <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#aa917086153b6298bf7792fd3b31ac240" class="m-doc">model</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&amp; <span class="m-label m-flat m-warning">override</span></span>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dt id="aa917086153b6298bf7792fd3b31ac240">
+              <span class="m-doc-wrap-bumper">auto <a href="#aa917086153b6298bf7792fd3b31ac240" class="m-doc-self">model</a>(</span><span class="m-doc-wrap">) -&gt; <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&amp; <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
           </dl>
         </section>
         <section id="pro-methods">
@@ -247,6 +247,7 @@
               QAngle iturnThreshold = 0_deg,
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> based chassis controller that moves using a separately constructed chassis controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -282,7 +283,7 @@
                 </tr>
               </tbody>
             </table>
-<p><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> based chassis controller that moves using a separately constructed chassis controller. Spins up a task at the default priority plus 1 for odometry when constructed.</p><p>Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific point on the field or turn to a specific angle, relative to its starting position.</p>
+<p>Spins up a task at the default priority plus 1 for odometry when constructed.</p><p>Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific point on the field or turn to a specific angle, relative to its starting position.</p>
           </div></section>
           <section class="m-doc-details" id="ad89098abcab5e9f333cb3c70c9e8299f"><div>
             <h3>
@@ -290,6 +291,7 @@
               bool ibackwards = false,
               const QLength&amp; ioffset = 0_mm) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Drives the robot straight to a point in the odom frame.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -309,12 +311,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Drives the robot straight to a point in the odom frame.</p>
           </div></section>
           <section class="m-doc-details" id="a6692219d4f4c264346c5c8096be41610"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6692219d4f4c264346c5c8096be41610" class="m-doc-self">turnToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Turns the robot to face a point in the odom frame.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -326,7 +328,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Turns the robot to face a point in the odom frame.</p>
           </div></section>
           <section class="m-doc-details" id="a2b5fc33c7fbe8d6fd49f4fd46fb84a2d"><div>
             <h3>
@@ -353,120 +354,6 @@
                 </tr>
               </tfoot>
             </table>
-          </div></section>
-          <section class="m-doc-details" id="aaf6e4d74384b87510d35b639e45f9dc2"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aaf6e4d74384b87510d35b639e45f9dc2" class="m-doc-self">turnToAngle</a>(</span><span class="m-doc-wrap">const QAngle&amp; iangle) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a3143bc60f72ab8ff8f63aad9a810a1c6"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3143bc60f72ab8ff8f63aad9a810a1c6" class="m-doc-self">moveDistance</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a21123336d2f2cb2fcd8c42db309c9f6c"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a21123336d2f2cb2fcd8c42db309c9f6c" class="m-doc-self">moveRaw</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a61ca0d303fcbfd08932157af9adbbb12"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a61ca0d303fcbfd08932157af9adbbb12" class="m-doc-self">moveDistanceAsync</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="aec3f30b75ae403601de320a5b376ef0a"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aec3f30b75ae403601de320a5b376ef0a" class="m-doc-self">moveRawAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a4ba07ac4bea9ff2d8aea30be72f6a0ea"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4ba07ac4bea9ff2d8aea30be72f6a0ea" class="m-doc-self">turnAngle</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a2546087ed9bf13794235509bc8a2503f"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2546087ed9bf13794235509bc8a2503f" class="m-doc-self">turnRaw</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a18d748097a7938e3102638d17be54c76"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a18d748097a7938e3102638d17be54c76" class="m-doc-self">turnAngleAsync</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a3a69b57e67a178c2fdafbe31f64e44b4"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3a69b57e67a178c2fdafbe31f64e44b4" class="m-doc-self">turnRawAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="aed92ba0b7a9fc15bf645f3789e8598ae"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aed92ba0b7a9fc15bf645f3789e8598ae" class="m-doc-self">setTurnsMirrored</a>(</span><span class="m-doc-wrap">bool ishouldMirror) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="ab6ddd200dc7a08a8e0dc95826ee9c36e"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">bool okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab6ddd200dc7a08a8e0dc95826ee9c36e" class="m-doc-self">isSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a44599379129060bdb44e6f603ee5777b"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a44599379129060bdb44e6f603ee5777b" class="m-doc-self">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="af6a98415e2c4e17dfec77e215efb1a41"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af6a98415e2c4e17dfec77e215efb1a41" class="m-doc-self">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="affec1fead5eb3f3f2da197ecb72243fd"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#affec1fead5eb3f3f2da197ecb72243fd" class="m-doc-self">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a92b9ca10cd10b8b41904a2bcab7e88e5"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">double okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a92b9ca10cd10b8b41904a2bcab7e88e5" class="m-doc-self">getMaxVelocity</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="afa07913b30d47c790fcdce8c2b85a468"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afa07913b30d47c790fcdce8c2b85a468" class="m-doc-self">getChassisScales</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a6912dbe99776f79fb3a6990e2fbea2ff"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a> okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6912dbe99776f79fb3a6990e2fbea2ff" class="m-doc-self">getGearsetRatioPair</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a83e8bf7115086c331ada990ceb872bf1"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">std::shared_ptr&lt;<a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&gt; okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a83e8bf7115086c331ada990ceb872bf1" class="m-doc-self">getModel</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="aa917086153b6298bf7792fd3b31ac240"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&amp; okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa917086153b6298bf7792fd3b31ac240" class="m-doc-self">model</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</p>
           </div></section>
         </section>
       </div>

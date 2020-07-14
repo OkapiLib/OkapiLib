@@ -81,7 +81,7 @@
               double iatTargetDerivative = 5,
               QTime iatTargetTime = 250_ms) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd></dd>
+            <dd>A utility class to determine if a control loop has settled based on error.</dd>
             <dt id="abb15aef3ece1e9911b7e26db1c77b2e8">
               <span class="m-doc-wrap-bumper"><a href="#abb15aef3ece1e9911b7e26db1c77b2e8" class="m-doc-self">~SettledUtil</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -94,11 +94,11 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aa651d2e0197b73f568993b4cf2520ca5" class="m-doc">isSettled</a>(</span><span class="m-doc-wrap">double ierror) -&gt; bool <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a5341b7db25eaff4acafbe59b1b385ada" class="m-doc">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
+            <dd>Returns whether the controller is settled.</dd>
+            <dt id="a5341b7db25eaff4acafbe59b1b385ada">
+              <span class="m-doc-wrap-bumper">void <a href="#a5341b7db25eaff4acafbe59b1b385ada" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Resets the &quot;at target&quot; timer and clears the previous error.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -135,6 +135,7 @@
               double iatTargetDerivative = 5,
               QTime iatTargetTime = 250_ms) <span class="m-label m-info">explicit</span> </span></span>
             </h3>
+            <p>A utility class to determine if a control loop has settled based on error.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -158,12 +159,13 @@
                 </tr>
               </tbody>
             </table>
-<p>A utility class to determine if a control loop has settled based on error. A control loop is settled if the error is within <code>iatTargetError</code> and <code>iatTargetDerivative</code> for <code>iatTargetTime</code>.</p>
+<p>A control loop is settled if the error is within <code>iatTargetError</code> and <code>iatTargetDerivative</code> for <code>iatTargetTime</code>.</p>
           </div></section>
           <section class="m-doc-details" id="aa651d2e0197b73f568993b4cf2520ca5"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />SettledUtil::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa651d2e0197b73f568993b4cf2520ca5" class="m-doc-self">isSettled</a>(</span><span class="m-doc-wrap">double ierror) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns whether the controller is settled.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -181,13 +183,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller is settled.</p>
-          </div></section>
-          <section class="m-doc-details" id="a5341b7db25eaff4acafbe59b1b385ada"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />SettledUtil::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5341b7db25eaff4acafbe59b1b385ada" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
-            </h3>
-<p>Resets the &quot;at target&quot; timer and clears the previous error.</p>
           </div></section>
         </section>
       </div>

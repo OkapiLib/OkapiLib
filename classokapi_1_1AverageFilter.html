@@ -59,6 +59,7 @@
           <div class="m-doc-template">template&lt;std::size_t n&gt;</div>
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>AverageFilter <span class="m-thin">class</span>
         </h1>
+        <p>A filter which returns the average of a list of values.</p>
         <table class="m-table m-fullwidth m-flat">
           <thead>
             <tr><th colspan="2">Template parameters</th></tr>
@@ -84,7 +85,6 @@
             </li>
           </ul>
         </div>
-<p>A filter which returns the average of a list of values.</p>
         <section id="base-classes">
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
@@ -97,10 +97,10 @@
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a21483cccbe9d9aa49200c3b4b6d8a878" class="m-doc">AverageFilter</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span></span>
+            <dt id="a21483cccbe9d9aa49200c3b4b6d8a878">
+              <span class="m-doc-wrap-bumper"><a href="#a21483cccbe9d9aa49200c3b4b6d8a878" class="m-doc-self">AverageFilter</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span></span>
             </dt>
-            <dd></dd>
+            <dd>Averaging filter.</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -109,11 +109,11 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a6030d718df73a9a1d7a99c104c3e564e" class="m-doc">filter</a>(</span><span class="m-doc-wrap">const double ireading) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Filters a value, like a sensor reading.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a2ee104dfc880e779079dc8e1e242a44b" class="m-doc">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the previous output from filter.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -135,15 +135,6 @@
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a21483cccbe9d9aa49200c3b4b6d8a878"><div>
-            <h3>
-              <div class="m-doc-template">
-                template&lt;std::size_t n&gt;
-              </div>
-              <span class="m-doc-wrap-bumper"> okapi::<wbr />AverageFilter&lt;n&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a21483cccbe9d9aa49200c3b4b6d8a878" class="m-doc-self">AverageFilter</a>(</span><span class="m-doc-wrap">) <span class="m-label m-info">defaulted</span></span></span>
-            </h3>
-<p>Averaging filter.</p>
-          </div></section>
           <section class="m-doc-details" id="a6030d718df73a9a1d7a99c104c3e564e"><div>
             <h3>
               <div class="m-doc-template">
@@ -151,6 +142,7 @@
               </div>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />AverageFilter&lt;n&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6030d718df73a9a1d7a99c104c3e564e" class="m-doc-self">filter</a>(</span><span class="m-doc-wrap">const double ireading) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Filters a value, like a sensor reading.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -168,7 +160,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Filters a value, like a sensor reading.</p>
           </div></section>
           <section class="m-doc-details" id="a2ee104dfc880e779079dc8e1e242a44b"><div>
             <h3>
@@ -177,6 +168,7 @@
               </div>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />AverageFilter&lt;n&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2ee104dfc880e779079dc8e1e242a44b" class="m-doc-self">getOutput</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns the previous output from filter.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -185,7 +177,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the previous output from filter.</p>
           </div></section>
         </section>
       </div>

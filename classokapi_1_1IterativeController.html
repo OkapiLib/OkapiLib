@@ -59,6 +59,7 @@
           <div class="m-doc-template">template&lt;typename Input, typename Output&gt;</div>
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>IterativeController <span class="m-thin">class</span>
         </h1>
+        <p>Closed-loop controller that steps iteratively using the step method below.</p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -72,7 +73,7 @@
             </li>
           </ul>
         </div>
-<p>Closed-loop controller that steps iteratively using the step method below.</p><p><code><a href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49" class="m-doc">ControllerOutput::<wbr />controllerSet()</a></code> should set the controller&#x27;s target to the input scaled by the output bounds.</p>
+<p><code><a href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49" class="m-doc">ControllerOutput::<wbr />controllerSet()</a></code> should set the controller&#x27;s target to the input scaled by the output bounds.</p>
         <section id="base-classes">
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
@@ -80,7 +81,7 @@
               <div class="m-doc-template">template&lt;typename Input, typename Output&gt;</div>
               class <a href="classokapi_1_1ClosedLoopController.html" class="m-doc">ClosedLoopController</a>
             </dt>
-            <dd></dd>
+            <dd>An abstract closed-loop controller.</dd>
           </dl>
         </section>
         <section id="derived-classes">
@@ -104,37 +105,37 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a751bcad1407099e629e3ffbe395daf2b" class="m-doc">step</a>(</span><span class="m-doc-wrap">Input ireading) -&gt; Output <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a83e0aac640804974f0e06936b9f7898a" class="m-doc">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; Output <span class="m-label m-flat m-warning">pure virtual</span></span>
+            <dd>Do one iteration of the controller.</dd>
+            <dt id="a83e0aac640804974f0e06936b9f7898a">
+              <span class="m-doc-wrap-bumper">auto <a href="#a83e0aac640804974f0e06936b9f7898a" class="m-doc-self">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; Output <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the last calculated output of the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ae1a7d9bd29d176a26bcc70c741f0d50f" class="m-doc">setOutputLimits</a>(</span><span class="m-doc-wrap">Output imax,
               Output imin) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set controller output bounds.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a7c514b702b78be6c45c03b718edce035" class="m-doc">setControllerSetTargetLimits</a>(</span><span class="m-doc-wrap">Output itargetMax,
               Output itargetMin) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the (soft) limits for the target range that <a href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49" class="m-doc">controllerSet()</a> scales into.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a09bdba3a6d7854d943ed5401210b0595" class="m-doc">getMaxOutput</a>(</span><span class="m-doc-wrap">) -&gt; Output <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the upper output bound.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a4d271df97caeedbcc807b714a48eaa30" class="m-doc">getMinOutput</a>(</span><span class="m-doc-wrap">) -&gt; Output <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the lower output bound.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ac4cfb1b37a3c707b2fc8f2fbda526f3e" class="m-doc">setSampleTime</a>(</span><span class="m-doc-wrap">QTime isampleTime) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set time between loops.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a48cd86626af7036db4f36b4124df4f98" class="m-doc">getSampleTime</a>(</span><span class="m-doc-wrap">) const -&gt; QTime <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the last set sample time.</dd>
           </dl>
         </section>
         <section>
@@ -146,6 +147,7 @@
               </div>
               <span class="m-doc-wrap-bumper">Output okapi::<wbr />IterativeController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a751bcad1407099e629e3ffbe395daf2b" class="m-doc-self">step</a>(</span><span class="m-doc-wrap">Input ireading) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Do one iteration of the controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -163,16 +165,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Do one iteration of the controller.</p>
-          </div></section>
-          <section class="m-doc-details" id="a83e0aac640804974f0e06936b9f7898a"><div>
-            <h3>
-              <div class="m-doc-template">
-                template&lt;typename Input, typename Output&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">Output okapi::<wbr />IterativeController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a83e0aac640804974f0e06936b9f7898a" class="m-doc-self">getOutput</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-<p>Returns the last calculated output of the controller.</p>
           </div></section>
           <section class="m-doc-details" id="ae1a7d9bd29d176a26bcc70c741f0d50f"><div>
             <h3>
@@ -182,6 +174,7 @@
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae1a7d9bd29d176a26bcc70c741f0d50f" class="m-doc-self">setOutputLimits</a>(</span><span class="m-doc-wrap">Output imax,
               Output imin) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Set controller output bounds.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -197,7 +190,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Set controller output bounds.</p>
           </div></section>
           <section class="m-doc-details" id="a7c514b702b78be6c45c03b718edce035"><div>
             <h3>
@@ -207,6 +199,7 @@
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7c514b702b78be6c45c03b718edce035" class="m-doc-self">setControllerSetTargetLimits</a>(</span><span class="m-doc-wrap">Output itargetMax,
               Output itargetMin) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets the (soft) limits for the target range that <a href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49" class="m-doc">controllerSet()</a> scales into.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -222,7 +215,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the (soft) limits for the target range that <a href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49" class="m-doc">controllerSet()</a> scales into. The target computed by <code><a href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49" class="m-doc">controllerSet()</a></code> is scaled into the range <code>[-itargetMin, itargetMax]</code>.</p>
+<p>The target computed by <code><a href="classokapi_1_1ControllerOutput.html#a360c08f0c10b36f882d6d3100c2cad49" class="m-doc">controllerSet()</a></code> is scaled into the range <code>[-itargetMin, itargetMax]</code>.</p>
           </div></section>
           <section class="m-doc-details" id="a09bdba3a6d7854d943ed5401210b0595"><div>
             <h3>
@@ -231,6 +224,7 @@
               </div>
               <span class="m-doc-wrap-bumper">Output okapi::<wbr />IterativeController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a09bdba3a6d7854d943ed5401210b0595" class="m-doc-self">getMaxOutput</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Get the upper output bound.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -239,7 +233,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the upper output bound.</p>
           </div></section>
           <section class="m-doc-details" id="a4d271df97caeedbcc807b714a48eaa30"><div>
             <h3>
@@ -248,6 +241,7 @@
               </div>
               <span class="m-doc-wrap-bumper">Output okapi::<wbr />IterativeController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4d271df97caeedbcc807b714a48eaa30" class="m-doc-self">getMinOutput</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Get the lower output bound.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -256,7 +250,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the lower output bound.</p>
           </div></section>
           <section class="m-doc-details" id="ac4cfb1b37a3c707b2fc8f2fbda526f3e"><div>
             <h3>
@@ -265,6 +258,7 @@
               </div>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac4cfb1b37a3c707b2fc8f2fbda526f3e" class="m-doc-self">setSampleTime</a>(</span><span class="m-doc-wrap">QTime isampleTime) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Set time between loops.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -276,7 +270,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Set time between loops.</p>
           </div></section>
           <section class="m-doc-details" id="a48cd86626af7036db4f36b4124df4f98"><div>
             <h3>
@@ -285,6 +278,7 @@
               </div>
               <span class="m-doc-wrap-bumper">QTime okapi::<wbr />IterativeController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a48cd86626af7036db4f36b4124df4f98" class="m-doc-self">getSampleTime</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Get the last set sample time.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -293,7 +287,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the last set sample time.</p>
           </div></section>
         </section>
       </div>

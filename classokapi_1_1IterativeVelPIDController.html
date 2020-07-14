@@ -106,7 +106,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd></dd>
+            <dd>Velocity PD controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper"><a href="#a364914d3e0be9ad3164351419b765560" class="m-doc">IterativeVelPIDController</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1IterativeVelPIDController_1_1Gains.html" class="m-doc">Gains</a>&amp; igains,
               std::unique_ptr&lt;<a href="classokapi_1_1VelMath.html" class="m-doc">VelMath</a>&gt; ivelMath,
@@ -114,7 +114,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd></dd>
+            <dd>Velocity PD controller.</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -123,101 +123,101 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a7d75bb1622974daba25a9dec4df68325" class="m-doc">step</a>(</span><span class="m-doc-wrap">double inewReading) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Do one iteration of the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ab4ec4344fa758ba8cce93633aa0851d2" class="m-doc">setTarget</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target for the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a50c069752036261395871fbe175ae101" class="m-doc">controllerSet</a>(</span><span class="m-doc-wrap">double ivalue) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Writes the value of the controller output.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a5f2bbad6e916345f8a3abf762609321c" class="m-doc">getTarget</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Gets the last set target, or the default target if none was set.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a557555049cabcda2301a7f438135305a" class="m-doc">getTarget</a>(</span><span class="m-doc-wrap">) const -&gt; double</span>
             </dt>
-            <dd></dd>
+            <dd>Gets the last set target, or the default target if none was set.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ab6a38ef2fabcf521cddac4a97578e113" class="m-doc">getProcessValue</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#ab3f4050524cb54b4e3df951a8d84ac57" class="m-doc">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
+            <dt id="ab3f4050524cb54b4e3df951a8d84ac57">
+              <span class="m-doc-wrap-bumper">auto <a href="#ab3f4050524cb54b4e3df951a8d84ac57" class="m-doc-self">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the last calculated output of the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#acf26277c959a7fd03c918340e194a361" class="m-doc">getMaxOutput</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the upper output bound.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a0401715743d991c5ca9f3afa51a5a069" class="m-doc">getMinOutput</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the lower output bound.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a7e60b432a91d73db0a62c5d31759ed10" class="m-doc">getError</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the last error of the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a818347e199d8e7fd3e11f9f1aa369749" class="m-doc">isSettled</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns whether the controller has settled at the target.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aef5ba457e81871d47519413551856bb8" class="m-doc">setSampleTime</a>(</span><span class="m-doc-wrap">QTime isampleTime) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set time between loops in ms.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a02efd865f97b0f2da3f826c1120ec07b" class="m-doc">setOutputLimits</a>(</span><span class="m-doc-wrap">double imax,
               double imin) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set controller output bounds.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a054d5bff10ba504b9f72db567ad45bfb" class="m-doc">setControllerSetTargetLimits</a>(</span><span class="m-doc-wrap">double itargetMax,
               double itargetMin) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a51607c29e072a672522a9e93bbd12410" class="m-doc">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>Sets the (soft) limits for the target range that <a href="classokapi_1_1IterativeVelPIDController.html#a50c069752036261395871fbe175ae101" class="m-doc">controllerSet()</a> scales into.</dd>
+            <dt id="a51607c29e072a672522a9e93bbd12410">
+              <span class="m-doc-wrap-bumper">void <a href="#a51607c29e072a672522a9e93bbd12410" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Resets the controller&#x27;s internal state so it is similar to when it was first initialized, while keeping any user-configured information.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a9a575df2d0a53ca71a812a86d673b8fa" class="m-doc">flipDisable</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Changes whether the controller is off or on.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a6bd2a04813b0fd99f0904808ff963f28" class="m-doc">flipDisable</a>(</span><span class="m-doc-wrap">bool iisDisabled) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets whether the controller is off or on.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a628a5093634f85d788015c4cc1353c54" class="m-doc">isDisabled</a>(</span><span class="m-doc-wrap">) const -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns whether the controller is currently disabled.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aa786680075677c2f43619d48cad0e154" class="m-doc">getSampleTime</a>(</span><span class="m-doc-wrap">) const -&gt; QTime <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the last set sample time.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a61f240eba6823d4174f2d7cc4b524239" class="m-doc">stepVel</a>(</span><span class="m-doc-wrap">double inewReading) -&gt; QAngularSpeed <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Do one iteration of velocity calculation.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a0d04321661f6f9e07eecb3e8706cd588" class="m-doc">setGains</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1IterativeVelPIDController_1_1Gains.html" class="m-doc">Gains</a>&amp; igains) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set controller gains.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ac3d622a0af77e60a17fe6d6351d14d4f" class="m-doc">getGains</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1IterativeVelPIDController_1_1Gains.html" class="m-doc">Gains</a></span>
             </dt>
-            <dd></dd>
+            <dd>Gets the current gains.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a646a0763858e29f37fde0fb8a0fb4116" class="m-doc">setTicksPerRev</a>(</span><span class="m-doc-wrap">double tpr) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a0f00d299a6cbe11eaad67fb994486c39" class="m-doc">getVel</a>(</span><span class="m-doc-wrap">) const -&gt; QAngularSpeed <span class="m-label m-flat m-warning">virtual</span></span>
+            <dd>Sets the number of encoder ticks per revolution.</dd>
+            <dt id="a0f00d299a6cbe11eaad67fb994486c39">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0f00d299a6cbe11eaad67fb994486c39" class="m-doc-self">getVel</a>(</span><span class="m-doc-wrap">) const -&gt; QAngularSpeed <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the current velocity.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -318,6 +318,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>Velocity PD controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -357,7 +358,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Velocity PD controller.</p>
           </div></section>
           <section class="m-doc-details" id="a364914d3e0be9ad3164351419b765560"><div>
             <h3>
@@ -367,6 +367,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>Velocity PD controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -394,12 +395,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Velocity PD controller.</p>
           </div></section>
           <section class="m-doc-details" id="a7d75bb1622974daba25a9dec4df68325"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7d75bb1622974daba25a9dec4df68325" class="m-doc-self">step</a>(</span><span class="m-doc-wrap">double inewReading) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Do one iteration of the controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -417,12 +418,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Do one iteration of the controller. Returns the reading in the range [-1, 1] unless the bounds have been changed with <a href="classokapi_1_1IterativeVelPIDController.html#a02efd865f97b0f2da3f826c1120ec07b" class="m-doc">setOutputLimits()</a>.</p>
+<p>Returns the reading in the range [-1, 1] unless the bounds have been changed with <a href="classokapi_1_1IterativeVelPIDController.html#a02efd865f97b0f2da3f826c1120ec07b" class="m-doc">setOutputLimits()</a>.</p>
           </div></section>
           <section class="m-doc-details" id="ab4ec4344fa758ba8cce93633aa0851d2"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab4ec4344fa758ba8cce93633aa0851d2" class="m-doc-self">setTarget</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets the target for the controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -434,12 +436,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the target for the controller.</p>
           </div></section>
           <section class="m-doc-details" id="a50c069752036261395871fbe175ae101"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a50c069752036261395871fbe175ae101" class="m-doc-self">controllerSet</a>(</span><span class="m-doc-wrap">double ivalue) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Writes the value of the controller output.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -451,12 +453,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Writes the value of the controller output. This method might be automatically called in another thread by the controller. The range of input values is expected to be [-1, 1].</p>
+<p>This method might be automatically called in another thread by the controller. The range of input values is expected to be [-1, 1].</p>
           </div></section>
           <section class="m-doc-details" id="a5f2bbad6e916345f8a3abf762609321c"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5f2bbad6e916345f8a3abf762609321c" class="m-doc-self">getTarget</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Gets the last set target, or the default target if none was set.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -465,12 +468,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the last set target, or the default target if none was set.</p>
           </div></section>
           <section class="m-doc-details" id="a557555049cabcda2301a7f438135305a"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a557555049cabcda2301a7f438135305a" class="m-doc-self">getTarget</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Gets the last set target, or the default target if none was set.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -479,7 +482,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the last set target, or the default target if none was set.</p>
           </div></section>
           <section class="m-doc-details" id="ab6a38ef2fabcf521cddac4a97578e113"><div>
             <h3>
@@ -494,16 +496,11 @@
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="ab3f4050524cb54b4e3df951a8d84ac57"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab3f4050524cb54b4e3df951a8d84ac57" class="m-doc-self">getOutput</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Returns the last calculated output of the controller.</p>
-          </div></section>
           <section class="m-doc-details" id="acf26277c959a7fd03c918340e194a361"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#acf26277c959a7fd03c918340e194a361" class="m-doc-self">getMaxOutput</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Get the upper output bound.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -512,12 +509,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the upper output bound.</p>
           </div></section>
           <section class="m-doc-details" id="a0401715743d991c5ca9f3afa51a5a069"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0401715743d991c5ca9f3afa51a5a069" class="m-doc-self">getMinOutput</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Get the lower output bound.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -526,18 +523,19 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the lower output bound.</p>
           </div></section>
           <section class="m-doc-details" id="a7e60b432a91d73db0a62c5d31759ed10"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7e60b432a91d73db0a62c5d31759ed10" class="m-doc-self">getError</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Returns the last error of the controller. Does not update when disabled.</p>
+            <p>Returns the last error of the controller.</p>
+<p>Does not update when disabled.</p>
           </div></section>
           <section class="m-doc-details" id="a818347e199d8e7fd3e11f9f1aa369749"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a818347e199d8e7fd3e11f9f1aa369749" class="m-doc-self">isSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns whether the controller has settled at the target.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -546,12 +544,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller has settled at the target. Determining what settling means is implementation-dependent.</p><p>If the controller is disabled, this method must return true.</p>
+<p>Determining what settling means is implementation-dependent.</p><p>If the controller is disabled, this method must return true.</p>
           </div></section>
           <section class="m-doc-details" id="aef5ba457e81871d47519413551856bb8"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aef5ba457e81871d47519413551856bb8" class="m-doc-self">setSampleTime</a>(</span><span class="m-doc-wrap">QTime isampleTime) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Set time between loops in ms.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -563,13 +562,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Set time between loops in ms.</p>
           </div></section>
           <section class="m-doc-details" id="a02efd865f97b0f2da3f826c1120ec07b"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a02efd865f97b0f2da3f826c1120ec07b" class="m-doc-self">setOutputLimits</a>(</span><span class="m-doc-wrap">double imax,
               double imin) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Set controller output bounds.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -585,13 +584,14 @@
                 </tr>
               </tbody>
             </table>
-<p>Set controller output bounds. Default bounds are [-1, 1].</p>
+<p>Default bounds are [-1, 1].</p>
           </div></section>
           <section class="m-doc-details" id="a054d5bff10ba504b9f72db567ad45bfb"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a054d5bff10ba504b9f72db567ad45bfb" class="m-doc-self">setControllerSetTargetLimits</a>(</span><span class="m-doc-wrap">double itargetMax,
               double itargetMin) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets the (soft) limits for the target range that <a href="classokapi_1_1IterativeVelPIDController.html#a50c069752036261395871fbe175ae101" class="m-doc">controllerSet()</a> scales into.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -607,24 +607,20 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the (soft) limits for the target range that <a href="classokapi_1_1IterativeVelPIDController.html#a50c069752036261395871fbe175ae101" class="m-doc">controllerSet()</a> scales into. The target computed by <a href="classokapi_1_1IterativeVelPIDController.html#a50c069752036261395871fbe175ae101" class="m-doc">controllerSet()</a> is scaled into the range [-itargetMin, itargetMax].</p>
-          </div></section>
-          <section class="m-doc-details" id="a51607c29e072a672522a9e93bbd12410"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a51607c29e072a672522a9e93bbd12410" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Resets the controller&#x27;s internal state so it is similar to when it was first initialized, while keeping any user-configured information.</p>
+<p>The target computed by <a href="classokapi_1_1IterativeVelPIDController.html#a50c069752036261395871fbe175ae101" class="m-doc">controllerSet()</a> is scaled into the range [-itargetMin, itargetMax].</p>
           </div></section>
           <section class="m-doc-details" id="a9a575df2d0a53ca71a812a86d673b8fa"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9a575df2d0a53ca71a812a86d673b8fa" class="m-doc-self">flipDisable</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Changes whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
+            <p>Changes whether the controller is off or on.</p>
+<p>Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
           </div></section>
           <section class="m-doc-details" id="a6bd2a04813b0fd99f0904808ff963f28"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6bd2a04813b0fd99f0904808ff963f28" class="m-doc-self">flipDisable</a>(</span><span class="m-doc-wrap">bool iisDisabled) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets whether the controller is off or on.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -636,12 +632,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
+<p>Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
           </div></section>
           <section class="m-doc-details" id="a628a5093634f85d788015c4cc1353c54"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a628a5093634f85d788015c4cc1353c54" class="m-doc-self">isDisabled</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns whether the controller is currently disabled.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -650,12 +647,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller is currently disabled.</p>
           </div></section>
           <section class="m-doc-details" id="aa786680075677c2f43619d48cad0e154"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QTime okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa786680075677c2f43619d48cad0e154" class="m-doc-self">getSampleTime</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Get the last set sample time.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -664,12 +661,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the last set sample time.</p>
           </div></section>
           <section class="m-doc-details" id="a61f240eba6823d4174f2d7cc4b524239"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QAngularSpeed okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a61f240eba6823d4174f2d7cc4b524239" class="m-doc-self">stepVel</a>(</span><span class="m-doc-wrap">double inewReading) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Do one iteration of velocity calculation.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -687,12 +684,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Do one iteration of velocity calculation.</p>
           </div></section>
           <section class="m-doc-details" id="a0d04321661f6f9e07eecb3e8706cd588"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0d04321661f6f9e07eecb3e8706cd588" class="m-doc-self">setGains</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1IterativeVelPIDController_1_1Gains.html" class="m-doc">Gains</a>&amp; igains) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Set controller gains.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -704,12 +701,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Set controller gains.</p>
           </div></section>
           <section class="m-doc-details" id="ac3d622a0af77e60a17fe6d6351d14d4f"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="structokapi_1_1IterativeVelPIDController_1_1Gains.html" class="m-doc">Gains</a> okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac3d622a0af77e60a17fe6d6351d14d4f" class="m-doc-self">getGains</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Gets the current gains.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -718,12 +715,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the current gains.</p>
           </div></section>
           <section class="m-doc-details" id="a646a0763858e29f37fde0fb8a0fb4116"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a646a0763858e29f37fde0fb8a0fb4116" class="m-doc-self">setTicksPerRev</a>(</span><span class="m-doc-wrap">double tpr) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Sets the number of encoder ticks per revolution.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -735,13 +732,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the number of encoder ticks per revolution. Default is 1800.</p>
-          </div></section>
-          <section class="m-doc-details" id="a0f00d299a6cbe11eaad67fb994486c39"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">QAngularSpeed okapi::<wbr />IterativeVelPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0f00d299a6cbe11eaad67fb994486c39" class="m-doc-self">getVel</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">virtual</span></span></span>
-            </h3>
-<p>Returns the current velocity.</p>
+<p>Default is 1800.</p>
           </div></section>
         </section>
       </div>

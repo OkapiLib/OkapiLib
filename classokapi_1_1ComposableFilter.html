@@ -88,7 +88,7 @@
             <dt>
               <span class="m-doc-wrap-bumper"><a href="#ab435425858bcf6710a9ffc1fdcd84fa0" class="m-doc">ComposableFilter</a>(</span><span class="m-doc-wrap">const std::initializer_list&lt;std::shared_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt;&gt;&amp; ilist)</span>
             </dt>
-            <dd></dd>
+            <dd>A composable filter is a filter that consists of other filters.</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -97,7 +97,7 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a76925f04dcd186b249e5bfb169f27992" class="m-doc">filter</a>(</span><span class="m-doc-wrap">double ireading) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Filters a value.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a2d54899ce84c463af2f22cfbf36c7c7c" class="m-doc">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
@@ -105,7 +105,7 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a5a051c89bddbccaaaffa83d868f6b289" class="m-doc">addFilter</a>(</span><span class="m-doc-wrap">std::shared_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; ifilter) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Adds a filter to the end of the sequence.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -127,6 +127,7 @@
             <h3>
               <span class="m-doc-wrap-bumper"> okapi::<wbr />ComposableFilter::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab435425858bcf6710a9ffc1fdcd84fa0" class="m-doc-self">ComposableFilter</a>(</span><span class="m-doc-wrap">const std::initializer_list&lt;std::shared_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt;&gt;&amp; ilist)</span></span>
             </h3>
+            <p>A composable filter is a filter that consists of other filters.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -138,12 +139,13 @@
                 </tr>
               </tbody>
             </table>
-<p>A composable filter is a filter that consists of other filters. The input signal is passed through each filter in sequence. The final output of this filter is the output of the last filter.</p>
+<p>The input signal is passed through each filter in sequence. The final output of this filter is the output of the last filter.</p>
           </div></section>
           <section class="m-doc-details" id="a76925f04dcd186b249e5bfb169f27992"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />ComposableFilter::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a76925f04dcd186b249e5bfb169f27992" class="m-doc-self">filter</a>(</span><span class="m-doc-wrap">double ireading) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Filters a value.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -161,7 +163,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Filters a value.</p>
           </div></section>
           <section class="m-doc-details" id="a2d54899ce84c463af2f22cfbf36c7c7c"><div>
             <h3>
@@ -180,6 +181,7 @@
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ComposableFilter::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5a051c89bddbccaaaffa83d868f6b289" class="m-doc-self">addFilter</a>(</span><span class="m-doc-wrap">std::shared_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; ifilter) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Adds a filter to the end of the sequence.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -191,7 +193,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Adds a filter to the end of the sequence.</p>
           </div></section>
         </section>
       </div>

@@ -86,11 +86,11 @@
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a89b1a3956de3965a8552600283a1ec1b" class="m-doc">IterativeMotorVelocityController</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;&amp; imotor,
+            <dt id="a89b1a3956de3965a8552600283a1ec1b">
+              <span class="m-doc-wrap-bumper"><a href="#a89b1a3956de3965a8552600283a1ec1b" class="m-doc-self">IterativeMotorVelocityController</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;&amp; imotor,
               const std::shared_ptr&lt;<a href="classokapi_1_1IterativeVelocityController.html" class="m-doc">IterativeVelocityController</a>&lt;double, double&gt;&gt;&amp; icontroller)</span>
             </dt>
-            <dd></dd>
+            <dd>Velocity controller that automatically writes to the motor.</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -99,77 +99,77 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a71f514d22293dc2e23de26ecd994d57c" class="m-doc">step</a>(</span><span class="m-doc-wrap">double ireading) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a9a5a1d57df3faa75474245200ed34a18" class="m-doc">setTarget</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>Do one iteration of the controller.</dd>
+            <dt id="a9a5a1d57df3faa75474245200ed34a18">
+              <span class="m-doc-wrap-bumper">void <a href="#a9a5a1d57df3faa75474245200ed34a18" class="m-doc-self">setTarget</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target for the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a5a36064df12b3d34f2bfa09ca1992b9e" class="m-doc">controllerSet</a>(</span><span class="m-doc-wrap">double ivalue) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Writes the value of the controller output.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a3e54865f6b424954f3846cd1361077c5" class="m-doc">getTarget</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Gets the last set target, or the default target if none was set.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a5142697e2cc206746daace826acbc410" class="m-doc">getProcessValue</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a078d0d0d20118e374d01d2b9eba23da3" class="m-doc">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
+            <dt id="a078d0d0d20118e374d01d2b9eba23da3">
+              <span class="m-doc-wrap-bumper">auto <a href="#a078d0d0d20118e374d01d2b9eba23da3" class="m-doc-self">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the last calculated output of the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a48d88a7c9cec2c7046d0f7f61d8777c9" class="m-doc">getMaxOutput</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the upper output bound.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a32942ed7359481ede1fba86d7dc44795" class="m-doc">getMinOutput</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the lower output bound.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aee5e0bfdaa45c2748b9f4bf8b549f286" class="m-doc">getError</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the last error of the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ade18c38b1ec3196b25b0ea323d8e1075" class="m-doc">isSettled</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns whether the controller has settled at the target.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ab94173452bbba03ffe51a4e700e2a870" class="m-doc">setSampleTime</a>(</span><span class="m-doc-wrap">QTime isampleTime) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set time between loops in ms.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a7614e53a0847e47e5418df21670c1ddd" class="m-doc">setOutputLimits</a>(</span><span class="m-doc-wrap">double imax,
               double imin) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set controller output bounds.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a083db063a4f8f15787a0c97068eef755" class="m-doc">setControllerSetTargetLimits</a>(</span><span class="m-doc-wrap">double itargetMax,
               double itargetMin) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a404105de7fd0e34dd50f09d47c8b110f" class="m-doc">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>Sets the (soft) limits for the target range that <a href="classokapi_1_1IterativeMotorVelocityController.html#a5a36064df12b3d34f2bfa09ca1992b9e" class="m-doc">controllerSet()</a> scales into.</dd>
+            <dt id="a404105de7fd0e34dd50f09d47c8b110f">
+              <span class="m-doc-wrap-bumper">void <a href="#a404105de7fd0e34dd50f09d47c8b110f" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Resets the controller&#x27;s internal state so it is similar to when it was first initialized, while keeping any user-configured information.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a24d2200fe82b8f454839caaa511483f6" class="m-doc">flipDisable</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Changes whether the controller is off or on.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a8419fd62ca804f0446204b59ce37d01c" class="m-doc">flipDisable</a>(</span><span class="m-doc-wrap">bool iisDisabled) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets whether the controller is off or on.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a3d0383caf0fb0b982806e224492af473" class="m-doc">isDisabled</a>(</span><span class="m-doc-wrap">) const -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns whether the controller is currently disabled.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ae67b1aec831d3711f12beb85f69eb7f0" class="m-doc">getSampleTime</a>(</span><span class="m-doc-wrap">) const -&gt; QTime <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the last set sample time.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -187,17 +187,11 @@
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a89b1a3956de3965a8552600283a1ec1b"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"> okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a89b1a3956de3965a8552600283a1ec1b" class="m-doc-self">IterativeMotorVelocityController</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;&amp; imotor,
-              const std::shared_ptr&lt;<a href="classokapi_1_1IterativeVelocityController.html" class="m-doc">IterativeVelocityController</a>&lt;double, double&gt;&gt;&amp; icontroller)</span></span>
-            </h3>
-<p>Velocity controller that automatically writes to the motor.</p>
-          </div></section>
           <section class="m-doc-details" id="a71f514d22293dc2e23de26ecd994d57c"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a71f514d22293dc2e23de26ecd994d57c" class="m-doc-self">step</a>(</span><span class="m-doc-wrap">double ireading) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Do one iteration of the controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -206,18 +200,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Do one iteration of the controller.</p>
-          </div></section>
-          <section class="m-doc-details" id="a9a5a1d57df3faa75474245200ed34a18"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9a5a1d57df3faa75474245200ed34a18" class="m-doc-self">setTarget</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Sets the target for the controller.</p>
           </div></section>
           <section class="m-doc-details" id="a5a36064df12b3d34f2bfa09ca1992b9e"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5a36064df12b3d34f2bfa09ca1992b9e" class="m-doc-self">controllerSet</a>(</span><span class="m-doc-wrap">double ivalue) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Writes the value of the controller output.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -229,12 +217,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Writes the value of the controller output. This method might be automatically called in another thread by the controller. The range of input values is expected to be <code>[-1, 1]</code>.</p>
+<p>This method might be automatically called in another thread by the controller. The range of input values is expected to be <code>[-1, 1]</code>.</p>
           </div></section>
           <section class="m-doc-details" id="a3e54865f6b424954f3846cd1361077c5"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3e54865f6b424954f3846cd1361077c5" class="m-doc-self">getTarget</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Gets the last set target, or the default target if none was set.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -243,7 +232,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the last set target, or the default target if none was set.</p>
           </div></section>
           <section class="m-doc-details" id="a5142697e2cc206746daace826acbc410"><div>
             <h3>
@@ -258,16 +246,11 @@
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a078d0d0d20118e374d01d2b9eba23da3"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a078d0d0d20118e374d01d2b9eba23da3" class="m-doc-self">getOutput</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Returns the last calculated output of the controller.</p>
-          </div></section>
           <section class="m-doc-details" id="a48d88a7c9cec2c7046d0f7f61d8777c9"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a48d88a7c9cec2c7046d0f7f61d8777c9" class="m-doc-self">getMaxOutput</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Get the upper output bound.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -276,12 +259,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the upper output bound.</p>
           </div></section>
           <section class="m-doc-details" id="a32942ed7359481ede1fba86d7dc44795"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a32942ed7359481ede1fba86d7dc44795" class="m-doc-self">getMinOutput</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Get the lower output bound.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -290,18 +273,19 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the lower output bound.</p>
           </div></section>
           <section class="m-doc-details" id="aee5e0bfdaa45c2748b9f4bf8b549f286"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aee5e0bfdaa45c2748b9f4bf8b549f286" class="m-doc-self">getError</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Returns the last error of the controller. Does not update when disabled.</p>
+            <p>Returns the last error of the controller.</p>
+<p>Does not update when disabled.</p>
           </div></section>
           <section class="m-doc-details" id="ade18c38b1ec3196b25b0ea323d8e1075"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ade18c38b1ec3196b25b0ea323d8e1075" class="m-doc-self">isSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns whether the controller has settled at the target.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -310,12 +294,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller has settled at the target. Determining what settling means is implementation-dependent.</p>
+<p>Determining what settling means is implementation-dependent.</p>
           </div></section>
           <section class="m-doc-details" id="ab94173452bbba03ffe51a4e700e2a870"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab94173452bbba03ffe51a4e700e2a870" class="m-doc-self">setSampleTime</a>(</span><span class="m-doc-wrap">QTime isampleTime) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Set time between loops in ms.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -327,13 +312,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Set time between loops in ms.</p>
           </div></section>
           <section class="m-doc-details" id="a7614e53a0847e47e5418df21670c1ddd"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7614e53a0847e47e5418df21670c1ddd" class="m-doc-self">setOutputLimits</a>(</span><span class="m-doc-wrap">double imax,
               double imin) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Set controller output bounds.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -349,13 +334,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Set controller output bounds.</p>
           </div></section>
           <section class="m-doc-details" id="a083db063a4f8f15787a0c97068eef755"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a083db063a4f8f15787a0c97068eef755" class="m-doc-self">setControllerSetTargetLimits</a>(</span><span class="m-doc-wrap">double itargetMax,
               double itargetMin) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets the (soft) limits for the target range that <a href="classokapi_1_1IterativeMotorVelocityController.html#a5a36064df12b3d34f2bfa09ca1992b9e" class="m-doc">controllerSet()</a> scales into.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -371,24 +356,20 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the (soft) limits for the target range that <a href="classokapi_1_1IterativeMotorVelocityController.html#a5a36064df12b3d34f2bfa09ca1992b9e" class="m-doc">controllerSet()</a> scales into. The target computed by <a href="classokapi_1_1IterativeMotorVelocityController.html#a5a36064df12b3d34f2bfa09ca1992b9e" class="m-doc">controllerSet()</a> is scaled into the range [-itargetMin, itargetMax].</p>
-          </div></section>
-          <section class="m-doc-details" id="a404105de7fd0e34dd50f09d47c8b110f"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a404105de7fd0e34dd50f09d47c8b110f" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Resets the controller&#x27;s internal state so it is similar to when it was first initialized, while keeping any user-configured information.</p>
+<p>The target computed by <a href="classokapi_1_1IterativeMotorVelocityController.html#a5a36064df12b3d34f2bfa09ca1992b9e" class="m-doc">controllerSet()</a> is scaled into the range [-itargetMin, itargetMax].</p>
           </div></section>
           <section class="m-doc-details" id="a24d2200fe82b8f454839caaa511483f6"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a24d2200fe82b8f454839caaa511483f6" class="m-doc-self">flipDisable</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Changes whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
+            <p>Changes whether the controller is off or on.</p>
+<p>Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
           </div></section>
           <section class="m-doc-details" id="a8419fd62ca804f0446204b59ce37d01c"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8419fd62ca804f0446204b59ce37d01c" class="m-doc-self">flipDisable</a>(</span><span class="m-doc-wrap">bool iisDisabled) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets whether the controller is off or on.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -400,12 +381,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
+<p>Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
           </div></section>
           <section class="m-doc-details" id="a3d0383caf0fb0b982806e224492af473"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3d0383caf0fb0b982806e224492af473" class="m-doc-self">isDisabled</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns whether the controller is currently disabled.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -414,12 +396,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller is currently disabled.</p>
           </div></section>
           <section class="m-doc-details" id="ae67b1aec831d3711f12beb85f69eb7f0"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QTime okapi::<wbr />IterativeMotorVelocityController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae67b1aec831d3711f12beb85f69eb7f0" class="m-doc-self">getSampleTime</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Get the last set sample time.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -428,7 +410,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the last set sample time.</p>
           </div></section>
         </section>
       </div>

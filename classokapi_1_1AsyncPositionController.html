@@ -79,33 +79,24 @@
               <div class="m-doc-template">template&lt;typename Input, typename Output&gt;</div>
               class <a href="classokapi_1_1AsyncController.html" class="m-doc">AsyncController</a> <span class="m-label m-flat m-warning">virtual</span>
             </dt>
-            <dd></dd>
+            <dd>Closed-loop controller that steps on its own in another thread and automatically writes to the output.</dd>
           </dl>
         </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a0af03d0035343cbf843a19374f38a059" class="m-doc">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            <dt id="a0af03d0035343cbf843a19374f38a059">
+              <span class="m-doc-wrap-bumper">void <a href="#a0af03d0035343cbf843a19374f38a059" class="m-doc-self">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the &quot;absolute&quot; zero position of the controller to its current position.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ac56b3e8bc43ad9d9a6c95ff0a883e499" class="m-doc">setMaxVelocity</a>(</span><span class="m-doc-wrap">std::int32_t imaxVelocity) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets a new maximum velocity (typically motor RPM [0-600]).</dd>
           </dl>
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a0af03d0035343cbf843a19374f38a059"><div>
-            <h3>
-              <div class="m-doc-template">
-                template&lt;typename Input, typename Output&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncPositionController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0af03d0035343cbf843a19374f38a059" class="m-doc-self">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-<p>Sets the &quot;absolute&quot; zero position of the controller to its current position.</p>
-          </div></section>
           <section class="m-doc-details" id="ac56b3e8bc43ad9d9a6c95ff0a883e499"><div>
             <h3>
               <div class="m-doc-template">
@@ -113,6 +104,7 @@
               </div>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncPositionController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac56b3e8bc43ad9d9a6c95ff0a883e499" class="m-doc-self">setMaxVelocity</a>(</span><span class="m-doc-wrap">std::int32_t imaxVelocity) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets a new maximum velocity (typically motor RPM [0-600]).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -124,7 +116,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets a new maximum velocity (typically motor RPM [0-600]). The interpretation of the units of this velocity and whether it will be respected is implementation-dependent.</p>
+<p>The interpretation of the units of this velocity and whether it will be respected is implementation-dependent.</p>
           </div></section>
         </section>
       </div>

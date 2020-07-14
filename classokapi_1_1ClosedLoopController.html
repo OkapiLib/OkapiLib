@@ -59,6 +59,7 @@
           <div class="m-doc-template">template&lt;typename Input, typename Output&gt;</div>
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>ClosedLoopController <span class="m-thin">class</span>
         </h1>
+        <p>An abstract closed-loop controller.</p>
         <table class="m-table m-fullwidth m-flat">
           <thead>
             <tr><th colspan="2">Template parameters</th></tr>
@@ -88,7 +89,6 @@
             </li>
           </ul>
         </div>
-<p>An abstract closed-loop controller.</p>
         <section id="base-classes">
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
@@ -106,12 +106,12 @@
               <div class="m-doc-template">template&lt;typename Input, typename Output&gt;</div>
               class <a href="classokapi_1_1AsyncController.html" class="m-doc">AsyncController</a>
             </dt>
-            <dd></dd>
+            <dd>Closed-loop controller that steps on its own in another thread and automatically writes to the output.</dd>
             <dt>
               <div class="m-doc-template">template&lt;typename Input, typename Output&gt;</div>
               class <a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a>
             </dt>
-            <dd></dd>
+            <dd>Closed-loop controller that steps iteratively using the step method below.</dd>
           </dl>
         </section>
         <section id="typeless-methods">
@@ -129,11 +129,11 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ac14482d0768b3f157d52e0214a4c36d7" class="m-doc">setTarget</a>(</span><span class="m-doc-wrap">Input itarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target for the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a22012bedbfaff6e5a3a508f274ec2497" class="m-doc">getTarget</a>(</span><span class="m-doc-wrap">) -&gt; Input <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Gets the last set target, or the default target if none was set.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#abffaa2af6941299849e460e15c65080f" class="m-doc">getProcessValue</a>(</span><span class="m-doc-wrap">) const -&gt; Input <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
@@ -141,27 +141,27 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a50c73444ff6e3e631951c43d0f951953" class="m-doc">getError</a>(</span><span class="m-doc-wrap">) const -&gt; Output <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the last error of the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aed7aa0e94b6474c28314f8517d6cb4d8" class="m-doc">isSettled</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a7dd6ce28b3e38bdf987514a1b6c83c8c" class="m-doc">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            <dd>Returns whether the controller has settled at the target.</dd>
+            <dt id="a7dd6ce28b3e38bdf987514a1b6c83c8c">
+              <span class="m-doc-wrap-bumper">void <a href="#a7dd6ce28b3e38bdf987514a1b6c83c8c" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Resets the controller&#x27;s internal state so it is similar to when it was first initialized, while keeping any user-configured information.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a9de69b60885df41cd2164fe1a23f34d3" class="m-doc">flipDisable</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Changes whether the controller is off or on.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a768cd1db40ce9cd5c89b20be6e838ccc" class="m-doc">flipDisable</a>(</span><span class="m-doc-wrap">bool iisDisabled) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets whether the controller is off or on.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a40bd4ec2b8c75503fbf6f494fd7cbe69" class="m-doc">isDisabled</a>(</span><span class="m-doc-wrap">) const -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns whether the controller is currently disabled.</dd>
           </dl>
         </section>
         <section>
@@ -173,6 +173,7 @@
               </div>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ClosedLoopController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac14482d0768b3f157d52e0214a4c36d7" class="m-doc-self">setTarget</a>(</span><span class="m-doc-wrap">Input itarget) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets the target for the controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -184,7 +185,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the target for the controller.</p>
           </div></section>
           <section class="m-doc-details" id="a22012bedbfaff6e5a3a508f274ec2497"><div>
             <h3>
@@ -193,6 +193,7 @@
               </div>
               <span class="m-doc-wrap-bumper">Input okapi::<wbr />ClosedLoopController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a22012bedbfaff6e5a3a508f274ec2497" class="m-doc-self">getTarget</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Gets the last set target, or the default target if none was set.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -201,7 +202,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the last set target, or the default target if none was set.</p>
           </div></section>
           <section class="m-doc-details" id="abffaa2af6941299849e460e15c65080f"><div>
             <h3>
@@ -226,6 +226,7 @@
               </div>
               <span class="m-doc-wrap-bumper">Output okapi::<wbr />ClosedLoopController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a50c73444ff6e3e631951c43d0f951953" class="m-doc-self">getError</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Returns the last error of the controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -234,7 +235,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the last error of the controller. Does not update when disabled.</p>
+<p>Does not update when disabled.</p>
           </div></section>
           <section class="m-doc-details" id="aed7aa0e94b6474c28314f8517d6cb4d8"><div>
             <h3>
@@ -243,6 +244,7 @@
               </div>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />ClosedLoopController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aed7aa0e94b6474c28314f8517d6cb4d8" class="m-doc-self">isSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Returns whether the controller has settled at the target.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -251,16 +253,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller has settled at the target. Determining what settling means is implementation-dependent.</p><p>If the controller is disabled, this method must return <code>true</code>.</p>
-          </div></section>
-          <section class="m-doc-details" id="a7dd6ce28b3e38bdf987514a1b6c83c8c"><div>
-            <h3>
-              <div class="m-doc-template">
-                template&lt;typename Input, typename Output&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />ClosedLoopController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7dd6ce28b3e38bdf987514a1b6c83c8c" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-<p>Resets the controller&#x27;s internal state so it is similar to when it was first initialized, while keeping any user-configured information.</p>
+<p>Determining what settling means is implementation-dependent.</p><p>If the controller is disabled, this method must return <code>true</code>.</p>
           </div></section>
           <section class="m-doc-details" id="a9de69b60885df41cd2164fe1a23f34d3"><div>
             <h3>
@@ -269,7 +262,8 @@
               </div>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ClosedLoopController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9de69b60885df41cd2164fe1a23f34d3" class="m-doc-self">flipDisable</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
-<p>Changes whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
+            <p>Changes whether the controller is off or on.</p>
+<p>Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
           </div></section>
           <section class="m-doc-details" id="a768cd1db40ce9cd5c89b20be6e838ccc"><div>
             <h3>
@@ -278,6 +272,7 @@
               </div>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ClosedLoopController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a768cd1db40ce9cd5c89b20be6e838ccc" class="m-doc-self">flipDisable</a>(</span><span class="m-doc-wrap">bool iisDisabled) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets whether the controller is off or on.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -289,7 +284,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
+<p>Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
           </div></section>
           <section class="m-doc-details" id="a40bd4ec2b8c75503fbf6f494fd7cbe69"><div>
             <h3>
@@ -298,6 +293,7 @@
               </div>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />ClosedLoopController&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a40bd4ec2b8c75503fbf6f494fd7cbe69" class="m-doc-self">isDisabled</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Returns whether the controller is currently disabled.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -306,7 +302,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller is currently disabled.</p>
           </div></section>
         </section>
       </div>

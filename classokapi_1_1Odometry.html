@@ -87,7 +87,7 @@
             <dt>
               <span class="m-doc-wrap-bumper"><a href="#a54bde3c9209f1bedc939a3cf14ee5432" class="m-doc">Odometry</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span> <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd></dd>
+            <dd><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>.</dd>
             <dt id="acdaa18c094c9ca21b094a85aa4f3081e">
               <span class="m-doc-wrap-bumper"><a href="#acdaa18c094c9ca21b094a85aa4f3081e" class="m-doc-self">~Odometry</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span> <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -97,23 +97,23 @@
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a7cdb2433a77e7dc8d72b451916a72666" class="m-doc">setScales</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; ichassisScales) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            <dt id="a7cdb2433a77e7dc8d72b451916a72666">
+              <span class="m-doc-wrap-bumper">void <a href="#a7cdb2433a77e7dc8d72b451916a72666" class="m-doc-self">setScales</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; ichassisScales) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a00d4dd37fe02d4f02fc8896a2a760331" class="m-doc">step</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            <dd>Sets the drive and turn scales.</dd>
+            <dt id="a00d4dd37fe02d4f02fc8896a2a760331">
+              <span class="m-doc-wrap-bumper">void <a href="#a00d4dd37fe02d4f02fc8896a2a760331" class="m-doc-self">step</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Do one odometry step.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a9f595e68c1965a45e1447ec210b52574" class="m-doc">getState</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>) const -&gt; <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a> <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the current state.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aeaf7ab429a1374da216718be2781b547" class="m-doc">setState</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate,
               const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets a new state to be the current state.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a2191bbe5c0a2733d9a1da4040f5827a2" class="m-doc">getModel</a>(</span><span class="m-doc-wrap">) -&gt; std::shared_ptr&lt;<a href="classokapi_1_1ReadOnlyChassisModel.html" class="m-doc">ReadOnlyChassisModel</a>&gt; <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
@@ -130,24 +130,14 @@
             <h3>
               <span class="m-doc-wrap-bumper"> okapi::<wbr />Odometry::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a54bde3c9209f1bedc939a3cf14ee5432" class="m-doc-self">Odometry</a>(</span><span class="m-doc-wrap">) <span class="m-label m-info">explicit</span>  <span class="m-label m-info">defaulted</span></span></span>
             </h3>
-<p><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>. Tracks the movement of the robot and estimates its position in coordinates relative to the start (assumed to be (0, 0, 0)).</p>
-          </div></section>
-          <section class="m-doc-details" id="a7cdb2433a77e7dc8d72b451916a72666"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />Odometry::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7cdb2433a77e7dc8d72b451916a72666" class="m-doc-self">setScales</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>&amp; ichassisScales) <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-<p>Sets the drive and turn scales.</p>
-          </div></section>
-          <section class="m-doc-details" id="a00d4dd37fe02d4f02fc8896a2a760331"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />Odometry::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a00d4dd37fe02d4f02fc8896a2a760331" class="m-doc-self">step</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-<p>Do one odometry step.</p>
+            <p><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a>.</p>
+<p>Tracks the movement of the robot and estimates its position in coordinates relative to the start (assumed to be (0, 0, 0)).</p>
           </div></section>
           <section class="m-doc-details" id="a9f595e68c1965a45e1447ec210b52574"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a> okapi::<wbr />Odometry::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9f595e68c1965a45e1447ec210b52574" class="m-doc-self">getState</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>) const <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Returns the current state.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -165,13 +155,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the current state.</p>
           </div></section>
           <section class="m-doc-details" id="aeaf7ab429a1374da216718be2781b547"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />Odometry::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aeaf7ab429a1374da216718be2781b547" class="m-doc-self">setState</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate,
               const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode = <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a>) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets a new state to be the current state.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -187,7 +177,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets a new state to be the current state.</p>
           </div></section>
           <section class="m-doc-details" id="a2191bbe5c0a2733d9a1da4040f5827a2"><div>
             <h3>

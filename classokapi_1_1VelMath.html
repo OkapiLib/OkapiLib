@@ -82,7 +82,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1AbstractTimer.html" class="m-doc">AbstractTimer</a>&gt; iloopDtTimer,
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd></dd>
+            <dd>Velocity math helper.</dd>
             <dt id="a555b678899ad8e231543d6f206ae0db6">
               <span class="m-doc-wrap-bumper"><a href="#a555b678899ad8e231543d6f206ae0db6" class="m-doc-self">~VelMath</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -95,11 +95,11 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a4c6e14c7f2054512b59a30736f61982f" class="m-doc">step</a>(</span><span class="m-doc-wrap">double inewPos) -&gt; QAngularSpeed <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Calculates the current velocity and acceleration.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a0a95837a35bfb2702a170da95daba559" class="m-doc">setTicksPerRev</a>(</span><span class="m-doc-wrap">double iTPR) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets ticks per revolution (or whatever units you are using).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ae366b0895bfac15e986448aa9c22b26c" class="m-doc">getVelocity</a>(</span><span class="m-doc-wrap">) const -&gt; QAngularSpeed <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -161,6 +161,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1AbstractTimer.html" class="m-doc">AbstractTimer</a>&gt; iloopDtTimer,
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>Velocity math helper.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -188,12 +189,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Velocity math helper. Calculates filtered velocity. Throws a <code>std::invalid_argument</code> exception if <code>iticksPerRev</code> is zero.</p>
+<p>Calculates filtered velocity. Throws a <code>std::invalid_argument</code> exception if <code>iticksPerRev</code> is zero.</p>
           </div></section>
           <section class="m-doc-details" id="a4c6e14c7f2054512b59a30736f61982f"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QAngularSpeed okapi::<wbr />VelMath::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4c6e14c7f2054512b59a30736f61982f" class="m-doc-self">step</a>(</span><span class="m-doc-wrap">double inewPos) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Calculates the current velocity and acceleration.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -211,12 +213,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Calculates the current velocity and acceleration. Returns the (filtered) velocity.</p>
+<p>Returns the (filtered) velocity.</p>
           </div></section>
           <section class="m-doc-details" id="a0a95837a35bfb2702a170da95daba559"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />VelMath::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0a95837a35bfb2702a170da95daba559" class="m-doc-self">setTicksPerRev</a>(</span><span class="m-doc-wrap">double iTPR) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Sets ticks per revolution (or whatever units you are using).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -228,7 +231,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets ticks per revolution (or whatever units you are using). Throws a <code>std::invalid_argument</code> exception if iticksPerRev is zero.</p>
+<p>Throws a <code>std::invalid_argument</code> exception if iticksPerRev is zero.</p>
           </div></section>
           <section class="m-doc-details" id="ae366b0895bfac15e986448aa9c22b26c"><div>
             <h3>

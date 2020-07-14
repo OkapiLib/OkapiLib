@@ -103,7 +103,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd></dd>
+            <dd>An async position PID controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper"><a href="#a4038bde6275c8c69fc22edfbead726d2" class="m-doc">AsyncPosPIDController</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1OffsetableControllerInput.html" class="m-doc">OffsetableControllerInput</a>&gt;&amp; iinput,
               const std::shared_ptr&lt;<a href="classokapi_1_1ControllerOutput.html" class="m-doc">ControllerOutput</a>&lt;double&gt;&gt;&amp; ioutput,
@@ -116,28 +116,28 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd></dd>
+            <dd>An async position PID controller.</dd>
           </dl>
         </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a4d5bb5646dcdc3bc80f15c1d6ae72747" class="m-doc">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            <dt id="a4d5bb5646dcdc3bc80f15c1d6ae72747">
+              <span class="m-doc-wrap-bumper">void <a href="#a4d5bb5646dcdc3bc80f15c1d6ae72747" class="m-doc-self">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the &quot;absolute&quot; zero position of the controller to its current position.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a4e4d599f04780e0e980116f38d8044fa" class="m-doc">setMaxVelocity</a>(</span><span class="m-doc-wrap">std::int32_t imaxVelocity) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>This implementation does not respect the maximum velocity.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aa2b247484df4a9f2e1964309f8cb95c3" class="m-doc">setGains</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1IterativePosPIDController_1_1Gains.html" class="m-doc">IterativePosPIDController::<wbr />Gains</a>&amp; igains)</span>
             </dt>
-            <dd></dd>
+            <dd>Set controller gains.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a9c8fcd888cfb8f42bb4cf0bfca1bfcf2" class="m-doc">getGains</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1IterativePosPIDController_1_1Gains.html" class="m-doc">IterativePosPIDController::<wbr />Gains</a></span>
             </dt>
-            <dd></dd>
+            <dd>Gets the current gains.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -168,6 +168,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>An async position PID controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -215,7 +216,6 @@
                 </tr>
               </tbody>
             </table>
-<p>An async position PID controller.</p>
           </div></section>
           <section class="m-doc-details" id="a4038bde6275c8c69fc22edfbead726d2"><div>
             <h3>
@@ -230,6 +230,7 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; iderivativeFilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;(),
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>An async position PID controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -277,18 +278,12 @@
                 </tr>
               </tbody>
             </table>
-<p>An async position PID controller.</p>
-          </div></section>
-          <section class="m-doc-details" id="a4d5bb5646dcdc3bc80f15c1d6ae72747"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncPosPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4d5bb5646dcdc3bc80f15c1d6ae72747" class="m-doc-self">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Sets the &quot;absolute&quot; zero position of the controller to its current position.</p>
           </div></section>
           <section class="m-doc-details" id="a4e4d599f04780e0e980116f38d8044fa"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncPosPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4e4d599f04780e0e980116f38d8044fa" class="m-doc-self">setMaxVelocity</a>(</span><span class="m-doc-wrap">std::int32_t imaxVelocity) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>This implementation does not respect the maximum velocity.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -300,12 +295,12 @@
                 </tr>
               </tbody>
             </table>
-<p>This implementation does not respect the maximum velocity.</p>
           </div></section>
           <section class="m-doc-details" id="aa2b247484df4a9f2e1964309f8cb95c3"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncPosPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa2b247484df4a9f2e1964309f8cb95c3" class="m-doc-self">setGains</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1IterativePosPIDController_1_1Gains.html" class="m-doc">IterativePosPIDController::<wbr />Gains</a>&amp; igains)</span></span>
             </h3>
+            <p>Set controller gains.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -317,12 +312,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Set controller gains.</p>
           </div></section>
           <section class="m-doc-details" id="a9c8fcd888cfb8f42bb4cf0bfca1bfcf2"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="structokapi_1_1IterativePosPIDController_1_1Gains.html" class="m-doc">IterativePosPIDController::<wbr />Gains</a> okapi::<wbr />AsyncPosPIDController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9c8fcd888cfb8f42bb4cf0bfca1bfcf2" class="m-doc-self">getGains</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Gets the current gains.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -331,7 +326,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the current gains.</p>
           </div></section>
         </section>
       </div>

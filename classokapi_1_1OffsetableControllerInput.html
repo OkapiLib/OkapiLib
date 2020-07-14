@@ -89,7 +89,7 @@
             <dt>
               <span class="m-doc-wrap-bumper"><a href="#ac29065910ac48f3020638164812088e0" class="m-doc">OffsetableControllerInput</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1ControllerInput.html" class="m-doc">ControllerInput</a>&lt;double&gt;&gt;&amp; iinput) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd></dd>
+            <dd>A <a href="classokapi_1_1ControllerInput.html" class="m-doc">ControllerInput</a> which can be tared to change the zero position.</dd>
             <dt id="aaad20a6602e68e223ef6d31ef7597a65">
               <span class="m-doc-wrap-bumper"><a href="#aaad20a6602e68e223ef6d31ef7597a65" class="m-doc-self">~OffsetableControllerInput</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -102,11 +102,11 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#af51f93ac176113930ed07ee7b2b9b269" class="m-doc">controllerGet</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the sensor value for use in a control loop.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ad55cc6173276690cd2f0d774a2c40731" class="m-doc">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the &quot;absolute&quot; zero position of this controller input to its current position.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -128,6 +128,7 @@
             <h3>
               <span class="m-doc-wrap-bumper"> okapi::<wbr />OffsetableControllerInput::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac29065910ac48f3020638164812088e0" class="m-doc-self">OffsetableControllerInput</a>(</span><span class="m-doc-wrap">const std::shared_ptr&lt;<a href="classokapi_1_1ControllerInput.html" class="m-doc">ControllerInput</a>&lt;double&gt;&gt;&amp; iinput) <span class="m-label m-info">explicit</span> </span></span>
             </h3>
+            <p>A <a href="classokapi_1_1ControllerInput.html" class="m-doc">ControllerInput</a> which can be tared to change the zero position.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -139,12 +140,12 @@
                 </tr>
               </tbody>
             </table>
-<p>A <a href="classokapi_1_1ControllerInput.html" class="m-doc">ControllerInput</a> which can be tared to change the zero position.</p>
           </div></section>
           <section class="m-doc-details" id="af51f93ac176113930ed07ee7b2b9b269"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />OffsetableControllerInput::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af51f93ac176113930ed07ee7b2b9b269" class="m-doc-self">controllerGet</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Get the sensor value for use in a control loop.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -153,13 +154,14 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the sensor value for use in a control loop. This method might be automatically called in another thread by the controller.</p>
+<p>This method might be automatically called in another thread by the controller.</p>
           </div></section>
           <section class="m-doc-details" id="ad55cc6173276690cd2f0d774a2c40731"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />OffsetableControllerInput::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad55cc6173276690cd2f0d774a2c40731" class="m-doc-self">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
-<p>Sets the &quot;absolute&quot; zero position of this controller input to its current position. This does nothing if the underlying controller input returns PROS_ERR.</p>
+            <p>Sets the &quot;absolute&quot; zero position of this controller input to its current position.</p>
+<p>This does nothing if the underlying controller input returns PROS_ERR.</p>
           </div></section>
         </section>
       </div>

@@ -89,7 +89,7 @@
               <span class="m-doc-wrap-bumper"><a href="#a99716eac24dd8f87e04f746da9409089" class="m-doc">EKFFilter</a>(</span><span class="m-doc-wrap">double iQ = 0.0001,
               double iR = <a href="namespaceokapi.html#aba6bd8fdde45445ead2bd8c3bf887fb4" class="m-doc">ipow</a>(0.2, 2)) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd></dd>
+            <dd>One dimensional extended Kalman filter.</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -98,16 +98,16 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a7deb4e14f154247b5521afa7603d09fd" class="m-doc">filter</a>(</span><span class="m-doc-wrap">double ireading) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Filters a value, like a sensor reading.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a3999b84a0cf2cd2a4b5de20cfa7ed1f8" class="m-doc">filter</a>(</span><span class="m-doc-wrap">double ireading,
               double icontrol) -&gt; double <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Filters a reading with a control input.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aaf3048eb6d68d248de7c59f84b0d1201" class="m-doc">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the previous output from filter.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -158,6 +158,7 @@
               <span class="m-doc-wrap-bumper"> okapi::<wbr />EKFFilter::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a99716eac24dd8f87e04f746da9409089" class="m-doc-self">EKFFilter</a>(</span><span class="m-doc-wrap">double iQ = 0.0001,
               double iR = <a href="namespaceokapi.html#aba6bd8fdde45445ead2bd8c3bf887fb4" class="m-doc">ipow</a>(0.2, 2)) <span class="m-label m-info">explicit</span> </span></span>
             </h3>
+            <p>One dimensional extended Kalman filter.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -173,12 +174,13 @@
                 </tr>
               </tbody>
             </table>
-<p>One dimensional extended Kalman filter. The default arguments should work fine for most signal filtering. It won&#x27;t hurt to graph your signal and the filtered result, and check if the filter is doing its job.</p><p>Q is the covariance of the process noise and R is the covariance of the observation noise. The default values for Q and R should be a modest balance between trust in the sensor and FIR filtering.</p><p>Think of R as how noisy your sensor is. Its value can be found mathematically by computing the standard deviation of your sensor reading vs. &quot;truth&quot; (of course, &quot;truth&quot; is still an estimate; try to calibrate your robot in a controlled setting where you can minimize the error in what &quot;truth&quot; is).</p><p>Think of Q as how noisy your model is. It decides how much &quot;smoothing&quot; the filter does and how far it lags behind the true signal. This parameter is most often used as a &quot;tuning&quot; parameter to adjust the response of the filter.</p>
+<p>The default arguments should work fine for most signal filtering. It won&#x27;t hurt to graph your signal and the filtered result, and check if the filter is doing its job.</p><p>Q is the covariance of the process noise and R is the covariance of the observation noise. The default values for Q and R should be a modest balance between trust in the sensor and FIR filtering.</p><p>Think of R as how noisy your sensor is. Its value can be found mathematically by computing the standard deviation of your sensor reading vs. &quot;truth&quot; (of course, &quot;truth&quot; is still an estimate; try to calibrate your robot in a controlled setting where you can minimize the error in what &quot;truth&quot; is).</p><p>Think of Q as how noisy your model is. It decides how much &quot;smoothing&quot; the filter does and how far it lags behind the true signal. This parameter is most often used as a &quot;tuning&quot; parameter to adjust the response of the filter.</p>
           </div></section>
           <section class="m-doc-details" id="a7deb4e14f154247b5521afa7603d09fd"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />EKFFilter::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7deb4e14f154247b5521afa7603d09fd" class="m-doc-self">filter</a>(</span><span class="m-doc-wrap">double ireading) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Filters a value, like a sensor reading.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -196,13 +198,14 @@
                 </tr>
               </tfoot>
             </table>
-<p>Filters a value, like a sensor reading. Assumes the control input is zero.</p>
+<p>Assumes the control input is zero.</p>
           </div></section>
           <section class="m-doc-details" id="a3999b84a0cf2cd2a4b5de20cfa7ed1f8"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />EKFFilter::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3999b84a0cf2cd2a4b5de20cfa7ed1f8" class="m-doc-self">filter</a>(</span><span class="m-doc-wrap">double ireading,
               double icontrol) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Filters a reading with a control input.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -224,12 +227,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Filters a reading with a control input.</p>
           </div></section>
           <section class="m-doc-details" id="aaf3048eb6d68d248de7c59f84b0d1201"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />EKFFilter::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aaf3048eb6d68d248de7c59f84b0d1201" class="m-doc-self">getOutput</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns the previous output from filter.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -238,7 +241,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the previous output from filter.</p>
           </div></section>
         </section>
       </div>

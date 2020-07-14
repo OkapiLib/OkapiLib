@@ -96,15 +96,15 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ab1abf71d6cf3184abeed1d3556d39d4f" class="m-doc">delay</a>(</span><span class="m-doc-wrap">QFrequency ihz) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Delay the current task such that it runs at the given frequency.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a53a15074ca3bd0787ce34d30c068d9b2" class="m-doc">delayUntil</a>(</span><span class="m-doc-wrap">QTime itime) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Delay the current task until itime has passed.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a3faf54ea2951ae5e0567cd50ddba0227" class="m-doc">delayUntil</a>(</span><span class="m-doc-wrap">uint32_t ims) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Delay the current task until ims milliseconds have passed.</dd>
           </dl>
         </section>
         <section>
@@ -113,6 +113,7 @@
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AbstractRate::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab1abf71d6cf3184abeed1d3556d39d4f" class="m-doc-self">delay</a>(</span><span class="m-doc-wrap">QFrequency ihz) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Delay the current task such that it runs at the given frequency.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -124,12 +125,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Delay the current task such that it runs at the given frequency. The first delay will run for 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the task.</p>
+<p>The first delay will run for 1000/(ihz). Subsequent delays will adjust according to the previous runtime of the task.</p>
           </div></section>
           <section class="m-doc-details" id="a53a15074ca3bd0787ce34d30c068d9b2"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AbstractRate::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a53a15074ca3bd0787ce34d30c068d9b2" class="m-doc-self">delayUntil</a>(</span><span class="m-doc-wrap">QTime itime) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Delay the current task until itime has passed.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -141,12 +143,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Delay the current task until itime has passed. This method can be used by periodic tasks to ensure a consistent execution frequency.</p>
+<p>This method can be used by periodic tasks to ensure a consistent execution frequency.</p>
           </div></section>
           <section class="m-doc-details" id="a3faf54ea2951ae5e0567cd50ddba0227"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AbstractRate::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3faf54ea2951ae5e0567cd50ddba0227" class="m-doc-self">delayUntil</a>(</span><span class="m-doc-wrap">uint32_t ims) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Delay the current task until ims milliseconds have passed.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -158,7 +161,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Delay the current task until ims milliseconds have passed. This method can be used by periodic tasks to ensure a consistent execution frequency.</p>
+<p>This method can be used by periodic tasks to ensure a consistent execution frequency.</p>
           </div></section>
         </section>
       </div>

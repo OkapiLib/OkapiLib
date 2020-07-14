@@ -59,6 +59,7 @@
           <div class="m-doc-template">template&lt;std::size_t n&gt;</div>
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>MedianFilter <span class="m-thin">class</span>
         </h1>
+        <p>A filter which returns the median value of list of values.</p>
         <table class="m-table m-fullwidth m-flat">
           <thead>
             <tr><th colspan="2">Template parameters</th></tr>
@@ -85,7 +86,6 @@
             </li>
           </ul>
         </div>
-<p>A filter which returns the median value of list of values.</p>
         <section id="base-classes">
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
@@ -110,11 +110,11 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a91e4104c4862082cd17ab92b43c02fab" class="m-doc">filter</a>(</span><span class="m-doc-wrap">const double ireading) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Filters a value, like a sensor reading.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ac38e6d04879eaeb98b853a24cb26e28c" class="m-doc">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the previous output from filter.</dd>
           </dl>
         </section>
         <section id="pro-methods">
@@ -123,7 +123,7 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#afe9b963e054b89cbdc13ea1acaaa900b" class="m-doc">kth_smallset</a>(</span><span class="m-doc-wrap">) -&gt; double</span>
             </dt>
-            <dd></dd>
+            <dd>Algorithm from N.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -156,6 +156,7 @@
               </div>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />MedianFilter&lt;n&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a91e4104c4862082cd17ab92b43c02fab" class="m-doc-self">filter</a>(</span><span class="m-doc-wrap">const double ireading) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Filters a value, like a sensor reading.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -173,7 +174,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Filters a value, like a sensor reading.</p>
           </div></section>
           <section class="m-doc-details" id="ac38e6d04879eaeb98b853a24cb26e28c"><div>
             <h3>
@@ -182,6 +182,7 @@
               </div>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />MedianFilter&lt;n&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac38e6d04879eaeb98b853a24cb26e28c" class="m-doc-self">getOutput</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns the previous output from filter.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -190,7 +191,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the previous output from filter.</p>
           </div></section>
           <section class="m-doc-details" id="afe9b963e054b89cbdc13ea1acaaa900b"><div>
             <h3>
@@ -199,7 +199,8 @@
               </div>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />MedianFilter&lt;n&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afe9b963e054b89cbdc13ea1acaaa900b" class="m-doc-self">kth_smallset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">protected</span></span></span>
             </h3>
-<p>Algorithm from N. Wirth’s book, implementation by N. Devillard.</p>
+            <p>Algorithm from N.</p>
+<p>Wirth’s book, implementation by N. Devillard.</p>
           </div></section>
         </section>
       </div>

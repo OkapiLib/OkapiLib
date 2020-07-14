@@ -97,7 +97,7 @@
               const <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a>&amp; ipair,
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd></dd>
+            <dd>An Async <a href="classokapi_1_1Controller.html" class="m-doc">Controller</a> which generates and follows 2D motion profiles.</dd>
             <dt id="ad5c9863c0a6be7c6b333703d8e778399">
               <span class="m-doc-wrap-bumper"><a href="#ad5c9863c0a6be7c6b333703d8e778399" class="m-doc-self">AsyncMotionProfileController</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AsyncMotionProfileController.html" class="m-doc">AsyncMotionProfileController</a>&amp;&amp; other) <span class="m-label m-flat m-danger">deleted</span></span>
             </dt>
@@ -119,96 +119,96 @@
               <span class="m-doc-wrap-bumper">void <a href="#a3b8ba2a691bea6f1cf7596f0ecb8b899" class="m-doc">generatePath</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               const std::string&amp; ipathId)</span>
             </dt>
-            <dd></dd>
+            <dd>Generates a path which intersects the given waypoints and saves it internally with a key of pathId.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a4b01625204f9949abd00e54513e3b1fa" class="m-doc">generatePath</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               const std::string&amp; ipathId,
               const <a href="structokapi_1_1PathfinderLimits.html" class="m-doc">PathfinderLimits</a>&amp; ilimits)</span>
             </dt>
-            <dd></dd>
+            <dd>Generates a path which intersects the given waypoints and saves it internally with a key of pathId.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a6c6a889067dbb3a54c33f829b3aa1246" class="m-doc">removePath</a>(</span><span class="m-doc-wrap">const std::string&amp; ipathId) -&gt; bool</span>
             </dt>
-            <dd></dd>
+            <dd>Removes a path and frees the memory it used.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a5853ae5af552cf56f36c9563733c6ace" class="m-doc">getPaths</a>(</span><span class="m-doc-wrap">) -&gt; std::vector&lt;std::string&gt;</span>
             </dt>
-            <dd></dd>
+            <dd>Gets the identifiers of all paths saved in this <code><a href="classokapi_1_1AsyncMotionProfileController.html" class="m-doc">AsyncMotionProfileController</a></code>.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#adf705d6bfd3d0a83d8a6c50a05ffd156" class="m-doc">setTarget</a>(</span><span class="m-doc-wrap">std::string ipathId) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Executes a path with the given ID.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a2846d2e36b86b39aa2e761e4e34cd225" class="m-doc">setTarget</a>(</span><span class="m-doc-wrap">std::string ipathId,
               bool ibackwards,
               bool imirrored = false)</span>
             </dt>
-            <dd></dd>
+            <dd>Executes a path with the given ID.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a292b22f53ed0ef67a479e00c92f68e3f" class="m-doc">controllerSet</a>(</span><span class="m-doc-wrap">std::string ivalue) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Writes the value of the controller output.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a9f9e44e987481619cbec37d5e35c71e8" class="m-doc">getTarget</a>(</span><span class="m-doc-wrap">) -&gt; std::string <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Gets the last set target, or the default target if none was set.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a1f765e518f51cf1c59be2dedac71e562" class="m-doc">getProcessValue</a>(</span><span class="m-doc-wrap">) const -&gt; std::string <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>This is overridden to return the current path.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a0b08d2f39d786739a734c50523db1eb2" class="m-doc">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Blocks the current task until the controller has settled.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a027d632b17e5e9e0acbcb5b4000d038c" class="m-doc">moveTo</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               bool ibackwards = false,
               bool imirrored = false)</span>
             </dt>
-            <dd></dd>
+            <dd>Generates a new path from the position (typically the current position) to the target and blocks until the controller has settled.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a5845299e779fc876f6226aa083ddfaa8" class="m-doc">moveTo</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               const <a href="structokapi_1_1PathfinderLimits.html" class="m-doc">PathfinderLimits</a>&amp; ilimits,
               bool ibackwards = false,
               bool imirrored = false)</span>
             </dt>
-            <dd></dd>
+            <dd>Generates a new path from the position (typically the current position) to the target and blocks until the controller has settled.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aae5c2ef0766fba9e635c43c0314da10a" class="m-doc">getError</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a> <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the last error of the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#abfc944ba6d703dc1aa6fb16a44b5e395" class="m-doc">isSettled</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns whether the controller has settled at the target.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a9ad15272defac4db5e2b318671eb3850" class="m-doc">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Resets the controller so it can start from 0 again properly.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a7069b2b7373aec21c84369392d8d34d8" class="m-doc">flipDisable</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Changes whether the controller is off or on.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a3dc30b14b36f1fc1fc61c9c45ced002e" class="m-doc">flipDisable</a>(</span><span class="m-doc-wrap">bool iisDisabled) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets whether the controller is off or on.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a04bc0f7be2c116163bfbef0571dec2ef" class="m-doc">isDisabled</a>(</span><span class="m-doc-wrap">) const -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#afc3476c87e3428f9f166273688e45249" class="m-doc">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>Returns whether the controller is currently disabled.</dd>
+            <dt id="afc3476c87e3428f9f166273688e45249">
+              <span class="m-doc-wrap-bumper">void <a href="#afc3476c87e3428f9f166273688e45249" class="m-doc-self">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>This implementation does nothing because the API always requires the starting position to be specified.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a8c8214249732c79d48601a2da579f220" class="m-doc">setMaxVelocity</a>(</span><span class="m-doc-wrap">std::int32_t imaxVelocity) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>This implementation does nothing because the maximum velocity is configured using <a href="structokapi_1_1PathfinderLimits.html" class="m-doc">PathfinderLimits</a> elsewhere.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#af54f59d0269d84b12eb148271e349646" class="m-doc">startThread</a>(</span><span class="m-doc-wrap">)</span>
             </dt>
-            <dd></dd>
+            <dd>Starts the internal thread.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aaac5113b3567c28dc1c5ba0dcf7facdd" class="m-doc">getThread</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classCrossplatformThread.html" class="m-doc">CrossplatformThread</a>*</span>
             </dt>
@@ -217,16 +217,16 @@
               <span class="m-doc-wrap-bumper">void <a href="#ad588aa51d62169159ff5e4b05ad3982c" class="m-doc">storePath</a>(</span><span class="m-doc-wrap">const std::string&amp; idirectory,
               const std::string&amp; ipathId)</span>
             </dt>
-            <dd></dd>
+            <dd>Saves a generated path to files.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a87c74350a819a3a322321be787c32d1f" class="m-doc">loadPath</a>(</span><span class="m-doc-wrap">const std::string&amp; idirectory,
               const std::string&amp; ipathId)</span>
             </dt>
-            <dd></dd>
+            <dd>Loads a path from a directory on the SD card containing path CSV files.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ace5f9053d3455e6f5e69c63f1196521e" class="m-doc">forceRemovePath</a>(</span><span class="m-doc-wrap">const std::string&amp; ipathId)</span>
             </dt>
-            <dd></dd>
+            <dd>Attempts to remove a path without stopping execution.</dd>
           </dl>
         </section>
         <section id="pro-types">
@@ -257,7 +257,7 @@
               <span class="m-doc-wrap-bumper">static auto <a href="#a3380054b3feb2679fe5b919095959826" class="m-doc">makeFilePath</a>(</span><span class="m-doc-wrap">const std::string&amp; directory,
               const std::string&amp; filename) -&gt; std::string</span>
             </dt>
-            <dd></dd>
+            <dd>Joins and escapes a directory and file name.</dd>
           </dl>
         </section>
         <section id="pro-methods">
@@ -271,11 +271,11 @@
               <span class="m-doc-wrap-bumper">void <a href="#abbc724e5856bff8879cb834bfc3cc6c3" class="m-doc">executeSinglePath</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path,
               std::unique_ptr&lt;<a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>&gt; rate) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Follow the supplied path.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a74b2981453d36e01c30b66c522bdcb52" class="m-doc">convertLinearToRotational</a>(</span><span class="m-doc-wrap">QSpeed linear) const -&gt; QAngularSpeed</span>
             </dt>
-            <dd></dd>
+            <dd>Converts linear chassis speed to rotational motor speed.</dd>
             <dt id="add71d15d34ef8c10205c3b6791e32f71">
               <span class="m-doc-wrap-bumper">auto <a href="#add71d15d34ef8c10205c3b6791e32f71" class="m-doc-self">getPathErrorMessage</a>(</span><span class="m-doc-wrap">const std::vector&lt;Waypoint&gt;&amp; points,
               const std::string&amp; ipathId,
@@ -297,7 +297,7 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#af14f6b6c201a7b80c32f5fc14c11022f" class="m-doc">getPathLength</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path) -&gt; int</span>
             </dt>
-            <dd></dd>
+            <dd>Reads the length of the path in a thread-safe manner.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -376,6 +376,7 @@
               const <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a>&amp; ipair,
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>An Async <a href="classokapi_1_1Controller.html" class="m-doc">Controller</a> which generates and follows 2D motion profiles.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -407,13 +408,14 @@
                 </tr>
               </tbody>
             </table>
-<p>An Async <a href="classokapi_1_1Controller.html" class="m-doc">Controller</a> which generates and follows 2D motion profiles. Throws a <code>std::invalid_argument</code> exception if the gear ratio is zero.</p>
+<p>Throws a <code>std::invalid_argument</code> exception if the gear ratio is zero.</p>
           </div></section>
           <section class="m-doc-details" id="a3b8ba2a691bea6f1cf7596f0ecb8b899"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3b8ba2a691bea6f1cf7596f0ecb8b899" class="m-doc-self">generatePath</a>(</span><span class="m-doc-wrap">std::initializer_list&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt; iwaypoints,
               const std::string&amp; ipathId)</span></span>
             </h3>
+            <p>Generates a path which intersects the given waypoints and saves it internally with a key of pathId.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -429,7 +431,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Generates a path which intersects the given waypoints and saves it internally with a key of pathId. Call <code>executePath()</code> with the same pathId to run it.</p><p>If the waypoints form a path which is impossible to achieve, an instance of <code>std::runtime_error</code> is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.</p>
+<p>Call <code>executePath()</code> with the same pathId to run it.</p><p>If the waypoints form a path which is impossible to achieve, an instance of <code>std::runtime_error</code> is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.</p>
           </div></section>
           <section class="m-doc-details" id="a4b01625204f9949abd00e54513e3b1fa"><div>
             <h3>
@@ -437,6 +439,7 @@
               const std::string&amp; ipathId,
               const <a href="structokapi_1_1PathfinderLimits.html" class="m-doc">PathfinderLimits</a>&amp; ilimits)</span></span>
             </h3>
+            <p>Generates a path which intersects the given waypoints and saves it internally with a key of pathId.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -456,12 +459,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Generates a path which intersects the given waypoints and saves it internally with a key of pathId. Call <code>executePath()</code> with the same pathId to run it.</p><p>If the waypoints form a path which is impossible to achieve, an instance of <code>std::runtime_error</code> is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.</p>
+<p>Call <code>executePath()</code> with the same pathId to run it.</p><p>If the waypoints form a path which is impossible to achieve, an instance of <code>std::runtime_error</code> is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.</p>
           </div></section>
           <section class="m-doc-details" id="a6c6a889067dbb3a54c33f829b3aa1246"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6c6a889067dbb3a54c33f829b3aa1246" class="m-doc-self">removePath</a>(</span><span class="m-doc-wrap">const std::string&amp; ipathId)</span></span>
             </h3>
+            <p>Removes a path and frees the memory it used.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -479,12 +483,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Removes a path and frees the memory it used. This function returns true if the path was either deleted or didn&#x27;t exist in the first place. It returns false if the path could not be removed because it is running.</p>
+<p>This function returns true if the path was either deleted or didn&#x27;t exist in the first place. It returns false if the path could not be removed because it is running.</p>
           </div></section>
           <section class="m-doc-details" id="a5853ae5af552cf56f36c9563733c6ace"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::vector&lt;std::string&gt; okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5853ae5af552cf56f36c9563733c6ace" class="m-doc-self">getPaths</a>(</span><span class="m-doc-wrap">)</span></span>
             </h3>
+            <p>Gets the identifiers of all paths saved in this <code><a href="classokapi_1_1AsyncMotionProfileController.html" class="m-doc">AsyncMotionProfileController</a></code>.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -493,12 +498,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the identifiers of all paths saved in this <code><a href="classokapi_1_1AsyncMotionProfileController.html" class="m-doc">AsyncMotionProfileController</a></code>.</p>
           </div></section>
           <section class="m-doc-details" id="adf705d6bfd3d0a83d8a6c50a05ffd156"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#adf705d6bfd3d0a83d8a6c50a05ffd156" class="m-doc-self">setTarget</a>(</span><span class="m-doc-wrap">std::string ipathId) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Executes a path with the given ID.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -510,7 +515,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Executes a path with the given ID. If there is no path matching the ID, the method will return. Any targets set while a path is being followed will be ignored.</p>
+<p>If there is no path matching the ID, the method will return. Any targets set while a path is being followed will be ignored.</p>
           </div></section>
           <section class="m-doc-details" id="a2846d2e36b86b39aa2e761e4e34cd225"><div>
             <h3>
@@ -518,6 +523,7 @@
               bool ibackwards,
               bool imirrored = false)</span></span>
             </h3>
+            <p>Executes a path with the given ID.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -537,18 +543,20 @@
                 </tr>
               </tbody>
             </table>
-<p>Executes a path with the given ID. If there is no path matching the ID, the method will return. Any targets set while a path is being followed will be ignored.</p>
+<p>If there is no path matching the ID, the method will return. Any targets set while a path is being followed will be ignored.</p>
           </div></section>
           <section class="m-doc-details" id="a292b22f53ed0ef67a479e00c92f68e3f"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a292b22f53ed0ef67a479e00c92f68e3f" class="m-doc-self">controllerSet</a>(</span><span class="m-doc-wrap">std::string ivalue) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Writes the value of the controller output. This method might be automatically called in another thread by the controller. This just calls <code><a href="classokapi_1_1AsyncMotionProfileController.html#adf705d6bfd3d0a83d8a6c50a05ffd156" class="m-doc">setTarget()</a></code>.</p>
+            <p>Writes the value of the controller output.</p>
+<p>This method might be automatically called in another thread by the controller. This just calls <code><a href="classokapi_1_1AsyncMotionProfileController.html#adf705d6bfd3d0a83d8a6c50a05ffd156" class="m-doc">setTarget()</a></code>.</p>
           </div></section>
           <section class="m-doc-details" id="a9f9e44e987481619cbec37d5e35c71e8"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::string okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9f9e44e987481619cbec37d5e35c71e8" class="m-doc-self">getTarget</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Gets the last set target, or the default target if none was set.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -557,12 +565,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the last set target, or the default target if none was set.</p>
           </div></section>
           <section class="m-doc-details" id="a1f765e518f51cf1c59be2dedac71e562"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::string okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1f765e518f51cf1c59be2dedac71e562" class="m-doc-self">getProcessValue</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>This is overridden to return the current path.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -571,13 +579,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>This is overridden to return the current path.</p>
           </div></section>
           <section class="m-doc-details" id="a0b08d2f39d786739a734c50523db1eb2"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0b08d2f39d786739a734c50523db1eb2" class="m-doc-self">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Blocks the current task until the controller has settled. This controller is settled when it has finished following a path. If no path is being followed, it is settled.</p>
+            <p>Blocks the current task until the controller has settled.</p>
+<p>This controller is settled when it has finished following a path. If no path is being followed, it is settled.</p>
           </div></section>
           <section class="m-doc-details" id="a027d632b17e5e9e0acbcb5b4000d038c"><div>
             <h3>
@@ -585,6 +593,7 @@
               bool ibackwards = false,
               bool imirrored = false)</span></span>
             </h3>
+            <p>Generates a new path from the position (typically the current position) to the target and blocks until the controller has settled.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -604,7 +613,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Generates a new path from the position (typically the current position) to the target and blocks until the controller has settled. Does not save the path which was generated.</p>
+<p>Does not save the path which was generated.</p>
           </div></section>
           <section class="m-doc-details" id="a5845299e779fc876f6226aa083ddfaa8"><div>
             <h3>
@@ -613,6 +622,7 @@
               bool ibackwards = false,
               bool imirrored = false)</span></span>
             </h3>
+            <p>Generates a new path from the position (typically the current position) to the target and blocks until the controller has settled.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -636,12 +646,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Generates a new path from the position (typically the current position) to the target and blocks until the controller has settled. Does not save the path which was generated.</p>
+<p>Does not save the path which was generated.</p>
           </div></section>
           <section class="m-doc-details" id="aae5c2ef0766fba9e635c43c0314da10a"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a> okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aae5c2ef0766fba9e635c43c0314da10a" class="m-doc-self">getError</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns the last error of the controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -650,12 +661,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the last error of the controller. Does not update when disabled. This implementation always returns zero since the robot is assumed to perfectly follow the path. Subclasses can override this to be more accurate using odometry information.</p>
+<p>Does not update when disabled. This implementation always returns zero since the robot is assumed to perfectly follow the path. Subclasses can override this to be more accurate using odometry information.</p>
           </div></section>
           <section class="m-doc-details" id="abfc944ba6d703dc1aa6fb16a44b5e395"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abfc944ba6d703dc1aa6fb16a44b5e395" class="m-doc-self">isSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns whether the controller has settled at the target.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -664,24 +676,27 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller has settled at the target. Determining what settling means is implementation-dependent.</p><p>If the controller is disabled, this method must return true.</p>
+<p>Determining what settling means is implementation-dependent.</p><p>If the controller is disabled, this method must return true.</p>
           </div></section>
           <section class="m-doc-details" id="a9ad15272defac4db5e2b318671eb3850"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9ad15272defac4db5e2b318671eb3850" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Resets the controller so it can start from 0 again properly. Keeps configuration from before. This implementation also stops movement.</p>
+            <p>Resets the controller so it can start from 0 again properly.</p>
+<p>Keeps configuration from before. This implementation also stops movement.</p>
           </div></section>
           <section class="m-doc-details" id="a7069b2b7373aec21c84369392d8d34d8"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7069b2b7373aec21c84369392d8d34d8" class="m-doc-self">flipDisable</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Changes whether the controller is off or on. Turning the controller on after it was off will NOT cause the controller to move to its last set target.</p>
+            <p>Changes whether the controller is off or on.</p>
+<p>Turning the controller on after it was off will NOT cause the controller to move to its last set target.</p>
           </div></section>
           <section class="m-doc-details" id="a3dc30b14b36f1fc1fc61c9c45ced002e"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3dc30b14b36f1fc1fc61c9c45ced002e" class="m-doc-self">flipDisable</a>(</span><span class="m-doc-wrap">bool iisDisabled) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets whether the controller is off or on.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -693,12 +708,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets whether the controller is off or on. Turning the controller on after it was off will NOT cause the controller to move to its last set target, unless it was reset in that time.</p>
+<p>Turning the controller on after it was off will NOT cause the controller to move to its last set target, unless it was reset in that time.</p>
           </div></section>
           <section class="m-doc-details" id="a04bc0f7be2c116163bfbef0571dec2ef"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a04bc0f7be2c116163bfbef0571dec2ef" class="m-doc-self">isDisabled</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns whether the controller is currently disabled.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -707,18 +723,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller is currently disabled.</p>
-          </div></section>
-          <section class="m-doc-details" id="afc3476c87e3428f9f166273688e45249"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afc3476c87e3428f9f166273688e45249" class="m-doc-self">tarePosition</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>This implementation does nothing because the API always requires the starting position to be specified.</p>
           </div></section>
           <section class="m-doc-details" id="a8c8214249732c79d48601a2da579f220"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8c8214249732c79d48601a2da579f220" class="m-doc-self">setMaxVelocity</a>(</span><span class="m-doc-wrap">std::int32_t imaxVelocity) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>This implementation does nothing because the maximum velocity is configured using <a href="structokapi_1_1PathfinderLimits.html" class="m-doc">PathfinderLimits</a> elsewhere.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -730,13 +740,13 @@
                 </tr>
               </tbody>
             </table>
-<p>This implementation does nothing because the maximum velocity is configured using <a href="structokapi_1_1PathfinderLimits.html" class="m-doc">PathfinderLimits</a> elsewhere.</p>
           </div></section>
           <section class="m-doc-details" id="af54f59d0269d84b12eb148271e349646"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af54f59d0269d84b12eb148271e349646" class="m-doc-self">startThread</a>(</span><span class="m-doc-wrap">)</span></span>
             </h3>
-<p>Starts the internal thread. This should not be called by normal users. This method is called by the <code><a href="classokapi_1_1AsyncMotionProfileControllerBuilder.html" class="m-doc">AsyncMotionProfileControllerBuilder</a></code> when making a new instance of this class.</p>
+            <p>Starts the internal thread.</p>
+<p>This should not be called by normal users. This method is called by the <code><a href="classokapi_1_1AsyncMotionProfileControllerBuilder.html" class="m-doc">AsyncMotionProfileControllerBuilder</a></code> when making a new instance of this class.</p>
           </div></section>
           <section class="m-doc-details" id="aaac5113b3567c28dc1c5ba0dcf7facdd"><div>
             <h3>
@@ -756,6 +766,7 @@
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad588aa51d62169159ff5e4b05ad3982c" class="m-doc-self">storePath</a>(</span><span class="m-doc-wrap">const std::string&amp; idirectory,
               const std::string&amp; ipathId)</span></span>
             </h3>
+            <p>Saves a generated path to files.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -771,13 +782,14 @@
                 </tr>
               </tbody>
             </table>
-<p>Saves a generated path to files. Paths are stored as <code>&lt;ipathId&gt;.&lt;left/right&gt;.csv</code>. An SD card must be inserted into the brain and the directory must exist. <code>idirectory</code> can be prefixed with <code>/usd/</code>, but it this is not required.</p>
+<p>Paths are stored as <code>&lt;ipathId&gt;.&lt;left/right&gt;.csv</code>. An SD card must be inserted into the brain and the directory must exist. <code>idirectory</code> can be prefixed with <code>/usd/</code>, but it this is not required.</p>
           </div></section>
           <section class="m-doc-details" id="a87c74350a819a3a322321be787c32d1f"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a87c74350a819a3a322321be787c32d1f" class="m-doc-self">loadPath</a>(</span><span class="m-doc-wrap">const std::string&amp; idirectory,
               const std::string&amp; ipathId)</span></span>
             </h3>
+            <p>Loads a path from a directory on the SD card containing path CSV files.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -793,12 +805,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Loads a path from a directory on the SD card containing path CSV files. <code>/usd/</code> is automatically prepended to <code>idirectory</code> if it is not specified.</p>
+<p><code>/usd/</code> is automatically prepended to <code>idirectory</code> if it is not specified.</p>
           </div></section>
           <section class="m-doc-details" id="ace5f9053d3455e6f5e69c63f1196521e"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ace5f9053d3455e6f5e69c63f1196521e" class="m-doc-self">forceRemovePath</a>(</span><span class="m-doc-wrap">const std::string&amp; ipathId)</span></span>
             </h3>
+            <p>Attempts to remove a path without stopping execution.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -810,13 +823,14 @@
                 </tr>
               </tbody>
             </table>
-<p>Attempts to remove a path without stopping execution. If that fails, disables the controller and removes the path.</p>
+<p>If that fails, disables the controller and removes the path.</p>
           </div></section>
           <section class="m-doc-details" id="a3380054b3feb2679fe5b919095959826"><div>
             <h3>
               <span class="m-doc-wrap-bumper">static std::string okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3380054b3feb2679fe5b919095959826" class="m-doc-self">makeFilePath</a>(</span><span class="m-doc-wrap">const std::string&amp; directory,
               const std::string&amp; filename) <span class="m-label m-warning">protected</span></span></span>
             </h3>
+            <p>Joins and escapes a directory and file name.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -838,19 +852,20 @@
                 </tr>
               </tfoot>
             </table>
-<p>Joins and escapes a directory and file name</p>
           </div></section>
           <section class="m-doc-details" id="abbc724e5856bff8879cb834bfc3cc6c3"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abbc724e5856bff8879cb834bfc3cc6c3" class="m-doc-self">executeSinglePath</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path,
               std::unique_ptr&lt;<a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>&gt; rate) <span class="m-label m-warning">virtual</span> <span class="m-label m-warning">protected</span></span></span>
             </h3>
-<p>Follow the supplied path. Must follow the disabled lifecycle.</p>
+            <p>Follow the supplied path.</p>
+<p>Must follow the disabled lifecycle.</p>
           </div></section>
           <section class="m-doc-details" id="a74b2981453d36e01c30b66c522bdcb52"><div>
             <h3>
               <span class="m-doc-wrap-bumper">QAngularSpeed okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a74b2981453d36e01c30b66c522bdcb52" class="m-doc-self">convertLinearToRotational</a>(</span><span class="m-doc-wrap">QSpeed linear) const <span class="m-label m-warning">protected</span></span></span>
             </h3>
+            <p>Converts linear chassis speed to rotational motor speed.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -868,12 +883,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Converts linear chassis speed to rotational motor speed.</p>
           </div></section>
           <section class="m-doc-details" id="af14f6b6c201a7b80c32f5fc14c11022f"><div>
             <h3>
               <span class="m-doc-wrap-bumper">int okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af14f6b6c201a7b80c32f5fc14c11022f" class="m-doc-self">getPathLength</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path) <span class="m-label m-warning">protected</span></span></span>
             </h3>
+            <p>Reads the length of the path in a thread-safe manner.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -891,7 +906,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Reads the length of the path in a thread-safe manner.</p>
           </div></section>
         </section>
       </div>

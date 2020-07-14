@@ -80,7 +80,7 @@
               <span class="m-doc-wrap-bumper"><a href="#a48f341d8073ec533b09307d48b719bb7" class="m-doc">ControllerRunner</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a>&amp; itimeUtil,
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>()) <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd></dd>
+            <dd>A utility class that runs a closed-loop controller.</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -90,24 +90,24 @@
               <span class="m-doc-wrap-bumper">auto <a href="#aaab33207b895fe8d2d3f1533a9ad1446" class="m-doc">runUntilSettled</a>(</span><span class="m-doc-wrap">const Input itarget,
               <a href="classokapi_1_1AsyncController.html" class="m-doc">AsyncController</a>&lt;Input, Output&gt;&amp; icontroller) -&gt; Output <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Runs the controller until it has settled.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ab419d2bf6bccca115380467df452d6ca" class="m-doc">runUntilSettled</a>(</span><span class="m-doc-wrap">const Input itarget,
               <a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a>&lt;Input, Output&gt;&amp; icontroller,
               <a href="classokapi_1_1ControllerOutput.html" class="m-doc">ControllerOutput</a>&lt;Output&gt;&amp; ioutput) -&gt; Output <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Runs the controller until it has settled.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ab1e85de9c843d4b946f3d8672bf47f51" class="m-doc">runUntilAtTarget</a>(</span><span class="m-doc-wrap">const Input itarget,
               <a href="classokapi_1_1AsyncController.html" class="m-doc">AsyncController</a>&lt;Input, Output&gt;&amp; icontroller) -&gt; Output <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Runs the controller until it has reached its target, but not necessarily settled.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#af9654dd06bf58274b7cbcfd84813193a" class="m-doc">runUntilAtTarget</a>(</span><span class="m-doc-wrap">const Input itarget,
               <a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a>&lt;Input, Output&gt;&amp; icontroller,
               <a href="classokapi_1_1ControllerOutput.html" class="m-doc">ControllerOutput</a>&lt;Output&gt;&amp; ioutput) -&gt; Output <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Runs the controller until it has reached its target, but not necessarily settled.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -133,6 +133,7 @@
               <span class="m-doc-wrap-bumper"> okapi::<wbr />ControllerRunner&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a48f341d8073ec533b09307d48b719bb7" class="m-doc-self">ControllerRunner</a>(</span><span class="m-doc-wrap">const <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a>&amp; itimeUtil,
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>()) <span class="m-label m-info">explicit</span> </span></span>
             </h3>
+            <p>A utility class that runs a closed-loop controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -148,7 +149,6 @@
                 </tr>
               </tbody>
             </table>
-<p>A utility class that runs a closed-loop controller.</p>
           </div></section>
           <section class="m-doc-details" id="aaab33207b895fe8d2d3f1533a9ad1446"><div>
             <h3>
@@ -158,6 +158,7 @@
               <span class="m-doc-wrap-bumper">Output okapi::<wbr />ControllerRunner&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aaab33207b895fe8d2d3f1533a9ad1446" class="m-doc-self">runUntilSettled</a>(</span><span class="m-doc-wrap">const Input itarget,
               <a href="classokapi_1_1AsyncController.html" class="m-doc">AsyncController</a>&lt;Input, Output&gt;&amp; icontroller) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Runs the controller until it has settled.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -179,7 +180,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Runs the controller until it has settled.</p>
           </div></section>
           <section class="m-doc-details" id="ab419d2bf6bccca115380467df452d6ca"><div>
             <h3>
@@ -190,6 +190,7 @@
               <a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a>&lt;Input, Output&gt;&amp; icontroller,
               <a href="classokapi_1_1ControllerOutput.html" class="m-doc">ControllerOutput</a>&lt;Output&gt;&amp; ioutput) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Runs the controller until it has settled.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -215,7 +216,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Runs the controller until it has settled.</p>
           </div></section>
           <section class="m-doc-details" id="ab1e85de9c843d4b946f3d8672bf47f51"><div>
             <h3>
@@ -225,6 +225,7 @@
               <span class="m-doc-wrap-bumper">Output okapi::<wbr />ControllerRunner&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab1e85de9c843d4b946f3d8672bf47f51" class="m-doc-self">runUntilAtTarget</a>(</span><span class="m-doc-wrap">const Input itarget,
               <a href="classokapi_1_1AsyncController.html" class="m-doc">AsyncController</a>&lt;Input, Output&gt;&amp; icontroller) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Runs the controller until it has reached its target, but not necessarily settled.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -246,7 +247,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Runs the controller until it has reached its target, but not necessarily settled.</p>
           </div></section>
           <section class="m-doc-details" id="af9654dd06bf58274b7cbcfd84813193a"><div>
             <h3>
@@ -257,6 +257,7 @@
               <a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a>&lt;Input, Output&gt;&amp; icontroller,
               <a href="classokapi_1_1ControllerOutput.html" class="m-doc">ControllerOutput</a>&lt;Output&gt;&amp; ioutput) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Runs the controller until it has reached its target, but not necessarily settled.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -282,7 +283,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Runs the controller until it has reached its target, but not necessarily settled.</p>
           </div></section>
         </section>
       </div>

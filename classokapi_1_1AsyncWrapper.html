@@ -83,7 +83,7 @@
               <div class="m-doc-template">template&lt;typename Input, typename Output&gt;</div>
               class <a href="classokapi_1_1AsyncController.html" class="m-doc">AsyncController</a> <span class="m-label m-flat m-warning">virtual</span>
             </dt>
-            <dd></dd>
+            <dd>Closed-loop controller that steps on its own in another thread and automatically writes to the output.</dd>
           </dl>
         </section>
         <section id="typeless-methods">
@@ -97,7 +97,7 @@
               const double iratio = 1,
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd></dd>
+            <dd>A wrapper class that transforms an <code><a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a></code> into an <code><a href="classokapi_1_1AsyncController.html" class="m-doc">AsyncController</a></code> by running it in another task.</dd>
             <dt id="a6824804fd4c85627d6af2a563ea9fcf0">
               <span class="m-doc-wrap-bumper"><a href="#a6824804fd4c85627d6af2a563ea9fcf0" class="m-doc-self">AsyncWrapper</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AsyncWrapper.html" class="m-doc">AsyncWrapper</a>&lt;Input, Output&gt;&amp;&amp; other) <span class="m-label m-flat m-danger">deleted</span></span>
             </dt>
@@ -115,84 +115,84 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a6c58083a3bfbeb836cc9a10b23e4bc11" class="m-doc-self">operator=</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AsyncWrapper.html" class="m-doc">AsyncWrapper</a>&lt;Input, Output&gt;&amp;&amp; other) -&gt; <a href="classokapi_1_1AsyncWrapper.html" class="m-doc">AsyncWrapper</a>&lt;Input, Output&gt;&amp; <span class="m-label m-flat m-danger">deleted</span></span>
             </dt>
             <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#aa4b9a4ff29aff5047425e239b574c3c6" class="m-doc">setTarget</a>(</span><span class="m-doc-wrap">const Input itarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dt id="aa4b9a4ff29aff5047425e239b574c3c6">
+              <span class="m-doc-wrap-bumper">void <a href="#aa4b9a4ff29aff5047425e239b574c3c6" class="m-doc-self">setTarget</a>(</span><span class="m-doc-wrap">const Input itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target for the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aec6d1a4214bad2151bee23dc5e8076e7" class="m-doc">controllerSet</a>(</span><span class="m-doc-wrap">const Input ivalue) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Writes the value of the controller output.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a2471c7b5f388d441db77fa9199db7b83" class="m-doc">getTarget</a>(</span><span class="m-doc-wrap">) -&gt; Input <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Gets the last set target, or the default target if none was set.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ad1c7a4258eb5ad5127fe12d7b78ddb15" class="m-doc">getProcessValue</a>(</span><span class="m-doc-wrap">) const -&gt; Input <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a6f3859f212f0348e73df98c83208f3c4" class="m-doc">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; Output</span>
+            <dt id="a6f3859f212f0348e73df98c83208f3c4">
+              <span class="m-doc-wrap-bumper">auto <a href="#a6f3859f212f0348e73df98c83208f3c4" class="m-doc-self">getOutput</a>(</span><span class="m-doc-wrap">) const -&gt; Output</span>
             </dt>
-            <dd></dd>
+            <dd>Returns the last calculated output of the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a64b690883ff7475375a6d08ad3fb62f9" class="m-doc">getError</a>(</span><span class="m-doc-wrap">) const -&gt; Output <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the last error of the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a93343937a8bbe762aeb6460197a22dfe" class="m-doc">isSettled</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns whether the controller has settled at the target.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#afe14fb6e7727c313bd40cf74d28f0a14" class="m-doc">setSampleTime</a>(</span><span class="m-doc-wrap">const QTime&amp; isampleTime)</span>
             </dt>
-            <dd></dd>
+            <dd>Set time between loops.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a668c83b4a2b5bee7f2d072b57157d19a" class="m-doc">setOutputLimits</a>(</span><span class="m-doc-wrap">const Output imax,
               const Output imin)</span>
             </dt>
-            <dd></dd>
+            <dd>Set controller output bounds.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a9cb3a50a27e7d3e1263ed3aa6c57bb82" class="m-doc">setControllerSetTargetLimits</a>(</span><span class="m-doc-wrap">double itargetMax,
               double itargetMin)</span>
             </dt>
-            <dd></dd>
+            <dd>Sets the (soft) limits for the target range that <a href="classokapi_1_1AsyncWrapper.html#aec6d1a4214bad2151bee23dc5e8076e7" class="m-doc">controllerSet()</a> scales into.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a95112bac1792ef04010cd97efa135998" class="m-doc">getMaxOutput</a>(</span><span class="m-doc-wrap">) -&gt; Output</span>
             </dt>
-            <dd></dd>
+            <dd>Get the upper output bound.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a41ccefbf1da06cca1ec525d0ad80fa00" class="m-doc">getMinOutput</a>(</span><span class="m-doc-wrap">) -&gt; Output</span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a9372a74580e5be429ecd65ec0e110c23" class="m-doc">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>Get the lower output bound.</dd>
+            <dt id="a9372a74580e5be429ecd65ec0e110c23">
+              <span class="m-doc-wrap-bumper">void <a href="#a9372a74580e5be429ecd65ec0e110c23" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Resets the controller&#x27;s internal state so it is similar to when it was first initialized, while keeping any user-configured information.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#afdf4d80b0f3eec3d77280a561b24f0b0" class="m-doc">flipDisable</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Changes whether the controller is off or on.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ab47f9a7ee52a5d699cb39b21b0926981" class="m-doc">flipDisable</a>(</span><span class="m-doc-wrap">const bool iisDisabled) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets whether the controller is off or on.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a83d411851373f0483b5ae392560a180a" class="m-doc">isDisabled</a>(</span><span class="m-doc-wrap">) const -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns whether the controller is currently disabled.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a23435c257ac2d6df59ab5d96408e608a" class="m-doc">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Blocks the current task until the controller has settled.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a5225a6b4748da30bf17ddbda692cbf4a" class="m-doc">startThread</a>(</span><span class="m-doc-wrap">)</span>
             </dt>
-            <dd></dd>
+            <dd>Starts the internal thread.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aef499c3f854e809951f6fa4f2d3ff40e" class="m-doc">getThread</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classCrossplatformThread.html" class="m-doc">CrossplatformThread</a>*</span>
             </dt>
-            <dd></dd>
+            <dd>Returns the underlying thread handle.</dd>
           </dl>
         </section>
         <section id="pro-static-methods">
@@ -214,7 +214,7 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a67fa1bf10df9b8f3c280d8f2b136038a" class="m-doc">resumeMovement</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Resumes moving after the controller is reset.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -276,6 +276,7 @@
               const double iratio = 1,
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>A wrapper class that transforms an <code><a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a></code> into an <code><a href="classokapi_1_1AsyncController.html" class="m-doc">AsyncController</a></code> by running it in another task.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -307,16 +308,7 @@
                 </tr>
               </tbody>
             </table>
-<p>A wrapper class that transforms an <code><a href="classokapi_1_1IterativeController.html" class="m-doc">IterativeController</a></code> into an <code><a href="classokapi_1_1AsyncController.html" class="m-doc">AsyncController</a></code> by running it in another task. The input controller will act like an <code><a href="classokapi_1_1AsyncController.html" class="m-doc">AsyncController</a></code>.</p>
-          </div></section>
-          <section class="m-doc-details" id="aa4b9a4ff29aff5047425e239b574c3c6"><div>
-            <h3>
-              <div class="m-doc-template">
-                template&lt;typename Input, typename Output&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa4b9a4ff29aff5047425e239b574c3c6" class="m-doc-self">setTarget</a>(</span><span class="m-doc-wrap">const Input itarget) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Sets the target for the controller.</p>
+<p>The input controller will act like an <code><a href="classokapi_1_1AsyncController.html" class="m-doc">AsyncController</a></code>.</p>
           </div></section>
           <section class="m-doc-details" id="aec6d1a4214bad2151bee23dc5e8076e7"><div>
             <h3>
@@ -325,6 +317,7 @@
               </div>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aec6d1a4214bad2151bee23dc5e8076e7" class="m-doc-self">controllerSet</a>(</span><span class="m-doc-wrap">const Input ivalue) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Writes the value of the controller output.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -336,7 +329,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Writes the value of the controller output. This method might be automatically called in another thread by the controller.</p>
+<p>This method might be automatically called in another thread by the controller.</p>
           </div></section>
           <section class="m-doc-details" id="a2471c7b5f388d441db77fa9199db7b83"><div>
             <h3>
@@ -345,6 +338,7 @@
               </div>
               <span class="m-doc-wrap-bumper">Input okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2471c7b5f388d441db77fa9199db7b83" class="m-doc-self">getTarget</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Gets the last set target, or the default target if none was set.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -353,7 +347,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the last set target, or the default target if none was set.</p>
           </div></section>
           <section class="m-doc-details" id="ad1c7a4258eb5ad5127fe12d7b78ddb15"><div>
             <h3>
@@ -371,15 +364,6 @@
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a6f3859f212f0348e73df98c83208f3c4"><div>
-            <h3>
-              <div class="m-doc-template">
-                template&lt;typename Input, typename Output&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">Output okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6f3859f212f0348e73df98c83208f3c4" class="m-doc-self">getOutput</a>(</span><span class="m-doc-wrap">) const</span></span>
-            </h3>
-<p>Returns the last calculated output of the controller.</p>
-          </div></section>
           <section class="m-doc-details" id="a64b690883ff7475375a6d08ad3fb62f9"><div>
             <h3>
               <div class="m-doc-template">
@@ -387,7 +371,8 @@
               </div>
               <span class="m-doc-wrap-bumper">Output okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a64b690883ff7475375a6d08ad3fb62f9" class="m-doc-self">getError</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Returns the last error of the controller. Does not update when disabled.</p>
+            <p>Returns the last error of the controller.</p>
+<p>Does not update when disabled.</p>
           </div></section>
           <section class="m-doc-details" id="a93343937a8bbe762aeb6460197a22dfe"><div>
             <h3>
@@ -396,6 +381,7 @@
               </div>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a93343937a8bbe762aeb6460197a22dfe" class="m-doc-self">isSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns whether the controller has settled at the target.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -404,7 +390,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller has settled at the target. Determining what settling means is implementation-dependent.</p><p>If the controller is disabled, this method must return true.</p>
+<p>Determining what settling means is implementation-dependent.</p><p>If the controller is disabled, this method must return true.</p>
           </div></section>
           <section class="m-doc-details" id="afe14fb6e7727c313bd40cf74d28f0a14"><div>
             <h3>
@@ -413,6 +399,7 @@
               </div>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afe14fb6e7727c313bd40cf74d28f0a14" class="m-doc-self">setSampleTime</a>(</span><span class="m-doc-wrap">const QTime&amp; isampleTime)</span></span>
             </h3>
+            <p>Set time between loops.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -424,7 +411,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Set time between loops.</p>
           </div></section>
           <section class="m-doc-details" id="a668c83b4a2b5bee7f2d072b57157d19a"><div>
             <h3>
@@ -434,6 +420,7 @@
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a668c83b4a2b5bee7f2d072b57157d19a" class="m-doc-self">setOutputLimits</a>(</span><span class="m-doc-wrap">const Output imax,
               const Output imin)</span></span>
             </h3>
+            <p>Set controller output bounds.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -449,7 +436,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Set controller output bounds.</p>
           </div></section>
           <section class="m-doc-details" id="a9cb3a50a27e7d3e1263ed3aa6c57bb82"><div>
             <h3>
@@ -459,6 +445,7 @@
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9cb3a50a27e7d3e1263ed3aa6c57bb82" class="m-doc-self">setControllerSetTargetLimits</a>(</span><span class="m-doc-wrap">double itargetMax,
               double itargetMin)</span></span>
             </h3>
+            <p>Sets the (soft) limits for the target range that <a href="classokapi_1_1AsyncWrapper.html#aec6d1a4214bad2151bee23dc5e8076e7" class="m-doc">controllerSet()</a> scales into.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -474,7 +461,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the (soft) limits for the target range that <a href="classokapi_1_1AsyncWrapper.html#aec6d1a4214bad2151bee23dc5e8076e7" class="m-doc">controllerSet()</a> scales into. The target computed by <a href="classokapi_1_1AsyncWrapper.html#aec6d1a4214bad2151bee23dc5e8076e7" class="m-doc">controllerSet()</a> is scaled into the range [-itargetMin, itargetMax].</p>
+<p>The target computed by <a href="classokapi_1_1AsyncWrapper.html#aec6d1a4214bad2151bee23dc5e8076e7" class="m-doc">controllerSet()</a> is scaled into the range [-itargetMin, itargetMax].</p>
           </div></section>
           <section class="m-doc-details" id="a95112bac1792ef04010cd97efa135998"><div>
             <h3>
@@ -483,6 +470,7 @@
               </div>
               <span class="m-doc-wrap-bumper">Output okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a95112bac1792ef04010cd97efa135998" class="m-doc-self">getMaxOutput</a>(</span><span class="m-doc-wrap">)</span></span>
             </h3>
+            <p>Get the upper output bound.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -491,7 +479,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the upper output bound.</p>
           </div></section>
           <section class="m-doc-details" id="a41ccefbf1da06cca1ec525d0ad80fa00"><div>
             <h3>
@@ -500,6 +487,7 @@
               </div>
               <span class="m-doc-wrap-bumper">Output okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a41ccefbf1da06cca1ec525d0ad80fa00" class="m-doc-self">getMinOutput</a>(</span><span class="m-doc-wrap">)</span></span>
             </h3>
+            <p>Get the lower output bound.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -508,16 +496,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the lower output bound.</p>
-          </div></section>
-          <section class="m-doc-details" id="a9372a74580e5be429ecd65ec0e110c23"><div>
-            <h3>
-              <div class="m-doc-template">
-                template&lt;typename Input, typename Output&gt;
-              </div>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9372a74580e5be429ecd65ec0e110c23" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Resets the controller&#x27;s internal state so it is similar to when it was first initialized, while keeping any user-configured information.</p>
           </div></section>
           <section class="m-doc-details" id="afdf4d80b0f3eec3d77280a561b24f0b0"><div>
             <h3>
@@ -526,7 +504,8 @@
               </div>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afdf4d80b0f3eec3d77280a561b24f0b0" class="m-doc-self">flipDisable</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Changes whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
+            <p>Changes whether the controller is off or on.</p>
+<p>Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
           </div></section>
           <section class="m-doc-details" id="ab47f9a7ee52a5d699cb39b21b0926981"><div>
             <h3>
@@ -535,6 +514,7 @@
               </div>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab47f9a7ee52a5d699cb39b21b0926981" class="m-doc-self">flipDisable</a>(</span><span class="m-doc-wrap">const bool iisDisabled) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets whether the controller is off or on.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -546,7 +526,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
+<p>Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
           </div></section>
           <section class="m-doc-details" id="a83d411851373f0483b5ae392560a180a"><div>
             <h3>
@@ -555,6 +535,7 @@
               </div>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a83d411851373f0483b5ae392560a180a" class="m-doc-self">isDisabled</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns whether the controller is currently disabled.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -563,7 +544,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller is currently disabled.</p>
           </div></section>
           <section class="m-doc-details" id="a23435c257ac2d6df59ab5d96408e608a"><div>
             <h3>
@@ -572,7 +552,8 @@
               </div>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a23435c257ac2d6df59ab5d96408e608a" class="m-doc-self">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Blocks the current task until the controller has settled. Determining what settling means is implementation-dependent.</p>
+            <p>Blocks the current task until the controller has settled.</p>
+<p>Determining what settling means is implementation-dependent.</p>
           </div></section>
           <section class="m-doc-details" id="a5225a6b4748da30bf17ddbda692cbf4a"><div>
             <h3>
@@ -581,7 +562,8 @@
               </div>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5225a6b4748da30bf17ddbda692cbf4a" class="m-doc-self">startThread</a>(</span><span class="m-doc-wrap">)</span></span>
             </h3>
-<p>Starts the internal thread. This should not be called by normal users. This method is called by the AsyncControllerFactory when making a new instance of this class.</p>
+            <p>Starts the internal thread.</p>
+<p>This should not be called by normal users. This method is called by the AsyncControllerFactory when making a new instance of this class.</p>
           </div></section>
           <section class="m-doc-details" id="aef499c3f854e809951f6fa4f2d3ff40e"><div>
             <h3>
@@ -590,6 +572,7 @@
               </div>
               <span class="m-doc-wrap-bumper"><a href="classCrossplatformThread.html" class="m-doc">CrossplatformThread</a>* okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aef499c3f854e809951f6fa4f2d3ff40e" class="m-doc-self">getThread</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Returns the underlying thread handle.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -598,7 +581,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the underlying thread handle.</p>
           </div></section>
           <section class="m-doc-details" id="a67fa1bf10df9b8f3c280d8f2b136038a"><div>
             <h3>
@@ -607,7 +589,8 @@
               </div>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncWrapper&lt;Input, Output&gt;::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a67fa1bf10df9b8f3c280d8f2b136038a" class="m-doc-self">resumeMovement</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span> <span class="m-label m-warning">protected</span></span></span>
             </h3>
-<p>Resumes moving after the controller is reset. Should not cause movement if the controller is turned off, reset, and turned back on.</p>
+            <p>Resumes moving after the controller is reset.</p>
+<p>Should not cause movement if the controller is turned off, reset, and turned back on.</p>
           </div></section>
         </section>
       </div>

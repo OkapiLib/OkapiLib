@@ -96,28 +96,28 @@
             <dt>
               <span class="m-doc-wrap-bumper">static void <a href="#a8ce00328c5d878bb340cf360694b103c" class="m-doc">setDefaultLogger</a>(</span><span class="m-doc-wrap">std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger)</span>
             </dt>
-            <dd></dd>
+            <dd>Sets a new default logger.</dd>
           </dl>
         </section>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper"><a href="#a9a81a6dda1c3cc49e6f103a1496eb2ca" class="m-doc">Logger</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-success">noexcept</span></span>
+            <dt id="a9a81a6dda1c3cc49e6f103a1496eb2ca">
+              <span class="m-doc-wrap-bumper"><a href="#a9a81a6dda1c3cc49e6f103a1496eb2ca" class="m-doc-self">Logger</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-success">noexcept</span></span>
             </dt>
-            <dd></dd>
+            <dd>A logger that does nothing.</dd>
             <dt>
               <span class="m-doc-wrap-bumper"><a href="#aca21f246a76dd95b6664332407d8279e" class="m-doc">Logger</a>(</span><span class="m-doc-wrap">std::unique_ptr&lt;<a href="classokapi_1_1AbstractTimer.html" class="m-doc">AbstractTimer</a>&gt; itimer,
               std::string_view ifileName,
               const <a href="classokapi_1_1Logger.html#a66826a92c568743a2722d3c3f6887d81" class="m-doc">LogLevel</a>&amp; ilevel) <span class="m-label m-flat m-success">noexcept</span></span>
             </dt>
-            <dd></dd>
+            <dd>A logger that opens the input file by name.</dd>
             <dt>
               <span class="m-doc-wrap-bumper"><a href="#ad23bb773b75860507dd4ab8cd67d8d51" class="m-doc">Logger</a>(</span><span class="m-doc-wrap">std::unique_ptr&lt;<a href="classokapi_1_1AbstractTimer.html" class="m-doc">AbstractTimer</a>&gt; itimer,
               FILE* ifile,
               const <a href="classokapi_1_1Logger.html#a66826a92c568743a2722d3c3f6887d81" class="m-doc">LogLevel</a>&amp; ilevel) <span class="m-label m-flat m-success">noexcept</span></span>
             </dt>
-            <dd></dd>
+            <dd>A logger that uses an existing file handle.</dd>
             <dt id="aa73eef76e53a36ce17f1bd8897352d6e">
               <span class="m-doc-wrap-bumper"><a href="#aa73eef76e53a36ce17f1bd8897352d6e" class="m-doc-self">~Logger</a>(</span><span class="m-doc-wrap">)</span>
             </dt>
@@ -163,10 +163,10 @@
               <span class="m-doc-wrap-bumper">void <a href="#a9be5bbf6b6e90265b37a955bebba4387" class="m-doc-self">error</a>(</span><span class="m-doc-wrap">T ilazyMessage) <span class="m-label m-flat m-success">noexcept</span></span>
             </dt>
             <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a15f8ef2e95e376c59c5f556bab2bd38a" class="m-doc">close</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-primary">constexpr</span> <span class="m-label m-flat m-success">noexcept</span></span>
+            <dt id="a15f8ef2e95e376c59c5f556bab2bd38a">
+              <span class="m-doc-wrap-bumper">void <a href="#a15f8ef2e95e376c59c5f556bab2bd38a" class="m-doc-self">close</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-primary">constexpr</span> <span class="m-label m-flat m-success">noexcept</span></span>
             </dt>
-            <dd></dd>
+            <dd>Closes the connection to the log file.</dd>
           </dl>
         </section>
         <section>
@@ -232,6 +232,7 @@
             <h3>
               <span class="m-doc-wrap-bumper">static void okapi::<wbr />Logger::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8ce00328c5d878bb340cf360694b103c" class="m-doc-self">setDefaultLogger</a>(</span><span class="m-doc-wrap">std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger)</span></span>
             </h3>
+            <p>Sets a new default logger.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -243,13 +244,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets a new default logger. OkapiLib classes use the default logger unless given another logger in their constructor.</p>
-          </div></section>
-          <section class="m-doc-details" id="a9a81a6dda1c3cc49e6f103a1496eb2ca"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"> okapi::<wbr />Logger::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9a81a6dda1c3cc49e6f103a1496eb2ca" class="m-doc-self">Logger</a>(</span><span class="m-doc-wrap">) <span class="m-label m-success">noexcept</span></span></span>
-            </h3>
-<p>A logger that does nothing.</p>
+<p>OkapiLib classes use the default logger unless given another logger in their constructor.</p>
           </div></section>
           <section class="m-doc-details" id="aca21f246a76dd95b6664332407d8279e"><div>
             <h3>
@@ -257,6 +252,7 @@
               std::string_view ifileName,
               const <a href="classokapi_1_1Logger.html#a66826a92c568743a2722d3c3f6887d81" class="m-doc">LogLevel</a>&amp; ilevel) <span class="m-label m-success">noexcept</span></span></span>
             </h3>
+            <p>A logger that opens the input file by name.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -276,7 +272,7 @@
                 </tr>
               </tbody>
             </table>
-<p>A logger that opens the input file by name. If the file contains <code>/ser/</code>, the file will be opened in write mode. Otherwise, the file will be opened in append mode. The file will be closed when the logger is destructed.</p>
+<p>If the file contains <code>/ser/</code>, the file will be opened in write mode. Otherwise, the file will be opened in append mode. The file will be closed when the logger is destructed.</p>
           </div></section>
           <section class="m-doc-details" id="ad23bb773b75860507dd4ab8cd67d8d51"><div>
             <h3>
@@ -284,6 +280,7 @@
               FILE* ifile,
               const <a href="classokapi_1_1Logger.html#a66826a92c568743a2722d3c3f6887d81" class="m-doc">LogLevel</a>&amp; ilevel) <span class="m-label m-success">noexcept</span></span></span>
             </h3>
+            <p>A logger that uses an existing file handle.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -303,13 +300,7 @@
                 </tr>
               </tbody>
             </table>
-<p>A logger that uses an existing file handle. The file will be closed when the logger is destructed.</p>
-          </div></section>
-          <section class="m-doc-details" id="a15f8ef2e95e376c59c5f556bab2bd38a"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />Logger::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a15f8ef2e95e376c59c5f556bab2bd38a" class="m-doc-self">close</a>(</span><span class="m-doc-wrap">) <span class="m-label m-primary">constexpr</span> <span class="m-label m-success">noexcept</span></span></span>
-            </h3>
-<p>Closes the connection to the log file.</p>
+<p>The file will be closed when the logger is destructed.</p>
           </div></section>
         </section>
       </div>

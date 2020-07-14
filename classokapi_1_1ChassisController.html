@@ -95,7 +95,7 @@
             <dt>
               <span class="m-doc-wrap-bumper"><a href="#a8a4a431cb9da03a1c84e600dc0e31333" class="m-doc">ChassisController</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span> <span class="m-label m-flat m-info">explicit</span> </span>
             </dt>
-            <dd></dd>
+            <dd>A <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a> adds a closed-loop layer on top of a <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>.</dd>
             <dt id="a886a1cfbd9430fb2fbe177bc4d4ab392">
               <span class="m-doc-wrap-bumper"><a href="#a886a1cfbd9430fb2fbe177bc4d4ab392" class="m-doc-self">~ChassisController</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span> <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -108,67 +108,67 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a6d5b69139dfa8b814d05c74c22bcaa43" class="m-doc">moveDistance</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drives the robot straight for a distance (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a7d0747474b5c27bbc987eb31ec80da5f" class="m-doc">moveRaw</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drives the robot straight for a distance (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a67a17268b871a4f1ae74d67891cbf5dd" class="m-doc">moveDistanceAsync</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target distance for the robot to drive straight (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ad05b6ec70254b51bc2a8dc78c69fe0f9" class="m-doc">moveRawAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target distance for the robot to drive straight (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aab12308b3fad6793c007d7a33730a3f7" class="m-doc">turnAngle</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Turns the robot clockwise in place (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ae521f7f79302cc5cae505b1a59c72567" class="m-doc">turnRaw</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Turns the robot clockwise in place (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a87fc1f88bf06340d8f022a8c185b5e87" class="m-doc">turnAngleAsync</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#afe237940671dc8c0a47b18ddd2855fff" class="m-doc">turnRawAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a37ae36ec8936272eb31e3baed7eed417" class="m-doc">setTurnsMirrored</a>(</span><span class="m-doc-wrap">bool ishouldMirror) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets whether turns should be mirrored.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#af243e988026a00840a27db92c7b6e41f" class="m-doc">isSettled</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a01ed4e0eb7332cc149228387bbf1e91c" class="m-doc">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            <dd>Checks whether the internal controllers are currently settled.</dd>
+            <dt id="a01ed4e0eb7332cc149228387bbf1e91c">
+              <span class="m-doc-wrap-bumper">void <a href="#a01ed4e0eb7332cc149228387bbf1e91c" class="m-doc-self">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#ac67edbbbe1c8480c4503b9875a3719cd" class="m-doc">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            <dd>Delays until the currently executing movement completes.</dd>
+            <dt id="ac67edbbbe1c8480c4503b9875a3719cd">
+              <span class="m-doc-wrap-bumper">void <a href="#ac67edbbbe1c8480c4503b9875a3719cd" class="m-doc-self">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Interrupts the current movement to stop the robot.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a973c79ed60f4b0a25fe5273ba4146427" class="m-doc">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets a new maximum velocity in RPM [0-600].</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a3306e5e19cafb3d231edcfef23c36e3e" class="m-doc">getMaxVelocity</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
             <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a0a8e32fc7adad8567f550954505aaa06" class="m-doc">getChassisScales</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> <span class="m-label m-flat m-warning">pure virtual</span></span>
+            <dt id="a0a8e32fc7adad8567f550954505aaa06">
+              <span class="m-doc-wrap-bumper">auto <a href="#a0a8e32fc7adad8567f550954505aaa06" class="m-doc-self">getChassisScales</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#aa19351888b997d4a6596dac24520ebff" class="m-doc">getGearsetRatioPair</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a> <span class="m-label m-flat m-warning">pure virtual</span></span>
+            <dd>Get the <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>.</dd>
+            <dt id="aa19351888b997d4a6596dac24520ebff">
+              <span class="m-doc-wrap-bumper">auto <a href="#aa19351888b997d4a6596dac24520ebff" class="m-doc-self">getGearsetRatioPair</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a> <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the GearsetRatioPair.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a1971d4b54b61718437824c026aca53c9" class="m-doc">getModel</a>(</span><span class="m-doc-wrap">) -&gt; std::shared_ptr&lt;<a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>&gt; <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
@@ -185,12 +185,14 @@
             <h3>
               <span class="m-doc-wrap-bumper"> okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8a4a431cb9da03a1c84e600dc0e31333" class="m-doc-self">ChassisController</a>(</span><span class="m-doc-wrap">) <span class="m-label m-info">explicit</span>  <span class="m-label m-info">defaulted</span></span></span>
             </h3>
-<p>A <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a> adds a closed-loop layer on top of a <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>. moveDistance and turnAngle both use closed-loop control to move the robot. There are passthrough functions for everything defined in <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>.</p>
+            <p>A <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a> adds a closed-loop layer on top of a <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>.</p>
+<p>moveDistance and turnAngle both use closed-loop control to move the robot. There are passthrough functions for everything defined in <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>.</p>
           </div></section>
           <section class="m-doc-details" id="a6d5b69139dfa8b814d05c74c22bcaa43"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6d5b69139dfa8b814d05c74c22bcaa43" class="m-doc-self">moveDistance</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Drives the robot straight for a distance (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -202,12 +204,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Drives the robot straight for a distance (using closed-loop control).</p>
           </div></section>
           <section class="m-doc-details" id="a7d0747474b5c27bbc987eb31ec80da5f"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7d0747474b5c27bbc987eb31ec80da5f" class="m-doc-self">moveRaw</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Drives the robot straight for a distance (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -219,12 +221,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Drives the robot straight for a distance (using closed-loop control).</p>
           </div></section>
           <section class="m-doc-details" id="a67a17268b871a4f1ae74d67891cbf5dd"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a67a17268b871a4f1ae74d67891cbf5dd" class="m-doc-self">moveDistanceAsync</a>(</span><span class="m-doc-wrap">QLength itarget) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -236,12 +238,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
           </div></section>
           <section class="m-doc-details" id="ad05b6ec70254b51bc2a8dc78c69fe0f9"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad05b6ec70254b51bc2a8dc78c69fe0f9" class="m-doc-self">moveRawAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -253,12 +255,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the target distance for the robot to drive straight (using closed-loop control).</p>
           </div></section>
           <section class="m-doc-details" id="aab12308b3fad6793c007d7a33730a3f7"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aab12308b3fad6793c007d7a33730a3f7" class="m-doc-self">turnAngle</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Turns the robot clockwise in place (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -270,12 +272,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Turns the robot clockwise in place (using closed-loop control).</p>
           </div></section>
           <section class="m-doc-details" id="ae521f7f79302cc5cae505b1a59c72567"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae521f7f79302cc5cae505b1a59c72567" class="m-doc-self">turnRaw</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Turns the robot clockwise in place (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -287,12 +289,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Turns the robot clockwise in place (using closed-loop control).</p>
           </div></section>
           <section class="m-doc-details" id="a87fc1f88bf06340d8f022a8c185b5e87"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a87fc1f88bf06340d8f022a8c185b5e87" class="m-doc-self">turnAngleAsync</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -304,12 +306,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
           </div></section>
           <section class="m-doc-details" id="afe237940671dc8c0a47b18ddd2855fff"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afe237940671dc8c0a47b18ddd2855fff" class="m-doc-self">turnRawAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -321,12 +323,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets the target angle for the robot to turn clockwise in place (using closed-loop control).</p>
           </div></section>
           <section class="m-doc-details" id="a37ae36ec8936272eb31e3baed7eed417"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a37ae36ec8936272eb31e3baed7eed417" class="m-doc-self">setTurnsMirrored</a>(</span><span class="m-doc-wrap">bool ishouldMirror) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets whether turns should be mirrored.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -338,12 +340,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets whether turns should be mirrored.</p>
           </div></section>
           <section class="m-doc-details" id="af243e988026a00840a27db92c7b6e41f"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af243e988026a00840a27db92c7b6e41f" class="m-doc-self">isSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Checks whether the internal controllers are currently settled.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -352,24 +354,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Checks whether the internal controllers are currently settled.</p>
-          </div></section>
-          <section class="m-doc-details" id="a01ed4e0eb7332cc149228387bbf1e91c"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a01ed4e0eb7332cc149228387bbf1e91c" class="m-doc-self">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-<p>Delays until the currently executing movement completes.</p>
-          </div></section>
-          <section class="m-doc-details" id="ac67edbbbe1c8480c4503b9875a3719cd"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac67edbbbe1c8480c4503b9875a3719cd" class="m-doc-self">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-<p>Interrupts the current movement to stop the robot.</p>
           </div></section>
           <section class="m-doc-details" id="a973c79ed60f4b0a25fe5273ba4146427"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a973c79ed60f4b0a25fe5273ba4146427" class="m-doc-self">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets a new maximum velocity in RPM [0-600].</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -381,7 +371,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets a new maximum velocity in RPM [0-600].</p>
           </div></section>
           <section class="m-doc-details" id="a3306e5e19cafb3d231edcfef23c36e3e"><div>
             <h3>
@@ -395,18 +384,6 @@
                 </tr>
               </tfoot>
             </table>
-          </div></section>
-          <section class="m-doc-details" id="a0a8e32fc7adad8567f550954505aaa06"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a> okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0a8e32fc7adad8567f550954505aaa06" class="m-doc-self">getChassisScales</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-<p>Get the <a href="classokapi_1_1ChassisScales.html" class="m-doc">ChassisScales</a>.</p>
-          </div></section>
-          <section class="m-doc-details" id="aa19351888b997d4a6596dac24520ebff"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper"><a href="structokapi_1_1AbstractMotor_1_1GearsetRatioPair.html" class="m-doc">AbstractMotor::<wbr />GearsetRatioPair</a> okapi::<wbr />ChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa19351888b997d4a6596dac24520ebff" class="m-doc-self">getGearsetRatioPair</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-<p>Get the GearsetRatioPair.</p>
           </div></section>
           <section class="m-doc-details" id="a1971d4b54b61718437824c026aca53c9"><div>
             <h3>

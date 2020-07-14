@@ -89,7 +89,7 @@
               <span class="m-doc-wrap-bumper"><a href="#a04db661121327089b43d82f9aa21e168" class="m-doc">ADIGyro</a>(</span><span class="m-doc-wrap">std::uint8_t iport,
               double imultiplier = 1)</span>
             </dt>
-            <dd></dd>
+            <dd>A gyroscope on the given ADI port.</dd>
             <dt id="a406cc8ec708c49c507ccab63ffad693c">
               <span class="m-doc-wrap-bumper"><a href="#a406cc8ec708c49c507ccab63ffad693c" class="m-doc-self">~ADIGyro</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -102,20 +102,20 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a3a4a0a319c723091aad0b2125d701ca4" class="m-doc">get</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the current sensor value.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a5fa8fa3653e8c2eeff81a56b80e79f7c" class="m-doc">getRemapped</a>(</span><span class="m-doc-wrap">double iupperBound = 1800,
               double ilowerBound = -1800) -&gt; double</span>
             </dt>
-            <dd></dd>
+            <dd>Get the current sensor value remapped into the target range ([1800, -1800] by default).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a316eec0bf6008c50fea6d1a621fd2e87" class="m-doc">reset</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Reset the sensor to zero.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ad6a8ed104c8383a64c984ceb1147bca4" class="m-doc">controllerGet</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the sensor value for use in a control loop.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -134,6 +134,7 @@
               <span class="m-doc-wrap-bumper"> okapi::<wbr />ADIGyro::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a04db661121327089b43d82f9aa21e168" class="m-doc-self">ADIGyro</a>(</span><span class="m-doc-wrap">std::uint8_t iport,
               double imultiplier = 1)</span></span>
             </h3>
+            <p>A gyroscope on the given ADI port.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -149,12 +150,13 @@
                 </tr>
               </tbody>
             </table>
-<p>A gyroscope on the given ADI port. If the port has not previously been configured as a gyro, then the constructor will block for 1 second for calibration. The gyro measures in tenths of a degree, so there are 3600 measurement points per revolution.</p>
+<p>If the port has not previously been configured as a gyro, then the constructor will block for 1 second for calibration. The gyro measures in tenths of a degree, so there are 3600 measurement points per revolution.</p>
           </div></section>
           <section class="m-doc-details" id="a3a4a0a319c723091aad0b2125d701ca4"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />ADIGyro::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3a4a0a319c723091aad0b2125d701ca4" class="m-doc-self">get</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Get the current sensor value.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -163,13 +165,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the current sensor value.</p>
           </div></section>
           <section class="m-doc-details" id="a5fa8fa3653e8c2eeff81a56b80e79f7c"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />ADIGyro::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5fa8fa3653e8c2eeff81a56b80e79f7c" class="m-doc-self">getRemapped</a>(</span><span class="m-doc-wrap">double iupperBound = 1800,
               double ilowerBound = -1800)</span></span>
             </h3>
+            <p>Get the current sensor value remapped into the target range ([1800, -1800] by default).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -191,12 +193,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the current sensor value remapped into the target range ([1800, -1800] by default).</p>
           </div></section>
           <section class="m-doc-details" id="a316eec0bf6008c50fea6d1a621fd2e87"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />ADIGyro::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a316eec0bf6008c50fea6d1a621fd2e87" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Reset the sensor to zero.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -205,12 +207,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Reset the sensor to zero.</p>
           </div></section>
           <section class="m-doc-details" id="ad6a8ed104c8383a64c984ceb1147bca4"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />ADIGyro::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad6a8ed104c8383a64c984ceb1147bca4" class="m-doc-self">controllerGet</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Get the sensor value for use in a control loop.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -219,7 +221,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Get the sensor value for use in a control loop. This method might be automatically called in another thread by the controller.</p>
+<p>This method might be automatically called in another thread by the controller.</p>
           </div></section>
         </section>
       </div>

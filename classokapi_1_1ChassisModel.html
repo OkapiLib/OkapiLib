@@ -58,6 +58,7 @@
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>ChassisModel <span class="m-thin">class</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="chassisModel_8hpp.html">&lt;include/okapi/api/chassis/model/chassisModel.hpp&gt;</a></div>
         </h1>
+        <p>A version of the <a href="classokapi_1_1ReadOnlyChassisModel.html" class="m-doc">ReadOnlyChassisModel</a> that also supports write methods, such as setting motor speed.</p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -72,14 +73,14 @@
             </li>
           </ul>
         </div>
-<p>A version of the <a href="classokapi_1_1ReadOnlyChassisModel.html" class="m-doc">ReadOnlyChassisModel</a> that also supports write methods, such as setting motor speed. Because this class can write to motors, there can only be one owner and as such copying is disabled.</p>
+<p>Because this class can write to motors, there can only be one owner and as such copying is disabled.</p>
         <section id="base-classes">
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
             <dt>
               class <a href="classokapi_1_1ReadOnlyChassisModel.html" class="m-doc">ReadOnlyChassisModel</a>
             </dt>
-            <dd></dd>
+            <dd>A version of the <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a> that only supports read methods, such as querying sensor values.</dd>
           </dl>
         </section>
         <section id="derived-classes">
@@ -122,65 +123,65 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ae39e8ccd15b6f84e32cd21fe99bdd6c9" class="m-doc">forward</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drive the robot forwards (using open-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aa621ce62c2bc336e41b859e2cb10dda5" class="m-doc">driveVector</a>(</span><span class="m-doc-wrap">double iforwardSpeed,
               double iyaw) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drive the robot in an arc (using open-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a69115758be9e29888dce34f317d57150" class="m-doc">driveVectorVoltage</a>(</span><span class="m-doc-wrap">double iforwardSpeed,
               double iyaw) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drive the robot in an arc.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#af13aa5281c762eb61a444f0b35176014" class="m-doc">rotate</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Turn the robot clockwise (using open-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ad67ad9abae41c5441c2a2d671d0c8a55" class="m-doc">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Stop the robot (set all the motors to 0).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a185a667048f84c3a0fced6882c5f7980" class="m-doc">tank</a>(</span><span class="m-doc-wrap">double ileftSpeed,
               double irightSpeed,
               double ithreshold = 0) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drive the robot with a tank drive layout.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a632d4c0b74747ab3b9c5a159a36bdd03" class="m-doc">arcade</a>(</span><span class="m-doc-wrap">double iforwardSpeed,
               double iyaw,
               double ithreshold = 0) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drive the robot with an arcade drive layout.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aa2008856c169eb64c6648bc64c31c504" class="m-doc">left</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Power the left side motors.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a282fcf947aea9630cadd2c673eb5f7e3" class="m-doc">right</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a6bd7e6bb60d41d3f1f5a5a129acfe1b6" class="m-doc">resetSensors</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            <dd>Power the right side motors.</dd>
+            <dt id="a6bd7e6bb60d41d3f1f5a5a129acfe1b6">
+              <span class="m-doc-wrap-bumper">void <a href="#a6bd7e6bb60d41d3f1f5a5a129acfe1b6" class="m-doc-self">resetSensors</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Reset the sensors to their zero point.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a20e3cde96d536e6c722aa5686e5cc8e8" class="m-doc">setBrakeMode</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#a132e0485dbb59a60c3f934338d8fa601" class="m-doc">AbstractMotor::<wbr />brakeMode</a> mode) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set the brake mode for each motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ae8ba9a72bf827af4c6feffaac99b33ee" class="m-doc">setEncoderUnits</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">AbstractMotor::<wbr />encoderUnits</a> units) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set the encoder units for each motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a960d6ce2f21e5832fce1d7566408cb61" class="m-doc">setGearing</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a> gearset) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set the gearset for each motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ae7fcb4cc95fdd7fd3c8f8388b4a698b2" class="m-doc">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets a new maximum velocity in RPM.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ab45dd7430636ed1c1dee25dae6df5d46" class="m-doc">getMaxVelocity</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
@@ -188,7 +189,7 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a2fb261636b79e118f22530cc3fce4f41" class="m-doc">setMaxVoltage</a>(</span><span class="m-doc-wrap">double imaxVoltage) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets a new maximum voltage in mV in the range <code>[0-12000]</code>.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a3ced2121524ae523592db64733c69472" class="m-doc">getMaxVoltage</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
@@ -201,13 +202,15 @@
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae39e8ccd15b6f84e32cd21fe99bdd6c9" class="m-doc-self">forward</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
-<p>Drive the robot forwards (using open-loop control). Uses velocity mode.</p>
+            <p>Drive the robot forwards (using open-loop control).</p>
+<p>Uses velocity mode.</p>
           </div></section>
           <section class="m-doc-details" id="aa621ce62c2bc336e41b859e2cb10dda5"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa621ce62c2bc336e41b859e2cb10dda5" class="m-doc-self">driveVector</a>(</span><span class="m-doc-wrap">double iforwardSpeed,
               double iyaw) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Drive the robot in an arc (using open-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -223,13 +226,14 @@
                 </tr>
               </tbody>
             </table>
-<p>Drive the robot in an arc (using open-loop control). Uses velocity mode. The algorithm is (approximately): leftPower = forwardSpeed + yaw rightPower = forwardSpeed - yaw</p>
+<p>Uses velocity mode. The algorithm is (approximately): leftPower = forwardSpeed + yaw rightPower = forwardSpeed - yaw</p>
           </div></section>
           <section class="m-doc-details" id="a69115758be9e29888dce34f317d57150"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a69115758be9e29888dce34f317d57150" class="m-doc-self">driveVectorVoltage</a>(</span><span class="m-doc-wrap">double iforwardSpeed,
               double iyaw) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Drive the robot in an arc.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -245,12 +249,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Drive the robot in an arc. Uses voltage mode. The algorithm is (approximately): leftPower = forwardSpeed + yaw rightPower = forwardSpeed - yaw</p>
+<p>Uses voltage mode. The algorithm is (approximately): leftPower = forwardSpeed + yaw rightPower = forwardSpeed - yaw</p>
           </div></section>
           <section class="m-doc-details" id="af13aa5281c762eb61a444f0b35176014"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af13aa5281c762eb61a444f0b35176014" class="m-doc-self">rotate</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Turn the robot clockwise (using open-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -262,13 +267,14 @@
                 </tr>
               </tbody>
             </table>
-<p>Turn the robot clockwise (using open-loop control). Uses velocity mode.</p>
+<p>Uses velocity mode.</p>
           </div></section>
           <section class="m-doc-details" id="ad67ad9abae41c5441c2a2d671d0c8a55"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad67ad9abae41c5441c2a2d671d0c8a55" class="m-doc-self">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
-<p>Stop the robot (set all the motors to 0). Uses velocity mode.</p>
+            <p>Stop the robot (set all the motors to 0).</p>
+<p>Uses velocity mode.</p>
           </div></section>
           <section class="m-doc-details" id="a185a667048f84c3a0fced6882c5f7980"><div>
             <h3>
@@ -276,6 +282,7 @@
               double irightSpeed,
               double ithreshold = 0) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Drive the robot with a tank drive layout.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -295,7 +302,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Drive the robot with a tank drive layout. Uses voltage mode.</p>
+<p>Uses voltage mode.</p>
           </div></section>
           <section class="m-doc-details" id="a632d4c0b74747ab3b9c5a159a36bdd03"><div>
             <h3>
@@ -303,6 +310,7 @@
               double iyaw,
               double ithreshold = 0) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Drive the robot with an arcade drive layout.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -322,30 +330,27 @@
                 </tr>
               </tbody>
             </table>
-<p>Drive the robot with an arcade drive layout. Uses voltage mode.</p>
+<p>Uses voltage mode.</p>
           </div></section>
           <section class="m-doc-details" id="aa2008856c169eb64c6648bc64c31c504"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa2008856c169eb64c6648bc64c31c504" class="m-doc-self">left</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
-<p>Power the left side motors. Uses velocity mode.</p>
+            <p>Power the left side motors.</p>
+<p>Uses velocity mode.</p>
           </div></section>
           <section class="m-doc-details" id="a282fcf947aea9630cadd2c673eb5f7e3"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a282fcf947aea9630cadd2c673eb5f7e3" class="m-doc-self">right</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
-<p>Power the right side motors. Uses velocity mode.</p>
-          </div></section>
-          <section class="m-doc-details" id="a6bd7e6bb60d41d3f1f5a5a129acfe1b6"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6bd7e6bb60d41d3f1f5a5a129acfe1b6" class="m-doc-self">resetSensors</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">pure virtual</span></span></span>
-            </h3>
-<p>Reset the sensors to their zero point.</p>
+            <p>Power the right side motors.</p>
+<p>Uses velocity mode.</p>
           </div></section>
           <section class="m-doc-details" id="a20e3cde96d536e6c722aa5686e5cc8e8"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a20e3cde96d536e6c722aa5686e5cc8e8" class="m-doc-self">setBrakeMode</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#a132e0485dbb59a60c3f934338d8fa601" class="m-doc">AbstractMotor::<wbr />brakeMode</a> mode) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Set the brake mode for each motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -357,12 +362,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Set the brake mode for each motor.</p>
           </div></section>
           <section class="m-doc-details" id="ae8ba9a72bf827af4c6feffaac99b33ee"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae8ba9a72bf827af4c6feffaac99b33ee" class="m-doc-self">setEncoderUnits</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">AbstractMotor::<wbr />encoderUnits</a> units) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Set the encoder units for each motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -374,12 +379,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Set the encoder units for each motor.</p>
           </div></section>
           <section class="m-doc-details" id="a960d6ce2f21e5832fce1d7566408cb61"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a960d6ce2f21e5832fce1d7566408cb61" class="m-doc-self">setGearing</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a> gearset) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Set the gearset for each motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -391,12 +396,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Set the gearset for each motor.</p>
           </div></section>
           <section class="m-doc-details" id="ae7fcb4cc95fdd7fd3c8f8388b4a698b2"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae7fcb4cc95fdd7fd3c8f8388b4a698b2" class="m-doc-self">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets a new maximum velocity in RPM.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -408,7 +413,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets a new maximum velocity in RPM. The usable maximum depends on the maximum velocity of the currently installed gearset. If the configured maximum velocity is greater than the attainable maximum velocity from the currently installed gearset, the <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a> will still scale to that velocity.</p>
+<p>The usable maximum depends on the maximum velocity of the currently installed gearset. If the configured maximum velocity is greater than the attainable maximum velocity from the currently installed gearset, the <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a> will still scale to that velocity.</p>
           </div></section>
           <section class="m-doc-details" id="ab45dd7430636ed1c1dee25dae6df5d46"><div>
             <h3>
@@ -427,6 +432,7 @@
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2fb261636b79e118f22530cc3fce4f41" class="m-doc-self">setMaxVoltage</a>(</span><span class="m-doc-wrap">double imaxVoltage) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Sets a new maximum voltage in mV in the range <code>[0-12000]</code>.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -438,7 +444,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets a new maximum voltage in mV in the range <code>[0-12000]</code>.</p>
           </div></section>
           <section class="m-doc-details" id="a3ced2121524ae523592db64733c69472"><div>
             <h3>

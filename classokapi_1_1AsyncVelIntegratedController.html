@@ -58,6 +58,7 @@
           <span class="m-breadcrumb"><a href="namespaceokapi.html">okapi</a>::<wbr/></span>AsyncVelIntegratedController <span class="m-thin">class</span>
           <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="asyncVelIntegratedController_8hpp.html">&lt;include/okapi/api/control/async/asyncVelIntegratedController.hpp&gt;</a></div>
         </h1>
+        <p>Closed-loop controller that uses the V5 motor&#x27;s onboard control to move.</p>
         <div class="m-block m-default">
           <h3>Contents</h3>
           <ul>
@@ -73,7 +74,7 @@
             </li>
           </ul>
         </div>
-<p>Closed-loop controller that uses the V5 motor&#x27;s onboard control to move. Input units are whatever units the motor is in.</p>
+<p>Input units are whatever units the motor is in.</p>
         <section id="base-classes">
           <h2><a href="#base-classes">Base classes</a></h2>
           <dl class="m-doc">
@@ -94,20 +95,20 @@
               const <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a>&amp; itimeUtil,
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd></dd>
+            <dd>Closed-loop controller that uses the V5 motor&#x27;s onboard control to move.</dd>
           </dl>
         </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#a5f1444ba57a64a21bfbdbdc57a264c2d" class="m-doc">setTarget</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dt id="a5f1444ba57a64a21bfbdbdc57a264c2d">
+              <span class="m-doc-wrap-bumper">void <a href="#a5f1444ba57a64a21bfbdbdc57a264c2d" class="m-doc-self">setTarget</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets the target for the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a030ca47508587f799dfdd7d97ed86d7d" class="m-doc">getTarget</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Gets the last set target, or the default target if none was set.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aa17ca57ed7c8dee78e9d7b690c992dca" class="m-doc">getProcessValue</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
@@ -115,35 +116,35 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a6641352cebd3f0baa4e3e1ab4ad27be3" class="m-doc">getError</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the last error of the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a8518d706827ccc8d42d0a401566d58f7" class="m-doc">isSettled</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#aef78a032062241ece030d58407179912" class="m-doc">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>Returns whether the controller has settled at the target.</dd>
+            <dt id="aef78a032062241ece030d58407179912">
+              <span class="m-doc-wrap-bumper">void <a href="#aef78a032062241ece030d58407179912" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Resets the controller&#x27;s internal state so it is similar to when it was first initialized, while keeping any user-configured information.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ab75c1617544e0817949df5998fa2a8d7" class="m-doc">flipDisable</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Changes whether the controller is off or on.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a1e906e904500fe920ea4cad6a922b523" class="m-doc">flipDisable</a>(</span><span class="m-doc-wrap">bool iisDisabled) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets whether the controller is off or on.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ad4c6394b3512ae44ffa36c9e01f6321b" class="m-doc">isDisabled</a>(</span><span class="m-doc-wrap">) const -&gt; bool <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns whether the controller is currently disabled.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aa1a838d836496ca5565c1d8379c2897a" class="m-doc">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Blocks the current task until the controller has settled.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ae50c09f44077284278e4d8a80656077d" class="m-doc">controllerSet</a>(</span><span class="m-doc-wrap">double ivalue) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Writes the value of the controller output.</dd>
           </dl>
         </section>
         <section id="pro-methods">
@@ -206,6 +207,7 @@
               const <a href="classokapi_1_1TimeUtil.html" class="m-doc">TimeUtil</a>&amp; itimeUtil,
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>Closed-loop controller that uses the V5 motor&#x27;s onboard control to move.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -233,18 +235,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Closed-loop controller that uses the V5 motor&#x27;s onboard control to move. Input units are whatever units the motor is in. Throws a std::invalid_argument exception if the gear ratio is zero.</p>
-          </div></section>
-          <section class="m-doc-details" id="a5f1444ba57a64a21bfbdbdc57a264c2d"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncVelIntegratedController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5f1444ba57a64a21bfbdbdc57a264c2d" class="m-doc-self">setTarget</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Sets the target for the controller.</p>
+<p>Input units are whatever units the motor is in. Throws a std::invalid_argument exception if the gear ratio is zero.</p>
           </div></section>
           <section class="m-doc-details" id="a030ca47508587f799dfdd7d97ed86d7d"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />AsyncVelIntegratedController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a030ca47508587f799dfdd7d97ed86d7d" class="m-doc-self">getTarget</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Gets the last set target, or the default target if none was set.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -253,7 +250,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the last set target, or the default target if none was set.</p>
           </div></section>
           <section class="m-doc-details" id="aa17ca57ed7c8dee78e9d7b690c992dca"><div>
             <h3>
@@ -272,12 +268,14 @@
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />AsyncVelIntegratedController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a6641352cebd3f0baa4e3e1ab4ad27be3" class="m-doc-self">getError</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Returns the last error of the controller. Does not update when disabled.</p>
+            <p>Returns the last error of the controller.</p>
+<p>Does not update when disabled.</p>
           </div></section>
           <section class="m-doc-details" id="a8518d706827ccc8d42d0a401566d58f7"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />AsyncVelIntegratedController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8518d706827ccc8d42d0a401566d58f7" class="m-doc-self">isSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns whether the controller has settled at the target.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -286,24 +284,20 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller has settled at the target. Determining what settling means is implementation-dependent.</p><p>If the controller is disabled, this method must return true.</p>
-          </div></section>
-          <section class="m-doc-details" id="aef78a032062241ece030d58407179912"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncVelIntegratedController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aef78a032062241ece030d58407179912" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Resets the controller&#x27;s internal state so it is similar to when it was first initialized, while keeping any user-configured information.</p>
+<p>Determining what settling means is implementation-dependent.</p><p>If the controller is disabled, this method must return true.</p>
           </div></section>
           <section class="m-doc-details" id="ab75c1617544e0817949df5998fa2a8d7"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncVelIntegratedController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab75c1617544e0817949df5998fa2a8d7" class="m-doc-self">flipDisable</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Changes whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
+            <p>Changes whether the controller is off or on.</p>
+<p>Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
           </div></section>
           <section class="m-doc-details" id="a1e906e904500fe920ea4cad6a922b523"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncVelIntegratedController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1e906e904500fe920ea4cad6a922b523" class="m-doc-self">flipDisable</a>(</span><span class="m-doc-wrap">bool iisDisabled) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets whether the controller is off or on.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -315,12 +309,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets whether the controller is off or on. Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
+<p>Turning the controller on after it was off will cause the controller to move to its last set target, unless it was reset in that time.</p>
           </div></section>
           <section class="m-doc-details" id="ad4c6394b3512ae44ffa36c9e01f6321b"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />AsyncVelIntegratedController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad4c6394b3512ae44ffa36c9e01f6321b" class="m-doc-self">isDisabled</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Returns whether the controller is currently disabled.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -329,18 +324,19 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller is currently disabled.</p>
           </div></section>
           <section class="m-doc-details" id="aa1a838d836496ca5565c1d8379c2897a"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncVelIntegratedController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa1a838d836496ca5565c1d8379c2897a" class="m-doc-self">waitUntilSettled</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Blocks the current task until the controller has settled. Determining what settling means is implementation-dependent.</p>
+            <p>Blocks the current task until the controller has settled.</p>
+<p>Determining what settling means is implementation-dependent.</p>
           </div></section>
           <section class="m-doc-details" id="ae50c09f44077284278e4d8a80656077d"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncVelIntegratedController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ae50c09f44077284278e4d8a80656077d" class="m-doc-self">controllerSet</a>(</span><span class="m-doc-wrap">double ivalue) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Writes the value of the controller output.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -352,7 +348,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Writes the value of the controller output. This method might be automatically called in another thread by the controller. The range of input values is expected to be [-1, 1].</p>
+<p>This method might be automatically called in another thread by the controller. The range of input values is expected to be [-1, 1].</p>
           </div></section>
         </section>
       </div>

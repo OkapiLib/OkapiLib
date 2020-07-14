@@ -80,7 +80,7 @@
             <dt>
               class <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a>
             </dt>
-            <dd></dd>
+            <dd>A version of the <a href="classokapi_1_1ReadOnlyChassisModel.html" class="m-doc">ReadOnlyChassisModel</a> that also supports write methods, such as setting motor speed.</dd>
           </dl>
         </section>
         <section id="derived-classes">
@@ -103,7 +103,7 @@
               double imaxVelocity,
               double imaxVoltage)</span>
             </dt>
-            <dd></dd>
+            <dd>Model for a skid steer drive (wheels parallel with robot&#x27;s direction of motion).</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -112,69 +112,69 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a74ca9d9f1b0f80c9453194567c58e967" class="m-doc">forward</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drive the robot forwards (using open-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a5fa39473f6a6d2deae988f63e972b66a" class="m-doc">driveVector</a>(</span><span class="m-doc-wrap">double iySpeed,
               double izRotation) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drive the robot in an arc (using open-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aa9b68af25f8f924117b07a5c8e9f6c93" class="m-doc">driveVectorVoltage</a>(</span><span class="m-doc-wrap">double iforwardSpeed,
               double iyaw) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drive the robot in an arc.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#af02dab85c80cf8aa226b33a39851feff" class="m-doc">rotate</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Turn the robot clockwise (using open-loop control).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a98d212cff8bad647ada6bcd3054c7581" class="m-doc">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Stop the robot (set all the motors to 0).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aa51195896f1be6afe661d5c9a8e6ea4e" class="m-doc">tank</a>(</span><span class="m-doc-wrap">double ileftSpeed,
               double irightSpeed,
               double ithreshold = 0) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drive the robot with a tank drive layout.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a145f671aa2dd1c6991945929e4a3d97d" class="m-doc">arcade</a>(</span><span class="m-doc-wrap">double iforwardSpeed,
               double iyaw,
               double ithreshold = 0) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drive the robot with an arcade drive layout.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#af2b00108853b82eb0fb5ecb3b71f413d" class="m-doc">left</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Power the left side motors.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ada9bd222b5aeaa0507b57906ac59dd3b" class="m-doc">right</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Power the right side motors.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a850e4de7ab3a30a354ac39f30a1e8603" class="m-doc">getSensorVals</a>(</span><span class="m-doc-wrap">) const -&gt; std::valarray&lt;std::int32_t&gt; <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#af8885fc16e654eafa872dd7c760591cf" class="m-doc">resetSensors</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
+            <dd>Read the sensors.</dd>
+            <dt id="af8885fc16e654eafa872dd7c760591cf">
+              <span class="m-doc-wrap-bumper">void <a href="#af8885fc16e654eafa872dd7c760591cf" class="m-doc-self">resetSensors</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Reset the sensors to their zero point.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a84c100815058f4dcdc958b3349713f73" class="m-doc">setBrakeMode</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#a132e0485dbb59a60c3f934338d8fa601" class="m-doc">AbstractMotor::<wbr />brakeMode</a> mode) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set the brake mode for each motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a8922c028a9f09893061938fe50fb2a79" class="m-doc">setEncoderUnits</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">AbstractMotor::<wbr />encoderUnits</a> units) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set the encoder units for each motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ad890989e345cfd7455436bc5dd6efdcc" class="m-doc">setGearing</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a> gearset) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set the gearset for each motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a4beda353f201fa72fc8d31f47a08d473" class="m-doc">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets a new maximum velocity in RPM.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a7e2fcfb65e940ea4d71780966b4b5b68" class="m-doc">getMaxVelocity</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
@@ -182,7 +182,7 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ad4dc0f8e3877b23ffb8ae58903bdffb7" class="m-doc">setMaxVoltage</a>(</span><span class="m-doc-wrap">double imaxVoltage) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets a new maximum voltage in mV in the range <code>[0-12000]</code>.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ad4849d18c3a244eb60e1056860a3c4cf" class="m-doc">getMaxVoltage</a>(</span><span class="m-doc-wrap">) const -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
@@ -190,11 +190,11 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a3f1813ada8205396c35abccbc0c9ff21" class="m-doc">getLeftSideMotor</a>(</span><span class="m-doc-wrap">) const -&gt; std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;</span>
             </dt>
-            <dd></dd>
+            <dd>Returns the left side motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a0c58a580708b864d8c4391c7045e590b" class="m-doc">getRightSideMotor</a>(</span><span class="m-doc-wrap">) const -&gt; std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt;</span>
             </dt>
-            <dd></dd>
+            <dd>Returns the left side motor.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -237,6 +237,7 @@
               double imaxVelocity,
               double imaxVoltage)</span></span>
             </h3>
+            <p>Model for a skid steer drive (wheels parallel with robot&#x27;s direction of motion).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -268,12 +269,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Model for a skid steer drive (wheels parallel with robot&#x27;s direction of motion). When all motors are powered +100%, the robot should move forward in a straight line.</p>
+<p>When all motors are powered +100%, the robot should move forward in a straight line.</p>
           </div></section>
           <section class="m-doc-details" id="a74ca9d9f1b0f80c9453194567c58e967"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a74ca9d9f1b0f80c9453194567c58e967" class="m-doc-self">forward</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Drive the robot forwards (using open-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -285,13 +287,14 @@
                 </tr>
               </tbody>
             </table>
-<p>Drive the robot forwards (using open-loop control). Uses velocity mode.</p>
+<p>Uses velocity mode.</p>
           </div></section>
           <section class="m-doc-details" id="a5fa39473f6a6d2deae988f63e972b66a"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5fa39473f6a6d2deae988f63e972b66a" class="m-doc-self">driveVector</a>(</span><span class="m-doc-wrap">double iySpeed,
               double izRotation) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Drive the robot in an arc (using open-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -307,13 +310,14 @@
                 </tr>
               </tbody>
             </table>
-<p>Drive the robot in an arc (using open-loop control). Uses velocity mode. The algorithm is (approximately): leftPower = ySpeed + zRotation rightPower = ySpeed - zRotation</p>
+<p>Uses velocity mode. The algorithm is (approximately): leftPower = ySpeed + zRotation rightPower = ySpeed - zRotation</p>
           </div></section>
           <section class="m-doc-details" id="aa9b68af25f8f924117b07a5c8e9f6c93"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aa9b68af25f8f924117b07a5c8e9f6c93" class="m-doc-self">driveVectorVoltage</a>(</span><span class="m-doc-wrap">double iforwardSpeed,
               double iyaw) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Drive the robot in an arc.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -329,12 +333,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Drive the robot in an arc. Uses voltage mode. The algorithm is (approximately): leftPower = forwardSpeed + yaw rightPower = forwardSpeed - yaw</p>
+<p>Uses voltage mode. The algorithm is (approximately): leftPower = forwardSpeed + yaw rightPower = forwardSpeed - yaw</p>
           </div></section>
           <section class="m-doc-details" id="af02dab85c80cf8aa226b33a39851feff"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af02dab85c80cf8aa226b33a39851feff" class="m-doc-self">rotate</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Turn the robot clockwise (using open-loop control).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -346,13 +351,14 @@
                 </tr>
               </tbody>
             </table>
-<p>Turn the robot clockwise (using open-loop control). Uses velocity mode.</p>
+<p>Uses velocity mode.</p>
           </div></section>
           <section class="m-doc-details" id="a98d212cff8bad647ada6bcd3054c7581"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a98d212cff8bad647ada6bcd3054c7581" class="m-doc-self">stop</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Stop the robot (set all the motors to 0). Uses velocity mode.</p>
+            <p>Stop the robot (set all the motors to 0).</p>
+<p>Uses velocity mode.</p>
           </div></section>
           <section class="m-doc-details" id="aa51195896f1be6afe661d5c9a8e6ea4e"><div>
             <h3>
@@ -360,6 +366,7 @@
               double irightSpeed,
               double ithreshold = 0) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Drive the robot with a tank drive layout.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -379,7 +386,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Drive the robot with a tank drive layout. Uses voltage mode.</p>
+<p>Uses voltage mode.</p>
           </div></section>
           <section class="m-doc-details" id="a145f671aa2dd1c6991945929e4a3d97d"><div>
             <h3>
@@ -387,6 +394,7 @@
               double iyaw,
               double ithreshold = 0) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Drive the robot with an arcade drive layout.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -406,12 +414,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Drive the robot with an arcade drive layout. Uses voltage mode.</p>
+<p>Uses voltage mode.</p>
           </div></section>
           <section class="m-doc-details" id="af2b00108853b82eb0fb5ecb3b71f413d"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af2b00108853b82eb0fb5ecb3b71f413d" class="m-doc-self">left</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Power the left side motors.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -423,12 +432,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Power the left side motors. Uses velocity mode.</p>
+<p>Uses velocity mode.</p>
           </div></section>
           <section class="m-doc-details" id="ada9bd222b5aeaa0507b57906ac59dd3b"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ada9bd222b5aeaa0507b57906ac59dd3b" class="m-doc-self">right</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Power the right side motors.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -440,12 +450,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Power the right side motors. Uses velocity mode.</p>
+<p>Uses velocity mode.</p>
           </div></section>
           <section class="m-doc-details" id="a850e4de7ab3a30a354ac39f30a1e8603"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::valarray&lt;std::int32_t&gt; okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a850e4de7ab3a30a354ac39f30a1e8603" class="m-doc-self">getSensorVals</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Read the sensors.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -454,18 +465,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Read the sensors.</p>
-          </div></section>
-          <section class="m-doc-details" id="af8885fc16e654eafa872dd7c760591cf"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af8885fc16e654eafa872dd7c760591cf" class="m-doc-self">resetSensors</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
-            </h3>
-<p>Reset the sensors to their zero point.</p>
           </div></section>
           <section class="m-doc-details" id="a84c100815058f4dcdc958b3349713f73"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a84c100815058f4dcdc958b3349713f73" class="m-doc-self">setBrakeMode</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#a132e0485dbb59a60c3f934338d8fa601" class="m-doc">AbstractMotor::<wbr />brakeMode</a> mode) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Set the brake mode for each motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -477,12 +482,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Set the brake mode for each motor.</p>
           </div></section>
           <section class="m-doc-details" id="a8922c028a9f09893061938fe50fb2a79"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a8922c028a9f09893061938fe50fb2a79" class="m-doc-self">setEncoderUnits</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#ae811cd825099f2defadeb1b7f7e7764c" class="m-doc">AbstractMotor::<wbr />encoderUnits</a> units) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Set the encoder units for each motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -494,12 +499,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Set the encoder units for each motor.</p>
           </div></section>
           <section class="m-doc-details" id="ad890989e345cfd7455436bc5dd6efdcc"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad890989e345cfd7455436bc5dd6efdcc" class="m-doc-self">setGearing</a>(</span><span class="m-doc-wrap"><a href="classokapi_1_1AbstractMotor.html#a88aaa6ea2fa10f5520a537bbf26774d5" class="m-doc">AbstractMotor::<wbr />gearset</a> gearset) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Set the gearset for each motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -511,12 +516,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Set the gearset for each motor.</p>
           </div></section>
           <section class="m-doc-details" id="a4beda353f201fa72fc8d31f47a08d473"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4beda353f201fa72fc8d31f47a08d473" class="m-doc-self">setMaxVelocity</a>(</span><span class="m-doc-wrap">double imaxVelocity) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets a new maximum velocity in RPM.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -528,7 +533,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets a new maximum velocity in RPM. The usable maximum depends on the maximum velocity of the currently installed gearset. If the configured maximum velocity is greater than the attainable maximum velocity from the currently installed gearset, the <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a> will still scale to that velocity.</p>
+<p>The usable maximum depends on the maximum velocity of the currently installed gearset. If the configured maximum velocity is greater than the attainable maximum velocity from the currently installed gearset, the <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a> will still scale to that velocity.</p>
           </div></section>
           <section class="m-doc-details" id="a7e2fcfb65e940ea4d71780966b4b5b68"><div>
             <h3>
@@ -547,6 +552,7 @@
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad4dc0f8e3877b23ffb8ae58903bdffb7" class="m-doc-self">setMaxVoltage</a>(</span><span class="m-doc-wrap">double imaxVoltage) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Sets a new maximum voltage in mV in the range <code>[0-12000]</code>.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -558,7 +564,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets a new maximum voltage in mV in the range <code>[0-12000]</code>.</p>
           </div></section>
           <section class="m-doc-details" id="ad4849d18c3a244eb60e1056860a3c4cf"><div>
             <h3>
@@ -577,6 +582,7 @@
             <h3>
               <span class="m-doc-wrap-bumper">std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt; okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3f1813ada8205396c35abccbc0c9ff21" class="m-doc-self">getLeftSideMotor</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Returns the left side motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -585,12 +591,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the left side motor.</p>
           </div></section>
           <section class="m-doc-details" id="a0c58a580708b864d8c4391c7045e590b"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::shared_ptr&lt;<a href="classokapi_1_1AbstractMotor.html" class="m-doc">AbstractMotor</a>&gt; okapi::<wbr />SkidSteerModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0c58a580708b864d8c4391c7045e590b" class="m-doc-self">getRightSideMotor</a>(</span><span class="m-doc-wrap">) const</span></span>
             </h3>
+            <p>Returns the left side motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -599,7 +605,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the left side motor.</p>
           </div></section>
         </section>
       </div>

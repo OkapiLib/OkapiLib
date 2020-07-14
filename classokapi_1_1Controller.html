@@ -91,45 +91,45 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a0cad97dfa473a47c4c3551374eb96e54" class="m-doc">isConnected</a>(</span><span class="m-doc-wrap">) -&gt; bool <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns whether the controller is connected.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a7ae83fb44a837512cffc9610403c3dd6" class="m-doc">getAnalog</a>(</span><span class="m-doc-wrap"><a href="namespaceokapi.html#afcc83d6a64f075a4dba212ff612c31d0" class="m-doc">ControllerAnalog</a> ichannel) -&gt; float <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the current analog reading for the channel in the range [-1, 1].</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ada8fab201fa8a46aa7b76487f1d7a546" class="m-doc">getDigital</a>(</span><span class="m-doc-wrap"><a href="namespaceokapi.html#af5040b3f1f33d27698871423e1453ab6" class="m-doc">ControllerDigital</a> ibutton) -&gt; bool <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns whether the digital button is currently pressed.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a88c9b0063ad8455840f9ac8c24610ff0" class="m-doc">operator[]</a>(</span><span class="m-doc-wrap"><a href="namespaceokapi.html#af5040b3f1f33d27698871423e1453ab6" class="m-doc">ControllerDigital</a> ibtn) -&gt; <a href="classokapi_1_1ControllerButton.html" class="m-doc">ControllerButton</a>&amp; <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns a <a href="classokapi_1_1ControllerButton.html" class="m-doc">ControllerButton</a> for the given button on this controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a91494385d809ca1f2c633ec231c44e07" class="m-doc">setText</a>(</span><span class="m-doc-wrap">std::uint8_t iline,
               std::uint8_t icol,
               std::string itext) -&gt; std::int32_t <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Sets text to the controller LCD screen.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a3af0986bb6287c8e24847a8c12bfcd43" class="m-doc">clear</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Clears all of the lines of the controller screen.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a40e34b45b7730d4a5564e8eb8b48d345" class="m-doc">clearLine</a>(</span><span class="m-doc-wrap">std::uint8_t iline) -&gt; std::int32_t <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Clears an individual line of the controller screen.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#afd0897a60a74e0a47cd352cf92d573e3" class="m-doc">rumble</a>(</span><span class="m-doc-wrap">std::string irumblePattern) -&gt; std::int32_t <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Rumble the controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a0e4104d3a2d8aa24580f6848737dc061" class="m-doc">getBatteryCapacity</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Gets the battery capacity of the given controller.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a3fec254e343a9c6381b3c8066b7bb145" class="m-doc">getBatteryLevel</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Gets the battery level of the given controller.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -155,6 +155,7 @@
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />Controller::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0cad97dfa473a47c4c3551374eb96e54" class="m-doc-self">isConnected</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns whether the controller is connected.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -163,12 +164,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the controller is connected.</p>
           </div></section>
           <section class="m-doc-details" id="a7ae83fb44a837512cffc9610403c3dd6"><div>
             <h3>
               <span class="m-doc-wrap-bumper">float okapi::<wbr />Controller::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7ae83fb44a837512cffc9610403c3dd6" class="m-doc-self">getAnalog</a>(</span><span class="m-doc-wrap"><a href="namespaceokapi.html#afcc83d6a64f075a4dba212ff612c31d0" class="m-doc">ControllerAnalog</a> ichannel) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns the current analog reading for the channel in the range [-1, 1].</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -186,12 +187,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the current analog reading for the channel in the range [-1, 1]. Returns 0 if the controller is not connected.</p>
+<p>Returns 0 if the controller is not connected.</p>
           </div></section>
           <section class="m-doc-details" id="ada8fab201fa8a46aa7b76487f1d7a546"><div>
             <h3>
               <span class="m-doc-wrap-bumper">bool okapi::<wbr />Controller::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ada8fab201fa8a46aa7b76487f1d7a546" class="m-doc-self">getDigital</a>(</span><span class="m-doc-wrap"><a href="namespaceokapi.html#af5040b3f1f33d27698871423e1453ab6" class="m-doc">ControllerDigital</a> ibutton) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns whether the digital button is currently pressed.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -209,12 +211,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns whether the digital button is currently pressed. Returns false if the controller is not connected.</p>
+<p>Returns false if the controller is not connected.</p>
           </div></section>
           <section class="m-doc-details" id="a88c9b0063ad8455840f9ac8c24610ff0"><div>
             <h3>
               <span class="m-doc-wrap-bumper"><a href="classokapi_1_1ControllerButton.html" class="m-doc">ControllerButton</a>&amp; okapi::<wbr />Controller::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a88c9b0063ad8455840f9ac8c24610ff0" class="m-doc-self">operator[]</a>(</span><span class="m-doc-wrap"><a href="namespaceokapi.html#af5040b3f1f33d27698871423e1453ab6" class="m-doc">ControllerDigital</a> ibtn) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns a <a href="classokapi_1_1ControllerButton.html" class="m-doc">ControllerButton</a> for the given button on this controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -232,7 +235,6 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns a <a href="classokapi_1_1ControllerButton.html" class="m-doc">ControllerButton</a> for the given button on this controller.</p>
           </div></section>
           <section class="m-doc-details" id="a91494385d809ca1f2c633ec231c44e07"><div>
             <h3>
@@ -240,6 +242,7 @@
               std::uint8_t icol,
               std::string itext) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Sets text to the controller LCD screen.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -265,12 +268,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Sets text to the controller LCD screen.</p>
           </div></section>
           <section class="m-doc-details" id="a3af0986bb6287c8e24847a8c12bfcd43"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Controller::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3af0986bb6287c8e24847a8c12bfcd43" class="m-doc-self">clear</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Clears all of the lines of the controller screen.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -279,12 +282,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Clears all of the lines of the controller screen.</p>
           </div></section>
           <section class="m-doc-details" id="a40e34b45b7730d4a5564e8eb8b48d345"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Controller::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a40e34b45b7730d4a5564e8eb8b48d345" class="m-doc-self">clearLine</a>(</span><span class="m-doc-wrap">std::uint8_t iline) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Clears an individual line of the controller screen.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -302,12 +305,12 @@
                 </tr>
               </tfoot>
             </table>
-<p>Clears an individual line of the controller screen.</p>
           </div></section>
           <section class="m-doc-details" id="afd0897a60a74e0a47cd352cf92d573e3"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Controller::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#afd0897a60a74e0a47cd352cf92d573e3" class="m-doc-self">rumble</a>(</span><span class="m-doc-wrap">std::string irumblePattern) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Rumble the controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -325,12 +328,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Rumble the controller.</p><p><a href="classokapi_1_1Controller.html" class="m-doc">Controller</a> rumble activation is currently in beta, so continuous, fast updates will not work well.</p>
+<p><a href="classokapi_1_1Controller.html" class="m-doc">Controller</a> rumble activation is currently in beta, so continuous, fast updates will not work well.</p>
           </div></section>
           <section class="m-doc-details" id="a0e4104d3a2d8aa24580f6848737dc061"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Controller::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0e4104d3a2d8aa24580f6848737dc061" class="m-doc-self">getBatteryCapacity</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Gets the battery capacity of the given controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -339,12 +343,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the battery capacity of the given controller.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the controller port.</p>
+<p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the controller port.</p>
           </div></section>
           <section class="m-doc-details" id="a3fec254e343a9c6381b3c8066b7bb145"><div>
             <h3>
               <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />Controller::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3fec254e343a9c6381b3c8066b7bb145" class="m-doc-self">getBatteryLevel</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Gets the battery level of the given controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -353,7 +358,7 @@
                 </tr>
               </tfoot>
             </table>
-<p>Gets the battery level of the given controller.</p><p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the controller port.</p>
+<p>This function uses the following values of errno when an error state is reached: EACCES - Another resource is currently trying to access the controller port.</p>
           </div></section>
         </section>
       </div>

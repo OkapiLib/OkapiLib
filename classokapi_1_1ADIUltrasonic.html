@@ -91,7 +91,7 @@
               std::uint8_t iportEcho,
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; ifilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;())</span>
             </dt>
-            <dd></dd>
+            <dd>An ultrasonic sensor in the ADI (3-wire) ports.</dd>
             <dt id="abc31760e8928300d152eaeaf3d571341">
               <span class="m-doc-wrap-bumper"><a href="#abc31760e8928300d152eaeaf3d571341" class="m-doc-self">~ADIUltrasonic</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -104,11 +104,11 @@
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#ac2447e1f1d415ee48989f9fa9d85560e" class="m-doc">get</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Returns the current filtered sensor value.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a1ba1e2c1b71dba82c762ba941fe811c0" class="m-doc">controllerGet</a>(</span><span class="m-doc-wrap">) -&gt; double <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Get the sensor value for use in a control loop.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -132,6 +132,7 @@
               std::uint8_t iportEcho,
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; ifilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;())</span></span>
             </h3>
+            <p>An ultrasonic sensor in the ADI (3-wire) ports.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -151,12 +152,12 @@
                 </tr>
               </tbody>
             </table>
-<p>An ultrasonic sensor in the ADI (3-wire) ports.</p>
           </div></section>
           <section class="m-doc-details" id="ac2447e1f1d415ee48989f9fa9d85560e"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />ADIUltrasonic::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac2447e1f1d415ee48989f9fa9d85560e" class="m-doc-self">get</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Returns the current filtered sensor value.</p>
             <table class="m-table m-fullwidth m-flat">
               <tfoot>
                 <tr>
@@ -165,13 +166,13 @@
                 </tr>
               </tfoot>
             </table>
-<p>Returns the current filtered sensor value.</p>
           </div></section>
           <section class="m-doc-details" id="a1ba1e2c1b71dba82c762ba941fe811c0"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />ADIUltrasonic::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1ba1e2c1b71dba82c762ba941fe811c0" class="m-doc-self">controllerGet</a>(</span><span class="m-doc-wrap">) <span class="m-label m-warning">override</span></span></span>
             </h3>
-<p>Get the sensor value for use in a control loop. This method might be automatically called in another thread by the controller. Calls <a href="classokapi_1_1ADIUltrasonic.html#ac2447e1f1d415ee48989f9fa9d85560e" class="m-doc">get()</a>.</p>
+            <p>Get the sensor value for use in a control loop.</p>
+<p>This method might be automatically called in another thread by the controller. Calls <a href="classokapi_1_1ADIUltrasonic.html#ac2447e1f1d415ee48989f9fa9d85560e" class="m-doc">get()</a>.</p>
           </div></section>
         </section>
       </div>

@@ -105,7 +105,7 @@
               const QAngle&amp; iturnThreshold = 0_deg,
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd></dd>
+            <dd><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> based chassis controller.</dd>
             <dt id="a25ee4fe0432b6cdc8052a869856cfc7c">
               <span class="m-doc-wrap-bumper"><a href="#a25ee4fe0432b6cdc8052a869856cfc7c" class="m-doc-self">~OdomChassisController</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
@@ -136,15 +136,15 @@
               bool ibackwards = false,
               const QLength&amp; ioffset = 0_mm) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Drives the robot straight to a point in the odom frame.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a4566bc34f36fd107bc868b17942f4245" class="m-doc">turnToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Turns the robot to face a point in the odom frame.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ac90298bb9081d95c52800dbf679dd658" class="m-doc">turnToAngle</a>(</span><span class="m-doc-wrap">const QAngle&amp; iangle) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Turns the robot to face an angle in the odom frame.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a4f4a588ea6e302e9cf13fb776ce0c5e4" class="m-doc">getState</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a> <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -152,19 +152,19 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a1e3a4b62e89ab0869c4046983ab7d11b" class="m-doc">setState</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set a new state to be the current state.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a79152ae9fb43abbb51179f7bd7ce5fde" class="m-doc">setDefaultStateMode</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode)</span>
             </dt>
-            <dd></dd>
+            <dd>Sets a default StateMode that will be used to interpret target points and query the <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#adf98b0e1b91d1f72cce5b76b992257a0" class="m-doc">setMoveThreshold</a>(</span><span class="m-doc-wrap">const QLength&amp; imoveThreshold) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set a new move threshold.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a771daa37b47909a523571e9173f676d5" class="m-doc">setTurnThreshold</a>(</span><span class="m-doc-wrap">const QAngle&amp; iturnTreshold) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set a new turn threshold.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a6523c9291a330272edcf951e6653ae02" class="m-doc">getMoveThreshold</a>(</span><span class="m-doc-wrap">) const -&gt; QLength <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -176,7 +176,7 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a519c7ad1905fbf9132c95e1e14bc973c" class="m-doc">startOdomThread</a>(</span><span class="m-doc-wrap">)</span>
             </dt>
-            <dd></dd>
+            <dd>Starts the internal odometry thread.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a6ab78730e502dc551894e7efdb9f4edf" class="m-doc">getOdomThread</a>(</span><span class="m-doc-wrap">) const -&gt; <a href="classCrossplatformThread.html" class="m-doc">CrossplatformThread</a>*</span>
             </dt>
@@ -257,6 +257,7 @@
               const QAngle&amp; iturnThreshold = 0_deg,
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; ilogger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> based chassis controller.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -288,7 +289,7 @@
                 </tr>
               </tbody>
             </table>
-<p><a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> based chassis controller. Starts task at the default for odometry when constructed, which calls <code><a href="classokapi_1_1Odometry.html#a00d4dd37fe02d4f02fc8896a2a760331" class="m-doc">Odometry::<wbr />step</a></code> every <code>10ms</code>. The default StateMode is <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</p><p>Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific point on the field or turn to a specific angle relative to its starting position.</p>
+<p>Starts task at the default for odometry when constructed, which calls <code><a href="classokapi_1_1Odometry.html#a00d4dd37fe02d4f02fc8896a2a760331" class="m-doc">Odometry::<wbr />step</a></code> every <code>10ms</code>. The default StateMode is <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</p><p>Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific point on the field or turn to a specific angle relative to its starting position.</p>
           </div></section>
           <section class="m-doc-details" id="abea9bd3860ad9f1acb1cdc1e36869fbf"><div>
             <h3>
@@ -296,6 +297,7 @@
               bool ibackwards = false,
               const QLength&amp; ioffset = 0_mm) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Drives the robot straight to a point in the odom frame.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -315,12 +317,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Drives the robot straight to a point in the odom frame.</p>
           </div></section>
           <section class="m-doc-details" id="a4566bc34f36fd107bc868b17942f4245"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4566bc34f36fd107bc868b17942f4245" class="m-doc-self">turnToPoint</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1Point.html" class="m-doc">Point</a>&amp; ipoint) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Turns the robot to face a point in the odom frame.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -332,12 +334,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Turns the robot to face a point in the odom frame.</p>
           </div></section>
           <section class="m-doc-details" id="ac90298bb9081d95c52800dbf679dd658"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac90298bb9081d95c52800dbf679dd658" class="m-doc-self">turnToAngle</a>(</span><span class="m-doc-wrap">const QAngle&amp; iangle) <span class="m-label m-warning">pure virtual</span></span></span>
             </h3>
+            <p>Turns the robot to face an angle in the odom frame.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -349,7 +351,6 @@
                 </tr>
               </tbody>
             </table>
-<p>Turns the robot to face an angle in the odom frame.</p>
           </div></section>
           <section class="m-doc-details" id="a4f4a588ea6e302e9cf13fb776ce0c5e4"><div>
             <h3>
@@ -368,6 +369,7 @@
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1e3a4b62e89ab0869c4046983ab7d11b" class="m-doc-self">setState</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; istate) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Set a new state to be the current state.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -379,12 +381,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Set a new state to be the current state. The default StateMode is <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</p>
+<p>The default StateMode is <code><a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">StateMode::<wbr />FRAME_TRANSFORMATION</a></code>.</p>
           </div></section>
           <section class="m-doc-details" id="a79152ae9fb43abbb51179f7bd7ce5fde"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a79152ae9fb43abbb51179f7bd7ce5fde" class="m-doc-self">setDefaultStateMode</a>(</span><span class="m-doc-wrap">const <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07" class="m-doc">StateMode</a>&amp; imode)</span></span>
             </h3>
+            <p>Sets a default StateMode that will be used to interpret target points and query the <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -396,12 +399,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Sets a default StateMode that will be used to interpret target points and query the <a href="classokapi_1_1Odometry.html" class="m-doc">Odometry</a> state.</p>
           </div></section>
           <section class="m-doc-details" id="adf98b0e1b91d1f72cce5b76b992257a0"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#adf98b0e1b91d1f72cce5b76b992257a0" class="m-doc-self">setMoveThreshold</a>(</span><span class="m-doc-wrap">const QLength&amp; imoveThreshold) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Set a new move threshold.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -413,12 +416,13 @@
                 </tr>
               </tbody>
             </table>
-<p>Set a new move threshold. Any requested movements smaller than this threshold will be skipped.</p>
+<p>Any requested movements smaller than this threshold will be skipped.</p>
           </div></section>
           <section class="m-doc-details" id="a771daa37b47909a523571e9173f676d5"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a771daa37b47909a523571e9173f676d5" class="m-doc-self">setTurnThreshold</a>(</span><span class="m-doc-wrap">const QAngle&amp; iturnTreshold) <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Set a new turn threshold.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -430,7 +434,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Set a new turn threshold. Any requested turns smaller than this threshold will be skipped.</p>
+<p>Any requested turns smaller than this threshold will be skipped.</p>
           </div></section>
           <section class="m-doc-details" id="a6523c9291a330272edcf951e6653ae02"><div>
             <h3>
@@ -462,7 +466,8 @@
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />OdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a519c7ad1905fbf9132c95e1e14bc973c" class="m-doc-self">startOdomThread</a>(</span><span class="m-doc-wrap">)</span></span>
             </h3>
-<p>Starts the internal odometry thread. This should not be called by normal users.</p>
+            <p>Starts the internal odometry thread.</p>
+<p>This should not be called by normal users.</p>
           </div></section>
           <section class="m-doc-details" id="a6ab78730e502dc551894e7efdb9f4edf"><div>
             <h3>

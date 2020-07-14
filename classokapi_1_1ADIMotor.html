@@ -91,7 +91,7 @@
               bool ireverse = false,
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; logger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd></dd>
+            <dd>A motor on the ADI ports.</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -100,11 +100,11 @@
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a4c992efbe21467c0339308fba926b1a6" class="m-doc">moveVoltage</a>(</span><span class="m-doc-wrap">std::int8_t ivoltage) const <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
-            <dd></dd>
+            <dd>Set the voltage to the motor.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ac290a47e904c728ff1e61ee85408a1be" class="m-doc">controllerSet</a>(</span><span class="m-doc-wrap">double ivalue) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd></dd>
+            <dd>Writes the value of the controller output.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -128,6 +128,7 @@
               bool ireverse = false,
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; logger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
+            <p>A motor on the ADI ports.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -147,12 +148,12 @@
                 </tr>
               </tbody>
             </table>
-<p>A motor on the ADI ports.</p>
           </div></section>
           <section class="m-doc-details" id="a4c992efbe21467c0339308fba926b1a6"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ADIMotor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4c992efbe21467c0339308fba926b1a6" class="m-doc-self">moveVoltage</a>(</span><span class="m-doc-wrap">std::int8_t ivoltage) const <span class="m-label m-warning">virtual</span></span></span>
             </h3>
+            <p>Set the voltage to the motor.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -164,12 +165,12 @@
                 </tr>
               </tbody>
             </table>
-<p>Set the voltage to the motor.</p>
           </div></section>
           <section class="m-doc-details" id="ac290a47e904c728ff1e61ee85408a1be"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />ADIMotor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac290a47e904c728ff1e61ee85408a1be" class="m-doc-self">controllerSet</a>(</span><span class="m-doc-wrap">double ivalue) <span class="m-label m-warning">override</span></span></span>
             </h3>
+            <p>Writes the value of the controller output.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -181,7 +182,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Writes the value of the controller output. This method might be automatically called in another thread by the controller. The range of input values is expected to be [-1, 1].</p>
+<p>This method might be automatically called in another thread by the controller. The range of input values is expected to be [-1, 1].</p>
           </div></section>
         </section>
       </div>
