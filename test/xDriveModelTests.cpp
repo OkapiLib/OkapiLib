@@ -46,6 +46,14 @@ class XDriveModelTest : public ::testing::Test {
     EXPECT_EQ(bottomLeftMotor->lastVelocity, expectedLeftLastVelocity);
   }
 
+  void assertTLBRAndTRBLMotorsLastVelocity(const std::int16_t expectedTopLeftLastVelocity,
+                                           const std::int16_t expectedTopRightLastVelocity) const {
+    EXPECT_EQ(topLeftMotor->lastVelocity, expectedTopLeftLastVelocity);
+    EXPECT_EQ(topRightMotor->lastVelocity, expectedTopRightLastVelocity);
+    EXPECT_EQ(bottomRightMotor->lastVelocity, expectedTopLeftLastVelocity);
+    EXPECT_EQ(bottomLeftMotor->lastVelocity, expectedTopRightLastVelocity);
+  }
+
   void assertLeftAndRightMotorsLastVoltage(const std::int16_t expectedLeftLastVoltage,
                                            const std::int16_t expectedRightLastVoltage) const {
     EXPECT_EQ(topLeftMotor->lastVoltage, expectedLeftLastVoltage);
@@ -85,6 +93,16 @@ TEST_F(XDriveModelTest, RotateBoundsInput) {
   assertLeftAndRightMotorsLastVelocity(127, -127);
 }
 
+TEST_F(XDriveModelTest, StrafeHalfPower) {
+  model.strafe(0.5);
+  assertTLBRAndTRBLMotorsLastVelocity(-63, 63);
+}
+
+TEST_F(XDriveModelTest, StrafeBoundsInput) {
+  model.strafe(10);
+  assertTLBRAndTRBLMotorsLastVelocity(-127, 127);
+}
+
 TEST_F(XDriveModelTest, DriveVectorHalfPower) {
   model.driveVector(0.25, 0.25);
   assertLeftAndRightMotorsLastVelocity(63, 0);
@@ -119,6 +137,54 @@ TEST_F(XDriveModelTest, DriveVectorVoltageHalfPower) {
 TEST_F(XDriveModelTest, DriveVectorVoltageBoundsInput) {
   model.driveVectorVoltage(0.9, 0.25);
   assertLeftAndRightMotorsLastVoltage(12000, 6782);
+}
+
+TEST_F(XDriveModelTest, StrafeVectorHalfPower) {
+  model.strafeVector(0.25, 0.25);
+  EXPECT_FLOAT_EQ(topLeftMotor->lastVelocity, 0);
+  EXPECT_FLOAT_EQ(topRightMotor->lastVelocity, 0);
+  EXPECT_FLOAT_EQ(bottomRightMotor->lastVelocity, -63);
+  EXPECT_FLOAT_EQ(bottomLeftMotor->lastVelocity, 63);
+}
+
+TEST_F(XDriveModelTest, StrafeVectorBoundsInput) {
+  model.strafeVector(0.9, 0.25);
+  EXPECT_FLOAT_EQ(topLeftMotor->lastVelocity, -71);
+  EXPECT_FLOAT_EQ(topRightMotor->lastVelocity, 71);
+  EXPECT_FLOAT_EQ(bottomRightMotor->lastVelocity, -127);
+  EXPECT_FLOAT_EQ(bottomLeftMotor->lastVelocity, 127);
+}
+
+TEST_F(XDriveModelTest, StrafeVectorAndRotateAreEquivalent) {
+  for (double i = -1; i < 1;) {
+    model.strafeVector(0, i);
+    auto lastTopLeft = topLeftMotor->lastVelocity;
+    auto lastTopRight = topRightMotor->lastVelocity;
+    auto lastBottomRight = bottomRightMotor->lastVelocity;
+    auto lastBottomLeft = bottomLeftMotor->lastVelocity;
+    model.rotate(i);
+    EXPECT_FLOAT_EQ(topLeftMotor->lastVelocity, lastTopLeft);
+    EXPECT_FLOAT_EQ(topRightMotor->lastVelocity, lastTopRight);
+    EXPECT_FLOAT_EQ(bottomRightMotor->lastVelocity, lastBottomRight);
+    EXPECT_FLOAT_EQ(bottomLeftMotor->lastVelocity, lastBottomLeft);
+    i += 0.001;
+  }
+}
+
+TEST_F(XDriveModelTest, StrafeVectorAndStrafeAreEquivalent) {
+  for (double i = -1; i < 1;) {
+    model.strafeVector(i, 0);
+    auto lastTopLeft = topLeftMotor->lastVelocity;
+    auto lastTopRight = topRightMotor->lastVelocity;
+    auto lastBottomRight = bottomRightMotor->lastVelocity;
+    auto lastBottomLeft = bottomLeftMotor->lastVelocity;
+    model.strafe(i);
+    EXPECT_FLOAT_EQ(topLeftMotor->lastVelocity, lastTopLeft);
+    EXPECT_FLOAT_EQ(topRightMotor->lastVelocity, lastTopRight);
+    EXPECT_FLOAT_EQ(bottomRightMotor->lastVelocity, lastBottomRight);
+    EXPECT_FLOAT_EQ(bottomLeftMotor->lastVelocity, lastBottomLeft);
+    i += 0.001;
+  }
 }
 
 TEST_F(XDriveModelTest, StopTest) {

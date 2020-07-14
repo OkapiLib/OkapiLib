@@ -65,9 +65,9 @@ OdomState TwoEncoderOdometry::odomMathStep(const std::valarray<std::int32_t> &it
   double localOffX, localOffY;
 
   if (deltaTheta != 0) {
-    localOffX = 2 * sin(deltaTheta / 2) * chassisScales.middleWheelDistance.convert(meter);
-    localOffY =
-      2 * sin(deltaTheta / 2) * (deltaR / deltaTheta + chassisScales.wheelTrack.convert(meter) / 2);
+    localOffX = 2 * std::sin(deltaTheta / 2) * chassisScales.middleWheelDistance.convert(meter);
+    localOffY = 2 * std::sin(deltaTheta / 2) *
+                (deltaR / deltaTheta + chassisScales.wheelTrack.convert(meter) / 2);
   } else {
     localOffX = 0;
     localOffY = deltaR;
@@ -75,11 +75,11 @@ OdomState TwoEncoderOdometry::odomMathStep(const std::valarray<std::int32_t> &it
 
   double avgA = state.theta.convert(radian) + (deltaTheta / 2);
 
-  double polarR = sqrt(localOffX * localOffX + localOffY * localOffY);
-  double polarA = atan2(localOffY, localOffX) - avgA;
+  double polarR = std::sqrt(localOffX * localOffX + localOffY * localOffY);
+  double polarA = std::atan2(localOffY, localOffX) - avgA;
 
-  double dX = sin(polarA) * polarR;
-  double dY = cos(polarA) * polarR;
+  double dX = std::sin(polarA) * polarR;
+  double dY = std::cos(polarA) * polarR;
 
   if (isnan(dX)) {
     dX = 0;
