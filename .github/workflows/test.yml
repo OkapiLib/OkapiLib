@@ -1,0 +1,61 @@
+name: Test
+
+on: [push]
+
+jobs:
+  test:
+    container:
+      image: okapilib/ubuntu-base:18.04
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.4.0
+        with:
+          access_token: ${{ github.token }}
+
+      - uses: actions/checkout@v1.0.0
+
+      - name: Update Submodules
+        run: git submodule update --init --recursive
+
+      - name: Make
+        run: make
+
+      - name: Make Template
+        run: make template
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: template
+          path: okapilib@*.zip
+
+      - name: Build and Test
+        env:
+          CC: gcc-7
+          CXX: g++-7
+        run: |
+          mkdir cmake-build-debug && cd cmake-build-debug
+          cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
+          cmake --build . --target OkapiLibV5 -- -j 2
+
+      - name: Test
+        working-dir: cmake-build-debug
+        run: ./OkapiLibV5
+
+      - name: Valgrind
+        working-dir: cmake-build-debug
+        run: valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
+
+      - name: Collect Coverage
+        run: |
+          lcov --directory . --capture --output-file coverage.info
+          lcov --remove coverage.info '/usr/*' --output-file coverage.info
+          lcov --list coverage.info
+
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+
+      - name: Build Docs
+        run: ./run_doxygen.sh
