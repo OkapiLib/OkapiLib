@@ -1,9 +1,11 @@
 name: Docs
 
-on:
-  push:
-    branches:
-      - master
+#on:
+#  push:
+#    branches:
+#      - master
+
+on: [push]
 
 jobs:
   docs:
@@ -36,9 +38,13 @@ jobs:
           git add .
           git commit -m "Publishing GitHub Pages"
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        if: ${{ success() && github.ref == "master" }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
+      - name: Dump ref
+        run: |
+          echo "${{ github.ref }}"
+
+#      - name: Push changes
+#        uses: ad-m/github-push-action@master
+#        if: ${{ success() && github.ref == "master" }}
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          force: true
