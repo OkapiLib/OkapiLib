@@ -7,6 +7,7 @@ on:
 
 jobs:
   docs:
+    runs-on: ubuntu-latest
     container:
       image: okapilib/ubuntu-base:18.04
     steps:
