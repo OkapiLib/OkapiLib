@@ -1,22 +1,16 @@
-bin/
+# Compiled Object files
 *.o
-program
-*.dblite
+*.obj
+
+# Executables
+*.bin
+*.elf
+
+# PROS
+bin/
 .vscode/
-okapilib-template.zip
-.clang/
-*.gch
 compile_commands.json
-cquery_log.txt
-okapilib@*.zip
-.DS_store
-.cproject
-.idea/
-.project
-.settings/
-cmake-build-debug/
-html/
-latex/
-xml/
-venv/
-*.d/
+temp.log
+temp.errors
+*.ini
+.d/
