@@ -63,7 +63,8 @@ class Controller {
   virtual std::int32_t setText(std::uint8_t iline, std::uint8_t icol, std::string itext);
 
   /**
-   * Clears all of the lines of the controller screen.
+   * Clears all of the lines of the controller screen. On vexOS version 1.0.0 this function will
+   * block for 110ms.
    *
    * @return 1 if the operation was successful, PROS_ERR otherwise
    */
