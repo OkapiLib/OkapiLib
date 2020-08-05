@@ -12,88 +12,87 @@
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
 
 namespace okapi {
-enum class IMUAxes{
+enum class IMUAxes {
   z, ///< Yaw Axis
   y, ///< Pitch Axis
   x  ///< Roll Axis
 };
 
-class IMU : public ContinuousRotarySensor{
+class IMU : public ContinuousRotarySensor {
   public:
   /**
-   * An inertial sensor on the given port. If the port has not previously been configured as an IMU,
-   * then the constructor will block for 2 seconds for calibration. The IMU returns double angle results
+   * An inertial sensor on the given port.  The IMU returns an angle
+   * about the selected axis in degrees.
    *
    * @param iport: The port to use the inertial sensor from
    * @param iaxis: The axis of the inertial sensor to measure, default z
    */
-   IMU(std::uint8_t iport,IMUAxes iaxis = IMUAxes::z);
+  IMU(std::uint8_t iport, IMUAxes iaxis = IMUAxes::z);
 
-   virtual ~IMU();
+  virtual ~IMU();
 
-   /**
-    * Get the current rotation about iaxis
-    *
-    *@return the current sensor value or one of the following values of `errno`
-    * `ENXIO` - the given iport is not in range of the V5 ports (1-21)
-    * `ENODEV` - the port cannot be configured as an IMU
-    * `EAGAIN` - the sensor is calibrating
-    */
-    double get() const override;
+  /**
+   * Get the current rotation about iaxis.
+   *
+   *@return the current sensor value or one of the following values of `errno`
+   * `ENXIO` - the given iport is not in range of the V5 ports (1-21)
+   * `ENODEV` - the port cannot be configured as an IMU
+   * `EAGAIN` - the sensor is calibrating
+   */
+  double get() const override;
 
-    /**
-     * Get the current sensor value remapped into the target range ([1800, -1800] by default).
-     *
-     * @param iupperBound the upper bound of the range.
-     * @param ilowerBound the lower bound of the range.
-     * @return the remapped sensor value.
-     */
-    double getRemapped(double iupperBound = 180, double ilowerBound = -180) const
-      __attribute__((optimize(3)));
+  /**
+   * Get the current sensor value remapped into the target range ([1800, -1800] by default).
+   *
+   * @param iupperBound the upper bound of the range.
+   * @param ilowerBound the lower bound of the range.
+   * @return the remapped sensor value.
+   */
+  double getRemapped(double iupperBound = 1800, double ilowerBound = -1800) const;
 
-      /**
-       * Get the current acceleration along iaxis
-       *
-       *@return the current sensor value or one of the following values of `errno`
-       * `ENXIO` - the given iport is not in range of the V5 ports (1-21)
-       * `ENODEV` - the port cannot be configured as an IMU
-       * `EAGAIN` - the sensor is calibrating
-       */
-    double getAcc();
+  /**
+   * Get the current acceleration along iaxis.
+   *
+   *@return the current sensor value or one of the following values of `errno`
+   * `ENXIO` - the given iport is not in range of the V5 ports (1-21)
+   * `ENODEV` - the port cannot be configured as an IMU
+   * `EAGAIN` - the sensor is calibrating
+   */
+  double getAcceleration();
 
-    /**
-     * Reset the sensor to zero.
-     *
-     * @returns `1` on success
-     */
-    std::int32_t reset() override;
+  /**
+   * Reset the sensor to zero.
+   *
+   * @return `1` on success
+   */
+  std::int32_t reset() override;
 
-    /**
-     * Calibrates the IMU
-     *
-     * @return `1` on success, or one of the following values of `errno`
-     * `ENXIO` - the given iport is not in range of the V5 ports (1-21)
-     * `ENODEV` - the port cannot be configured as an IMU
-     * `EAGAIN` - the sensor is calibrating
-     */
-    std::int32_t calibrate();
+  /**
+   * Calibrate the IMU. Reset rotation value to `0`.
+   *
+   * @return `1` on success, or one of the following values of `errno`
+   * `ENXIO` - the given iport is not in range of the V5 ports (1-21)
+   * `ENODEV` - the port cannot be configured as an IMU
+   * `EAGAIN` - the sensor is calibrating
+   */
+  std::int32_t calibrate();
 
-    /**
-     * Get the sensor value for use in a control loop. This method might be automatically called in
-     * another thread by the controller.
-     *
-     * @return the current sensor value, or one of the following values of `errno`
-     * `ENXIO` - the given iport is not in range of the V5 ports (1-21)
-     * `ENODEV` - the port cannot be configured as an IMU
-     * `EAGAIN` - the sensor is calibrating
-     */
-    double controllerGet() override;
+  /**
+   * Get the sensor value for use in a control loop. This method might be automatically called in
+   * another thread by the controller.
+   *
+   * @return the current sensor value, or one of the following values of `errno`
+   * `ENXIO` - the given iport is not in range of the V5 ports (1-21)
+   * `ENODEV` - the port cannot be configured as an IMU
+   * `EAGAIN` - the sensor is calibrating
+   */
+  double controllerGet() override;
 
-    private:
-    double offset = 0; // this offset must invert based on the value currrently measured
+  private:
+  double offset = 0;
 
-    protected:
-    std::uint8_t port;
-    IMUAxes axis;
+  protected:
+  std::uint8_t port;
+  IMUAxes axis;
 };
 } // namespace okapi

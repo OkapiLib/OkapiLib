@@ -9,7 +9,7 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-IMU::IMU(std::uint8_t iport, IMUAxes iaxis):port(iport),axis(iaxis) {
+IMU::IMU(std::uint8_t iport, IMUAxes iaxis) : port(iport), axis(iaxis) {
 }
 
 IMU::~IMU() = default;
@@ -17,20 +17,20 @@ IMU::~IMU() = default;
 double IMU::get() const {
   pros::c::euler_s_t eu = pros::c::imu_get_euler(port);
   static double angle = 0;
-  switch(axis) {
-    case IMUAxes::x:
+  switch (axis) {
+  case IMUAxes::x:
     angle = eu.roll;
     break;
-    case IMUAxes::y:
+  case IMUAxes::y:
     angle = eu.pitch;
     break;
-    case IMUAxes::z:
+  case IMUAxes::z:
     angle = eu.yaw;
     break;
   }
-  angle += offset;
-  if(angle > 180 || angle < -180) {
-    angle += -360 * (offset/std::abs(offset));
+  angle -= offset;
+  if (angle > 180 || angle < -180) {
+    angle += 360 * (offset / std::abs(offset));
   }
   return angle;
 }
@@ -41,16 +41,16 @@ double IMU::getRemapped(const double iupperBound, const double ilowerBound) cons
   return remapRange(value, -180, 180, ilowerBound, iupperBound);
 }
 
-double IMU::getAcc() {
+double IMU::getAcceleration() {
   pros::c::imu_accel_s_t accel = pros::c::imu_get_accel(port);
-  switch(axis) {
-    case IMUAxes::x:
+  switch (axis) {
+  case IMUAxes::x:
     return accel.x;
     break;
-    case IMUAxes::y:
+  case IMUAxes::y:
     return accel.y;
     break;
-    case IMUAxes::z:
+  case IMUAxes::z:
     return accel.z;
     break;
   }
@@ -58,14 +58,15 @@ double IMU::getAcc() {
 }
 
 std::int32_t IMU::reset() {
-  const auto value = get() - offset;
-  offset = -1 * value;
+  offset = 0;
+  offset = get();
 
   return 1;
 }
 
 std::int32_t IMU::calibrate() {
   std::int32_t result = pros::c::imu_reset(port);
+  offset = 0;
   pros::delay(2100);
   return result;
 }
