@@ -91,6 +91,16 @@ class IMU : public ContinuousRotarySensor {
   private:
   double offset = 0;
 
+  /**
+   * Get the current rotation about iaxis from the IMU. `Offset` is not considered.
+   *
+   *@return the current sensor value or one of the following values of `errno`
+   * `ENXIO` - the given iport is not in range of the V5 ports (1-21)
+   * `ENODEV` - the port cannot be configured as an IMU
+   * `EAGAIN` - the sensor is calibrating
+   */
+  double readAngle() const;
+
   protected:
   std::uint8_t port;
   IMUAxes axis;

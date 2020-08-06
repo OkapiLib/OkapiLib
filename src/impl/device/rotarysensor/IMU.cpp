@@ -15,23 +15,12 @@ IMU::IMU(std::uint8_t iport, IMUAxes iaxis) : port(iport), axis(iaxis) {
 IMU::~IMU() = default;
 
 double IMU::get() const {
-  pros::c::euler_s_t eu = pros::c::imu_get_euler(port);
-  static double angle = 0;
-  switch (axis) {
-  case IMUAxes::x:
-    angle = eu.roll;
-    break;
-  case IMUAxes::y:
-    angle = eu.pitch;
-    break;
-  case IMUAxes::z:
-    angle = eu.yaw;
-    break;
-  }
-  angle -= offset;
+  double angle = readAngle() - offset;
+
   if (angle > 180 || angle < -180) {
     angle += 360 * (offset / std::abs(offset));
   }
+
   return angle;
 }
 
@@ -54,12 +43,12 @@ double IMU::getAcceleration() {
     return accel.z;
     break;
   }
+
   return -1;
 }
 
 std::int32_t IMU::reset() {
-  offset = 0;
-  offset = get();
+  offset = readAngle();
 
   return 1;
 }
@@ -73,6 +62,25 @@ std::int32_t IMU::calibrate() {
 
 double IMU::controllerGet() {
   return get();
+}
+
+double IMU::readAngle() const {
+  pros::c::euler_s_t eu = pros::c::imu_get_euler(port);
+  double angle = 0;
+
+  switch (axis) {
+  case IMUAxes::x:
+    angle = eu.roll;
+    break;
+  case IMUAxes::y:
+    angle = eu.pitch;
+    break;
+  case IMUAxes::z:
+    angle = eu.yaw;
+    break;
+  }
+
+  return angle;
 }
 
 } // namespace okapi
