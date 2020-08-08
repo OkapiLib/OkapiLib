@@ -84,11 +84,11 @@
 #include "okapi/impl/device/motor/adiMotor.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
+#include "okapi/impl/device/rotarysensor/IMU.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/adiGyro.hpp"
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/potentiometer.hpp"
-#include "okapi/impl/device/rotarysensor/IMU.hpp"
 
 #include "okapi/api/filter/averageFilter.hpp"
 #include "okapi/api/filter/composableFilter.hpp"
