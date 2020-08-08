@@ -17,6 +17,10 @@ IMU::~IMU() = default;
 double IMU::get() const {
   double angle = readAngle() - offset;
 
+  if (angle == PROS_ERR) {
+    return PROS_ERR;
+  }
+
   if (angle > 180 || angle < -180) {
     angle += std::copysign(360, offset);
   }
@@ -25,11 +29,17 @@ double IMU::get() const {
 }
 
 double IMU::getRemapped(const double iupperBound, const double ilowerBound) const {
+  const double value = get();
+
+  if (value == PROS_ERR) {
+    return PROS_ERR;
+  }
+
   return remapRange(get(), -180, 180, ilowerBound, iupperBound);
 }
 
 double IMU::getAcceleration() {
-  pros::c::imu_accel_s_t accel = pros::c::imu_get_accel(port);
+  const pros::c::imu_accel_s_t accel = pros::c::imu_get_accel(port);
 
   switch (axis) {
   case IMUAxes::x:
@@ -49,11 +59,11 @@ std::int32_t IMU::reset() {
 }
 
 std::int32_t IMU::calibrate() {
-  std::int32_t result = pros::c::imu_reset(port);
+  const std::int32_t result = pros::c::imu_reset(port);
 
   // Don't reset the offset or wait for calibration if the reset failed
   if (result == PROS_ERR) {
-    return errno;
+    return PROS_ERR;
   }
 
   offset = 0;
@@ -82,7 +92,7 @@ double IMU::controllerGet() {
 }
 
 double IMU::readAngle() const {
-  pros::c::euler_s_t eu = pros::c::imu_get_euler(port);
+  const pros::c::euler_s_t eu = pros::c::imu_get_euler(port);
   double angle = 0;
 
   switch (axis) {

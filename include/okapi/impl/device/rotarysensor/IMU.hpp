@@ -34,15 +34,17 @@ class IMU : public ContinuousRotarySensor {
   /**
    * Get the current rotation about `iaxis`.
    *
-   * @return The current sensor value or one of the following values of `errno`:
+   * This may set the following values of `errno` on error:
    * - `ENXIO` - The given `iport` is not in range of the V5 ports (1-21).
    * - `ENODEV` - The port cannot be configured as an IMU.
    * - `EAGAIN` - The sensor is calibrating.
+   *
+   * @return The current sensor value or `PROS_ERR`.
    */
   double get() const override;
 
   /**
-   * Get the current sensor value remapped into the target range (`[1800, -1800]` by default).
+   * Get the current sensor value remapped into the target range (`[-1800, 1800]` by default).
    *
    * @param iupperBound The upper bound of the range.
    * @param ilowerBound The lower bound of the range.
@@ -53,10 +55,12 @@ class IMU : public ContinuousRotarySensor {
   /**
    * Get the current acceleration along `iaxis`.
    *
-   * @return The current sensor value or one of the following values of `errno`:
+   * This may set the following values of `errno` on error:
    * - `ENXIO` - The given `iport` is not in range of the V5 ports (1-21).
    * - `ENODEV` - The port cannot be configured as an IMU.
    * - `EAGAIN` - The sensor is calibrating.
+   *
+   * @return The current sensor value or `PROS_ERR`.
    */
   double getAcceleration();
 
@@ -71,10 +75,12 @@ class IMU : public ContinuousRotarySensor {
    * Calibrate the IMU. Resets the rotation value to zero. Calibration is expected to take two
    * seconds, but is bounded to five seconds.
    *
-   * @return `1` on success, or one of the following values of `errno`:
+   * This may set the following values of `errno` on error:
    * - `ENXIO` - The given `iport` is not in range of the V5 ports (1-21).
    * - `ENODEV` - The port cannot be configured as an IMU.
-   * - `EAGAIN` - The sensor is calibrating or timed out calibrating.
+   * - `EAGAIN` - The sensor is calibrating.
+   *
+   * @return `1` or `PROS_ERR`.
    */
   std::int32_t calibrate();
 
@@ -82,10 +88,12 @@ class IMU : public ContinuousRotarySensor {
    * Get the sensor value for use in a control loop. This method might be automatically called in
    * another thread by the controller.
    *
-   * @return the current sensor value, or one of the following values of `errno`
-   * - `ENXIO` - The given iport is not in range of the V5 ports (1-21).
+   * This may set the following values of `errno` on error:
+   * - `ENXIO` - The given `iport` is not in range of the V5 ports (1-21).
    * - `ENODEV` - The port cannot be configured as an IMU.
    * - `EAGAIN` - The sensor is calibrating.
+   *
+   * @return The current sensor value or `PROS_ERR`.
    */
   double controllerGet() override;
 
@@ -96,10 +104,12 @@ class IMU : public ContinuousRotarySensor {
   /**
    * Get the current rotation about `iaxis` from the IMU. The internal offset is not accounted for.
    *
-   *@return the current sensor value or one of the following values of `errno`
-   * - `ENXIO` - The given iport is not in range of the V5 ports (1-21).
+   * This may set the following values of `errno` on error:
+   * - `ENXIO` - The given `iport` is not in range of the V5 ports (1-21).
    * - `ENODEV` - The port cannot be configured as an IMU.
    * - `EAGAIN` - The sensor is calibrating.
+   *
+   * @return The current sensor value or `PROS_ERR`.
    */
   double readAngle() const;
 
