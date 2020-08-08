@@ -9,7 +9,7 @@
 #include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
-IMU::IMU(std::uint8_t iport, IMUAxes iaxis) : port(iport), axis(iaxis) {
+IMU::IMU(const std::uint8_t iport, const IMUAxes iaxis) : port(iport), axis(iaxis) {
 }
 
 IMU::~IMU() = default;
@@ -18,30 +18,26 @@ double IMU::get() const {
   double angle = readAngle() - offset;
 
   if (angle > 180 || angle < -180) {
-    angle += 360 * (offset / std::abs(offset));
+    angle += std::copysign(360, offset);
   }
 
   return angle;
 }
 
 double IMU::getRemapped(const double iupperBound, const double ilowerBound) const {
-  double value = get();
-
-  return remapRange(value, -180, 180, ilowerBound, iupperBound);
+  return remapRange(get(), -180, 180, ilowerBound, iupperBound);
 }
 
 double IMU::getAcceleration() {
   pros::c::imu_accel_s_t accel = pros::c::imu_get_accel(port);
+
   switch (axis) {
   case IMUAxes::x:
     return accel.x;
-    break;
   case IMUAxes::y:
     return accel.y;
-    break;
   case IMUAxes::z:
     return accel.z;
-    break;
   }
 
   return -1;
@@ -49,15 +45,36 @@ double IMU::getAcceleration() {
 
 std::int32_t IMU::reset() {
   offset = readAngle();
-
   return 1;
 }
 
 std::int32_t IMU::calibrate() {
   std::int32_t result = pros::c::imu_reset(port);
+
+  // Don't reset the offset or wait for calibration if the reset failed
+  if (result == PROS_ERR) {
+    return errno;
+  }
+
   offset = 0;
-  pros::delay(2100);
-  return result;
+
+  // This operation should take approximately two seconds, so wait two seconds and then wait for it
+  // to finish. We bound the maximum delay time to ensure that this function does not hang
+  // indefinitely.
+  const uint32_t maxDelayTime = 5000;
+  const uint32_t before = pros::millis();
+  pros::delay(2000);
+  while (isCalibrating() && pros::millis() - before < maxDelayTime) {
+    pros::delay(10);
+  }
+
+  if (pros::millis() - before < maxDelayTime) {
+    // We did not timeout
+    return 1;
+  } else {
+    // We timed out
+    return EAGAIN;
+  }
 }
 
 double IMU::controllerGet() {
@@ -83,4 +100,7 @@ double IMU::readAngle() const {
   return angle;
 }
 
+bool IMU::isCalibrating() const {
+  return pros::c::imu_get_status(port) & pros::c::E_IMU_STATUS_CALIBRATING;
+}
 } // namespace okapi
