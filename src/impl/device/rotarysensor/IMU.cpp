@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "okapi/impl/device/rotarysensor/IMU.hpp"
-#include "okapi/api/util/mathUtil.hpp"
+#include "okapi/api/odometry/odomMath.hpp"
 
 namespace okapi {
 IMU::IMU(const std::uint8_t iport, const IMUAxes iaxis) : port(iport), axis(iaxis) {
@@ -19,9 +19,7 @@ double IMU::get() const {
     return PROS_ERR;
   }
 
-  if (angle > 180 || angle < -180) {
-    angle += std::copysign(360, offset);
-  }
+  angle = OdomMath::constrainAngle180(angle * degree).convert(degree);
 
   return angle;
 }
