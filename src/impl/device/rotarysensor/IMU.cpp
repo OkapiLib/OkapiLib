@@ -79,7 +79,8 @@ std::int32_t IMU::calibrate() {
     return 1;
   } else {
     // We timed out
-    return EAGAIN;
+    errno = EAGAIN;
+    return PROS_ERR;
   }
 }
 
