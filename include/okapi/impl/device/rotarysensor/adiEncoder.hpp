@@ -1,6 +1,4 @@
 /*
- * @author Ryan Benasutti, WPI
- *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -13,7 +11,24 @@
 namespace okapi {
 class ADIEncoder : public ContinuousRotarySensor {
   public:
+  /**
+   * An encoder in an ADI port.
+   *
+   * @param iportTop The "top" wire from the encoder with the removable cover side up.
+   * @param iportBottom The "bottom" wire from the encoder.
+   * @param ireversed Whether the encoder is reversed.
+   */
   ADIEncoder(std::uint8_t iportTop, std::uint8_t iportBottom, bool ireversed = false);
+
+  /**
+   * An encoder in an ADI port.
+   *
+   * @param ismartPort The smart port the ADI Expander is in.
+   * @param iportTop The "top" wire from the encoder with the removable cover side up.
+   * @param iportBottom The "bottom" wire from the encoder.
+   * @param ireversed Whether the encoder is reversed.
+   */
+  ADIEncoder(std::uint8_t ismartPort, std::uint8_t iportTop, std::uint8_t iportBottom, bool ireversed = false);
 
   /**
    * Get the current sensor value.
@@ -38,6 +53,6 @@ class ADIEncoder : public ContinuousRotarySensor {
   virtual double controllerGet() override;
 
   protected:
-  pros::c::adi_encoder_t enc;
+  pros::c::ext_adi_encoder_t enc;
 };
 } // namespace okapi
