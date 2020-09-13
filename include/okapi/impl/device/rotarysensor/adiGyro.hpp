@@ -17,7 +17,7 @@ class ADIGyro : public ContinuousRotarySensor {
    * then the constructor will block for 1 second for calibration. The gyro measures in tenths of a
    * degree, so there are ``3600`` measurement points per revolution.
    *
-   * @param iport The ADI port number.
+   * @param iport The ADI port number (``[1, 8]``, ``[a, h]``, ``[A, H]``).
    * @param imultiplier A value multiplied by the gyro heading value.
    */
   ADIGyro(std::uint8_t iport, double imultiplier = 1);
@@ -28,7 +28,7 @@ class ADIGyro : public ContinuousRotarySensor {
    * degree, so there are 3600 measurement points per revolution.
    *
    * @param ismartPort The smart port the ADI Expander is in.
-   * @param iport The ADI port number.
+   * @param iport The ADI port number (``[1, 8]``, ``[a, h]``, ``[A, H]``).
    * @param imultiplier A value multiplied by the gyro heading value.
    */
   ADIGyro(std::uint8_t ismartPort, std::uint8_t iport, double imultiplier = 1);

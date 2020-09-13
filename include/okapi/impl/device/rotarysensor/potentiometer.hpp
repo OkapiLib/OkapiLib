@@ -14,7 +14,7 @@ class Potentiometer : public RotarySensor {
   /**
    * A potentiometer in an ADI port.
    *
-   * @param iport The ADI port number.
+   * @param iport The ADI port number (``[1, 8]``, ``[a, h]``, ``[A, H]``).
    */
   Potentiometer(std::uint8_t iport);
 
@@ -22,7 +22,7 @@ class Potentiometer : public RotarySensor {
    * A potentiometer in an ADI port.
    *
    * @param ismartPort The smart port the ADI Expander is in.
-   * @param iport The ADI port number.
+   * @param iport The ADI port number (``[1, 8]``, ``[a, h]``, ``[A, H]``).
    */
   Potentiometer(std::uint8_t ismartPort, std::uint8_t iport);
 
