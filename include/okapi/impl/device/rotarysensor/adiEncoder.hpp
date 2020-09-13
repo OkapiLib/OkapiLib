@@ -28,7 +28,10 @@ class ADIEncoder : public ContinuousRotarySensor {
    * @param iportBottom The "bottom" wire from the encoder.
    * @param ireversed Whether the encoder is reversed.
    */
-  ADIEncoder(std::uint8_t ismartPort, std::uint8_t iportTop, std::uint8_t iportBottom, bool ireversed = false);
+  ADIEncoder(std::uint8_t ismartPort,
+             std::uint8_t iportTop,
+             std::uint8_t iportBottom,
+             bool ireversed = false);
 
   /**
    * Get the current sensor value.

@@ -9,8 +9,8 @@ namespace okapi {
 Potentiometer::Potentiometer(const std::uint8_t iport) : Potentiometer(INTERNAL_ADI_PORT, iport) {
 }
 
-Potentiometer::Potentiometer(const std::uint8_t ismartPort, const std::uint8_t iport) :
-    smartPort(ismartPort), port(iport) {
+Potentiometer::Potentiometer(const std::uint8_t ismartPort, const std::uint8_t iport)
+  : smartPort(ismartPort), port(iport) {
   pros::c::ext_adi_port_set_config(smartPort, port, pros::E_ADI_ANALOG_IN);
 }
 

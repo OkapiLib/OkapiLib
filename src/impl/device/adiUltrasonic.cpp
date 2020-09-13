@@ -16,7 +16,8 @@ ADIUltrasonic::ADIUltrasonic(const std::uint8_t ismartPort,
                              const std::uint8_t iportPing,
                              const std::uint8_t iportEcho,
                              std::unique_ptr<Filter> ifilter)
-  : ultra(pros::c::ext_adi_ultrasonic_init(ismartPort, iportPing, iportEcho)), filter(std::move(ifilter)) {
+  : ultra(pros::c::ext_adi_ultrasonic_init(ismartPort, iportPing, iportEcho)),
+    filter(std::move(ifilter)) {
 }
 
 ADIUltrasonic::~ADIUltrasonic() = default;
