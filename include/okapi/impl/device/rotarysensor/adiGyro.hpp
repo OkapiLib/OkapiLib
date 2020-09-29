@@ -31,7 +31,7 @@ class ADIGyro : public ContinuousRotarySensor {
    * @param iport The ADI port number (``[1, 8]``, ``[a, h]``, ``[A, H]``).
    * @param imultiplier A value multiplied by the gyro heading value.
    */
-  ADIGyro(std::uint8_t ismartPort, std::uint8_t iport, double imultiplier = 1);
+  ADIGyro(std::uint8_t ismartPort, std::uint8_t iport, double imultiplier);
 
   /**
    * Get the current sensor value.

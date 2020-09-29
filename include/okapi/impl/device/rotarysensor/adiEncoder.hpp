@@ -7,6 +7,7 @@
 
 #include "api.h"
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
+#include "okapi/api/util/logging.hpp"
 
 namespace okapi {
 class ADIEncoder : public ContinuousRotarySensor {
@@ -14,26 +15,30 @@ class ADIEncoder : public ContinuousRotarySensor {
   /**
    * An encoder in an ADI port.
    *
-   * @param iportTop The "top" wire from the encoder with the removable cover side up. This should
-   * be in port `1`, `3`, `5`, or `7` (`A`, `C`, `E`, or `G`).
-   * @param iportBottom The "bottom" wire from the encoder.
+   * @param iportTop The "top" wire from the encoder with the removable cover side up. This must be
+   * in port ``1``, ``3``, ``5``, or ``7`` (``A``, ``C``, ``E``, or ``G``).
+   * @param iportBottom The "bottom" wire from the encoder. This must be in port ``2``, ``4``,
+   * ``6``, or ``8`` (``B``, ``D``, ``F``, or ``H``).
    * @param ireversed Whether the encoder is reversed.
    */
-  ADIEncoder(std::uint8_t iportTop, std::uint8_t iportBottom, bool ireversed = false);
+  ADIEncoder(std::uint8_t iportTop, std::uint8_t iportBottom, bool ireversed);
 
   /**
    * An encoder in an ADI port.
    *
    * @param ismartPort The smart port the ADI Expander is in.
-   * @param iportTop The "top" wire from the encoder with the removable cover side up. This should
-   * be in port `1`, `3`, `5`, or `7` (`A`, `C`, `E`, or `G`).
-   * @param iportBottom The "bottom" wire from the encoder.
+   * @param iportTop The "top" wire from the encoder with the removable cover side up. This must be
+   * in port ``1``, ``3``, ``5``, or ``7`` (``A``, ``C``, ``E``, or ``G``).
+   * @param iportBottom The "bottom" wire from the encoder. This must be in port ``2``, ``4``,
+   * ``6``, or ``8`` (``B``, ``D``, ``F``, or ``H``).
    * @param ireversed Whether the encoder is reversed.
+   * @param logger The logger that initialization warnings will be logged to.
    */
   ADIEncoder(std::uint8_t ismartPort,
              std::uint8_t iportTop,
              std::uint8_t iportBottom,
-             bool ireversed = false);
+             bool ireversed,
+             const std::shared_ptr<Logger> &logger = Logger::getDefaultLogger());
 
   /**
    * Get the current sensor value.

@@ -15,7 +15,7 @@ class ADIButton : public ButtonBase {
    * A button in an ADI port.
    *
    * @param iport The ADI port number.
-   * @param iinverted Whether the button is inverted (`true` meaning default pressed and `false`
+   * @param iinverted Whether the button is inverted (``true`` meaning default pressed and ``false``
    * meaning default not pressed).
    */
   ADIButton(std::uint8_t iport, bool iinverted = false);
@@ -25,10 +25,10 @@ class ADIButton : public ButtonBase {
    *
    * @param ismartPort The smart port the ADI Expander is in.
    * @param iport The ADI port number.
-   * @param iinverted Whether the button is inverted (`true` meaning default pressed and `false`
+   * @param iinverted Whether the button is inverted (``true`` meaning default pressed and ``false``
    * meaning default not pressed).
    */
-  ADIButton(std::uint8_t ismartPort, std::uint8_t iport, bool iinverted = false);
+  ADIButton(std::uint8_t ismartPort, std::uint8_t iport, bool iinverted);
 
   protected:
   std::uint8_t smartPort;

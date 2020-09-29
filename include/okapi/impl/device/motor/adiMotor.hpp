@@ -33,7 +33,7 @@ class ADIMotor : public ControllerOutput<double> {
    */
   ADIMotor(std::uint8_t ismartPort,
            std::uint8_t iport,
-           bool ireverse = false,
+           bool ireverse,
            const std::shared_ptr<Logger> &logger = Logger::getDefaultLogger());
 
   /**
