@@ -14,7 +14,12 @@ class ADIButton : public ButtonBase {
   /**
    * A button in an ADI port.
    *
-   * @param iport The ADI port number.
+   * ```cpp
+   * auto btn = ADIButton('A', false);
+   * auto invertedBtn = ADIButton('A', true);
+   * ```
+   *
+   * @param iport The ADI port number (``[1, 8]``, ``[a, h]``, ``[A, H]``).
    * @param iinverted Whether the button is inverted (``true`` meaning default pressed and ``false``
    * meaning default not pressed).
    */
@@ -23,12 +28,18 @@ class ADIButton : public ButtonBase {
   /**
    * A button in an ADI port.
    *
-   * @param ismartPort The smart port the ADI Expander is in.
-   * @param iport The ADI port number.
+   * ```cpp
+   * auto btn = ADIButton({1, 'A'}, false);
+   * auto invertedBtn = ADIButton({1, 'A'}, true);
+   * ```
+   *
+   * @param iports The ports the button is plugged in to in the order ``{smart port, button port}``.
+   * The smart port is the smart port number (``[1, 21]``). The button port is the ADI port number
+   * (``[1, 8]``, ``[a, h]``, ``[A, H]``).
    * @param iinverted Whether the button is inverted (``true`` meaning default pressed and ``false``
    * meaning default not pressed).
    */
-  ADIButton(std::uint8_t ismartPort, std::uint8_t iport, bool iinverted);
+  ADIButton(std::pair<std::uint8_t, std::uint8_t> iports, bool iinverted = false);
 
   protected:
   std::uint8_t smartPort;

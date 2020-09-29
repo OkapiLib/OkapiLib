@@ -9,27 +9,15 @@ namespace okapi {
 ADIEncoder::ADIEncoder(const std::uint8_t iportTop,
                        const std::uint8_t iportBottom,
                        const bool ireversed)
-  : ADIEncoder(INTERNAL_ADI_PORT, iportTop, iportBottom, ireversed) {
+  : ADIEncoder({INTERNAL_ADI_PORT, iportTop, iportBottom}, ireversed) {
 }
 
-ADIEncoder::ADIEncoder(const std::uint8_t ismartPort,
-                       const std::uint8_t iportTop,
-                       const std::uint8_t iportBottom,
-                       const bool ireversed,
-                       const std::shared_ptr<Logger> &logger) {
-  std::int8_t transformedPortBottom = transformADIPort(iportBottom);
-  if (transformedPortBottom == 1 || transformedPortBottom == 3 || transformedPortBottom == 5 ||
-      transformedPortBottom == 7) {
-    // Prevent the user from doing this and not noticing: auto enc = ADIEncoder(1, 'A', 'B');
-    std::string msg =
-      "ADIEncoder: The value for the bottom port (" + std::to_string(transformedPortBottom) +
-      ") is outside the expected range (2, 4, 6, 8). Did you accidentally construct an "
-      "ADIEncoder on a smart port without specifying whether it is reversed?";
-    LOG_ERROR(msg);
-    throw std::runtime_error(msg);
-  }
-
-  enc = pros::c::ext_adi_encoder_init(ismartPort, iportTop, iportBottom, ireversed);
+ADIEncoder::ADIEncoder(std::tuple<std::uint8_t, std::uint8_t, std::uint8_t> iports,
+                       const bool ireversed)
+  : enc(pros::c::ext_adi_encoder_init(std::get<0>(iports),
+                                      std::get<1>(iports),
+                                      std::get<2>(iports),
+                                      ireversed)) {
 }
 
 double ADIEncoder::get() const {

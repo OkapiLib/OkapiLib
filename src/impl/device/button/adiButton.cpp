@@ -7,11 +7,11 @@
 
 namespace okapi {
 ADIButton::ADIButton(const uint8_t iport, const bool iinverted)
-  : ADIButton(INTERNAL_ADI_PORT, iport, iinverted) {
+  : ADIButton({INTERNAL_ADI_PORT, iport}, iinverted) {
 }
 
-ADIButton::ADIButton(const std::uint8_t ismartPort, const uint8_t iport, const bool iinverted)
-  : ButtonBase(iinverted), smartPort(ismartPort), port(iport) {
+ADIButton::ADIButton(std::pair<std::uint8_t, std::uint8_t> iports, const bool iinverted)
+  : ButtonBase(iinverted), smartPort(std::get<0>(iports)), port(std::get<1>(iports)) {
   pros::c::ext_adi_port_set_config(smartPort, port, pros::E_ADI_DIGITAL_IN);
 }
 

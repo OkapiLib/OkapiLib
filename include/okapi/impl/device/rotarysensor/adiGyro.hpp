@@ -17,6 +17,10 @@ class ADIGyro : public ContinuousRotarySensor {
    * then the constructor will block for 1 second for calibration. The gyro measures in tenths of a
    * degree, so there are ``3600`` measurement points per revolution.
    *
+   * ```cpp
+   * auto gyro = ADIGyro('A');
+   * ```
+   *
    * @param iport The ADI port number (``[1, 8]``, ``[a, h]``, ``[A, H]``).
    * @param imultiplier A value multiplied by the gyro heading value.
    */
@@ -27,11 +31,19 @@ class ADIGyro : public ContinuousRotarySensor {
    * then the constructor will block for 1 second for calibration. The gyro measures in tenths of a
    * degree, so there are 3600 measurement points per revolution.
    *
-   * @param ismartPort The smart port the ADI Expander is in.
-   * @param iport The ADI port number (``[1, 8]``, ``[a, h]``, ``[A, H]``).
+   * ```cpp
+   * auto gyro = ADIGyro({1, 'A'}, 1);
+   * ```
+   *
+   * Note to developers: Keep the default value on imultiplier so that users get an error if they do
+   * ADIGyro({1, 'A'}). Without it, this calls the non-ext-adi constructor.
+   *
+   * @param iports The ports the gyro is plugged in to in the order ``{smart port, gyro port}``. The
+   * smart port is the smart port number (``[1, 21]``). The gyro port is the ADI port number (``[1,
+   * 8]``, ``[a, h]``, ``[A, H]``).
    * @param imultiplier A value multiplied by the gyro heading value.
    */
-  ADIGyro(std::uint8_t ismartPort, std::uint8_t iport, double imultiplier);
+  ADIGyro(std::pair<std::uint8_t, std::uint8_t> iports, double imultiplier = 1);
 
   /**
    * Get the current sensor value.

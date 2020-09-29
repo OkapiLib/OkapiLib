@@ -9,14 +9,15 @@ namespace okapi {
 ADIMotor::ADIMotor(const std::uint8_t iport,
                    const bool ireverse,
                    const std::shared_ptr<Logger> &logger)
-  : ADIMotor(INTERNAL_ADI_PORT, iport, ireverse, logger) {
+  : ADIMotor({INTERNAL_ADI_PORT, iport}, ireverse, logger) {
 }
 
-ADIMotor::ADIMotor(const std::uint8_t ismartPort,
-                   const std::uint8_t iport,
+ADIMotor::ADIMotor(std::pair<std::uint8_t, std::uint8_t> iports,
                    const bool ireverse,
                    const std::shared_ptr<Logger> &logger)
-  : smartPort(ismartPort), port(transformADIPort(iport)), reversed(ireverse ? -1 : 1) {
+  : smartPort(std::get<0>(iports)),
+    port(transformADIPort(std::get<1>(iports))),
+    reversed(ireverse ? -1 : 1) {
   if (port < 1 || port > 8) {
     std::string msg = "ADIMotor: The port number (" + std::to_string(port) +
                       ") is outside the expected range of values [1, 8].";

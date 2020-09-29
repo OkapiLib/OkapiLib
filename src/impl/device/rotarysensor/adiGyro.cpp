@@ -8,11 +8,11 @@
 
 namespace okapi {
 ADIGyro::ADIGyro(const std::uint8_t iport, const double imultiplier)
-  : ADIGyro(INTERNAL_ADI_PORT, iport, imultiplier) {
+  : ADIGyro({INTERNAL_ADI_PORT, iport}, imultiplier) {
 }
 
-ADIGyro::ADIGyro(const std::uint8_t ismartPort, const std::uint8_t iport, const double imultiplier)
-  : gyro(pros::c::ext_adi_gyro_init(ismartPort, iport, imultiplier)) {
+ADIGyro::ADIGyro(std::pair<std::uint8_t, std::uint8_t> iports, const double imultiplier)
+  : gyro(pros::c::ext_adi_gyro_init(std::get<0>(iports), std::get<1>(iports), imultiplier)) {
 }
 
 double ADIGyro::get() const {
