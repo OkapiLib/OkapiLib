@@ -14,7 +14,8 @@ class ADIEncoder : public ContinuousRotarySensor {
   /**
    * An encoder in an ADI port.
    *
-   * @param iportTop The "top" wire from the encoder with the removable cover side up.
+   * @param iportTop The "top" wire from the encoder with the removable cover side up. This should
+   * be in port `1`, `3`, `5`, or `7` (`A`, `C`, `E`, or `G`).
    * @param iportBottom The "bottom" wire from the encoder.
    * @param ireversed Whether the encoder is reversed.
    */
@@ -24,7 +25,8 @@ class ADIEncoder : public ContinuousRotarySensor {
    * An encoder in an ADI port.
    *
    * @param ismartPort The smart port the ADI Expander is in.
-   * @param iportTop The "top" wire from the encoder with the removable cover side up.
+   * @param iportTop The "top" wire from the encoder with the removable cover side up. This should
+   * be in port `1`, `3`, `5`, or `7` (`A`, `C`, `E`, or `G`).
    * @param iportBottom The "bottom" wire from the encoder.
    * @param ireversed Whether the encoder is reversed.
    */
