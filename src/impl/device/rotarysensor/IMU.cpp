@@ -12,8 +12,6 @@ namespace okapi {
 IMU::IMU(const std::uint8_t iport, const IMUAxes iaxis) : port(iport), axis(iaxis) {
 }
 
-IMU::~IMU() = default;
-
 double IMU::get() const {
   double angle = readAngle() - offset;
 
@@ -38,7 +36,7 @@ double IMU::getRemapped(const double iupperBound, const double ilowerBound) cons
   return remapRange(get(), -180, 180, ilowerBound, iupperBound);
 }
 
-double IMU::getAcceleration() {
+double IMU::getAcceleration() const {
   const pros::c::imu_accel_s_t accel = pros::c::imu_get_accel(port);
 
   switch (axis) {

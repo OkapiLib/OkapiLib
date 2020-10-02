@@ -29,8 +29,6 @@ class IMU : public ContinuousRotarySensor {
    */
   IMU(std::uint8_t iport, IMUAxes iaxis = IMUAxes::z);
 
-  virtual ~IMU();
-
   /**
    * Get the current rotation about `iaxis`.
    *
@@ -62,7 +60,7 @@ class IMU : public ContinuousRotarySensor {
    *
    * @return The current sensor value or `PROS_ERR`.
    */
-  double getAcceleration();
+  double getAcceleration() const;
 
   /**
    * Reset the rotation value to zero.
