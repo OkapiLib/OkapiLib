@@ -1,6 +1,4 @@
 /*
- * @author Alex Riensche, UNL
- *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -13,15 +11,14 @@ IMU::IMU(const std::uint8_t iport, const IMUAxes iaxis) : port(iport), axis(iaxi
 }
 
 double IMU::get() const {
-  double angle = readAngle() - offset;
+  const double angle = readAngle();
 
   if (angle == PROS_ERR) {
     return PROS_ERR;
   }
 
-  angle = OdomMath::constrainAngle180(angle * degree).convert(degree);
-
-  return angle;
+  // Account for the offset after checking for PROS_ERR
+  return OdomMath::constrainAngle180((angle - offset) * degree).convert(degree);
 }
 
 double IMU::getRemapped(const double iupperBound, const double ilowerBound) const {
@@ -46,12 +43,17 @@ double IMU::getAcceleration() const {
     return accel.z;
   }
 
-  return -1;
+  // This should not run
+  return PROS_ERR;
 }
 
 std::int32_t IMU::reset() {
   offset = readAngle();
-  return 1;
+  if (offset == PROS_ERR) {
+    return PROS_ERR;
+  } else {
+    return 1;
+  }
 }
 
 std::int32_t IMU::calibrate() {
