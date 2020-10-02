@@ -15,7 +15,7 @@ class Motor : public AbstractMotor {
   /**
    * A V5 motor.
    *
-   * @param iport The port number in the range [1, 21]. A negative port number is shorthand for
+   * @param iport The port number in the range ``[1, 21]``. A negative port number is shorthand for
    * reversing the motor.
    */
   Motor(std::int8_t iport);

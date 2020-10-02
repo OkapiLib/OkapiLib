@@ -27,7 +27,7 @@ class IMU : public ContinuousRotarySensor {
    * auto imuX = IMU(1, IMUAxes::x);
    * ```
    *
-   * @param iport The port to use the inertial sensor from.
+   * @param iport The port number in the range ``[1, 21]``.
    * @param iaxis The axis of the inertial sensor to measure, default `IMUAxes::z`.
    */
   IMU(std::uint8_t iport, IMUAxes iaxis = IMUAxes::z);
@@ -49,9 +49,9 @@ class IMU : public ContinuousRotarySensor {
   double getRemapped(double iupperBound = 1800, double ilowerBound = -1800) const;
 
   /**
-   * Get the current acceleration along `iaxis`.
+   * Get the current acceleration along the configured axis.
    *
-   * @return The current sensor value or `PROS_ERR`.
+   * @return The current sensor value or ``PROS_ERR``.
    */
   double getAcceleration() const;
 
