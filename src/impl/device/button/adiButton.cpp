@@ -1,6 +1,4 @@
 /*
- * @author Ryan Benasutti, WPI
- *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -9,13 +7,21 @@
 
 namespace okapi {
 ADIButton::ADIButton(const uint8_t iport, const bool iinverted)
-  : ButtonBase(iinverted), port(iport) {
-  pros::c::adi_port_set_config(port, pros::E_ADI_DIGITAL_IN);
+  : ADIButton({INTERNAL_ADI_PORT, iport}, iinverted) {
+}
+
+ADIButton::ADIButton(std::pair<std::uint8_t, std::uint8_t> iports, const bool iinverted)
+  : ButtonBase(iinverted), smartPort(std::get<0>(iports)), port(std::get<1>(iports)) {
+  pros::c::ext_adi_port_set_config(smartPort, port, pros::E_ADI_DIGITAL_IN);
 }
 
 bool ADIButton::currentlyPressed() {
-  const std::int32_t state = pros::c::adi_digital_read(port);
+  const std::int32_t state = pros::c::ext_adi_digital_read(smartPort, port);
   const bool pressed = state != 0 && state != PROS_ERR;
-  return inverted ? !pressed : pressed;
+  if (inverted) {
+    return !pressed;
+  } else {
+    return pressed;
+  }
 }
 } // namespace okapi

@@ -1,6 +1,4 @@
 /*
- * @author Ryan Benasutti, WPI
- *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -15,13 +13,36 @@ namespace okapi {
 class ADIMotor : public ControllerOutput<double> {
   public:
   /**
-   * A motor on the ADI ports.
+   * A motor in an ADI port.
    *
-   * @param iport The ADI port number.
+   * ```cpp
+   * auto mtr = ADIMotor('A');
+   * auto reversedMtr = ADIMotor('A', true);
+   * ```
+   *
+   * @param iport The ADI port number (``[1, 8]``, ``[a, h]``, ``[A, H]``).
    * @param ireverse Whether the motor is reversed.
    * @param logger The logger that initialization warnings will be logged to.
    */
   ADIMotor(std::uint8_t iport,
+           bool ireverse = false,
+           const std::shared_ptr<Logger> &logger = Logger::getDefaultLogger());
+
+  /**
+   * A motor in an ADI port.
+   *
+   * ```cpp
+   * auto mtr = ADIMotor({1, 'A'}, false);
+   * auto reversedMtr = ADIMotor({1, 'A'}, true);
+   * ```
+   *
+   * @param iports The ports the motor is plugged in to in the order ``{smart port, motor port}``.
+   * The smart port is the smart port number (``[1, 21]``). The motor port is the ADI port number
+   * (``[1, 8]``, ``[a, h]``, ``[A, H]``).
+   * @param ireverse Whether the motor is reversed.
+   * @param logger The logger that initialization warnings will be logged to.
+   */
+  ADIMotor(std::pair<std::uint8_t, std::uint8_t> iports,
            bool ireverse = false,
            const std::shared_ptr<Logger> &logger = Logger::getDefaultLogger());
 
@@ -41,7 +62,8 @@ class ADIMotor : public ControllerOutput<double> {
   void controllerSet(double ivalue) override;
 
   protected:
-  const std::uint8_t port;
-  const std::int8_t reversed;
+  std::uint8_t smartPort;
+  std::uint8_t port;
+  std::int8_t reversed;
 };
 } // namespace okapi
