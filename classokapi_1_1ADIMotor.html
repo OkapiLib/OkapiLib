@@ -91,7 +91,13 @@
               bool ireverse = false,
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; logger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
             </dt>
-            <dd>A motor on the ADI ports.</dd>
+            <dd>A motor in an ADI port.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#ab2f10e8270a170ace2dd5770cca16139" class="m-doc">ADIMotor</a>(</span><span class="m-doc-wrap">std::pair&lt;std::uint8_t, std::uint8_t&gt; iports,
+              bool ireverse = false,
+              const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; logger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span>
+            </dt>
+            <dd>A motor in an ADI port.</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -110,12 +116,16 @@
         <section id="pro-attribs">
           <h2><a href="#pro-attribs">Protected variables</a></h2>
           <dl class="m-doc">
-            <dt id="aae748af2c07c58821db34dff7924f4b7">
-              const std::uint8_t <a href="#aae748af2c07c58821db34dff7924f4b7" class="m-doc-self">port</a>
+            <dt id="ae6d156583d4fc3b809577ff26a7c7252">
+              std::uint8_t <a href="#ae6d156583d4fc3b809577ff26a7c7252" class="m-doc-self">smartPort</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a3abbe2875ba0abb35297d8dbe91cd4f4">
-              const std::int8_t <a href="#a3abbe2875ba0abb35297d8dbe91cd4f4" class="m-doc-self">reversed</a>
+            <dt id="a90a3bdbfe4b16f2dcc41fdd60d1f5510">
+              std::uint8_t <a href="#a90a3bdbfe4b16f2dcc41fdd60d1f5510" class="m-doc-self">port</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="ac9746408ff711b8926b9dcd3af73c52d">
+              std::int8_t <a href="#ac9746408ff711b8926b9dcd3af73c52d" class="m-doc-self">reversed</a>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -128,7 +138,7 @@
               bool ireverse = false,
               const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; logger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
             </h3>
-            <p>A motor on the ADI ports.</p>
+            <p>A motor in an ADI port.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -136,7 +146,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">iport</td>
-                  <td>The ADI port number.</td>
+                  <td>The ADI port number (<code>[1, 8]</code>, <code>[a, h]</code>, <code>[A, H]</code>).</td>
                 </tr>
                 <tr>
                   <td>ireverse</td>
@@ -148,6 +158,37 @@
                 </tr>
               </tbody>
             </table>
+<pre class="m-code"><span class="k">auto</span> <span class="n">mtr</span> <span class="o">=</span> <span class="n">ADIMotor</span><span class="p">(</span><span class="sc">&#39;A&#39;</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">reversedMtr</span> <span class="o">=</span> <span class="n">ADIMotor</span><span class="p">(</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span></pre>
+          </div></section>
+          <section class="m-doc-details" id="ab2f10e8270a170ace2dd5770cca16139"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />ADIMotor::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ab2f10e8270a170ace2dd5770cca16139" class="m-doc-self">ADIMotor</a>(</span><span class="m-doc-wrap">std::pair&lt;std::uint8_t, std::uint8_t&gt; iports,
+              bool ireverse = false,
+              const std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt;&amp; logger = <a href="classokapi_1_1Logger.html#a5053cf778b4b55acba788a3797dc96d2" class="m-doc">Logger::<wbr />getDefaultLogger</a>())</span></span>
+            </h3>
+            <p>A motor in an ADI port.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iports</td>
+                  <td>The ports the motor is plugged in to in the order <code>{smart port, motor port}</code>. The smart port is the smart port number (<code>[1, 21]</code>). The motor port is the ADI port number (<code>[1, 8]</code>, <code>[a, h]</code>, <code>[A, H]</code>).</td>
+                </tr>
+                <tr>
+                  <td>ireverse</td>
+                  <td>Whether the motor is reversed.</td>
+                </tr>
+                <tr>
+                  <td>logger</td>
+                  <td>The logger that initialization warnings will be logged to.</td>
+                </tr>
+              </tbody>
+            </table>
+<pre class="m-code"><span class="k">auto</span> <span class="n">mtr</span> <span class="o">=</span> <span class="n">ADIMotor</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">},</span> <span class="nb">false</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">reversedMtr</span> <span class="o">=</span> <span class="n">ADIMotor</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">},</span> <span class="nb">true</span><span class="p">);</span></pre>
           </div></section>
           <section class="m-doc-details" id="a4c992efbe21467c0339308fba926b1a6"><div>
             <h3>

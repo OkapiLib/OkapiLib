@@ -90,6 +90,11 @@
               bool iinverted = false)</span>
             </dt>
             <dd>A button in an ADI port.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a7aa0948bc9de4ce07e84295c18049cf4" class="m-doc">ADIButton</a>(</span><span class="m-doc-wrap">std::pair&lt;std::uint8_t, std::uint8_t&gt; iports,
+              bool iinverted = false)</span>
+            </dt>
+            <dd>A button in an ADI port.</dd>
           </dl>
         </section>
         <section id="pro-methods">
@@ -104,6 +109,10 @@
         <section id="pro-attribs">
           <h2><a href="#pro-attribs">Protected variables</a></h2>
           <dl class="m-doc">
+            <dt id="a6fd70c72855ac9e2272767b25a6b86e4">
+              std::uint8_t <a href="#a6fd70c72855ac9e2272767b25a6b86e4" class="m-doc-self">smartPort</a>
+            </dt>
+            <dd><span></span></dd>
             <dt id="a0bded65076f7c921a55377a5abe0b407">
               std::uint8_t <a href="#a0bded65076f7c921a55377a5abe0b407" class="m-doc-self">port</a>
             </dt>
@@ -125,7 +134,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">iport</td>
-                  <td>The ADI port number.</td>
+                  <td>The ADI port number (<code>[1, 8]</code>, <code>[a, h]</code>, <code>[A, H]</code>).</td>
                 </tr>
                 <tr>
                   <td>iinverted</td>
@@ -133,6 +142,32 @@
                 </tr>
               </tbody>
             </table>
+<pre class="m-code"><span class="k">auto</span> <span class="n">btn</span> <span class="o">=</span> <span class="n">ADIButton</span><span class="p">(</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">invertedBtn</span> <span class="o">=</span> <span class="n">ADIButton</span><span class="p">(</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span></pre>
+          </div></section>
+          <section class="m-doc-details" id="a7aa0948bc9de4ce07e84295c18049cf4"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />ADIButton::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a7aa0948bc9de4ce07e84295c18049cf4" class="m-doc-self">ADIButton</a>(</span><span class="m-doc-wrap">std::pair&lt;std::uint8_t, std::uint8_t&gt; iports,
+              bool iinverted = false)</span></span>
+            </h3>
+            <p>A button in an ADI port.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iports</td>
+                  <td>The ports the button is plugged in to in the order <code>{smart port, button port}</code>. The smart port is the smart port number (<code>[1, 21]</code>). The button port is the ADI port number (<code>[1, 8]</code>, <code>[a, h]</code>, <code>[A, H]</code>).</td>
+                </tr>
+                <tr>
+                  <td>iinverted</td>
+                  <td>Whether the button is inverted (<code>true</code> meaning default pressed and <code>false</code> meaning default not pressed).</td>
+                </tr>
+              </tbody>
+            </table>
+<pre class="m-code"><span class="k">auto</span> <span class="n">btn</span> <span class="o">=</span> <span class="n">ADIButton</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">},</span> <span class="nb">false</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">invertedBtn</span> <span class="o">=</span> <span class="n">ADIButton</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">},</span> <span class="nb">true</span><span class="p">);</span></pre>
           </div></section>
         </section>
       </div>

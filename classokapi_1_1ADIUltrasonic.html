@@ -92,6 +92,11 @@
               std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; ifilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;())</span>
             </dt>
             <dd>An ultrasonic sensor in the ADI (3-wire) ports.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a9aa5d5cadc5148f82d7743ad36e611cb" class="m-doc">ADIUltrasonic</a>(</span><span class="m-doc-wrap">std::tuple&lt;std::uint8_t, std::uint8_t, std::uint8_t&gt; iports,
+              std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; ifilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;())</span>
+            </dt>
+            <dd>An ultrasonic sensor in the ADI (3-wire) ports.</dd>
             <dt id="abc31760e8928300d152eaeaf3d571341">
               <span class="m-doc-wrap-bumper"><a href="#abc31760e8928300d152eaeaf3d571341" class="m-doc-self">~ADIUltrasonic</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -114,8 +119,8 @@
         <section id="pro-attribs">
           <h2><a href="#pro-attribs">Protected variables</a></h2>
           <dl class="m-doc">
-            <dt id="ac952316de8cf081e260e8da689dbc66f">
-              pros::c::adi_ultrasonic_t <a href="#ac952316de8cf081e260e8da689dbc66f" class="m-doc-self">ultra</a>
+            <dt id="a2874315b9be3a50039967d5407239fd5">
+              pros::c::ext_adi_ultrasonic_t <a href="#a2874315b9be3a50039967d5407239fd5" class="m-doc-self">ultra</a>
             </dt>
             <dd><span></span></dd>
             <dt id="aa2537c5ffc44d18838b0710af72bf338">
@@ -140,11 +145,11 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">iportPing</td>
-                  <td>The port connected to the orange OUTPUT cable. This should be in port 1, 3, 5, or 7 (&#x27;A&#x27;, &#x27;C&#x27;, &#x27;E&#x27;, &#x27;G&#x27;).</td>
+                  <td>The port connected to the orange OUTPUT cable. This must be in port <code>1</code>, <code>3</code>, <code>5</code>, or <code>7</code> (<code>A</code>, <code>C</code>, <code>E</code>, or <code>G</code>).</td>
                 </tr>
                 <tr>
                   <td>iportEcho</td>
-                  <td>The port connected to the yellow INPUT cable. This should be in the next highest port following iportPing.</td>
+                  <td>The port connected to the yellow INPUT cable. This must be in the next highest port following iportPing.</td>
                 </tr>
                 <tr>
                   <td>ifilter</td>
@@ -152,6 +157,32 @@
                 </tr>
               </tbody>
             </table>
+<pre class="m-code"><span class="k">auto</span> <span class="n">ultra</span> <span class="o">=</span> <span class="n">ADIUltrasonic</span><span class="p">(</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">filteredUltra</span> <span class="o">=</span> <span class="n">ADIUltrasonic</span><span class="p">(</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">MedianFilter</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;&gt;</span><span class="p">());</span></pre>
+          </div></section>
+          <section class="m-doc-details" id="a9aa5d5cadc5148f82d7743ad36e611cb"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />ADIUltrasonic::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a9aa5d5cadc5148f82d7743ad36e611cb" class="m-doc-self">ADIUltrasonic</a>(</span><span class="m-doc-wrap">std::tuple&lt;std::uint8_t, std::uint8_t, std::uint8_t&gt; iports,
+              std::unique_ptr&lt;<a href="classokapi_1_1Filter.html" class="m-doc">Filter</a>&gt; ifilter = std::make_unique&lt;<a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>&gt;())</span></span>
+            </h3>
+            <p>An ultrasonic sensor in the ADI (3-wire) ports.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iports</td>
+                  <td>The ports the ultrasonic is plugged in to in the order <code>{smart port, ping port, echo port}</code>. The smart port is the smart port number (<code>[1, 21]</code>). The ping port is the port connected to the orange OUTPUT cable. This must be in port <code>1</code>, <code>3</code>, <code>5</code>, or <code>7</code> (<code>A</code>, <code>C</code>, <code>E</code>, or <code>G</code>). The echo port is the port connected to the yellow INPUT cable. This must be in the next highest port following the ping port.</td>
+                </tr>
+                <tr>
+                  <td>ifilter</td>
+                  <td>The filter to use for filtering the distance measurements.</td>
+                </tr>
+              </tbody>
+            </table>
+<pre class="m-code"><span class="k">auto</span> <span class="n">ultra</span> <span class="o">=</span> <span class="n">ADIUltrasonic</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">});</span>
+<span class="k">auto</span> <span class="n">filteredUltra</span> <span class="o">=</span> <span class="n">ADIUltrasonic</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">},</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">MedianFilter</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;&gt;</span><span class="p">());</span></pre>
           </div></section>
           <section class="m-doc-details" id="ac2447e1f1d415ee48989f9fa9d85560e"><div>
             <h3>

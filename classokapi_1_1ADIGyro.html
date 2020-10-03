@@ -90,10 +90,11 @@
               double imultiplier = 1)</span>
             </dt>
             <dd>A gyroscope on the given ADI port.</dd>
-            <dt id="a406cc8ec708c49c507ccab63ffad693c">
-              <span class="m-doc-wrap-bumper"><a href="#a406cc8ec708c49c507ccab63ffad693c" class="m-doc-self">~ADIGyro</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a518730d02a056ca3049cac41238572ec" class="m-doc">ADIGyro</a>(</span><span class="m-doc-wrap">std::pair&lt;std::uint8_t, std::uint8_t&gt; iports,
+              double imultiplier = 1)</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>A gyroscope on the given ADI port.</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -104,10 +105,10 @@
             </dt>
             <dd>Get the current sensor value.</dd>
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a5fa8fa3653e8c2eeff81a56b80e79f7c" class="m-doc">getRemapped</a>(</span><span class="m-doc-wrap">double iupperBound = 1800,
-              double ilowerBound = -1800) -&gt; double</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a1a6da5bfe6434f02edf2bdacebe7daaf" class="m-doc">getRemapped</a>(</span><span class="m-doc-wrap">double iupperBound = 1800,
+              double ilowerBound = -1800) const -&gt; double</span>
             </dt>
-            <dd>Get the current sensor value remapped into the target range ([1800, -1800] by default).</dd>
+            <dd>Get the current sensor value remapped into the target range (<code>[-1800, 1800]</code> by default).</dd>
             <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#a316eec0bf6008c50fea6d1a621fd2e87" class="m-doc">reset</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t <span class="m-label m-flat m-warning">override</span></span>
             </dt>
@@ -121,8 +122,8 @@
         <section id="pro-attribs">
           <h2><a href="#pro-attribs">Protected variables</a></h2>
           <dl class="m-doc">
-            <dt id="a2ad9717b3e55a829467d9e696de252ac">
-              pros::c::adi_gyro_t <a href="#a2ad9717b3e55a829467d9e696de252ac" class="m-doc-self">gyro</a>
+            <dt id="a2f304435a02b7c9e7b6f839e7f1b355a">
+              pros::c::ext_adi_gyro_t <a href="#a2f304435a02b7c9e7b6f839e7f1b355a" class="m-doc-self">gyro</a>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -142,15 +143,38 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">iport</td>
-                  <td>the ADI port number</td>
+                  <td>The ADI port number (<code>[1, 8]</code>, <code>[a, h]</code>, <code>[A, H]</code>).</td>
                 </tr>
                 <tr>
                   <td>imultiplier</td>
-                  <td>a value multiplied by the gyro heading value</td>
+                  <td>A value multiplied by the gyro heading value.</td>
                 </tr>
               </tbody>
             </table>
-<p>If the port has not previously been configured as a gyro, then the constructor will block for 1 second for calibration. The gyro measures in tenths of a degree, so there are 3600 measurement points per revolution.</p>
+<p>If the port has not previously been configured as a gyro, then the constructor will block for 1 second for calibration. The gyro measures in tenths of a degree, so there are <code>3600</code> measurement points per revolution.</p><pre class="m-code"><span class="k">auto</span> <span class="n">gyro</span> <span class="o">=</span> <span class="n">ADIGyro</span><span class="p">(</span><span class="sc">&#39;A&#39;</span><span class="p">);</span></pre>
+          </div></section>
+          <section class="m-doc-details" id="a518730d02a056ca3049cac41238572ec"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />ADIGyro::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a518730d02a056ca3049cac41238572ec" class="m-doc-self">ADIGyro</a>(</span><span class="m-doc-wrap">std::pair&lt;std::uint8_t, std::uint8_t&gt; iports,
+              double imultiplier = 1)</span></span>
+            </h3>
+            <p>A gyroscope on the given ADI port.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iports</td>
+                  <td>The ports the gyro is plugged in to in the order <code>{smart port, gyro port}</code>. The smart port is the smart port number (<code>[1, 21]</code>). The gyro port is the ADI port number (<code>[1, 8]</code>, <code>[a, h]</code>, <code>[A, H]</code>).</td>
+                </tr>
+                <tr>
+                  <td>imultiplier</td>
+                  <td>A value multiplied by the gyro heading value.</td>
+                </tr>
+              </tbody>
+            </table>
+<p>If the port has not previously been configured as a gyro, then the constructor will block for 1 second for calibration. The gyro measures in tenths of a degree, so there are 3600 measurement points per revolution.</p><pre class="m-code"><span class="k">auto</span> <span class="n">gyro</span> <span class="o">=</span> <span class="n">ADIGyro</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">},</span> <span class="mi">1</span><span class="p">);</span></pre><p>Note to developers: Keep the default value on imultiplier so that users get an error if they do <a href="classokapi_1_1ADIGyro.html" class="m-doc">ADIGyro</a>({1, &#x27;A&#x27;}). Without it, this calls the non-ext-adi constructor.</p>
           </div></section>
           <section class="m-doc-details" id="a3a4a0a319c723091aad0b2125d701ca4"><div>
             <h3>
@@ -166,12 +190,12 @@
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="a5fa8fa3653e8c2eeff81a56b80e79f7c"><div>
+          <section class="m-doc-details" id="a1a6da5bfe6434f02edf2bdacebe7daaf"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">double okapi::<wbr />ADIGyro::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5fa8fa3653e8c2eeff81a56b80e79f7c" class="m-doc-self">getRemapped</a>(</span><span class="m-doc-wrap">double iupperBound = 1800,
-              double ilowerBound = -1800)</span></span>
+              <span class="m-doc-wrap-bumper">double okapi::<wbr />ADIGyro::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1a6da5bfe6434f02edf2bdacebe7daaf" class="m-doc-self">getRemapped</a>(</span><span class="m-doc-wrap">double iupperBound = 1800,
+              double ilowerBound = -1800) const</span></span>
             </h3>
-            <p>Get the current sensor value remapped into the target range ([1800, -1800] by default).</p>
+            <p>Get the current sensor value remapped into the target range (<code>[-1800, 1800]</code> by default).</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>

@@ -85,14 +85,14 @@
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a1e528bdba36d41f3698f3f451d2a2510">
-              <span class="m-doc-wrap-bumper"><a href="#a1e528bdba36d41f3698f3f451d2a2510" class="m-doc-self">Potentiometer</a>(</span><span class="m-doc-wrap">std::uint8_t iport)</span>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#a1e528bdba36d41f3698f3f451d2a2510" class="m-doc">Potentiometer</a>(</span><span class="m-doc-wrap">std::uint8_t iport)</span>
             </dt>
-            <dd><span></span></dd>
-            <dt id="a60553115f275e91469a02a7290a9f33c">
-              <span class="m-doc-wrap-bumper"><a href="#a60553115f275e91469a02a7290a9f33c" class="m-doc-self">~Potentiometer</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-warning">virtual</span></span>
+            <dd>A potentiometer in an ADI port.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper"><a href="#ad29caceddb0dc759232eca2691a05d9f" class="m-doc">Potentiometer</a>(</span><span class="m-doc-wrap">std::pair&lt;std::uint8_t, std::uint8_t&gt; iports)</span>
             </dt>
-            <dd><span></span></dd>
+            <dd>A potentiometer in an ADI port.</dd>
           </dl>
         </section>
         <section id="pub-methods">
@@ -111,6 +111,10 @@
         <section id="pro-attribs">
           <h2><a href="#pro-attribs">Protected variables</a></h2>
           <dl class="m-doc">
+            <dt id="a0fed920f62b16281a7c73fa109faba3d">
+              std::uint8_t <a href="#a0fed920f62b16281a7c73fa109faba3d" class="m-doc-self">smartPort</a>
+            </dt>
+            <dd><span></span></dd>
             <dt id="ade12a9942bf6fd83f43e38f22ed210d3">
               std::uint8_t <a href="#ade12a9942bf6fd83f43e38f22ed210d3" class="m-doc-self">port</a>
             </dt>
@@ -119,6 +123,42 @@
         </section>
         <section>
           <h2>Function documentation</h2>
+          <section class="m-doc-details" id="a1e528bdba36d41f3698f3f451d2a2510"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />Potentiometer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1e528bdba36d41f3698f3f451d2a2510" class="m-doc-self">Potentiometer</a>(</span><span class="m-doc-wrap">std::uint8_t iport)</span></span>
+            </h3>
+            <p>A potentiometer in an ADI port.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iport</td>
+                  <td>The ADI port number (<code>[1, 8]</code>, <code>[a, h]</code>, <code>[A, H]</code>).</td>
+                </tr>
+              </tbody>
+            </table>
+<pre class="m-code"><span class="k">auto</span> <span class="n">pot</span> <span class="o">=</span> <span class="n">Potentiometer</span><span class="p">(</span><span class="sc">&#39;A&#39;</span><span class="p">);</span></pre>
+          </div></section>
+          <section class="m-doc-details" id="ad29caceddb0dc759232eca2691a05d9f"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper"> okapi::<wbr />Potentiometer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad29caceddb0dc759232eca2691a05d9f" class="m-doc-self">Potentiometer</a>(</span><span class="m-doc-wrap">std::pair&lt;std::uint8_t, std::uint8_t&gt; iports)</span></span>
+            </h3>
+            <p>A potentiometer in an ADI port.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iports</td>
+                  <td>The ports the potentiometer is plugged in to in the order <code>{smart port, potentiometer port}</code>. The smart port is the smart port number (<code>[1, 21]</code>). The potentiometer port is the ADI port number (<code>[1, 8]</code>, <code>[a, h]</code>, <code>[A, H]</code>).</td>
+                </tr>
+              </tbody>
+            </table>
+<pre class="m-code"><span class="k">auto</span> <span class="n">pot</span> <span class="o">=</span> <span class="n">Potentiometer</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">});</span></pre>
+          </div></section>
           <section class="m-doc-details" id="ad81adf2cb10b830272e9a553b668fc4b"><div>
             <h3>
               <span class="m-doc-wrap-bumper">double okapi::<wbr />Potentiometer::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad81adf2cb10b830272e9a553b668fc4b" class="m-doc-self">get</a>(</span><span class="m-doc-wrap">) const <span class="m-label m-warning">override</span></span></span>
