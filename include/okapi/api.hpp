@@ -78,6 +78,8 @@
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
 #include "okapi/api/device/rotarysensor/rotarySensor.hpp"
 #include "okapi/impl/device/adiUltrasonic.hpp"
+#include "okapi/impl/device/distanceSensor.hpp"
+#include "okapi/impl/device/opticalSensor.hpp"
 #include "okapi/impl/device/button/adiButton.hpp"
 #include "okapi/impl/device/button/controllerButton.hpp"
 #include "okapi/impl/device/controller.hpp"
@@ -89,6 +91,7 @@
 #include "okapi/impl/device/rotarysensor/adiGyro.hpp"
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/potentiometer.hpp"
+#include "okapi/impl/device/rotarysensor/rotation.hpp"
 
 #include "okapi/api/filter/averageFilter.hpp"
 #include "okapi/api/filter/composableFilter.hpp"
