@@ -183,8 +183,9 @@ class ChassisControllerBuilder {
    * @param imiddle The middle sensor.
    * @return An ongoing builder.
    */
-  ChassisControllerBuilder &
-  withSensors(const RotationSensor &ileft, const RotationSensor &iright, const RotationSensor &imiddle);
+  ChassisControllerBuilder &withSensors(const RotationSensor &ileft,
+                                        const RotationSensor &iright,
+                                        const RotationSensor &imiddle);
 
   /**
    * Sets the sensors. The default sensors are the motor's integrated encoders.

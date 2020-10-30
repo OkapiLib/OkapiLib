@@ -49,7 +49,7 @@ class OpticalSensor : public ControllerInput<double> {
 
   /**
    * Returns the current sensor's LED brightness
-   * 
+   *
    * value that ranges from 0 to 100
    *
    * @return current value
@@ -87,7 +87,7 @@ class OpticalSensor : public ControllerInput<double> {
    * ENXIO - The given value is not within the range of V5 ports (1-21).
    * ENODEV - The port cannot be configured as an Optical Sensor
    *
-   * \return rgb value if the operation was successful or an optical_rgb_s_t 
+   * \return rgb value if the operation was successful or an optical_rgb_s_t
    * with all fields set to PROS_ERR if the operation failed, setting errno.
    */
   virtual pros::c::optical_rgb_s_t get_rgb();

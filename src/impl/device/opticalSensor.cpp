@@ -6,8 +6,7 @@
 #include "okapi/impl/device/opticalSensor.hpp"
 
 namespace okapi {
-OpticalSensor::OpticalSensor(std::uint8_t iport)
-  : opt(iport) {
+OpticalSensor::OpticalSensor(std::uint8_t iport) : opt(iport) {
   opt.disable_gesture();
 }
 

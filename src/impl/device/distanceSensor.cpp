@@ -6,10 +6,8 @@
 #include "okapi/impl/device/distanceSensor.hpp"
 
 namespace okapi {
-DistanceSensor::DistanceSensor(std::uint8_t iport,
-                             std::unique_ptr<Filter> ifilter)
-  : d(iport),
-    filter(std::move(ifilter)) {
+DistanceSensor::DistanceSensor(std::uint8_t iport, std::unique_ptr<Filter> ifilter)
+  : d(iport), filter(std::move(ifilter)) {
 }
 
 DistanceSensor::~DistanceSensor() = default;

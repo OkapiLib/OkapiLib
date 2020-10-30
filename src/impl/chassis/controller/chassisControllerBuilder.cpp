@@ -147,12 +147,14 @@ ChassisControllerBuilder &ChassisControllerBuilder::withSensors(const okapi::ADI
 
 ChassisControllerBuilder &ChassisControllerBuilder::withSensors(const RotationSensor &ileft,
                                                                 const RotationSensor &iright) {
-  return withSensors(std::make_shared<RotationSensor>(ileft), std::make_shared<RotationSensor>(iright));
+  return withSensors(std::make_shared<RotationSensor>(ileft),
+                     std::make_shared<RotationSensor>(iright));
 }
 
-ChassisControllerBuilder &ChassisControllerBuilder::withSensors(const okapi::RotationSensor &ileft,
-                                                                const okapi::RotationSensor &iright,
-                                                                const okapi::RotationSensor &imiddle) {
+ChassisControllerBuilder &
+ChassisControllerBuilder::withSensors(const okapi::RotationSensor &ileft,
+                                      const okapi::RotationSensor &iright,
+                                      const okapi::RotationSensor &imiddle) {
   return withSensors(std::make_shared<RotationSensor>(ileft),
                      std::make_shared<RotationSensor>(iright),
                      std::make_shared<RotationSensor>(imiddle));
