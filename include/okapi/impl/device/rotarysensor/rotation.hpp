@@ -20,7 +20,7 @@ class RotationSensor : public ContinuousRotarySensor {
    * ```
    *
    * @param iport The V5 port the device is on
-   * @param ireversed Whether the encoder is reversed.
+   * @param ireversed Whether the sensor is reversed.
    */
   RotationSensor(std::uint8_t iport, bool ireversed = false);
 

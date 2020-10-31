@@ -20,7 +20,7 @@ class OpticalSensor : public ControllerInput<double> {
    * auto os = OpticalSensor(1);
    * ```
    *
-   * @param iport The V5 port
+   * @param iport The V5 port the device uses
    */
   OpticalSensor(std::uint8_t iport);
 
@@ -113,6 +113,6 @@ class OpticalSensor : public ControllerInput<double> {
   virtual int32_t enable_gesture();
 
   protected:
-  pros::Optical opt;
+  std::uint8_t port;
 };
 } // namespace okapi

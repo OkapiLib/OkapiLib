@@ -21,7 +21,7 @@ class DistanceSensor : public ControllerInput<double> {
    * auto filteredDistSensor = DistanceSensor(1, std::make_unique<MedianFilter<5>>());
    * ```
    *
-   * @param iport The V5 port
+   * @param iport The V5 port the device uses
    * @param ifilter The filter to use for filtering the distance measurements.
    */
   DistanceSensor(std::uint8_t iport,
@@ -90,7 +90,7 @@ class DistanceSensor : public ControllerInput<double> {
   virtual double get_object_velocity();
 
   protected:
-  pros::Distance d;
+  std::uint8_t port;
   std::unique_ptr<Filter> filter;
 };
 } // namespace okapi
