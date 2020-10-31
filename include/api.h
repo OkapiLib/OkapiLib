@@ -41,8 +41,8 @@
 
 #define PROS_VERSION_MAJOR 3
 #define PROS_VERSION_MINOR 3
-#define PROS_VERSION_PATCH 0
-#define PROS_VERSION_STRING "3.3.0"
+#define PROS_VERSION_PATCH 1
+#define PROS_VERSION_STRING "3.3.1"
 
 #define PROS_ERR (INT32_MAX)
 #define PROS_ERR_F (INFINITY)
@@ -58,6 +58,7 @@
 #include "pros/optical.h"
 #include "pros/rotation.h"
 #include "pros/rtos.h"
+#include "pros/rotation.h"
 #include "pros/vision.h"
 
 #ifdef __cplusplus
