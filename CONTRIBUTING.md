@@ -95,6 +95,23 @@ cd OkapiLib
 git submodule update --init --recursive
 ```
 
+To build the Okapi library:
+```
+mkdir template # If you have not already created it
+make template
+```
+Which will result in the okapilib.a file being created in the `bin` directory.
+
+To run unit tests from the root directory of OkapiLib:
+```
+mkdir cmake-build-debug # If you have not already created it
+cd cmake-build-debug
+cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
+cmake --build . --target OkapiLibV5 -- -j 2
+chmod +x ./OkapiLibV5
+./OkapiLibV5
+```
+
 Unsure where to begin contributing? You can start by looking through [these issues](https://github.com/OkapiLib/OkapiLib/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
 
 ### Pull Requests
