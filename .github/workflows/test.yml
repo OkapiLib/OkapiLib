@@ -14,9 +14,8 @@ jobs:
           access_token: ${{ github.token }}
 
       - uses: actions/checkout@v2
-
-      - name: Update Submodules
-        run: git submodule update --init --recursive
+        with:
+          submodules: recursive
 
       - name: Make
         run: make
