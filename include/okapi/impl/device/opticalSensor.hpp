@@ -38,14 +38,14 @@ class OpticalSensor : public ControllerInput<double> {
    *
    * @return current value
    */
-  virtual double get_brightness();
+  double getBrightness();
 
   /**
    * Returns the current sensor's saturation value (0-1.0).
    *
    * @return current value
    */
-  virtual double get_saturation();
+  double getSaturation();
 
   /**
    * Returns the current sensor's LED brightness
@@ -54,47 +54,42 @@ class OpticalSensor : public ControllerInput<double> {
    *
    * @return current value
    */
-  virtual int32_t get_led_brightness();
+  int32_t getLedBrightness();
 
   /**
    * Set the pwm value of the White LED on the sensor
    *
    * value that ranges from 0 to 100
    */
-  virtual int32_t set_led_brightness(int32_t v);
+  int32_t setLedBrightness(int32_t v);
 
   /**
-   * This is not available if gestures are being detected. proximity has
-   * a range of 0 to 255.
+   * This is not available if gestures are being detected. proximity has a range of 0 to 255.
    *
-   * This function uses the following values of errno when an error state is
-   * reached:
+   * This function uses the following values of errno when an error state is reached:
    * ENXIO - The given value is not within the range of V5 ports (1-21).
    * ENODEV - The port cannot be configured as an Optical Sensor
    *
-   * \return poximity value if the operation was successful or PROS_ERR if
+   * @return poximity value if the operation was successful or PROS_ERR if
    * the operation failed, setting errno.
-   *
-   * @return current value
    */
-  virtual int32_t get_proximity();
+  int32_t getProximity();
 
   /**
    * Get the processed RGBC data from the sensor
    *
-   * This function uses the following values of errno when an error state is
-   * reached:
+   * This function uses the following values of errno when an error state is reached:
    * ENXIO - The given value is not within the range of V5 ports (1-21).
    * ENODEV - The port cannot be configured as an Optical Sensor
    *
-   * \return rgb value if the operation was successful or an optical_rgb_s_t
+   * @return rgb value if the operation was successful or an optical_rgb_s_t
    * with all fields set to PROS_ERR if the operation failed, setting errno.
    */
-  virtual pros::c::optical_rgb_s_t get_rgb();
+  pros::c::optical_rgb_s_t getRGB();
 
   /**
-   * Get the sensor value for use in a control loop. This method might be automatically called in
-   * another thread by the controller. Calls get().
+   * Get the sensor value for use in a control loop. This method might be automatically 
+   * called in another thread by the controller. Calls get().
    */
   virtual double controllerGet() override;
 
@@ -103,14 +98,14 @@ class OpticalSensor : public ControllerInput<double> {
    *
    * @return current value
    */
-  virtual int32_t disable_gesture();
+  int32_t disableGesture();
 
   /**
    * Enables gestures
    *
    * @return current value
    */
-  virtual int32_t enable_gesture();
+  int32_t enableGesture();
 
   protected:
   std::uint8_t port;

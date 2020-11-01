@@ -45,49 +45,45 @@ class DistanceSensor : public ControllerInput<double> {
   /**
    * Get the confidence in the distance reading
    *
-   * This is a value that has a range of 0 to 63. 63 means high confidence,
-   * lower values imply less confidence. Confidence is only available
-   * when distance is > 200mm.
+   * This is a value that has a range of 0 to 63. 63 means high confidence, lower values imply less
+   * confidence. Confidence is only available when distance is > 200mm.
    *
-   * This function uses the following values of errno when an error state is
-   * reached:
+   * This function uses the following values of errno when an error state is reached:
    * ENXIO - The given value is not within the range of V5 ports (1-21).
    * ENODEV - The port cannot be configured as an Distance Sensor
    *
-   * \return The confidence value or PROS_ERR if the operation failed, setting
+   * @return The confidence value or PROS_ERR if the operation failed, setting
    * errno.
    */
-  virtual std::int32_t get_confidence();
+  std::int32_t getConfidence() const;
 
   /**
    * Get the current guess at relative object size
    *
-   * This is a value that has a range of 0 to 400.
-   * A 18" x 30" grey card will return a value of approximately 75
-   * in typical room lighting.
+   * This is a value that has a range of 0 to 400. A 18" x 30" grey card will return a 
+   * value of approximately 75 in typical room lighting.
    *
    * This function uses the following values of errno when an error state is
    * reached:
    * ENXIO - The given value is not within the range of V5 ports (1-21).
    * ENODEV - The port cannot be configured as an Distance Sensor
    *
-   * \return The size value or PROS_ERR if the operation failed, setting
+   * @return The size value or PROS_ERR if the operation failed, setting
    * errno.
    */
-  virtual std::int32_t get_object_size();
+  std::int32_t getObjectSize();
 
   /**
    * Get the object velocity in m/s
    *
-   * This function uses the following values of errno when an error state is
-   * reached:
+   * This function uses the following values of errno when an error state is reached:
    * ENXIO - The given value is not within the range of V5 ports (1-21).
    * ENODEV - The port cannot be configured as an Distance Sensor
    *
-   * \return The velocity value or PROS_ERR if the operation failed, setting
+   * @return The velocity value or PROS_ERR if the operation failed, setting
    * errno.
    */
-  virtual double get_object_velocity();
+  double getObjectVelocity();
 
   protected:
   std::uint8_t port;

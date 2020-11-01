@@ -21,35 +21,35 @@ double OpticalSensor::controllerGet() {
   return get();
 }
 
-double OpticalSensor::get_brightness() {
+double OpticalSensor::getBrightness() {
   return pros::c::optical_get_brightness(port);
 }
 
-double OpticalSensor::get_saturation() {
+double OpticalSensor::getSaturation() {
   return pros::c::optical_get_saturation(port);
 }
 
-int32_t OpticalSensor::get_led_brightness() {
+int32_t OpticalSensor::getLedBrightness() {
   return pros::c::optical_get_brightness(port);
 }
 
-int32_t OpticalSensor::set_led_brightness(int32_t v) {
+int32_t OpticalSensor::setLedBrightness(int32_t v) {
   return pros::c::optical_set_led_pwm(port, v);
 }
 
-int32_t OpticalSensor::get_proximity() {
+int32_t OpticalSensor::getProximity() {
   return pros::c::optical_get_proximity(port);
 }
 
-int32_t OpticalSensor::disable_gesture() {
+int32_t OpticalSensor::disableGesture() {
   return pros::c::optical_disable_gesture(port);
 }
 
-int32_t OpticalSensor::enable_gesture() {
+int32_t OpticalSensor::enableGesture() {
   return pros::c::optical_enable_gesture(port);
 }
 
-pros::c::optical_rgb_s_t OpticalSensor::get_rgb() {
+pros::c::optical_rgb_s_t OpticalSensor::getRGB() {
   return pros::c::optical_get_rgb(port);
 }
 } // namespace okapi

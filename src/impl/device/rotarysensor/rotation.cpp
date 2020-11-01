@@ -12,13 +12,11 @@ RotationSensor::RotationSensor(const std::uint8_t iport, const bool ireversed) {
 }
 
 double RotationSensor::get() const {
-  const double angle = pros::c::rotation_get_position(port);
-  return angle;
+  return pros::c::rotation_get_position(port);
 }
 
 double RotationSensor::getVelocity() const {
-  const double vel = pros::c::rotation_get_velocity(port);
-  return vel;
+  return pros::c::rotation_get_velocity(port);
 }
 
 std::int32_t RotationSensor::reset() {
