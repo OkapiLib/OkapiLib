@@ -20,7 +20,7 @@ class OpticalSensor : public ControllerInput<double> {
    * auto os = OpticalSensor(1);
    * ```
    *
-   * @param iport The V5 port the device uses
+   * @param iport The V5 port the device uses.
    */
   OpticalSensor(std::uint8_t iport);
 
@@ -29,60 +29,47 @@ class OpticalSensor : public ControllerInput<double> {
   /**
    * Returns the current sensor's hue value (0-359.99).
    *
-   * @return current value
+   * @return current value.
    */
   virtual double get();
 
   /**
    * Returns the current sensor's brightness value (0-1.0).
    *
-   * @return current value
+   * @return current value.
    */
   double getBrightness();
 
   /**
    * Returns the current sensor's saturation value (0-1.0).
    *
-   * @return current value
+   * @return current value.
    */
   double getSaturation();
 
   /**
-   * Returns the current sensor's LED brightness
+   * Returns the current sensor's LED brightness value that ranges from 0 to 100.
    *
-   * value that ranges from 0 to 100
-   *
-   * @return current value
+   * @return current value.
    */
   int32_t getLedBrightness();
 
   /**
-   * Set the pwm value of the White LED on the sensor
-   *
-   * value that ranges from 0 to 100
+   * Set the pwm value of the White LED on the sensor value that ranges from 0 to 100.
    */
   int32_t setLedBrightness(int32_t v);
 
   /**
-   * This is not available if gestures are being detected. proximity has a range of 0 to 255.
-   *
-   * This function uses the following values of errno when an error state is reached:
-   * ENXIO - The given value is not within the range of V5 ports (1-21).
-   * ENODEV - The port cannot be configured as an Optical Sensor
-   *
-   * @return poximity value if the operation was successful or PROS_ERR if
-   * the operation failed, setting errno.
+   * This is not available if gestures are being detected. Proximity has a range of 0 to 255.
+   * 
+   * @return poximity value.
    */
   int32_t getProximity();
 
   /**
-   * Get the processed RGBC data from the sensor
+   * Get the processed RGBC data from the sensor.
    *
-   * This function uses the following values of errno when an error state is reached:
-   * ENXIO - The given value is not within the range of V5 ports (1-21).
-   * ENODEV - The port cannot be configured as an Optical Sensor
-   *
-   * @return rgb value if the operation was successful or an optical_rgb_s_t
+   * @return rgb value if the operation was successful or an `optical_rgb_s_t`
    * with all fields set to PROS_ERR if the operation failed, setting errno.
    */
   pros::c::optical_rgb_s_t getRGB();
@@ -94,14 +81,14 @@ class OpticalSensor : public ControllerInput<double> {
   virtual double controllerGet() override;
 
   /**
-   * Disables gestures
+   * Disables gestures.
    *
    * @return current value
    */
   int32_t disableGesture();
 
   /**
-   * Enables gestures
+   * Enables gestures.
    *
    * @return current value
    */

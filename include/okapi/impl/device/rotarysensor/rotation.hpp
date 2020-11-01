@@ -19,7 +19,7 @@ class RotationSensor : public ContinuousRotarySensor {
    * auto reversedR = RotationSensor(1, true);
    * ```
    *
-   * @param iport The V5 port the device is on
+   * @param iport The V5 port the device uses.
    * @param ireversed Whether the sensor is reversed.
    */
   RotationSensor(std::uint8_t iport, bool ireversed = false);
@@ -27,14 +27,14 @@ class RotationSensor : public ContinuousRotarySensor {
   /**
    * Get the current sensor value.
    *
-   * @return the current sensor value, or `PROS_ERR` on a failure.
+   * @return the current sensor value.
    */
   virtual double get() const override;
 
   /**
    * Reset the sensor to zero.
    *
-   * @return `1` on success, `PROS_ERR` on fail
+   * @return `1` on success.
    */
   virtual std::int32_t reset() override;
 
@@ -42,14 +42,14 @@ class RotationSensor : public ContinuousRotarySensor {
    * Get the sensor value for use in a control loop. This method might be automatically 
    * called in another thread by the controller.
    *
-   * @return the current sensor value, or `PROS_ERR` on a failure.
+   * @return the current sensor value.
    */
   virtual double controllerGet() override;
 
   /**
-   * Get the current sensor value for velocity
+   * Get the current sensor value for velocity.
    *
-   * @return the current sensor value, or `PROS_ERR` on a failure.
+   * @return the current sensor value.
    */
   double getVelocity() const;
 
