@@ -12,18 +12,18 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -Wall -Wextra -Wshadow -Wnu
 enable_testing()
 
 # Download and unpack googletest at configure time
-configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
+configure_file(CMakeLists.txt.in external-dependencies/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
         RESULT_VARIABLE result
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/external-dependencies )
 if(result)
-    message(FATAL_ERROR "CMake step for googletest failed: ${result}")
+    message(FATAL_ERROR "CMake step for dependencies failed: ${result}")
 endif()
 execute_process(COMMAND ${CMAKE_COMMAND} --build .
         RESULT_VARIABLE result
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/external-dependencies )
 if(result)
-    message(FATAL_ERROR "Build step for googletest failed: ${result}")
+    message(FATAL_ERROR "Build step for dependencies failed: ${result}")
 endif()
 
 # Prevent overriding the parent project's compiler/linker
@@ -34,6 +34,10 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 # the gtest and gtest_main targets.
 add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
                  ${CMAKE_BINARY_DIR}/googletest-build
+                 EXCLUDE_FROM_ALL)
+
+add_subdirectory(${CMAKE_BINARY_DIR}/squiggles-src
+                 ${CMAKE_BINARY_DIR}/squiggles-build
                  EXCLUDE_FROM_ALL)
 
 # The gtest/gtest_main targets carry header search path
@@ -217,4 +221,4 @@ add_executable(OkapiLibV5
         test/threeEncoderXDriveModelTests.cpp)
 
 # Link against gtest
-target_link_libraries(OkapiLibV5 gtest_main)
+target_link_libraries(OkapiLibV5 gtest_main RobotSquiggles)
