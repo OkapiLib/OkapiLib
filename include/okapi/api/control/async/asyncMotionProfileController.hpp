@@ -16,6 +16,8 @@
 #include <atomic>
 #include <map>
 
+#include "squiggles.hpp"
+
 extern "C" {
 #include "okapi/pathfinder/include/pathfinder.h"
 }
@@ -272,7 +274,8 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   };
 
   std::shared_ptr<Logger> logger;
-  std::map<std::string, TrajectoryPair> paths{};
+  // std::map<std::string, TrajectoryPair> paths{};
+  std::map<std::string, std::vector<squiggles::ProfilePoint>> paths{{}};
   PathfinderLimits limits;
   std::shared_ptr<ChassisModel> model;
   ChassisScales scales;
@@ -296,7 +299,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   /**
    * Follow the supplied path. Must follow the disabled lifecycle.
    */
-  virtual void executeSinglePath(const TrajectoryPair &path, std::unique_ptr<AbstractRate> rate);
+  virtual void executeSinglePath(const std::vector<squiggles::ProfilePoint> &path, std::unique_ptr<AbstractRate> rate);
 
   /**
    * Converts linear chassis speed to rotational motor speed.

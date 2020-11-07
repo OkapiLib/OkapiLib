@@ -45,8 +45,15 @@ add_subdirectory(${CMAKE_BINARY_DIR}/squiggles-src
 # later. Otherwise we have to add them here ourselves.
 if (CMAKE_VERSION VERSION_LESS 2.8.11)
     include_directories("${gtest_SOURCE_DIR}/include")
+    include_directories("${squiggles_SOURCE_DIR}/include")
 endif()
 
+get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+foreach(dir ${dirs})
+  message(STATUS "dir='${dir}'")
+endforeach()
+
+include_directories(${CMAKE_BINARY_DIR}/squiggles-src/include)
 include_directories(include)
 
 add_executable(OkapiLibV5
@@ -221,4 +228,4 @@ add_executable(OkapiLibV5
         test/threeEncoderXDriveModelTests.cpp)
 
 # Link against gtest
-target_link_libraries(OkapiLibV5 gtest_main RobotSquiggles)
+target_link_libraries(OkapiLibV5 gtest_main squiggles)

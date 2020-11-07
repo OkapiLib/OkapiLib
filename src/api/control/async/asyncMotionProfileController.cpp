@@ -3,12 +3,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/api/control/async/asyncMotionProfileController.hpp"
-#include "okapi/api/util/mathUtil.hpp"
 #include <algorithm>
 #include <iostream>
 #include <mutex>
 #include <numeric>
+
+#include "okapi/api/control/async/asyncMotionProfileController.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
@@ -57,88 +58,85 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
     return;
   }
 
-  std::vector<Waypoint> points;
+  std::vector<squiggles::Pose> points;
   points.reserve(iwaypoints.size());
   for (auto &point : iwaypoints) {
     points.push_back(
-      Waypoint{point.x.convert(meter), point.y.convert(meter), point.theta.convert(radian)});
+      squiggles::Pose{point.x.convert(meter), point.y.convert(meter), point.theta.convert(radian)});
   }
 
   LOG_INFO_S("AsyncMotionProfileController: Preparing trajectory");
 
-  TrajectoryPtr candidate(new TrajectoryCandidate, [](TrajectoryCandidate *c) {
-    if (c->laptr) {
-      free(c->laptr);
-    }
+  auto constraints = squiggles::Constraints(ilimits.maxVel, ilimits.maxAccel, ilimits.maxJerk);
+  auto splineGenerator = squiggles::SplineGenerator(constraints, 
+    std::make_shared<squiggles::TankModel>(scales.wheelTrack.convert(meter), constraints), 
+    0.01);
+  auto path = splineGenerator.generate(points);
 
-    if (c->saptr) {
-      free(c->saptr);
-    }
+  // pathfinder_prepare(points.data(),
+  //                    static_cast<int>(points.size()),
+  //                    FIT_HERMITE_CUBIC,
+  //                    PATHFINDER_SAMPLES_FAST,
+  //                    0.010,
+  //                    ilimits.maxVel,
+  //                    ilimits.maxAccel,
+  //                    ilimits.maxJerk,
+  //                    candidate.get());
 
-    delete c;
-  });
+  // const int length = candidate->length;
 
-  pathfinder_prepare(points.data(),
-                     static_cast<int>(points.size()),
-                     FIT_HERMITE_CUBIC,
-                     PATHFINDER_SAMPLES_FAST,
-                     0.010,
-                     ilimits.maxVel,
-                     ilimits.maxAccel,
-                     ilimits.maxJerk,
-                     candidate.get());
+  // if (length < 0) {
+  //   std::string message = "AsyncMotionProfileController: Length was negative. " +
+  //                         getPathErrorMessage(points, ipathId, length);
 
-  const int length = candidate->length;
+  //   LOG_ERROR(message);
+  //   throw std::runtime_error(message);
+  // }
 
-  if (length < 0) {
-    std::string message = "AsyncMotionProfileController: Length was negative. " +
-                          getPathErrorMessage(points, ipathId, length);
+  // SegmentPtr trajectory(static_cast<Segment *>(malloc(length * sizeof(Segment))), free);
 
-    LOG_ERROR(message);
-    throw std::runtime_error(message);
-  }
+  // if (trajectory == nullptr) {
+  //   std::string message = "AsyncMotionProfileController: Could not allocate trajectory. " +
+  //                         getPathErrorMessage(points, ipathId, length);
 
-  SegmentPtr trajectory(static_cast<Segment *>(malloc(length * sizeof(Segment))), free);
+  //   LOG_ERROR(message);
+  //   throw std::runtime_error(message);
+  // }
 
-  if (trajectory == nullptr) {
-    std::string message = "AsyncMotionProfileController: Could not allocate trajectory. " +
-                          getPathErrorMessage(points, ipathId, length);
+  // LOG_INFO_S("AsyncMotionProfileController: Generating path");
 
-    LOG_ERROR(message);
-    throw std::runtime_error(message);
-  }
+  // pathfinder_generate(candidate.get(), trajectory.get());
 
-  LOG_INFO_S("AsyncMotionProfileController: Generating path");
+  // SegmentPtr leftTrajectory((Segment *)malloc(sizeof(Segment) * length), free);
+  // SegmentPtr rightTrajectory((Segment *)malloc(sizeof(Segment) * length), free);
 
-  pathfinder_generate(candidate.get(), trajectory.get());
+  // if (leftTrajectory == nullptr || rightTrajectory == nullptr) {
+  //   std::string message = "AsyncMotionProfileController: Could not allocate left and/or right "
+  //                         "trajectories. " +
+  //                         getPathErrorMessage(points, ipathId, length);
 
-  SegmentPtr leftTrajectory((Segment *)malloc(sizeof(Segment) * length), free);
-  SegmentPtr rightTrajectory((Segment *)malloc(sizeof(Segment) * length), free);
+  //   LOG_ERROR(message);
+  //   throw std::runtime_error(message);
+  // }
 
-  if (leftTrajectory == nullptr || rightTrajectory == nullptr) {
-    std::string message = "AsyncMotionProfileController: Could not allocate left and/or right "
-                          "trajectories. " +
-                          getPathErrorMessage(points, ipathId, length);
-
-    LOG_ERROR(message);
-    throw std::runtime_error(message);
-  }
-
-  LOG_INFO_S("AsyncMotionProfileController: Modifying for tank drive");
-  pathfinder_modify_tank(trajectory.get(),
-                         length,
-                         leftTrajectory.get(),
-                         rightTrajectory.get(),
-                         scales.wheelTrack.convert(meter));
+  // LOG_INFO_S("AsyncMotionProfileController: Modifying for tank drive");
+  // pathfinder_modify_tank(trajectory.get(),
+  //                        length,
+  //                        leftTrajectory.get(),
+  //                        rightTrajectory.get(),
+  //                        scales.wheelTrack.convert(meter));
 
   // Free the old path before overwriting it
   forceRemovePath(ipathId);
 
-  paths.emplace(ipathId,
-                TrajectoryPair{std::move(leftTrajectory), std::move(rightTrajectory), length});
+  // paths.emplace(ipathId,
+  //               TrajectoryPair{std::move(leftTrajectory), std::move(rightTrajectory), length});
+
+
+  paths.emplace(ipathId, path);
 
   LOG_INFO("AsyncMotionProfileController: Completely done generating path " + ipathId);
-  LOG_DEBUG("AsyncMotionProfileController: Path length: " + std::to_string(length));
+  // LOG_DEBUG("AsyncMotionProfileController: Path length: " + std::to_string(path.size()));
 }
 
 std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<Waypoint> &points,
@@ -228,7 +226,7 @@ void AsyncMotionProfileController::loop() {
                  currentPath);
       } else {
         LOG_DEBUG("AsyncMotionProfileController: Path length is " +
-                  std::to_string(path->second.length));
+                  std::to_string(path->second.size()));
 
         executeSinglePath(path->second, timeUtil.getRate());
 
@@ -249,21 +247,21 @@ void AsyncMotionProfileController::loop() {
   LOG_INFO_S("Stopped AsyncMotionProfileController task.");
 }
 
-void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
+void AsyncMotionProfileController::executeSinglePath(const std::vector<squiggles::ProfilePoint> &path,
                                                      std::unique_ptr<AbstractRate> rate) {
   const int reversed = direction.load(std::memory_order_acquire);
   const bool followMirrored = mirrored.load(std::memory_order_acquire);
-  const int pathLength = getPathLength(path);
 
-  for (int i = 0; i < pathLength && !isDisabled(); ++i) {
+
+  for (int i = 0; i < path.size() && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
     // if a running path is asked to be removed at the moment this loop is executing
     std::scoped_lock lock(currentPathMutex);
 
-    const auto segDT = path.left.get()[i].dt * second;
-    const auto leftRPM = convertLinearToRotational(path.left.get()[i].velocity * mps).convert(rpm);
+    const auto segDT = path[i].time * second;
+    const auto leftRPM = convertLinearToRotational(path[i].wheel_velocities[0] * mps).convert(rpm);
     const auto rightRPM =
-      convertLinearToRotational(path.right.get()[i].velocity * mps).convert(rpm);
+      convertLinearToRotational(path[i].wheel_velocities[1] * mps).convert(rpm);
 
     const double rightSpeed = rightRPM / toUnderlyingType(pair.internalGearset) * reversed;
     const double leftSpeed = leftRPM / toUnderlyingType(pair.internalGearset) * reversed;
@@ -444,38 +442,39 @@ void AsyncMotionProfileController::internalStorePath(FILE *leftPathFile,
              ipathId);
     // Do nothing- can't serialize nonexistent path
   } else {
-    int len = pathData->second.length;
+    int len = pathData->second.size();
 
     // Serialize paths
-    pathfinder_serialize_csv(leftPathFile, pathData->second.left.get(), len);
-    pathfinder_serialize_csv(rightPathFile, pathData->second.right.get(), len);
+    // TODO:
+    // pathfinder_serialize_csv(leftPathFile, pathData->second.left.get(), len);
+    // pathfinder_serialize_csv(rightPathFile, pathData->second.right.get(), len);
   }
 }
 
 void AsyncMotionProfileController::internalLoadPath(FILE *leftPathFile,
                                                     FILE *rightPathFile,
                                                     const std::string &ipathId) {
-  // Count lines in file, remove one for headers
-  int count = 0;
-  for (int c = getc(leftPathFile); c != EOF; c = getc(leftPathFile)) {
-    if (c == '\n') {
-      ++count;
-    }
-  }
-  --count;
-  rewind(leftPathFile);
+  // // Count lines in file, remove one for headers
+  // int count = 0;
+  // for (int c = getc(leftPathFile); c != EOF; c = getc(leftPathFile)) {
+  //   if (c == '\n') {
+  //     ++count;
+  //   }
+  // }
+  // --count;
+  // rewind(leftPathFile);
 
-  // Allocate memory
-  SegmentPtr leftTrajectory((Segment *)malloc(sizeof(Segment) * count), free);
-  SegmentPtr rightTrajectory((Segment *)malloc(sizeof(Segment) * count), free);
+  // // Allocate memory
+  // SegmentPtr leftTrajectory((Segment *)malloc(sizeof(Segment) * count), free);
+  // SegmentPtr rightTrajectory((Segment *)malloc(sizeof(Segment) * count), free);
 
-  pathfinder_deserialize_csv(leftPathFile, leftTrajectory.get());
-  pathfinder_deserialize_csv(rightPathFile, rightTrajectory.get());
+  // pathfinder_deserialize_csv(leftPathFile, leftTrajectory.get());
+  // pathfinder_deserialize_csv(rightPathFile, rightTrajectory.get());
 
-  // Remove the old path if it exists
-  forceRemovePath(ipathId);
-  paths.emplace(ipathId,
-                TrajectoryPair{std::move(leftTrajectory), std::move(rightTrajectory), count});
+  // // Remove the old path if it exists
+  // forceRemovePath(ipathId);
+  // paths.emplace(ipathId,
+  //               TrajectoryPair{std::move(leftTrajectory), std::move(rightTrajectory), count});
 }
 
 std::string AsyncMotionProfileController::makeFilePath(const std::string &directory,
