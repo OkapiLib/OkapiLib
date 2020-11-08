@@ -95,34 +95,6 @@ cd OkapiLib
 git submodule update --init --recursive
 ```
 
-To build the Okapi library, you will need to run these commands on a Linux machine or within
-the Windows Linux Subsystem (verified with Ubuntu on WLS).  You will need tools such as `gcc`
-and `cmake`.  For Ubuntu, you can install these tools via `apt-get`. For example:
-```
-sudo apt-add-repository ppa:team-gcc-arm-embedded/ppa
-sudo apt update
-sudo apt-get install gcc-arm-embedded
-```
-
-Once the proper tool chain is installed and available, to build OkapiLib run:
-```
-make template
-```
-Which will result in the okapilib@[version].zip file being created in the base directory. You can 
-then copy this file to your robot's code base and use the `prosv5` cli to update the version your
-project uses.  You may want to change the OkapiLib Makefile locally to bump the version, for example
-from `4.0.5` to `4.0.5.1` to avoid confusion about which version your project is using. 
-
-To run unit tests from the root directory of OkapiLib:
-```
-mkdir cmake-build-debug # If you have not already created it
-cd cmake-build-debug
-cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
-cmake --build . --target OkapiLibV5 -- -j 2
-chmod +x ./OkapiLibV5
-./OkapiLibV5
-```
-
 Unsure where to begin contributing? You can start by looking through [these issues](https://github.com/OkapiLib/OkapiLib/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
 
 ### Pull Requests
