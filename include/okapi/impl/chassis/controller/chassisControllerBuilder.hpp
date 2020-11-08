@@ -17,7 +17,7 @@
 #include "okapi/impl/device/motor/motorGroup.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
-#include "okapi/impl/device/rotarysensor/rotation.hpp"
+#include "okapi/impl/device/rotarysensor/rotationSensor.hpp"
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
