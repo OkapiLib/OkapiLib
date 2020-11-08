@@ -25,7 +25,7 @@ double OpticalSensor::getSelectedOutput() {
   }
 
   // This should not run
-  return PROS_ERR;
+  return PROS_ERR_F;
 }
 
 double OpticalSensor::get() {
