@@ -30,7 +30,7 @@ class OpticalSensor : public ControllerInput<double> {
    * @param iport The V5 port the device uses.
    * @param ioutput Which sensor output to return from (@ref okapi::OpticalSensor::get).
    * @param ifilter The filter to use to filter the sensor output. Only the selected output (via
-   * `ioutput`) is filtered; the other outputs are untouched.
+   * ``ioutput``) is filtered; the other outputs are untouched.
    */
   OpticalSensor(std::uint8_t iport,
                 OpticalSensorOutput ioutput = OpticalSensorOutput::hue,
