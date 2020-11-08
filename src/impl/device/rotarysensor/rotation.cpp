@@ -6,17 +6,28 @@
 #include "okapi/impl/device/rotarysensor/rotation.hpp"
 
 namespace okapi {
-RotationSensor::RotationSensor(const std::uint8_t iport, const bool ireversed) {
-  port = iport;
-  pros::c::rotation_set_reversed(port, ireversed);
+RotationSensor::RotationSensor(const std::uint8_t iport, const bool ireversed) : port(iport) {
+  pros::c::rotation_set_reversed(iport, ireversed);
 }
 
 double RotationSensor::get() const {
-  return pros::c::rotation_get_position(port);
+  const double out = pros::c::rotation_get_position(port);
+  if (out == PROS_ERR_F) {
+    return PROS_ERR_F;
+  } else {
+    // Convert from centidegrees to degrees
+    return out * 0.01;
+  }
 }
 
 double RotationSensor::getVelocity() const {
-  return pros::c::rotation_get_velocity(port);
+  const double out = pros::c::rotation_get_velocity(port);
+  if (out == PROS_ERR_F) {
+    return PROS_ERR_F;
+  } else {
+    // Convert from centidegrees per second to degrees per second
+    return out * 0.01;
+  }
 }
 
 std::int32_t RotationSensor::reset() {

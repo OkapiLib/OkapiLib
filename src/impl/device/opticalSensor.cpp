@@ -6,19 +6,38 @@
 #include "okapi/impl/device/opticalSensor.hpp"
 
 namespace okapi {
-OpticalSensor::OpticalSensor(std::uint8_t iport) {
-  port = iport;
-  pros::c::optical_disable_gesture(port);
+OpticalSensor::OpticalSensor(const std::uint8_t iport,
+                             const OpticalSensorOutput ioutput,
+                             std::unique_ptr<Filter> ifilter)
+  : port(iport), output(ioutput), filter(std::move(ifilter)) {
 }
 
 OpticalSensor::~OpticalSensor() = default;
 
+double OpticalSensor::getSelectedOutput() {
+  switch (output) {
+  case OpticalSensorOutput::hue:
+    return getHue();
+  case OpticalSensorOutput::saturation:
+    return getSaturation();
+  case OpticalSensorOutput::brightness:
+    return getBrightness();
+  }
+
+  // This should not run
+  return PROS_ERR;
+}
+
 double OpticalSensor::get() {
-  return pros::c::optical_get_hue(port);
+  return filter->filter(getSelectedOutput());
 }
 
 double OpticalSensor::controllerGet() {
   return get();
+}
+
+double OpticalSensor::getHue() {
+  return pros::c::optical_get_hue(port);
 }
 
 double OpticalSensor::getBrightness() {
@@ -29,24 +48,24 @@ double OpticalSensor::getSaturation() {
   return pros::c::optical_get_saturation(port);
 }
 
-int32_t OpticalSensor::getLedBrightness() {
-  return pros::c::optical_get_brightness(port);
+int32_t OpticalSensor::setLedPWM(const uint8_t value) {
+  return pros::c::optical_set_led_pwm(port, value);
 }
 
-int32_t OpticalSensor::setLedBrightness(int32_t v) {
-  return pros::c::optical_set_led_pwm(port, v);
+int32_t OpticalSensor::getLedPWM() {
+  return pros::c::optical_get_led_pwm(port);
 }
 
 int32_t OpticalSensor::getProximity() {
   return pros::c::optical_get_proximity(port);
 }
 
-int32_t OpticalSensor::disableGesture() {
-  return pros::c::optical_disable_gesture(port);
-}
-
 int32_t OpticalSensor::enableGesture() {
   return pros::c::optical_enable_gesture(port);
+}
+
+int32_t OpticalSensor::disableGesture() {
+  return pros::c::optical_disable_gesture(port);
 }
 
 pros::c::optical_rgb_s_t OpticalSensor::getRGB() {

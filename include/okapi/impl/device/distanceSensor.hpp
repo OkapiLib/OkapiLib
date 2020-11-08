@@ -30,24 +30,24 @@ class DistanceSensor : public ControllerInput<double> {
   virtual ~DistanceSensor();
 
   /**
-   * Returns the current filtered sensor value in mm.
-   *
-   * @return current value.
+   * @return The current filtered sensor value in mm.
    */
   virtual double get();
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in
-   * another thread by the controller. Calls get().
+   * another thread by the controller.
+   *
+   * @return The same as [get](@ref okapi::DistanceSensor::get).
    */
-  virtual double controllerGet() override;
+  double controllerGet() override;
 
   /**
    * Get the confidence in the distance reading.
    *
-   * This is a value that has a range of 0 to 63. 63 means high confidence, lower values imply less
-   * confidence. Confidence is only available when distance is > 200mm.
-   *   *
+   * This is a value that has a range of ``0`` to ``63``. ``63`` means high confidence, lower values
+   * imply less confidence. Confidence is only available when distance is greater than ``200`` mm.
+   *
    * @return The confidence value.
    */
   std::int32_t getConfidence() const;
@@ -55,20 +55,17 @@ class DistanceSensor : public ControllerInput<double> {
   /**
    * Get the current guess at relative object size.
    *
-   * This is a value that has a range of 0 to 400. A 18" x 30" grey card will return a 
-   * value of approximately 75 in typical room lighting.
+   * This is a value that has a range of ``0`` to ``400``. A 18" x 30" grey card will return a value
+   * of approximately ``75`` in typical room lighting.
    *
-   * @return The size value or PROS_ERR if the operation failed, setting
-   * errno.
+   * @return The size value or ``PROS_ERR`` if the operation failed, setting errno.
    */
-  std::int32_t getObjectSize();
+  std::int32_t getObjectSize() const;
 
   /**
-   * Get the object velocity in m/s.
-   *
-   * @return The velocity value.
+   * @return The object velocity in m/s.
    */
-  double getObjectVelocity();
+  double getObjectVelocity() const;
 
   protected:
   std::uint8_t port;

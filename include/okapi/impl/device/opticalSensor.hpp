@@ -11,90 +11,112 @@
 #include <memory>
 
 namespace okapi {
+enum class OpticalSensorOutput {
+  hue,        ///< The color.
+  saturation, ///< The color's intensity relative to its brightness.
+  brightness  ///< The amount of light.
+};
+
 class OpticalSensor : public ControllerInput<double> {
   public:
   /**
    * An optical sensor on a V5 port.
    *
    * ```cpp
-   * auto os = OpticalSensor(1);
+   * auto osHue = OpticalSensor(1);
+   * auto osSat = OpticalSensor(1, OpticalSensorOutput::saturation);
    * ```
    *
    * @param iport The V5 port the device uses.
+   * @param ioutput Which sensor output to return from (@ref okapi::OpticalSensor::get).
+   * @param ifilter The filter to use to filter the sensor output. Only the selected output (via
+   * `ioutput`) is filtered; the other outputs are untouched.
    */
-  OpticalSensor(std::uint8_t iport);
+  OpticalSensor(std::uint8_t iport,
+                OpticalSensorOutput ioutput = OpticalSensorOutput::hue,
+                std::unique_ptr<Filter> ifilter = std::make_unique<PassthroughFilter>());
 
   virtual ~OpticalSensor();
 
   /**
-   * Returns the current sensor's hue value (0-359.99).
-   *
-   * @return current value.
+   * @return The current filtered value of the selected output (configured by the constructor).
    */
   virtual double get();
 
   /**
-   * Returns the current sensor's brightness value (0-1.0).
-   *
-   * @return current value.
+   * @return The current hue value in the range ``[0, 360)``.
+   */
+  double getHue();
+
+  /**
+   * @return The current brightness value in the range ``[0, 1]``.
    */
   double getBrightness();
 
   /**
-   * Returns the current sensor's saturation value (0-1.0).
-   *
-   * @return current value.
+   * @return The current saturation value in the range ``[0, 1]``.
    */
   double getSaturation();
 
   /**
-   * Returns the current sensor's LED brightness value that ranges from 0 to 100.
+   * @return The PWM value of the white LED in the range ``[0, 100]`` or ``PROS_ERR`` if the
+   * operation failed, setting ``errno``.
+   */
+  int32_t getLedPWM();
+
+  /**
+   * Set the PWM value of the white LED.
    *
-   * @return current value.
+   * @param value The PWM value in the range ``[0, 100]``.
+   * @return ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed, setting
+   * ``errno``.
    */
-  int32_t getLedBrightness();
+  int32_t setLedPWM(uint8_t value);
 
   /**
-   * Set the pwm value of the White LED on the sensor value that ranges from 0 to 100.
-   */
-  int32_t setLedBrightness(int32_t v);
-
-  /**
-   * This is not available if gestures are being detected. Proximity has a range of 0 to 255.
-   * 
-   * @return poximity value.
+   * This is not available if gestures are being detected.
+   *
+   * @return The current proximity value in the range ``[0, 255]``.
    */
   int32_t getProximity();
 
   /**
    * Get the processed RGBC data from the sensor.
    *
-   * @return rgb value if the operation was successful or an `optical_rgb_s_t`
-   * with all fields set to PROS_ERR if the operation failed, setting errno.
+   * @return The RGBC value if the operation was successful. If the operation failed, all field are
+   * set to ``PROS_ERR`` and ``errno`` is set.
    */
   pros::c::optical_rgb_s_t getRGB();
 
   /**
-   * Get the sensor value for use in a control loop. This method might be automatically 
-   * called in another thread by the controller. Calls get().
-   */
-  virtual double controllerGet() override;
-
-  /**
-   * Disables gestures.
+   * Get the sensor value for use in a control loop. This method might be automatically called in
+   * another thread by the controller.
    *
-   * @return current value
+   * @return The same as [get](@ref okapi::OpticalSensor::get).
    */
-  int32_t disableGesture();
+  double controllerGet() override;
 
   /**
    * Enables gestures.
    *
-   * @return current value
+   * @return ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed, setting
+   * ``errno``.
    */
   int32_t enableGesture();
 
+  /**
+   * Disables gestures.
+   *
+   * @return ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed, setting
+   * ``errno``.
+   */
+  int32_t disableGesture();
+
   protected:
   std::uint8_t port;
+  OpticalSensorOutput output;
+  std::unique_ptr<Filter> filter;
+
+  double getSelectedOutput();
 };
 } // namespace okapi

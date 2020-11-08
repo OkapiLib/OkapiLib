@@ -897,7 +897,7 @@ RECURSIVE              = YES
 # Note that relative paths are relative to the directory from which doxygen is
 # run.
 
-EXCLUDE                = "cmake-build-debug" "include/api.h" "include/main.h" "include/display" "include/okapi/pathfinder" "include/pros" "include/test" "src/autonomous.cpp" "src/initialize.cpp" "src/opcontrol.cpp" "src/pathfinder" "src/test" "test" "m.css" "html" "latex" "xml" ".github" "code-of-conduct.md" "CONTRIBUTING.md" "PULL_REQUEST_TEMPLATE.md" "README.md" "venv"
+EXCLUDE                = "cmake-build-debug" ".vscode" ".d" "include/api.h" "include/main.h" "include/display" "include/okapi/pathfinder" "include/pros" "include/test" "src/autonomous.cpp" "src/initialize.cpp" "src/opcontrol.cpp" "src/pathfinder" "src/test" "test" "m.css" "html" "latex" "xml" ".github" "code-of-conduct.md" "CONTRIBUTING.md" "PULL_REQUEST_TEMPLATE.md" "README.md" "venv" "CMakeModules" "build"
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded

@@ -15,41 +15,41 @@ class RotationSensor : public ContinuousRotarySensor {
    * A rotation sensor in a V5 port.
    *
    * ```cpp
-   * auto r = RotationSensor(1, false);
+   * auto r = RotationSensor(1);
    * auto reversedR = RotationSensor(1, true);
    * ```
    *
    * @param iport The V5 port the device uses.
-   * @param ireversed Whether the sensor is reversed.
+   * @param ireversed Whether the sensor is reversed. This will set the reversed state in the
+   * kernel.
    */
   RotationSensor(std::uint8_t iport, bool ireversed = false);
 
   /**
-   * Get the current sensor value.
-   *
-   * @return the current sensor value.
+   * @return The current rotation in degrees or ``PROS_ERR_F`` if the operation failed, setting
+   * ``errno``.
    */
-  virtual double get() const override;
+  double get() const override;
 
   /**
    * Reset the sensor to zero.
    *
-   * @return `1` on success.
+   * @return ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed, setting
+   * ``errno``.
    */
-  virtual std::int32_t reset() override;
+  std::int32_t reset() override;
 
   /**
-   * Get the sensor value for use in a control loop. This method might be automatically 
-   * called in another thread by the controller.
+   * Get the sensor value for use in a control loop. This method might be automatically called in
+   * another thread by the controller.
    *
-   * @return the current sensor value.
+   * @return The same as [get](@ref okapi::RotationSensor::get).
    */
-  virtual double controllerGet() override;
+  double controllerGet() override;
 
   /**
-   * Get the current sensor value for velocity.
-   *
-   * @return the current sensor value.
+   * @return The current rotational velocity estimate in degrees per second or ``PROS_ERR_F`` if the
+   * operation failed, setting ``errno``.
    */
   double getVelocity() const;
 
