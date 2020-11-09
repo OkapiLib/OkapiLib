@@ -34,7 +34,7 @@ class DistanceSensor : public ControllerInput<double> {
    *
    * @return The current filtered sensor value in mm.
    */
-  virtual double get();
+  double get();
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in

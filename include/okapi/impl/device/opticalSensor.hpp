@@ -47,7 +47,7 @@ class OpticalSensor : public ControllerInput<double> {
    *
    * @return The current filtered value of the selected output (configured by the constructor).
    */
-  virtual double get();
+  double get();
 
   /**
    * Get the current hue value in the range ``[0, 360)``.
@@ -132,6 +132,9 @@ class OpticalSensor : public ControllerInput<double> {
   OpticalSensorOutput output;
   std::unique_ptr<Filter> filter;
 
+  /**
+   * Gets the output directly from the sensor using the selected output.
+   */
   double getSelectedOutput();
 };
 } // namespace okapi
