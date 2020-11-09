@@ -12,8 +12,6 @@ OpticalSensor::OpticalSensor(const std::uint8_t iport,
   : port(iport), output(ioutput), filter(std::move(ifilter)) {
 }
 
-OpticalSensor::~OpticalSensor() = default;
-
 double OpticalSensor::getSelectedOutput() {
   switch (output) {
   case OpticalSensorOutput::hue:
@@ -36,39 +34,39 @@ double OpticalSensor::controllerGet() {
   return get();
 }
 
-double OpticalSensor::getHue() {
+double OpticalSensor::getHue() const {
   return pros::c::optical_get_hue(port);
 }
 
-double OpticalSensor::getBrightness() {
+double OpticalSensor::getBrightness() const {
   return pros::c::optical_get_brightness(port);
 }
 
-double OpticalSensor::getSaturation() {
+double OpticalSensor::getSaturation() const {
   return pros::c::optical_get_saturation(port);
 }
 
-int32_t OpticalSensor::setLedPWM(const uint8_t value) {
-  return pros::c::optical_set_led_pwm(port, value);
+int32_t OpticalSensor::setLedPWM(const uint8_t ivalue) const {
+  return pros::c::optical_set_led_pwm(port, ivalue);
 }
 
-int32_t OpticalSensor::getLedPWM() {
+int32_t OpticalSensor::getLedPWM() const {
   return pros::c::optical_get_led_pwm(port);
 }
 
-int32_t OpticalSensor::getProximity() {
+int32_t OpticalSensor::getProximity() const {
   return pros::c::optical_get_proximity(port);
 }
 
-int32_t OpticalSensor::enableGesture() {
+int32_t OpticalSensor::enableGesture() const {
   return pros::c::optical_enable_gesture(port);
 }
 
-int32_t OpticalSensor::disableGesture() {
+int32_t OpticalSensor::disableGesture() const {
   return pros::c::optical_disable_gesture(port);
 }
 
-pros::c::optical_rgb_s_t OpticalSensor::getRGB() {
+pros::c::optical_rgb_s_t OpticalSensor::getRGB() const {
   return pros::c::optical_get_rgb(port);
 }
 } // namespace okapi

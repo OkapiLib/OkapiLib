@@ -36,49 +36,60 @@ class OpticalSensor : public ControllerInput<double> {
                 OpticalSensorOutput ioutput = OpticalSensorOutput::hue,
                 std::unique_ptr<Filter> ifilter = std::make_unique<PassthroughFilter>());
 
-  virtual ~OpticalSensor();
+  virtual ~OpticalSensor() = default;
 
   /**
+   * Get the current filtered value of the selected output (configured by the constructor).
+   *
    * @return The current filtered value of the selected output (configured by the constructor).
    */
   virtual double get();
 
   /**
+   * Get the current hue value in the range ``[0, 360)``.
+   *
    * @return The current hue value in the range ``[0, 360)``.
    */
-  double getHue();
+  double getHue() const;
 
   /**
+   * Get the current brightness value in the range ``[0, 1]``.
+   *
    * @return The current brightness value in the range ``[0, 1]``.
    */
-  double getBrightness();
+  double getBrightness() const;
 
   /**
+   * Get the current saturation value in the range ``[0, 1]``.
+   *
    * @return The current saturation value in the range ``[0, 1]``.
    */
-  double getSaturation();
+  double getSaturation() const;
 
   /**
+   * Get the PWM value of the white LED in the range ``[0, 100]``.
+   *
    * @return The PWM value of the white LED in the range ``[0, 100]`` or ``PROS_ERR`` if the
    * operation failed, setting ``errno``.
    */
-  int32_t getLedPWM();
+  int32_t getLedPWM() const;
 
   /**
-   * Set the PWM value of the white LED.
+   * Set the PWM value of the white LED in the range ``[0, 100]``.
    *
    * @param value The PWM value in the range ``[0, 100]``.
    * @return ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed, setting
    * ``errno``.
    */
-  int32_t setLedPWM(uint8_t value);
+  int32_t setLedPWM(uint8_t ivalue) const;
 
   /**
-   * This is not available if gestures are being detected.
+   * Get the current proximity value in the range ``[0, 255]``. This is not available if gestures
+   * are being detected.
    *
    * @return The current proximity value in the range ``[0, 255]``.
    */
-  int32_t getProximity();
+  int32_t getProximity() const;
 
   /**
    * Get the processed RGBC data from the sensor.
@@ -86,7 +97,7 @@ class OpticalSensor : public ControllerInput<double> {
    * @return The RGBC value if the operation was successful. If the operation failed, all field are
    * set to ``PROS_ERR`` and ``errno`` is set.
    */
-  pros::c::optical_rgb_s_t getRGB();
+  pros::c::optical_rgb_s_t getRGB() const;
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in
@@ -97,20 +108,20 @@ class OpticalSensor : public ControllerInput<double> {
   double controllerGet() override;
 
   /**
-   * Enables gestures.
+   * Enable gestures.
    *
    * @return ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed, setting
    * ``errno``.
    */
-  int32_t enableGesture();
+  int32_t enableGesture() const;
 
   /**
-   * Disables gestures.
+   * Disable gestures.
    *
    * @return ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed, setting
    * ``errno``.
    */
-  int32_t disableGesture();
+  int32_t disableGesture() const;
 
   protected:
   std::uint8_t port;

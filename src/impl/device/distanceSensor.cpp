@@ -11,8 +11,6 @@ DistanceSensor::DistanceSensor(std::uint8_t iport, std::unique_ptr<Filter> ifilt
   port = iport;
 }
 
-DistanceSensor::~DistanceSensor() = default;
-
 double DistanceSensor::get() {
   return filter->filter(pros::c::distance_get(port));
 }

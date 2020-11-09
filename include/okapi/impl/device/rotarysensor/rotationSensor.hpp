@@ -26,6 +26,8 @@ class RotationSensor : public ContinuousRotarySensor {
   RotationSensor(std::uint8_t iport, bool ireversed = false);
 
   /**
+   * Get the current rotation in degrees.
+   *
    * @return The current rotation in degrees or ``PROS_ERR_F`` if the operation failed, setting
    * ``errno``.
    */
@@ -48,6 +50,8 @@ class RotationSensor : public ContinuousRotarySensor {
   double controllerGet() override;
 
   /**
+   * Get the current rotational velocity estimate in degrees per second.
+   *
    * @return The current rotational velocity estimate in degrees per second or ``PROS_ERR_F`` if the
    * operation failed, setting ``errno``.
    */

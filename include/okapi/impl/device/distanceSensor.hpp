@@ -27,9 +27,11 @@ class DistanceSensor : public ControllerInput<double> {
   DistanceSensor(std::uint8_t iport,
                  std::unique_ptr<Filter> ifilter = std::make_unique<PassthroughFilter>());
 
-  virtual ~DistanceSensor();
+  virtual ~DistanceSensor() = default;
 
   /**
+   * Get the current filtered sensor value in mm.
+   *
    * @return The current filtered sensor value in mm.
    */
   virtual double get();
@@ -43,20 +45,17 @@ class DistanceSensor : public ControllerInput<double> {
   double controllerGet() override;
 
   /**
-   * Get the confidence in the distance reading.
-   *
-   * This is a value that has a range of ``[0, 63]``. ``63`` means high confidence, lower values
-   * imply less confidence. Confidence is only available when distance is greater than ``200`` mm.
+   * Get the confidence in the distance reading. This value has a range of ``[0, 63]``. ``63`` means
+   * high confidence, lower values imply less confidence. Confidence is only available when distance
+   * is greater than ``200`` mm.
    *
    * @return The confidence value in the range ``[0, 63]``.
    */
   std::int32_t getConfidence() const;
 
   /**
-   * Get the current guess at relative object size.
-   *
-   * This is a value that has a range of ``[0, 400]``. A 18" x 30" grey card will return a value
-   * of approximately ``75`` in typical room lighting.
+   * Get the current guess at relative object size. This value has a range of ``[0, 400]``. A 18" x
+   * 30" grey card will return a value of approximately ``75`` in typical room lighting.
    *
    * @return The size value in the range ``[0, 400]`` or ``PROS_ERR`` if the operation failed,
    * setting errno.
@@ -64,6 +63,8 @@ class DistanceSensor : public ControllerInput<double> {
   std::int32_t getObjectSize() const;
 
   /**
+   * Get the object velocity in m/s.
+   *
    * @return The object velocity in m/s.
    */
   double getObjectVelocity() const;
