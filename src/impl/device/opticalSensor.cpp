@@ -8,8 +8,12 @@
 namespace okapi {
 OpticalSensor::OpticalSensor(const std::uint8_t iport,
                              const OpticalSensorOutput ioutput,
+                             const bool idisableGestures,
                              std::unique_ptr<Filter> ifilter)
   : port(iport), output(ioutput), filter(std::move(ifilter)) {
+  if (idisableGestures) {
+    disableGestures();
+  }
 }
 
 double OpticalSensor::getSelectedOutput() {
@@ -58,11 +62,11 @@ int32_t OpticalSensor::getProximity() const {
   return pros::c::optical_get_proximity(port);
 }
 
-int32_t OpticalSensor::enableGesture() const {
+int32_t OpticalSensor::enableGestures() const {
   return pros::c::optical_enable_gesture(port);
 }
 
-int32_t OpticalSensor::disableGesture() const {
+int32_t OpticalSensor::disableGestures() const {
   return pros::c::optical_disable_gesture(port);
 }
 

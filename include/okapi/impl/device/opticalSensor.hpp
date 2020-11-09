@@ -29,11 +29,15 @@ class OpticalSensor : public ControllerInput<double> {
    *
    * @param iport The V5 port the device uses.
    * @param ioutput Which sensor output to return from (@ref okapi::OpticalSensor::get).
+   * @param idisableGestures Whether to automatically disable the gesture sensor. Typically, the
+   * gesture sensor should be disabled unless you are going to use gestures because the optical
+   * sensor does not update color information while detecting a gesture.
    * @param ifilter The filter to use to filter the sensor output. Only the selected output (via
    * ``ioutput``) is filtered; the other outputs are untouched.
    */
   OpticalSensor(std::uint8_t iport,
                 OpticalSensorOutput ioutput = OpticalSensorOutput::hue,
+                bool idisableGestures = true,
                 std::unique_ptr<Filter> ifilter = std::make_unique<PassthroughFilter>());
 
   virtual ~OpticalSensor() = default;
@@ -113,7 +117,7 @@ class OpticalSensor : public ControllerInput<double> {
    * @return ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed, setting
    * ``errno``.
    */
-  int32_t enableGesture() const;
+  int32_t enableGestures() const;
 
   /**
    * Disable gestures.
@@ -121,7 +125,7 @@ class OpticalSensor : public ControllerInput<double> {
    * @return ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed, setting
    * ``errno``.
    */
-  int32_t disableGesture() const;
+  int32_t disableGestures() const;
 
   protected:
   std::uint8_t port;
