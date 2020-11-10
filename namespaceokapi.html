@@ -270,6 +270,10 @@
             </dt>
             <dd><span></span></dd>
             <dt>
+              class <a href="classokapi_1_1DistanceSensor.html" class="m-doc">DistanceSensor</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
               class <a href="classokapi_1_1EKFFilter.html" class="m-doc">EKFFilter</a>
             </dt>
             <dd><span></span></dd>
@@ -371,6 +375,10 @@
             </dt>
             <dd><span></span></dd>
             <dt>
+              class <a href="classokapi_1_1OpticalSensor.html" class="m-doc">OpticalSensor</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
               class <a href="classokapi_1_1PassthroughFilter.html" class="m-doc">PassthroughFilter</a>
             </dt>
             <dd><span></span></dd>
@@ -408,6 +416,10 @@
             <dd>A version of the <a href="classokapi_1_1ChassisModel.html" class="m-doc">ChassisModel</a> that only supports read methods, such as querying sensor values.</dd>
             <dt>
               class <a href="classokapi_1_1RotarySensor.html" class="m-doc">RotarySensor</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classokapi_1_1RotationSensor.html" class="m-doc">RotationSensor</a>
             </dt>
             <dd><span></span></dd>
             <dt>
@@ -505,6 +517,12 @@
               <a href="#af5040b3f1f33d27698871423e1453ab6a7fc56270e7a70fa81a5935b72eacbe29" class="m-doc">A</a> = 17 }</span>
             </dt>
             <dd>Various buttons.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">enum <a href="#ad90c7a270305b462fff2a584aff9ac05" class="m-doc">OpticalSensorOutput</a> { </span><span class="m-doc-wrap"><a href="#ad90c7a270305b462fff2a584aff9ac05a71a6b6f094346a8832df801c8428ea06" class="m-doc">hue</a>,
+              <a href="#ad90c7a270305b462fff2a584aff9ac05afd71ed58ae07cc75900a5169e6f9c287" class="m-doc">saturation</a>,
+              <a href="#ad90c7a270305b462fff2a584aff9ac05aaa71a2ef3fb13c2642ea72645a698cb8" class="m-doc">brightness</a> }</span>
+            </dt>
+            <dd><span></span></dd>
             <dt>
               <span class="m-doc-wrap-bumper">enum <a href="#abc16400b91bea99f326802bad79f9c99" class="m-doc">IMUAxes</a> { </span><span class="m-doc-wrap"><a href="#abc16400b91bea99f326802bad79f9c99afbade9e36a3f36d3d676c1b808451dd7" class="m-doc">z</a>,
               <a href="#abc16400b91bea99f326802bad79f9c99a415290769594460e2e485922904f345d" class="m-doc">y</a>,
@@ -843,6 +861,10 @@
             <dd><span></span></dd>
             <dt>
               QAngularSpeed <a href="#a44d420085fe3c46220da4b11e5827453" class="m-doc">rpm</a> <span class="m-label m-flat m-primary">constexpr</span>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              QAngularSpeed <a href="#a8422a8d18fe44b19b01f2f51766e8878" class="m-doc">cps</a> <span class="m-label m-flat m-primary">constexpr</span>
             </dt>
             <dd><span></span></dd>
             <dt>
@@ -1280,6 +1302,36 @@
                   <td><a href="#af5040b3f1f33d27698871423e1453ab6a7fc56270e7a70fa81a5935b72eacbe29" class="m-doc-self" id="af5040b3f1f33d27698871423e1453ab6a7fc56270e7a70fa81a5935b72eacbe29">A</a></td>
                   <td>
                   <p>A.</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div></section>
+          <section class="m-doc-details" id="ad90c7a270305b462fff2a584aff9ac05"><div>
+            <h3>
+              enum okapi::<wbr /><a href="#ad90c7a270305b462fff2a584aff9ac05" class="m-doc-self">OpticalSensorOutput</a>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="opticalSensor_8hpp.html">&lt;include/okapi/impl/device/opticalSensor.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+            <table class="m-table m-fullwidth m-flat m-doc">
+              <thead><tr><th style="width: 1%">Enumerators</th><th></th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><a href="#ad90c7a270305b462fff2a584aff9ac05a71a6b6f094346a8832df801c8428ea06" class="m-doc-self" id="ad90c7a270305b462fff2a584aff9ac05a71a6b6f094346a8832df801c8428ea06">hue</a></td>
+                  <td>
+                  <p>The color.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a href="#ad90c7a270305b462fff2a584aff9ac05afd71ed58ae07cc75900a5169e6f9c287" class="m-doc-self" id="ad90c7a270305b462fff2a584aff9ac05afd71ed58ae07cc75900a5169e6f9c287">saturation</a></td>
+                  <td>
+                  <p>The color&#x27;s intensity relative to its brightness.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a href="#ad90c7a270305b462fff2a584aff9ac05aaa71a2ef3fb13c2642ea72645a698cb8" class="m-doc-self" id="ad90c7a270305b462fff2a584aff9ac05aaa71a2ef3fb13c2642ea72645a698cb8">brightness</a></td>
+                  <td>
+                  <p>The amount of light.</p>
                   </td>
                 </tr>
               </tbody>
@@ -2094,6 +2146,13 @@
           <section class="m-doc-details" id="a44d420085fe3c46220da4b11e5827453"><div>
             <h3>
               QAngularSpeed okapi::<wbr /><a href="#a44d420085fe3c46220da4b11e5827453" class="m-doc-self">rpm</a> <span class="m-label m-primary">constexpr</span>
+              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="QAngularSpeed_8hpp.html">&lt;include/okapi/api/units/QAngularSpeed.hpp&gt;</a></div>
+            </h3>
+            <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a8422a8d18fe44b19b01f2f51766e8878"><div>
+            <h3>
+              QAngularSpeed okapi::<wbr /><a href="#a8422a8d18fe44b19b01f2f51766e8878" class="m-doc-self">cps</a> <span class="m-label m-primary">constexpr</span>
               <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="QAngularSpeed_8hpp.html">&lt;include/okapi/api/units/QAngularSpeed.hpp&gt;</a></div>
             </h3>
             <p><span></span></p>

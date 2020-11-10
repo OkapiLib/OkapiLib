@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Getting Started with OkapiLib | OkapiLib A PROS library for programming VEX robots</title>
+  <title>src/impl/device/opticalSensor.cpp file | OkapiLib A PROS library for programming VEX robots</title>
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="okapi-docs.css" />
@@ -55,25 +55,27 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          Getting Started with OkapiLib
+          <span class="m-breadcrumb"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a>/</span><span class="m-breadcrumb"><a href="dir_3808e3f8fe545b07b1d2715928fb0eea.html">impl</a>/</span><span class="m-breadcrumb"><a href="dir_498af6ea41adb63c91c476258d6e97a2.html">device</a>/</span>opticalSensor.cpp <span class="m-thin">file</span>
         </h1>
-<h3>Introduction</h3><p>OkapiLib is installed in all new PROS projects by default. If you are unsure if OkapiLib is installed, you can check the output of <code>prosv5 conduct info-project</code>. Additionally, OkapiLib&#x27;s header files reside in <code>include/okapi</code>. Once you know that OkapiLib is installed, you can start using it by uncommenting OkapiLib&#x27;s API header include statement in the file <code>include/main.h</code> :</p><pre class="m-code"><span class="cp">#include</span> <span class="cpf">&quot;api.h&quot;</span><span class="cp"></span>
-
-<span class="cm">/**</span>
-<span class="cm"> * You should add more #includes here</span>
-<span class="cm"> */</span>
-<span class="cp">#include</span> <span class="cpf">&quot;okapi/api.hpp&quot;</span><span class="c1"> // &lt;-- UNCOMMENT THIS LINE</span><span class="cp"></span>
-<span class="c1">//#include &quot;pros/api_legacy.h&quot;</span></pre><p>All okapi methods are located in the okapi namespace. To avoid typing <code>okapi::</code> in front of every command, uncomment the <code>using</code> statement in the file <code>include/main.h</code> :</p><pre class="m-code"><span class="cm">/**</span>
-<span class="cm"> * If you find doing pros::Motor() to be tedious and you&#39;d prefer just to do</span>
-<span class="cm"> * Motor, you can use the namespace with the following commented out line.</span>
-<span class="cm"> *</span>
-<span class="cm"> * IMPORTANT: Only the okapi or pros namespace may be used, not both</span>
-<span class="cm"> * concurrently! The okapi namespace will export all symbols inside the pros</span>
-<span class="cm"> * namespace.</span>
-<span class="cm"> */</span>
-<span class="c1">// using namespace pros;</span>
-<span class="c1">// using namespace pros::literals;</span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="p">;</span> <span class="c1">// &lt;-- UNCOMMENT THIS LINE</span></pre><p>If you don&#x27;t want to use the okapi namespace, but you want to use unit literals such as <code>1_in</code>, add the following line to the file <code>include/main.h</code> :</p><pre class="m-code"><span class="k">using</span> <span class="k">namespace</span> <span class="n">okapi</span><span class="o">::</span><span class="n">literals</span><span class="p">;</span></pre><h3>Troubleshooting</h3><p>If OkapiLib is not getting downloaded from GitHub correctly during installation, you can <a href="https://github.com/OkapiLib/OkapiLib/releases">download it manually here</a> and then install it by running <code>prosv5 conduct fetch path/to/okapilib.zip</code>. Once OkapiLib is installed, try creating a PROS project again.</p>
+        <p><span></span></p>
+        <div class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#namespaces">Namespaces</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section id="namespaces">
+          <h2><a href="#namespaces">Namespaces</a></h2>
+          <dl class="m-doc">
+            <dt>namespace <a href="namespaceokapi.html" class="m-doc">okapi</a></dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
       </div>
     </div>
   </div>
