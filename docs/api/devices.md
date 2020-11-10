@@ -21,9 +21,13 @@
  - [Integrated Encoder](@ref okapi::IntegratedEncoder)
  - [ADI Encoder](@ref okapi::ADIEncoder)
  - [ADI Gyro](@ref okapi::ADIGyro)
+ - [IMU](@ref okapi::IMU)
  - [Potentiometer](@ref okapi::Potentiometer)
+ - [Rotation Sensor](@ref okapi::RotationSensor)
 
 ## Other API
 
  - [Controller](@ref okapi::Controller)
  - [ADI Ultrasonic](@ref okapi::ADIUltrasonic)
+ - [Distance Sensor](@ref okapi::DistanceSensor)
+ - [Optical Sensor](@ref okapi::OpticalSensor)
