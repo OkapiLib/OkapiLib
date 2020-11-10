@@ -73,70 +73,14 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
     0.01);
   auto path = splineGenerator.generate(points);
 
-  // pathfinder_prepare(points.data(),
-  //                    static_cast<int>(points.size()),
-  //                    FIT_HERMITE_CUBIC,
-  //                    PATHFINDER_SAMPLES_FAST,
-  //                    0.010,
-  //                    ilimits.maxVel,
-  //                    ilimits.maxAccel,
-  //                    ilimits.maxJerk,
-  //                    candidate.get());
-
-  // const int length = candidate->length;
-
-  // if (length < 0) {
-  //   std::string message = "AsyncMotionProfileController: Length was negative. " +
-  //                         getPathErrorMessage(points, ipathId, length);
-
-  //   LOG_ERROR(message);
-  //   throw std::runtime_error(message);
-  // }
-
-  // SegmentPtr trajectory(static_cast<Segment *>(malloc(length * sizeof(Segment))), free);
-
-  // if (trajectory == nullptr) {
-  //   std::string message = "AsyncMotionProfileController: Could not allocate trajectory. " +
-  //                         getPathErrorMessage(points, ipathId, length);
-
-  //   LOG_ERROR(message);
-  //   throw std::runtime_error(message);
-  // }
-
-  // LOG_INFO_S("AsyncMotionProfileController: Generating path");
-
-  // pathfinder_generate(candidate.get(), trajectory.get());
-
-  // SegmentPtr leftTrajectory((Segment *)malloc(sizeof(Segment) * length), free);
-  // SegmentPtr rightTrajectory((Segment *)malloc(sizeof(Segment) * length), free);
-
-  // if (leftTrajectory == nullptr || rightTrajectory == nullptr) {
-  //   std::string message = "AsyncMotionProfileController: Could not allocate left and/or right "
-  //                         "trajectories. " +
-  //                         getPathErrorMessage(points, ipathId, length);
-
-  //   LOG_ERROR(message);
-  //   throw std::runtime_error(message);
-  // }
-
-  // LOG_INFO_S("AsyncMotionProfileController: Modifying for tank drive");
-  // pathfinder_modify_tank(trajectory.get(),
-  //                        length,
-  //                        leftTrajectory.get(),
-  //                        rightTrajectory.get(),
-  //                        scales.wheelTrack.convert(meter));
 
   // Free the old path before overwriting it
   forceRemovePath(ipathId);
 
-  // paths.emplace(ipathId,
-  //               TrajectoryPair{std::move(leftTrajectory), std::move(rightTrajectory), length});
-
-
   paths.emplace(ipathId, path);
 
   LOG_INFO("AsyncMotionProfileController: Completely done generating path " + ipathId);
-  // LOG_DEBUG("AsyncMotionProfileController: Path length: " + std::to_string(path.size()));
+  LOG_DEBUG("AsyncMotionProfileController: Path length: " + std::to_string(path.size()));
 }
 
 std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<Waypoint> &points,
@@ -253,7 +197,7 @@ void AsyncMotionProfileController::executeSinglePath(const std::vector<squiggles
   const bool followMirrored = mirrored.load(std::memory_order_acquire);
 
 
-  for (int i = 0; i < path.size() && !isDisabled(); ++i) {
+  for (std::size_t i = 0; i < path.size() && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
     // if a running path is asked to be removed at the moment this loop is executing
     std::scoped_lock lock(currentPathMutex);
@@ -278,11 +222,6 @@ void AsyncMotionProfileController::executeSinglePath(const std::vector<squiggles
 
     rate->delayUntil(segDT);
   }
-}
-
-int AsyncMotionProfileController::getPathLength(const TrajectoryPair &path) {
-  std::scoped_lock lock(currentPathMutex);
-  return path.length;
 }
 
 QAngularSpeed AsyncMotionProfileController::convertLinearToRotational(QSpeed linear) const {
@@ -442,7 +381,7 @@ void AsyncMotionProfileController::internalStorePath(FILE *leftPathFile,
              ipathId);
     // Do nothing- can't serialize nonexistent path
   } else {
-    int len = pathData->second.size();
+    // int len = pathData->second.size();
 
     // Serialize paths
     // TODO:
