@@ -50,7 +50,7 @@ double OpticalSensor::getSaturation() const {
   return pros::c::optical_get_saturation(port);
 }
 
-int32_t OpticalSensor::setLedPWM(const uint8_t ivalue) const {
+int32_t OpticalSensor::setLedPWM(const std::uint8_t ivalue) const {
   return pros::c::optical_set_led_pwm(port, ivalue);
 }
 

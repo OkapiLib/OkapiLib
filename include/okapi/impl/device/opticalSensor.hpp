@@ -85,7 +85,7 @@ class OpticalSensor : public ControllerInput<double> {
    * @return ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed, setting
    * ``errno``.
    */
-  int32_t setLedPWM(uint8_t ivalue) const;
+  int32_t setLedPWM(std::uint8_t ivalue) const;
 
   /**
    * Get the current proximity value in the range ``[0, 255]``. This is not available if gestures
