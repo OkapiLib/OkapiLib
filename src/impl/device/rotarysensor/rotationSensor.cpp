@@ -6,8 +6,8 @@
 #include "okapi/impl/device/rotarysensor/rotationSensor.hpp"
 
 namespace okapi {
-RotationSensor::RotationSensor(const std::uint8_t iport, const bool ireversed) : port(iport) {
-  pros::c::rotation_set_reversed(iport, ireversed);
+RotationSensor::RotationSensor(const std::uint8_t iport, const bool ireversed)
+  : port(iport), reversed(ireversed ? -1 : 1) {
 }
 
 double RotationSensor::get() const {
@@ -16,7 +16,7 @@ double RotationSensor::get() const {
     return PROS_ERR_F;
   } else {
     // Convert from centidegrees to degrees
-    return out * 0.01;
+    return out * 0.01 * reversed;
   }
 }
 
@@ -26,7 +26,7 @@ double RotationSensor::getVelocity() const {
     return PROS_ERR_F;
   } else {
     // Convert from centidegrees per second to degrees per second
-    return out * 0.01;
+    return out * 0.01 * reversed;
   }
 }
 
