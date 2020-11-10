@@ -92,10 +92,22 @@ ChassisControllerBuilder()
 
 ## Configuring your sensors
 
-If you do not use the motors' built-in encoders (e.g., you might use ADI encoders), then you will
+If you do not use the motors' built-in encoders (e.g., you might use ADI encoders or rotation sensors), then you will
 need to pass those in as well. These sensors will not affect the
 [ChassisControllerIntegrated](@ref okapi::ChassisControllerIntegrated) controls because it uses the
 integrated control (and therefore, the encoders built-in to the motors).
+
+### Rotation Sensors
+
+```cpp
+ChassisControllerBuilder()
+    .withSensors(
+        RotationSensor{1}, // Left encoder in V5 port 1
+        RotationSensor{2, true}  // Right encoder in V5 port 2 (reversed)
+    )
+```
+
+### ADI Encoders
 
 ```cpp
 ChassisControllerBuilder()
