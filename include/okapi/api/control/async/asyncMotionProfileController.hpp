@@ -14,6 +14,7 @@
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/timeUtil.hpp"
 #include <atomic>
+#include <iostream>
 #include <map>
 
 #include "squiggles.hpp"
@@ -264,7 +265,18 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   void forceRemovePath(const std::string &ipathId);
 
   protected:
+  // Keeping these around for loading old path types
+  using TrajectoryPtr = std::unique_ptr<TrajectoryCandidate, void (*)(TrajectoryCandidate *)>;
+  using SegmentPtr = std::unique_ptr<Segment, void (*)(void *)>;
+
+  struct TrajectoryPair {
+    SegmentPtr left;
+    SegmentPtr right;
+    int length;
+  };
+
   std::shared_ptr<Logger> logger;
+  // std::map<std::string, TrajectoryPair> paths{};
   std::map<std::string, std::vector<squiggles::ProfilePoint>> paths{};
   PathfinderLimits limits;
   std::shared_ptr<ChassisModel> model;
@@ -312,7 +324,8 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    */
   static std::string makeFilePath(const std::string &directory, const std::string &filename);
 
-  void internalStorePath(FILE *leftPathFile, FILE *rightPathFile, const std::string &ipathId);
-  void internalLoadPath(FILE *leftPathFile, FILE *rightPathFile, const std::string &ipathId);
+  void internalStorePath(std::ostream &file, const std::string &ipathId);
+  void internalLoadPath(std::istream &file, const std::string &ipathId);
+  void internalLoadPathfinderPath(std::istream &leftFile, std::istream &rightFile, const std::string &ipathId);
 };
 } // namespace okapi

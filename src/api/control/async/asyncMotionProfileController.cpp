@@ -5,6 +5,7 @@
  */
 #include <algorithm>
 #include <iostream>
+#include <fstream>
 #include <mutex>
 #include <numeric>
 
@@ -318,60 +319,57 @@ CrossplatformThread *AsyncMotionProfileController::getThread() const {
 
 void AsyncMotionProfileController::storePath(const std::string &idirectory,
                                              const std::string &ipathId) {
-  std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
-  std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
-  FILE *leftPathFile = fopen(leftFilePath.c_str(), "w");
-  FILE *rightPathFile = fopen(rightFilePath.c_str(), "w");
+  std::string filePath = makeFilePath(idirectory, ipathId + ".csv");
+  std::ofstream file;
+  file.open(filePath, std::ofstream::out);
 
   // Make sure we can open the file successfully
-  if (leftPathFile == NULL) {
-    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for writing");
-    if (rightPathFile != NULL) {
-      fclose(rightPathFile);
-    }
-    return;
-  }
-  if (rightPathFile == NULL) {
-    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for writing");
-    fclose(leftPathFile);
+  if (!file.good()) {
+    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + filePath + " for writing");
     return;
   }
 
-  internalStorePath(leftPathFile, rightPathFile, ipathId);
+  internalStorePath(file, ipathId);
 
-  fclose(leftPathFile);
-  fclose(rightPathFile);
+  file.close();
 }
 
 void AsyncMotionProfileController::loadPath(const std::string &idirectory,
                                             const std::string &ipathId) {
+  std::string squigglesPath = makeFilePath(idirectory, ipathId + ".csv");
   std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
   std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
-  FILE *leftPathFile = fopen(leftFilePath.c_str(), "r");
-  FILE *rightPathFile = fopen(rightFilePath.c_str(), "r");
+  
+  std::ifstream leftPathFile, rightPathFile, squigglesPathFile;
+  leftPathFile.open(leftFilePath, std::ifstream::in);
+  rightPathFile.open(rightFilePath, std::ifstream::in);
+  squigglesPathFile.open(squigglesPath, std::ifstream::in);
 
-  // Make sure we can open the file successfully
-  if (leftPathFile == NULL) {
-    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for reading");
-    if (rightPathFile != NULL) {
-      fclose(rightPathFile);
+  if (squigglesPathFile.good()) {
+    // give preference to a squiggles path stored for this id
+    internalLoadPath(squigglesPathFile, ipathId);
+    squigglesPathFile.close();
+  } else if (leftPathFile.good() && rightPathFile.good()) {
+    internalLoadPathfinderPath(leftPathFile, rightPathFile, ipathId);
+    leftPathFile.close();
+    rightPathFile.close();
+  } else {
+    // we don't have both pathfinder files available, check if there's one
+    if (rightPathFile.good()) {
+      LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for reading");
+      rightPathFile.close();
+      return;
+    } 
+    if (leftPathFile.good()) {
+      LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for reading");
+      leftPathFile.close();
+      return;
     }
-    return;
+    LOG_WARN("AsyncMotionProfileController: Couldn't find any path files for id " + ipathId);
   }
-  if (rightPathFile == NULL) {
-    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for reading");
-    fclose(leftPathFile);
-    return;
-  }
-
-  internalLoadPath(leftPathFile, rightPathFile, ipathId);
-
-  fclose(leftPathFile);
-  fclose(rightPathFile);
 }
 
-void AsyncMotionProfileController::internalStorePath(FILE *leftPathFile,
-                                                     FILE *rightPathFile,
+void AsyncMotionProfileController::internalStorePath(std::ostream &file,
                                                      const std::string &ipathId) {
   auto pathData = this->paths.find(ipathId);
 
@@ -381,39 +379,25 @@ void AsyncMotionProfileController::internalStorePath(FILE *leftPathFile,
              ipathId);
     // Do nothing- can't serialize nonexistent path
   } else {
-    // int len = pathData->second.size();
-
-    // Serialize paths
-    // TODO:
-    // pathfinder_serialize_csv(leftPathFile, pathData->second.left.get(), len);
-    // pathfinder_serialize_csv(rightPathFile, pathData->second.right.get(), len);
+    squiggles::serialize_path(file, pathData->second);
   }
 }
 
-void AsyncMotionProfileController::internalLoadPath(FILE *leftPathFile,
-                                                    FILE *rightPathFile,
+void AsyncMotionProfileController::internalLoadPath(std::istream &file,
                                                     const std::string &ipathId) {
-  // // Count lines in file, remove one for headers
-  // int count = 0;
-  // for (int c = getc(leftPathFile); c != EOF; c = getc(leftPathFile)) {
-  //   if (c == '\n') {
-  //     ++count;
-  //   }
-  // }
-  // --count;
-  // rewind(leftPathFile);
 
-  // // Allocate memory
-  // SegmentPtr leftTrajectory((Segment *)malloc(sizeof(Segment) * count), free);
-  // SegmentPtr rightTrajectory((Segment *)malloc(sizeof(Segment) * count), free);
+  auto path = squiggles::deserialize_path(file);
+  forceRemovePath(ipathId);
+  paths.emplace(ipathId, path.value());
+}
 
-  // pathfinder_deserialize_csv(leftPathFile, leftTrajectory.get());
-  // pathfinder_deserialize_csv(rightPathFile, rightTrajectory.get());
+void AsyncMotionProfileController::internalLoadPathfinderPath(std::istream &leftFile,
+                                                              std::istream &rightFile,
+                                                    const std::string &ipathId) {
 
-  // // Remove the old path if it exists
-  // forceRemovePath(ipathId);
-  // paths.emplace(ipathId,
-  //               TrajectoryPair{std::move(leftTrajectory), std::move(rightTrajectory), count});
+  auto path = squiggles::deserialize_pathfinder_path(leftFile, rightFile);
+  forceRemovePath(ipathId);
+  paths.emplace(ipathId, path.value());
 }
 
 std::string AsyncMotionProfileController::makeFilePath(const std::string &directory,
