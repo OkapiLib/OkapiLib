@@ -19,6 +19,7 @@ QUANTITY_TYPE(0, 0, -1, 1, QAngularSpeed)
 
 constexpr QAngularSpeed radps = radian / second;
 constexpr QAngularSpeed rpm = (360 * degree) / minute;
+constexpr QAngularSpeed cps = (0.01 * degree) / second; // centidegree per second
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-function"

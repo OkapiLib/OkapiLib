@@ -17,6 +17,7 @@
 #include "okapi/impl/device/motor/motorGroup.hpp"
 #include "okapi/impl/device/rotarysensor/adiEncoder.hpp"
 #include "okapi/impl/device/rotarysensor/integratedEncoder.hpp"
+#include "okapi/impl/device/rotarysensor/rotationSensor.hpp"
 #include "okapi/impl/util/timeUtilFactory.hpp"
 
 namespace okapi {
@@ -164,6 +165,27 @@ class ChassisControllerBuilder {
    */
   ChassisControllerBuilder &
   withSensors(const ADIEncoder &ileft, const ADIEncoder &iright, const ADIEncoder &imiddle);
+
+  /**
+   * Sets the sensors. The default sensors are the motor's integrated encoders.
+   *
+   * @param ileft The left side sensor.
+   * @param iright The right side sensor.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withSensors(const RotationSensor &ileft, const RotationSensor &iright);
+
+  /**
+   * Sets the sensors. The default sensors are the motor's integrated encoders.
+   *
+   * @param ileft The left side sensor.
+   * @param iright The right side sensor.
+   * @param imiddle The middle sensor.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withSensors(const RotationSensor &ileft,
+                                        const RotationSensor &iright,
+                                        const RotationSensor &imiddle);
 
   /**
    * Sets the sensors. The default sensors are the motor's integrated encoders.

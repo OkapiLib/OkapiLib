@@ -95,6 +95,18 @@ cd OkapiLib
 git submodule update --init --recursive
 ```
 
+To build OkapiLib for use with a V5 brain you need the arm-none-eabi toolchain which can be obtained [here](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads). OkapiLib is tested with version 7.3.1. Newer versions are not guaranteed to work. Once the toolchain is installed, you can build an installable OkapiLib template by running `make template` in the root of this repo. When building a local template, you should change the template version by setting the `VERSION` field in the makefile.
+
+To test OkapiLib, you will need a recent version of GCC and CMake installed. Then, from the root of this repo, run the following:
+```sh
+mkdir cmake-build-debug
+cd cmake-build-debug
+cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
+cmake --build . --target OkapiLibV5 -- -j 2
+chmod +x ./OkapiLibV5
+./OkapiLibV5
+```
+
 Unsure where to begin contributing? You can start by looking through [these issues](https://github.com/OkapiLib/OkapiLib/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
 
 ### Pull Requests
