@@ -181,16 +181,6 @@ add_executable(OkapiLibV5
         src/api/util/abstractTimer.cpp
         src/api/util/logging.cpp
         src/api/util/timeUtil.cpp
-        src/pathfinder/generator.c
-        src/pathfinder/io.c
-        src/pathfinder/mathutil.c
-        src/pathfinder/spline.c
-        src/pathfinder/trajectory.c
-        src/pathfinder/fit/hermite.c
-        src/pathfinder/followers/distance.c
-        src/pathfinder/followers/encoder.c
-        src/pathfinder/modifiers/swerve.c
-        src/pathfinder/modifiers/tank.c
         test/buttonTests.cpp
         test/controllerTests.cpp
         test/controlTests.cpp

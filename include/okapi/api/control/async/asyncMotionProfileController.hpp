@@ -19,10 +19,6 @@
 
 #include "squiggles.hpp"
 
-extern "C" {
-#include "okapi/pathfinder/include/pathfinder.h"
-}
-
 namespace okapi {
 class AsyncMotionProfileController : public AsyncPositionController<std::string, PathfinderPoint> {
   public:
@@ -265,18 +261,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   void forceRemovePath(const std::string &ipathId);
 
   protected:
-  // Keeping these around for loading old path types
-  using TrajectoryPtr = std::unique_ptr<TrajectoryCandidate, void (*)(TrajectoryCandidate *)>;
-  using SegmentPtr = std::unique_ptr<Segment, void (*)(void *)>;
-
-  struct TrajectoryPair {
-    SegmentPtr left;
-    SegmentPtr right;
-    int length;
-  };
-
   std::shared_ptr<Logger> logger;
-  // std::map<std::string, TrajectoryPair> paths{};
   std::map<std::string, std::vector<squiggles::ProfilePoint>> paths{};
   PathfinderLimits limits;
   std::shared_ptr<ChassisModel> model;
@@ -312,7 +297,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   QAngularSpeed convertLinearToRotational(QSpeed linear) const;
 
   std::string
-  getPathErrorMessage(const std::vector<Waypoint> &points, const std::string &ipathId, int length);
+  getPathErrorMessage(const std::vector<PathfinderPoint> &points, const std::string &ipathId, int length);
 
   /**
    * Joins and escapes a directory and file name

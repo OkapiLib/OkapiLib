@@ -84,12 +84,12 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
   LOG_DEBUG("AsyncMotionProfileController: Path length: " + std::to_string(path.size()));
 }
 
-std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<Waypoint> &points,
+std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<PathfinderPoint> &points,
                                                               const std::string &ipathId,
                                                               int length) {
-  auto pointToString = [](Waypoint point) {
-    return "PathfinderPoint{x=" + std::to_string(point.x) + ", y=" + std::to_string(point.y) +
-           ", theta=" + std::to_string(point.angle) + "}";
+  auto pointToString = [](PathfinderPoint point) {
+    return "PathfinderPoint{x=" + std::to_string(point.x.getValue()) + ", y=" + std::to_string(point.y.getValue()) +
+           ", theta=" + std::to_string(point.theta.getValue()) + "}";
   };
 
   return "The path (id " + ipathId + ", length " + std::to_string(length) +
@@ -97,7 +97,7 @@ std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<
          std::accumulate(std::next(points.begin()),
                          points.end(),
                          pointToString(points.at(0)),
-                         [&](std::string a, Waypoint b) { return a + ", " + pointToString(b); });
+                         [&](std::string a, PathfinderPoint b) { return a + ", " + pointToString(b); });
 }
 
 bool AsyncMotionProfileController::removePath(const std::string &ipathId) {

@@ -56,76 +56,38 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
     return;
   }
 
-  std::vector<Waypoint> points;
+  std::vector<squiggles::Pose> points;
   points.reserve(iwaypoints.size());
   for (auto &point : iwaypoints) {
-    points.push_back(Waypoint{point.convert(meter), 0, 0});
+    points.push_back(
+      squiggles::Pose{point.convert(meter), 0, 0});
   }
 
-  LOG_INFO_S("AsyncLinearMotionProfileController: Preparing trajectory");
+  LOG_INFO_S("AsyncMotionProfileController: Preparing trajectory");
 
-  TrajectoryPtr candidate(new TrajectoryCandidate, [](TrajectoryCandidate *c) {
-    if (c->laptr) {
-      free(c->laptr);
-    }
+  auto constraints = squiggles::Constraints(ilimits.maxVel, ilimits.maxAccel, ilimits.maxJerk);
+  auto splineGenerator = squiggles::SplineGenerator(constraints, 
+    std::make_shared<squiggles::PassthroughModel>(), 
+    0.01);
+  auto path = splineGenerator.generate(points);
 
-    if (c->saptr) {
-      free(c->saptr);
-    }
-
-    delete c;
-  });
-
-  pathfinder_prepare(points.data(),
-                     static_cast<int>(points.size()),
-                     FIT_HERMITE_CUBIC,
-                     PATHFINDER_SAMPLES_FAST,
-                     0.010,
-                     ilimits.maxVel,
-                     ilimits.maxAccel,
-                     ilimits.maxJerk,
-                     candidate.get());
-
-  const int length = candidate->length;
-
-  if (length < 0) {
-    std::string message = "AsyncLinearMotionProfileController: Length was negative. " +
-                          getPathErrorMessage(points, ipathId, length);
-
-    LOG_ERROR(message);
-    throw std::runtime_error(message);
-  }
-
-  SegmentPtr trajectory(static_cast<Segment *>(malloc(length * sizeof(Segment))), free);
-
-  if (trajectory == nullptr) {
-    std::string message = "AsyncLinearMotionProfileController: Could not allocate trajectory. " +
-                          getPathErrorMessage(points, ipathId, length);
-
-    LOG_ERROR(message);
-    throw std::runtime_error(message);
-  }
-
-  LOG_INFO_S("AsyncLinearMotionProfileController: Generating path");
-
-  pathfinder_generate(candidate.get(), trajectory.get());
 
   // Free the old path before overwriting it
   forceRemovePath(ipathId);
 
-  paths.emplace(ipathId, TrajectoryPair{std::move(trajectory), length});
+  paths.emplace(ipathId, path);
 
   LOG_INFO("AsyncLinearMotionProfileController: Completely done generating path " + ipathId);
-  LOG_DEBUG("AsyncLinearMotionProfileController: Path length: " + std::to_string(length));
+  LOG_DEBUG("AsyncLinearMotionProfileController: Path length: " + std::to_string(path.size()));
 }
 
 std::string
-AsyncLinearMotionProfileController::getPathErrorMessage(const std::vector<Waypoint> &points,
+AsyncLinearMotionProfileController::getPathErrorMessage(const std::vector<PathfinderPoint> &points,
                                                         const std::string &ipathId,
                                                         const int length) {
-  auto pointToString = [](Waypoint point) {
-    return "PathfinderPoint{x=" + std::to_string(point.x) + ", y=" + std::to_string(point.y) +
-           ", theta=" + std::to_string(point.angle) + "}";
+  auto pointToString = [](PathfinderPoint point) {
+    return "PathfinderPoint{x=" + std::to_string(point.x.getValue()) + ", y=" + std::to_string(point.y.getValue()) +
+           ", theta=" + std::to_string(point.theta.getValue()) + "}";
   };
 
   return "The path (id " + ipathId + ", length " + std::to_string(length) +
@@ -133,7 +95,7 @@ AsyncLinearMotionProfileController::getPathErrorMessage(const std::vector<Waypoi
          std::accumulate(std::next(points.begin()),
                          points.end(),
                          pointToString(points.at(0)),
-                         [&](std::string a, Waypoint b) { return a + ", " + pointToString(b); });
+                         [&](std::string a, PathfinderPoint b) { return a + ", " + pointToString(b); });
 }
 
 bool AsyncLinearMotionProfileController::removePath(const std::string &ipathId) {
@@ -214,7 +176,7 @@ void AsyncLinearMotionProfileController::loop() {
           currentPath);
       } else {
         LOG_DEBUG("AsyncLinearMotionProfileController: Path length is " +
-                  std::to_string(path->second.length));
+                  std::to_string(path->second.size()));
 
         executeSinglePath(path->second, timeUtil.getRate());
 
@@ -235,21 +197,21 @@ void AsyncLinearMotionProfileController::loop() {
   LOG_INFO_S("Stopped AsyncLinearMotionProfileController task.");
 }
 
-void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair &path,
+void AsyncLinearMotionProfileController::executeSinglePath(const std::vector<squiggles::ProfilePoint> &path,
                                                            std::unique_ptr<AbstractRate> rate) {
   const auto reversed = direction.load(std::memory_order_acquire);
 
-  const int pathLength = getPathLength(path);
-  for (int i = 0; i < pathLength && !isDisabled(); ++i) {
+  std::cout << std::to_string(path.size()) << std::endl;
+  for (std::size_t i = 0; i < path.size() && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
     // if a running path is asked to be removed at the moment this loop is executing
     std::scoped_lock lock(currentPathMutex);
 
-    const auto segDT = path.segment.get()[i].dt * second;
-    currentProfilePosition = path.segment.get()[i].position;
+    const auto segDT = path[i].time * millisecond;
+    currentProfilePosition = path[i].vector.pose.x;
 
     const auto motorRPM =
-      convertLinearToRotational(path.segment.get()[i].velocity * mps).convert(rpm);
+      convertLinearToRotational(path[i].vector.vel * mps).convert(rpm);
     output->controllerSet(motorRPM / toUnderlyingType(pair.internalGearset) * reversed);
 
     // Unlock before the delay to be nice to other tasks
@@ -257,11 +219,6 @@ void AsyncLinearMotionProfileController::executeSinglePath(const TrajectoryPair 
 
     rate->delayUntil(segDT);
   }
-}
-
-int AsyncLinearMotionProfileController::getPathLength(const TrajectoryPair &path) {
-  std::scoped_lock lock(currentPathMutex);
-  return path.length;
 }
 
 QAngularSpeed AsyncLinearMotionProfileController::convertLinearToRotational(QSpeed linear) const {
@@ -311,7 +268,7 @@ double AsyncLinearMotionProfileController::getError() const {
     return 0;
   } else {
     // The last position in the path is the target position
-    return path->second.segment.get()[path->second.length - 1].position - currentProfilePosition;
+    return path->second.back().vector.pose.x - currentProfilePosition;
   }
 }
 
