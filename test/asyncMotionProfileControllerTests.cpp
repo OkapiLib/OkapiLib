@@ -20,7 +20,7 @@ class MockAsyncMotionProfileController : public AsyncMotionProfileController {
 
   void executeSinglePath(const std::vector<squiggles::ProfilePoint> &path, std::unique_ptr<AbstractRate> rate) override {
     executeSinglePathCalled = true;
-    AsyncMotionProfileController::executeSinglePath(path, std::move(rate));
+    AsyncMotionProfileController::executeSinglePath(std::move(path), std::move(rate));
   }
 
   std::vector<squiggles::ProfilePoint> &getPathData(std::string ipathId) {

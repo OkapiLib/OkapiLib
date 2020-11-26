@@ -17,7 +17,7 @@ ExternalProject_Add(googletest
 
 ExternalProject_Add(squiggles
   GIT_REPOSITORY    https://github.com/baylessj/robotsquiggles.git
-  GIT_TAG           0.1.1
+  GIT_TAG           main
   SOURCE_DIR        "${CMAKE_BINARY_DIR}/squiggles-src"
   BINARY_DIR        "${CMAKE_BINARY_DIR}/squiggles-build"
   CONFIGURE_COMMAND ""

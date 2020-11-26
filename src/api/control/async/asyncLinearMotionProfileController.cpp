@@ -201,8 +201,11 @@ void AsyncLinearMotionProfileController::executeSinglePath(const std::vector<squ
                                                            std::unique_ptr<AbstractRate> rate) {
   const auto reversed = direction.load(std::memory_order_acquire);
 
-  std::cout << std::to_string(path.size()) << std::endl;
-  for (std::size_t i = 0; i < path.size() && !isDisabled(); ++i) {
+  std::scoped_lock pathLock(currentPathMutex);
+  // store this locally so we aren't accessing the path when we don't know if it's valid
+  std::size_t pathSize = path.size(); 
+  currentPathMutex.unlock();
+  for (std::size_t i = 0; i < pathSize && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
     // if a running path is asked to be removed at the moment this loop is executing
     std::scoped_lock lock(currentPathMutex);

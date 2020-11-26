@@ -78,7 +78,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
   // Free the old path before overwriting it
   forceRemovePath(ipathId);
 
-  paths.emplace(ipathId, path);
+  paths.insert({ipathId, path});
 
   LOG_INFO("AsyncMotionProfileController: Completely done generating path " + ipathId);
   LOG_DEBUG("AsyncMotionProfileController: Path length: " + std::to_string(path.size()));
@@ -197,8 +197,11 @@ void AsyncMotionProfileController::executeSinglePath(const std::vector<squiggles
   const int reversed = direction.load(std::memory_order_acquire);
   const bool followMirrored = mirrored.load(std::memory_order_acquire);
 
-
-  for (std::size_t i = 0; i < path.size() && !isDisabled(); ++i) {
+  std::scoped_lock pathLock(currentPathMutex);
+  // store this locally so we aren't accessing the path when we don't know if it's valid
+  std::size_t pathSize = path.size(); 
+  currentPathMutex.unlock();
+  for (std::size_t i = 0; i < pathSize && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
     // if a running path is asked to be removed at the moment this loop is executing
     std::scoped_lock lock(currentPathMutex);
