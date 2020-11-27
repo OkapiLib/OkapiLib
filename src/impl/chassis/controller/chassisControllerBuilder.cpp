@@ -413,6 +413,12 @@ ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisCo
 }
 
 std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
+  auto ccpidGearset = gearset;
+  auto ccpidDriveScales = driveScales;
+  if(differentOdomScales) {
+    ccpidDriveScales = odomScales;
+    ccpidGearset = AbstractMotor::gearset::green;
+  }
   auto out = std::make_shared<ChassisControllerPID>(
     chassisControllerTimeUtilFactory.create(),
     makeChassisModel(),
@@ -428,8 +434,8 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
                                                 closedLoopControllerTimeUtilFactory.create(),
                                                 std::move(angleFilter),
                                                 controllerLogger),
-    gearset,
-    driveScales,
+    ccpidGearset,
+    ccpidDriveScales,
     controllerLogger);
 
   out->startThread();
