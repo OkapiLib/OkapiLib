@@ -698,13 +698,16 @@ TEST_F(AsyncMotionProfileControllerTest, SaveLoadPath) {
     {PathfinderPoint{0_in, 0_in, 0_deg}, PathfinderPoint{3_ft, 0_in, 45_deg}}, "A");
   controller->internalStorePath(squigglesPathFile, "A");
 
-  int genPathLen = controller->getPathData("A").size();
+  auto startingPath = controller->getPathData("A");
 
   controller->removePath("A");
   controller->internalLoadPath(squigglesPathFile, "A");
   EXPECT_EQ(controller->getPaths().front(), "A");
   EXPECT_EQ(controller->getPaths().size(), 1);
-  EXPECT_EQ(controller->getPathData("A").size(), genPathLen);
+  auto loadedPath = controller->getPathData("A");
+  for (std::size_t i = 0; i < startingPath.size(); ++i) {
+    ASSERT_EQ(loadedPath[i], startingPath[i]);
+  }
 
   controller->setTarget("A");
   EXPECT_EQ(controller->getTarget(), "A");

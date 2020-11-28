@@ -63,7 +63,7 @@ void AsyncLinearMotionProfileController::generatePath(std::initializer_list<QLen
       squiggles::Pose{point.convert(meter), 0, 0});
   }
 
-  LOG_INFO_S("AsyncMotionProfileController: Preparing trajectory");
+  LOG_INFO_S("AsyncLinearMotionProfileController: Preparing trajectory");
 
   auto constraints = squiggles::Constraints(ilimits.maxVel, ilimits.maxAccel, ilimits.maxJerk);
   auto splineGenerator = squiggles::SplineGenerator(constraints, 

@@ -339,20 +339,23 @@ void AsyncMotionProfileController::storePath(const std::string &idirectory,
 
 void AsyncMotionProfileController::loadPath(const std::string &idirectory,
                                             const std::string &ipathId) {
-  std::string squigglesPath = makeFilePath(idirectory, ipathId + ".csv");
-  std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
-  std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
-  
-  std::ifstream leftPathFile, rightPathFile, squigglesPathFile;
-  leftPathFile.open(leftFilePath, std::ifstream::in);
-  rightPathFile.open(rightFilePath, std::ifstream::in);
+  std::string squigglesPath = makeFilePath(idirectory, ipathId + ".csv");  
+  std::ifstream squigglesPathFile;
   squigglesPathFile.open(squigglesPath, std::ifstream::in);
-
   if (squigglesPathFile.good()) {
     // give preference to a squiggles path stored for this id
     internalLoadPath(squigglesPathFile, ipathId);
     squigglesPathFile.close();
-  } else if (leftPathFile.good() && rightPathFile.good()) {
+    return;
+  }
+
+  // There's no Squiggles path, let's check for Pathfinder files
+  std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
+  std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
+  std::ifstream leftPathFile, rightPathFile;
+  leftPathFile.open(leftFilePath, std::ifstream::in);
+  rightPathFile.open(rightFilePath, std::ifstream::in);
+  if (leftPathFile.good() && rightPathFile.good()) {
     internalLoadPathfinderPath(leftPathFile, rightPathFile, ipathId);
     leftPathFile.close();
     rightPathFile.close();
