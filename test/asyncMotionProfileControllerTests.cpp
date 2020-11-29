@@ -6,7 +6,12 @@
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
 #include "test/tests/api/implMocks.hpp"
 #include <fstream>
-#include <filesystem>
+#ifdef WINDOWS
+    #include <direct.h>
+    #define getcwd _getcwd
+#else
+    #include <unistd.h>
+ #endif
 #include <gtest/gtest.h>
 
 using namespace okapi;
@@ -34,12 +39,18 @@ class MockAsyncMotionProfileController : public AsyncMotionProfileController {
 
 class AsyncMotionProfileControllerTest : public ::testing::Test {
   protected:
+  std::string get_working_path() {
+   char temp[FILENAME_MAX];
+   return ( getcwd(temp, sizeof(temp)) ? std::string( temp ) : std::string("") );
+  }
+
   void SetUp() override {
     squigglesPathFile = std::stringstream(squigglesFileBuf);
-    std::filesystem::path leftFilePath = std::filesystem::current_path() / "../test/leftFile.csv";
-    std::filesystem::path rightFilePath = std::filesystem::current_path() / "../test/rightFile.csv";
-    leftPathFile = std::ifstream(leftFilePath.string());
-    rightPathFile = std::ifstream(rightFilePath.string());
+    auto leftFilePath = get_working_path() + "/../test/leftFile.csv";
+    auto rightFilePath = get_working_path() + "/../test/rightFile.csv";
+    std::cout << leftFilePath << std::endl;
+    leftPathFile = std::ifstream(leftFilePath);
+    rightPathFile = std::ifstream(rightFilePath);
 
     leftMotor = std::make_shared<MockMotor>();
     rightMotor = std::make_shared<MockMotor>();
