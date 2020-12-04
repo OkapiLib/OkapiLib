@@ -29,12 +29,12 @@ EXCLUDE_SRC_FROM_LIB+= $(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize 
 
 # Added to the local makefile to ensure that we don't try to download the 
 # Squiggles source files for projects including Okapi as a template
-DOWNLOAD_SQUIGGLES:=$(shell mkdir -p cmake-build-debug && cd cmake-build-debug && cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" .. && mkdir -p ../src/squiggles && find ./squiggles-src/src -type f -name '*.cpp' ! -name 'main.cpp' | xargs cp -t ../src/squiggles && cp -r ./squiggles-src/include ../include/squiggles && cd ..)
+DOWNLOAD_SQUIGGLES:=$(shell mkdir -p cmake-build-debug && cd cmake-build-debug && cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" .. && mkdir -p ../src/squiggles && find ./squiggles-src/src -type f -name '*.cpp' ! -name 'main.cpp' | xargs cp -t ../src/squiggles && cp -r ./squiggles-src/include ../include/okapi/squiggles && cd ..)
 
 # files that get distributed to every user (beyond your source archive) - add
 # whatever files you want here. This line is configured to add all header files
 # that are in the the include directory get exported
-TEMPLATE_FILES=$(INCDIR)/okapi/**/*.h $(INCDIR)/okapi/**/*.hpp $(INCDIR)/squiggles/**/*.hpp $(FWDIR)/squiggles.mk
+TEMPLATE_FILES=$(INCDIR)/okapi/**/*.h $(INCDIR)/okapi/**/*.hpp $(FWDIR)/squiggles.mk
 
 .DEFAULT_GOAL=quick
 

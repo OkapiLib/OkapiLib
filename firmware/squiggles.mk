@@ -1,1 +1,1 @@
-INCLUDE+=-iquote"$(ROOT)/include/squiggles"
+INCLUDE+=-iquote"$(ROOT)/include/okapi/squiggles"
