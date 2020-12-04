@@ -22,4 +22,5 @@ venv/
 *.d/
 build/
 src/squiggles/
+include/squiggles/
 verify-template/
