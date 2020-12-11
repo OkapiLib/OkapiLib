@@ -267,12 +267,13 @@ ChassisControllerBuilder::withOdometry(std::shared_ptr<Odometry> iodometry,
 }
 
 ChassisControllerBuilder &
-ChassisControllerBuilder::withDimensions(const AbstractMotor::gearset &igearset,
+ChassisControllerBuilder::withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
                                          const ChassisScales &iscales) {
-  gearset = igearset;
+  gearset.internalGearset = igearset.internalGearset;
+  gearset.ratio = igearset.ratio;
 
   if (!maxVelSetByUser) {
-    maxVelocity = toUnderlyingType(igearset);
+    maxVelocity = toUnderlyingType(igearset.internalGearset);
   }
 
   driveScales = iscales;
@@ -464,16 +465,19 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
     break;
   }
 
+  // The chassis controller will handle the conversion of distance to motor
+  // position in terms of external gear ratio, so the controllers should
+  // be set to a ratio of 1.0
   return std::make_shared<ChassisControllerIntegrated>(
     chassisControllerTimeUtilFactory.create(),
     makeChassisModel(),
     std::make_unique<AsyncPosIntegratedController>(leftMotorGroup,
-                                                   gearset,
+                                                   AbstractMotor::GearsetRatioPair(gearset.internalGearset, 1.0),
                                                    maxVelocity,
                                                    closedLoopControllerTimeUtilFactory.create(),
                                                    controllerLogger),
     std::make_unique<AsyncPosIntegratedController>(rightMotorGroup,
-                                                   gearset,
+                                                   AbstractMotor::GearsetRatioPair(gearset.internalGearset, 1.0),
                                                    maxVelocity,
                                                    closedLoopControllerTimeUtilFactory.create(),
                                                    controllerLogger),

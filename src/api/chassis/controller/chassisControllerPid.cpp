@@ -118,6 +118,7 @@ void ChassisControllerPID::trampoline(void *context) {
 
 void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   LOG_INFO("ChassisControllerPID: moving " + std::to_string(itarget.convert(meter)) + " meters");
+  LOG_DEBUG("ChassisControllerPID: straight " + std::to_string(scales.straight) + " ratio " + std::to_string(gearsetRatioPair.ratio));
 
   distancePid->reset();
   anglePid->reset();
@@ -126,7 +127,7 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   turnPid->flipDisable(true);
   mode = distance;
 
-  const double newTarget = itarget.convert(meter) * scales.straight * gearsetRatioPair.ratio;
+  const double newTarget = itarget.convert(meter) * scales.straight;
 
   LOG_INFO("ChassisControllerPID: moving " + std::to_string(newTarget) + " motor ticks");
 
@@ -155,6 +156,7 @@ void ChassisControllerPID::moveRaw(const double itarget) {
 void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   LOG_INFO("ChassisControllerPID: turning " + std::to_string(idegTarget.convert(degree)) +
            " degrees");
+  LOG_DEBUG("ChassisControllerPID: straight " + std::to_string(scales.turn) + " ratio " + std::to_string(gearsetRatioPair.ratio));
 
   turnPid->reset();
   turnPid->flipDisable(false);
@@ -163,7 +165,7 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   mode = angle;
 
   const double newTarget =
-    idegTarget.convert(degree) * scales.turn * gearsetRatioPair.ratio * boolToSign(normalTurns);
+    idegTarget.convert(degree) * scales.turn * boolToSign(normalTurns);
 
   LOG_INFO("ChassisControllerPID: turning " + std::to_string(newTarget) + " motor ticks");
 

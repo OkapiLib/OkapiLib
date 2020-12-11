@@ -50,7 +50,7 @@ double AsyncPosIntegratedController::getProcessValue() const {
 }
 
 double AsyncPosIntegratedController::getError() const {
-  return (lastTarget + offset) - getProcessValue() / pair.ratio;
+  return (lastTarget + offset) - (getProcessValue() / pair.ratio);
 }
 
 bool AsyncPosIntegratedController::isSettled() {
