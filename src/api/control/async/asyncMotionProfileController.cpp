@@ -71,7 +71,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
   auto constraints = squiggles::Constraints(ilimits.maxVel, ilimits.maxAccel, ilimits.maxJerk);
   auto splineGenerator = squiggles::SplineGenerator(constraints, 
     std::make_shared<squiggles::TankModel>(scales.wheelTrack.convert(meter), constraints), 
-    0.01);
+    DT);
   auto path = splineGenerator.generate(points);
 
 
@@ -197,7 +197,7 @@ void AsyncMotionProfileController::executeSinglePath(const std::vector<squiggles
   const int reversed = direction.load(std::memory_order_acquire);
   const bool followMirrored = mirrored.load(std::memory_order_acquire);
 
-  std::scoped_lock pathLock(currentPathMutex);
+  currentPathMutex.lock();
   // store this locally so we aren't accessing the path when we don't know if it's valid
   std::size_t pathSize = path.size(); 
   currentPathMutex.unlock();
@@ -206,7 +206,7 @@ void AsyncMotionProfileController::executeSinglePath(const std::vector<squiggles
     // if a running path is asked to be removed at the moment this loop is executing
     std::scoped_lock lock(currentPathMutex);
 
-    const auto segDT = path[i].time * second;
+    const auto segDT = DT * second;
     const auto leftRPM = convertLinearToRotational(path[i].wheel_velocities[0] * mps).convert(rpm);
     const auto rightRPM =
       convertLinearToRotational(path[i].wheel_velocities[1] * mps).convert(rpm);

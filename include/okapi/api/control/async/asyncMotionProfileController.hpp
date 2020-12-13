@@ -312,5 +312,7 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   void internalStorePath(std::ostream &file, const std::string &ipathId);
   void internalLoadPath(std::istream &file, const std::string &ipathId);
   void internalLoadPathfinderPath(std::istream &leftFile, std::istream &rightFile, const std::string &ipathId);
+
+  static constexpr double DT = 0.01; 
 };
 } // namespace okapi

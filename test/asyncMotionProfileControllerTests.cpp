@@ -27,7 +27,7 @@ class MockAsyncMotionProfileController : public AsyncMotionProfileController {
 
   void executeSinglePath(const std::vector<squiggles::ProfilePoint> &path, std::unique_ptr<AbstractRate> rate) override {
     executeSinglePathCalled = true;
-    AsyncMotionProfileController::executeSinglePath(std::move(path), std::move(rate));
+    AsyncMotionProfileController::executeSinglePath(path, std::move(rate));
   }
 
   std::vector<squiggles::ProfilePoint> &getPathData(std::string ipathId) {
@@ -48,7 +48,6 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
     squigglesPathFile = std::stringstream(squigglesFileBuf);
     auto leftFilePath = get_working_path() + "/../test/leftFile.csv";
     auto rightFilePath = get_working_path() + "/../test/rightFile.csv";
-    std::cout << leftFilePath << std::endl;
     leftPathFile = std::ifstream(leftFilePath);
     rightPathFile = std::ifstream(rightFilePath);
 
