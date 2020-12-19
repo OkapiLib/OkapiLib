@@ -63,7 +63,7 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
   points.reserve(iwaypoints.size());
   for (auto &point : iwaypoints) {
     points.push_back(
-      squiggles::Pose{point.x.convert(meter), point.y.convert(meter), point.theta.convert(radian)});
+      squiggles::Pose{point.x.convert(meter), -1 * point.y.convert(meter), point.theta.convert(radian)});
   }
 
   LOG_INFO_S("AsyncMotionProfileController: Preparing trajectory");
