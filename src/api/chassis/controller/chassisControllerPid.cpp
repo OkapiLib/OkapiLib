@@ -32,7 +32,6 @@ ChassisControllerPID::ChassisControllerPID(
     LOG_ERROR(msg);
     throw std::invalid_argument(msg);
   }
-
   chassisModel->setGearing(igearset.internalGearset);
   chassisModel->setEncoderUnits(AbstractMotor::encoderUnits::counts);
 }
@@ -118,6 +117,7 @@ void ChassisControllerPID::trampoline(void *context) {
 
 void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   LOG_INFO("ChassisControllerPID: moving " + std::to_string(itarget.convert(meter)) + " meters");
+  LOG_DEBUG("ChassisControllerPID: straight " + std::to_string(scales.straight) + " ratio " + std::to_string(gearsetRatioPair.ratio));
 
   distancePid->reset();
   anglePid->reset();
@@ -155,6 +155,7 @@ void ChassisControllerPID::moveRaw(const double itarget) {
 void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   LOG_INFO("ChassisControllerPID: turning " + std::to_string(idegTarget.convert(degree)) +
            " degrees");
+  LOG_DEBUG("ChassisControllerPID: scales.turn " + std::to_string(scales.turn) + " ratio " + std::to_string(gearsetRatioPair.ratio));
 
   turnPid->reset();
   turnPid->flipDisable(false);

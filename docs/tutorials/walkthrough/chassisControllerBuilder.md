@@ -78,8 +78,8 @@ ChassisControllerBuilder()
 
 ```cpp
 ChassisControllerBuilder()
-    // Green gearset, external ratio of (2.0 / 3.0), 4 inch wheel diameter, 11.5 inch wheelbase
-    .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR * (2.0 / 3.0)})
+    // Green gearset, external ratio of (36.0 / 60.0), 4 inch wheel diameter, 11.5 inch wheelbase
+    .withDimensions({AbstractMotor::gearset::green, (36.0 / 60.0)}, {{4_in, 11.5_in}, imev5GreenTPR})
 ```
 
 ### Gearset and raw scales:
