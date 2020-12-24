@@ -590,6 +590,9 @@ class MockChassisController : public ChassisController {
   void moveDistanceAsync(QLength itarget) override {
     moveDistance(itarget);
   }
+  void moveDistanceIterative(QLength idistError, QAngle idegError) override {
+    moveDistanceAsync(idistError);
+  }
   void moveRawAsync(double itarget) override {
     moveRaw(itarget);
   }
@@ -601,6 +604,9 @@ class MockChassisController : public ChassisController {
   }
   void turnAngleAsync(QAngle idegTarget) override {
     turnAngle(idegTarget);
+  }
+  void turnAngleIterative(QAngle idegError) override {
+    turnAngleAsync(idegError);
   }
   void turnRawAsync(double idegTarget) override {
     turnRaw(idegTarget);
