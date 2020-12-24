@@ -70,6 +70,25 @@ class ChassisControllerIntegrated : public ChassisController {
   void moveDistanceAsync(QLength itarget) override;
 
   /**
+   * Runs a step of a PID loop for the supplied distance and heading error.
+   *
+   * ```cpp
+   * Point targetPoint = Point({1_ft, 1_ft});
+   * do {
+   *   QAngle targetAngle = OdomMath::computeAngleToPoint(targetPoint, chassis->getState());
+   *   QAngle headingError = OdomMath::constrainAngle180(targetAngle - chassis->getState().theta);
+   *   QLength targetDist = OdomMath::computeDistanceToPoint(targetPoint, chassis->getState());
+   *   chassis->moveDistanceIterative(targetDist, headingError);
+   *   pros::delay(20);
+   * } while(!chassis->isSettled());
+   * ```
+   *
+   * @param idistError The error to the target distance
+   * @param idegError The error to heading angle
+   */
+  void moveDistanceIterative(QLength idistError, QAngle idegError) override;
+
+  /**
    * Sets the target distance for the robot to drive straight (using closed-loop control).
    *
    * @param itarget distance to travel in motor degrees
@@ -106,6 +125,22 @@ class ChassisControllerIntegrated : public ChassisController {
    * @param idegTarget angle to turn for
    */
   void turnAngleAsync(QAngle idegTarget) override;
+
+  /**
+   * Runs a step of a PID loop for the supplied turn angle error.
+   *
+   * ```cpp
+   * // Turn to face 90 degrees
+   * QAngle targetAngle = 90_deg;
+   * do {
+   *   chassis->turnAngleIterative(targetAngle - chassis->getState().theta);
+   *   pros::delay(20);
+   * } while(!chassis->isSettled());
+   * ```
+   *
+   * @param idegError The error to target angle
+   */
+  void turnAngleIterative(QAngle idegError) override;
 
   /**
    * Sets the target angle for the robot to turn clockwise in place (using closed-loop control).

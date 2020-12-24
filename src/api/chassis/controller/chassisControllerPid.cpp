@@ -137,6 +137,39 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   newMovement.store(true, std::memory_order_release);
 }
 
+void ChassisControllerPID::moveDistanceIterative(const QLength idistError, const QAngle idegError) {
+  LOG_INFO("ChassisControllerPID: move iterative " + std::to_string(idistError.convert(meter)) + " meters "
+          + std::to_string(idegError.convert(degree)) +
+           " degrees");
+  LOG_DEBUG("ChassisControllerPID: scales.turn " + std::to_string(scales.turn) + " ratio " + std::to_string(gearsetRatioPair.ratio));
+
+  const double newTarget = idistError.convert(meter) * scales.straight * gearsetRatioPair.ratio;
+
+  if(mode != distanceIterative) {
+    doneLooping.store(true, std::memory_order_release);
+    newMovement.store(false, std::memory_order_release);
+    distancePid->reset();
+    anglePid->reset();
+    distancePid->flipDisable(false);
+    anglePid->flipDisable(false);
+    turnPid->flipDisable(true);
+    distancePid->setTarget(0);
+    anglePid->setTarget(0);
+  }
+  mode = distanceIterative;
+
+  LOG_INFO("ChassisControllerPID: move iteratively " + std::to_string(newTarget) + " motor ticks");
+
+  distancePid->step(newTarget);
+  anglePid->step(idegError.convert(radian));
+
+  if (velocityMode) {
+    chassisModel->driveVector(distancePid->getOutput(), anglePid->getOutput());
+  } else {
+    chassisModel->driveVectorVoltage(distancePid->getOutput(), anglePid->getOutput());
+  }
+}
+
 void ChassisControllerPID::moveRawAsync(const double itarget) {
   // Divide by straightScale so the final result turns back into motor ticks
   moveDistanceAsync((itarget / scales.straight) * meter);
@@ -172,6 +205,37 @@ void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
 
   doneLooping.store(false, std::memory_order_release);
   newMovement.store(true, std::memory_order_release);
+}
+
+void ChassisControllerPID::turnAngleIterative(const QAngle idegError) {
+  LOG_INFO("ChassisControllerPID: turn iterative " + std::to_string(idegError.convert(degree)) +
+           " degrees");
+  LOG_DEBUG("ChassisControllerPID: scales.turn " + std::to_string(scales.turn) + " ratio " + std::to_string(gearsetRatioPair.ratio));
+
+  const double newTarget =
+    idegError.convert(degree) * scales.turn * gearsetRatioPair.ratio * boolToSign(normalTurns);
+
+  if(mode != angleIterative) {
+    doneLooping.store(true, std::memory_order_release);
+    newMovement.store(false, std::memory_order_release);
+    turnPid->reset();
+    turnPid->flipDisable(false);
+    distancePid->flipDisable(true);
+    anglePid->flipDisable(true);
+    turnPid->setTarget(0);
+  }
+  mode = angleIterative;
+
+  LOG_INFO("ChassisControllerPID: turn iteratively " + std::to_string(newTarget) + " motor ticks");
+
+  turnPid->step(newTarget);
+
+  if (velocityMode) {
+    chassisModel->driveVector(0, turnPid->getOutput());
+  } else {
+    chassisModel->driveVectorVoltage(0, turnPid->getOutput());
+  }
+
 }
 
 void ChassisControllerPID::turnRawAsync(const double idegTarget) {

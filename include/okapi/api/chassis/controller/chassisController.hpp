@@ -49,6 +49,14 @@ class ChassisController {
   virtual void moveDistanceAsync(QLength itarget) = 0;
 
   /**
+   * Runs a step of a PID loop for the supplied distance and heading error.
+   *
+   * @param idistError The error to the target distance
+   * @param idegError The error to heading angle
+   */
+  virtual void moveDistanceIterative(QLength idistError, QAngle idegError) = 0;
+
+  /**
    * Sets the target distance for the robot to drive straight (using closed-loop control).
    *
    * @param itarget distance to travel in motor degrees
@@ -75,6 +83,13 @@ class ChassisController {
    * @param idegTarget angle to turn for
    */
   virtual void turnAngleAsync(QAngle idegTarget) = 0;
+
+  /**
+   * Runs a step of a PID loop for the supplied turn angle error.
+   *
+   * @param idegError The error to target angle
+   */
+  virtual void turnAngleIterative(QAngle idegError) = 0;
 
   /**
    * Sets the target angle for the robot to turn clockwise in place (using closed-loop control).

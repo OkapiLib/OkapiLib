@@ -110,6 +110,10 @@ void DefaultOdomChassisController::moveDistanceAsync(QLength itarget) {
   controller->moveDistanceAsync(itarget);
 }
 
+void DefaultOdomChassisController::moveDistanceIterative(QLength idistError, QAngle idegError) {
+  controller->moveDistanceIterative(idistError, idegError);
+}
+
 void DefaultOdomChassisController::moveRawAsync(double itarget) {
   controller->moveRawAsync(itarget);
 }
@@ -124,6 +128,10 @@ void DefaultOdomChassisController::turnRaw(double idegTarget) {
 
 void DefaultOdomChassisController::turnAngleAsync(QAngle idegTarget) {
   controller->turnAngleAsync(idegTarget);
+}
+
+void DefaultOdomChassisController::turnAngleIterative(QAngle idegError) {
+  controller->turnAngleIterative(idegError);
 }
 
 void DefaultOdomChassisController::turnRawAsync(double idegTarget) {

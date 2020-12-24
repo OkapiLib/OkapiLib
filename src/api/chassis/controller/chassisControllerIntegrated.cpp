@@ -63,6 +63,10 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
   rightController->setTarget(newTarget + rightController->getProcessValue());
 }
 
+void ChassisControllerIntegrated::moveDistanceIterative(const QLength idistError, const QAngle idegError) {
+  moveDistanceAsync(idistError);
+}
+
 void ChassisControllerIntegrated::moveRawAsync(const double itarget) {
   // Divide by straightScale so the final result turns back into motor ticks
   moveDistanceAsync((itarget / scales.straight) * meter);
@@ -94,6 +98,10 @@ void ChassisControllerIntegrated::turnAngleAsync(const QAngle idegTarget) {
 
   leftController->setTarget(newTarget + leftController->getProcessValue());
   rightController->setTarget(-1 * newTarget + rightController->getProcessValue());
+}
+
+void ChassisControllerIntegrated::turnAngleIterative(const QAngle idegError) {
+  turnAngleAsync(idegError);
 }
 
 void ChassisControllerIntegrated::turnRawAsync(const double idegTarget) {

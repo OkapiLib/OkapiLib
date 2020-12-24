@@ -96,12 +96,22 @@ class DefaultOdomChassisController : public OdomChassisController {
   /**
    * This delegates to the input ChassisController.
    */
+  void moveDistanceIterative(QLength idistError, QAngle idegError) override;
+
+  /**
+   * This delegates to the input ChassisController.
+   */
   void moveRawAsync(double itarget) override;
 
   /**
    * This delegates to the input ChassisController.
    */
   void turnAngle(QAngle idegTarget) override;
+
+  /**
+   * This delegates to the input ChassisController.
+   */
+  void turnAngleIterative(QAngle idegError) override;
 
   /**
    * This delegates to the input ChassisController.
