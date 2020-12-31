@@ -305,8 +305,8 @@ TEST_F(AsyncMotionProfileControllerTest, FollowPathNotMirrored) {
 
   EXPECT_NE(leftMotor->lastVelocity, 0);
   EXPECT_NE(rightMotor->lastVelocity, 0);
-  EXPECT_GT(rightMotor->maxVelocity, leftMotor->maxVelocity);
-
+  EXPECT_GT(leftMotor->maxVelocity, rightMotor->maxVelocity);
+  
   // Disable the controller so gtest doesn't clean up the test fixture while the internal thread is
   // still running
   controller->flipDisable(true);
@@ -327,7 +327,7 @@ TEST_F(AsyncMotionProfileControllerTest, FollowPathMirrored) {
 
   EXPECT_NE(leftMotor->lastVelocity, 0);
   EXPECT_NE(rightMotor->lastVelocity, 0);
-  EXPECT_GT(leftMotor->maxVelocity, rightMotor->maxVelocity);
+  EXPECT_GT(rightMotor->maxVelocity, leftMotor->maxVelocity);
 
   // Disable the controller so gtest doesn't clean up the test fixture while the internal thread is
   // still running

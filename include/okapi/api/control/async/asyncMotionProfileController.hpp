@@ -66,6 +66,10 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * If the waypoints form a path which is impossible to achieve, an instance of
    * `std::runtime_error` is thrown (and an error is logged) which describes the waypoints. If there
    * are no waypoints, no path is generated.
+   * 
+   * NOTE: The waypoints are expected to be in the 
+   * okapi::State::FRAME_TRANSFORMATION format where +x is forward, +y is right,
+   * and 0 theta is measured from the +x axis to the +y axis.
    *
    * @param iwaypoints The waypoints to hit on the path.
    * @param ipathId A unique identifier to save the path with.
