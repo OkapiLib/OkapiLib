@@ -64,7 +64,25 @@ void ChassisControllerIntegrated::moveDistanceAsync(const QLength itarget) {
 }
 
 void ChassisControllerIntegrated::moveDistanceIterative(const QLength idistError, const QAngle idegError) {
-  moveDistanceAsync(idistError);
+  LOG_DEBUG("ChassisControllerIntegrated: iteratively moving " + std::to_string(idistError.convert(meter)) +
+           " meters and " + std::to_string(idegError.convert(degree)) +
+           " degrees");
+
+  leftController->reset();
+  rightController->reset();
+  leftController->flipDisable(false);
+  rightController->flipDisable(false);
+
+  // Combine logic from moveDistanceAsync and turnAngleAsync
+  const double newTarget = idistError.convert(meter) * scales.straight * gearsetRatioPair.ratio;
+  const double newAngleTarget =
+    idegError.convert(degree) * scales.turn * gearsetRatioPair.ratio * boolToSign(normalTurns);
+
+  LOG_DEBUG("ChassisControllerIntegrated: iteratively moving " + std::to_string(newTarget)  + 
+          " +/- " + std::to_string(newAngleTarget) + " motor ticks");
+
+  leftController->setTarget(newTarget + newAngleTarget + leftController->getProcessValue());
+  rightController->setTarget(newTarget - newAngleTarget + rightController->getProcessValue());
 }
 
 void ChassisControllerIntegrated::moveRawAsync(const double itarget) {
