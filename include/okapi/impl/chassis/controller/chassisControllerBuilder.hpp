@@ -318,7 +318,7 @@ class ChassisControllerBuilder {
    * @param iscales The ChassisScales for the base.
    * @return An ongoing builder.
    */
-  ChassisControllerBuilder &withDimensions(const AbstractMotor::gearset &igearset,
+  ChassisControllerBuilder &withDimensions(const AbstractMotor::GearsetRatioPair &igearset,
                                            const ChassisScales &iscales);
 
   /**
@@ -474,7 +474,7 @@ class ChassisControllerBuilder {
   TimeUtilFactory closedLoopControllerTimeUtilFactory = TimeUtilFactory();
   TimeUtilFactory odometryTimeUtilFactory = TimeUtilFactory();
 
-  AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::invalid};
+  AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::invalid,1.0};
   ChassisScales driveScales{{1, 1}, imev5GreenTPR};
   bool differentOdomScales{false};
   ChassisScales odomScales{{1, 1}, imev5GreenTPR};
