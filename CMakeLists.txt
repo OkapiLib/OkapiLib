@@ -53,7 +53,7 @@ foreach(dir ${dirs})
   message(STATUS "dir='${dir}'")
 endforeach()
 
-include_directories(${CMAKE_BINARY_DIR}/squiggles-src/include)
+include_directories(${CMAKE_BINARY_DIR}/squiggles-src/main/include)
 include_directories(include)
 
 add_executable(OkapiLibV5
