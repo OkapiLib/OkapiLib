@@ -418,7 +418,7 @@ std::string AsyncMotionProfileController::makeFilePath(const std::string &direct
       // There's a usd, but no beginning slash
       path.insert(0, "/"); // We just need a slash
     } else {               // There's nothing at all
-      if (path.front() == '/') {
+      if (!path.empty() && path.front() == '/') {
         // Don't double up on slashes
         path.insert(0, "/usd");
       } else {
