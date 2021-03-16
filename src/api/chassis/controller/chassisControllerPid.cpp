@@ -17,8 +17,12 @@ ChassisControllerPID::ChassisControllerPID(
   std::unique_ptr<IterativePosPIDController> iangleController,
   const AbstractMotor::GearsetRatioPair &igearset,
   const ChassisScales &iscales,
-  std::shared_ptr<Logger> ilogger)
+  std::shared_ptr<Logger> ilogger,
+  double imaxDistanceRate,
+  double imaxTurningRate)
   : logger(std::move(ilogger)),
+    maxDistanceRate(imaxDistanceRate),
+    maxTurningRate(imaxTurningRate),
     chassisModel(std::move(ichassisModel)),
     timeUtil(std::move(itimeUtil)),
     distancePid(std::move(idistanceController)),
@@ -49,6 +53,8 @@ void ChassisControllerPID::loop() {
   double distanceElapsed = 0, angleChange = 0;
   modeType pastMode = none;
   auto rate = timeUtil.getRate();
+  double DistanceRate = 0;
+  double TurnRate = 0;
 
   while (!dtorCalled.load(std::memory_order_acquire) && !task->notifyTake(0)) {
     /**
@@ -61,7 +67,9 @@ void ChassisControllerPID::loop() {
       if (mode != pastMode || newMovement.load(std::memory_order_acquire)) {
         encStartVals = chassisModel->getSensorVals();
         newMovement.store(false, std::memory_order_release);
-      }
+        DistanceRate = 0;
+        TurnRate = 0;
+      } 
 
       switch (mode) {
       case distance:
@@ -72,10 +80,20 @@ void ChassisControllerPID::loop() {
         distancePid->step(distanceElapsed);
         anglePid->step(angleChange);
 
-        if (velocityMode) {
-          chassisModel->driveVector(distancePid->getOutput(), anglePid->getOutput());
+        if (distancePid->getOutput() > DistanceRate) {
+          DistanceRate += maxDistanceRate;
+        } else if (distancePid->getOutput() < DistanceRate) {
+          DistanceRate -= maxDistanceRate;
         } else {
-          chassisModel->driveVectorVoltage(distancePid->getOutput(), anglePid->getOutput());
+          DistanceRate = 0;
+        }
+
+        LOG_ERROR(std::to_string(DistanceRate) + "  " + std::to_string(distancePid->getOutput()));
+
+        if (velocityMode) {
+          chassisModel->driveVector(DistanceRate, anglePid->getOutput());
+        } else {
+          chassisModel->driveVectorVoltage(DistanceRate, anglePid->getOutput());
         }
 
         break;
@@ -86,10 +104,20 @@ void ChassisControllerPID::loop() {
 
         turnPid->step(angleChange);
 
-        if (velocityMode) {
-          chassisModel->driveVector(0, turnPid->getOutput());
+        if (turnPid->getOutput() > TurnRate) {
+          TurnRate += maxTurningRate;
+        } else if (turnPid->getOutput() < TurnRate) {
+          TurnRate -= maxTurningRate;
         } else {
-          chassisModel->driveVectorVoltage(0, turnPid->getOutput());
+          TurnRate = 0;
+        }
+
+        LOG_ERROR(std::to_string(TurnRate) + "  " + std::to_string(turnPid->getOutput()));
+
+        if (velocityMode) {
+          chassisModel->driveVector(0, TurnRate);
+        } else {
+          chassisModel->driveVectorVoltage(0, TurnRate);
         }
 
         break;

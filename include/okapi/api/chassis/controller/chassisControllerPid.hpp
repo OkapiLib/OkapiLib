@@ -39,7 +39,9 @@ class ChassisControllerPID : public ChassisController {
     std::unique_ptr<IterativePosPIDController> iangleController,
     const AbstractMotor::GearsetRatioPair &igearset = AbstractMotor::gearset::green,
     const ChassisScales &iscales = ChassisScales({1, 1}, imev5GreenTPR),
-    std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger());
+    std::shared_ptr<Logger> ilogger = Logger::getDefaultLogger(),
+    double imaxDistanceRate = 0,
+    double imaxTurningRate = 0);
 
   ChassisControllerPID(const ChassisControllerPID &) = delete;
   ChassisControllerPID(ChassisControllerPID &&other) = delete;
@@ -244,6 +246,7 @@ class ChassisControllerPID : public ChassisController {
   std::atomic_bool newMovement{false};
   std::atomic_bool dtorCalled{false};
   QTime threadSleepTime{10_ms};
+  double maxDistanceRate{0}, maxTurningRate{0};
 
   static void trampoline(void *context);
   void loop();

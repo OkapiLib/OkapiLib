@@ -338,6 +338,16 @@ class ChassisControllerBuilder {
   ChassisControllerBuilder &withMaxVoltage(double imaxVoltage);
 
   /**
+   * Sets the max rate. The default is `0` which disables this feature.
+   *
+   * @param iMaxDistanceRate The rate for the distance controller.
+   * @param iMaxTurningRate The rate for the turning controller.
+   * @return An ongoing builder.
+   */
+  ChassisControllerBuilder &withMaxRates(double iMaxDistanceRate,
+                                         double iMaxTurningRate);
+
+  /**
    * Sets the TimeUtilFactory used when building a ChassisController. This instance will be given
    * to the ChassisController (not to controllers it uses). The default is the static
    * TimeUtilFactory.
@@ -490,6 +500,9 @@ class ChassisControllerBuilder {
   double maxVelocity{600};
 
   double maxVoltage{12000};
+
+  double maxDistanceRate{0};
+  double maxTurningRate{0};
 
   bool isParentedToCurrentTask{true};
 

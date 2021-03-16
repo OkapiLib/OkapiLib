@@ -294,6 +294,13 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMaxVoltage(const double 
   return *this;
 }
 
+ChassisControllerBuilder &ChassisControllerBuilder::withMaxRates(const double iMaxDistanceRate, 
+                                                                 const double iMaxTurningRate) {
+  maxDistanceRate = iMaxDistanceRate;
+  maxTurningRate = iMaxTurningRate;
+  return *this;
+}
+
 ChassisControllerBuilder &ChassisControllerBuilder::withChassisControllerTimeUtilFactory(
   const TimeUtilFactory &itimeUtilFactory) {
   chassisControllerTimeUtilFactory = itimeUtilFactory;
@@ -437,7 +444,9 @@ std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
                                                 controllerLogger),
     gearset,
     odomScales,
-    controllerLogger);
+    controllerLogger,
+    maxDistanceRate,
+    maxTurningRate);
 
   out->startThread();
 
