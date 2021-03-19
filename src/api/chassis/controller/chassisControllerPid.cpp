@@ -69,7 +69,7 @@ void ChassisControllerPID::loop() {
         newMovement.store(false, std::memory_order_release);
         DistanceRate = 0;
         TurnRate = 0;
-      } 
+      }
 
       switch (mode) {
       case distance:
@@ -80,12 +80,16 @@ void ChassisControllerPID::loop() {
         distancePid->step(distanceElapsed);
         anglePid->step(angleChange);
 
-        if (distancePid->getOutput() > DistanceRate) {
-          DistanceRate += maxDistanceRate;
-        } else if (distancePid->getOutput() < DistanceRate) {
-          DistanceRate -= maxDistanceRate;
+        if (DistanceRate) {
+          if (distancePid->getOutput() > DistanceRate) {
+            DistanceRate += maxDistanceRate;
+          } else if (distancePid->getOutput() < DistanceRate) {
+            DistanceRate -= maxDistanceRate;
+          } else {
+            DistanceRate = 0;
+          }
         } else {
-          DistanceRate = 0;
+          DistanceRate = distancePid->getOutput();
         }
 
         LOG_ERROR(std::to_string(DistanceRate) + "  " + std::to_string(distancePid->getOutput()));
@@ -104,15 +108,17 @@ void ChassisControllerPID::loop() {
 
         turnPid->step(angleChange);
 
-        if (turnPid->getOutput() > TurnRate) {
-          TurnRate += maxTurningRate;
-        } else if (turnPid->getOutput() < TurnRate) {
-          TurnRate -= maxTurningRate;
+        if (TurnRate) {
+          if (turnPid->getOutput() > TurnRate) {
+            TurnRate += maxTurningRate;
+          } else if (turnPid->getOutput() < TurnRate) {
+            TurnRate -= maxTurningRate;
+          } else {
+            TurnRate = 0;
+          }
         } else {
-          TurnRate = 0;
+          TurnRate = turnPid->getOutput();
         }
-
-        LOG_ERROR(std::to_string(TurnRate) + "  " + std::to_string(turnPid->getOutput()));
 
         if (velocityMode) {
           chassisModel->driveVector(0, TurnRate);
@@ -145,7 +151,8 @@ void ChassisControllerPID::trampoline(void *context) {
 
 void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   LOG_INFO("ChassisControllerPID: moving " + std::to_string(itarget.convert(meter)) + " meters");
-  LOG_DEBUG("ChassisControllerPID: straight " + std::to_string(scales.straight) + " ratio " + std::to_string(gearsetRatioPair.ratio));
+  LOG_DEBUG("ChassisControllerPID: straight " + std::to_string(scales.straight) + " ratio " +
+            std::to_string(gearsetRatioPair.ratio));
 
   distancePid->reset();
   anglePid->reset();
@@ -155,8 +162,6 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
   mode = distance;
 
   const double newTarget = itarget.convert(meter) * scales.straight * gearsetRatioPair.ratio;
-
-  LOG_INFO("ChassisControllerPID: moving " + std::to_string(newTarget) + " motor ticks");
 
   distancePid->setTarget(newTarget);
   anglePid->setTarget(0);
@@ -183,7 +188,8 @@ void ChassisControllerPID::moveRaw(const double itarget) {
 void ChassisControllerPID::turnAngleAsync(const QAngle idegTarget) {
   LOG_INFO("ChassisControllerPID: turning " + std::to_string(idegTarget.convert(degree)) +
            " degrees");
-  LOG_DEBUG("ChassisControllerPID: scales.turn " + std::to_string(scales.turn) + " ratio " + std::to_string(gearsetRatioPair.ratio));
+  LOG_DEBUG("ChassisControllerPID: scales.turn " + std::to_string(scales.turn) + " ratio " +
+            std::to_string(gearsetRatioPair.ratio));
 
   turnPid->reset();
   turnPid->flipDisable(false);
