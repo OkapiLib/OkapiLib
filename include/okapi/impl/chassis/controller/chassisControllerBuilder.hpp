@@ -344,8 +344,7 @@ class ChassisControllerBuilder {
    * @param iMaxTurningRate The rate for the turning controller.
    * @return An ongoing builder.
    */
-  ChassisControllerBuilder &withMaxRates(double iMaxDistanceRate,
-                                         double iMaxTurningRate);
+  ChassisControllerBuilder &withMaxRates(double iMaxDistanceRate, double iMaxTurningRate);
 
   /**
    * Sets the TimeUtilFactory used when building a ChassisController. This instance will be given
@@ -484,7 +483,7 @@ class ChassisControllerBuilder {
   TimeUtilFactory closedLoopControllerTimeUtilFactory = TimeUtilFactory();
   TimeUtilFactory odometryTimeUtilFactory = TimeUtilFactory();
 
-  AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::invalid,1.0};
+  AbstractMotor::GearsetRatioPair gearset{AbstractMotor::gearset::invalid, 1.0};
   ChassisScales driveScales{{1, 1}, imev5GreenTPR};
   bool differentOdomScales{false};
   ChassisScales odomScales{{1, 1}, imev5GreenTPR};

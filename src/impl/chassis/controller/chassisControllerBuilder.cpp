@@ -294,7 +294,7 @@ ChassisControllerBuilder &ChassisControllerBuilder::withMaxVoltage(const double 
   return *this;
 }
 
-ChassisControllerBuilder &ChassisControllerBuilder::withMaxRates(const double iMaxDistanceRate, 
+ChassisControllerBuilder &ChassisControllerBuilder::withMaxRates(const double iMaxDistanceRate,
                                                                  const double iMaxTurningRate) {
   maxDistanceRate = iMaxDistanceRate;
   maxTurningRate = iMaxTurningRate;
@@ -421,7 +421,7 @@ ChassisControllerBuilder::buildDOCC(std::shared_ptr<ChassisController> chassisCo
 }
 
 std::shared_ptr<ChassisControllerPID> ChassisControllerBuilder::buildCCPID() {
-  if(differentOdomScales) {
+  if (differentOdomScales) {
     // The chassis controller is going to multiply by the gearset ratio, but
     // since the odometry wheels are directly driven, we need to back this out here
     odomScales.straight = odomScales.straight / gearset.ratio;
@@ -486,16 +486,18 @@ std::shared_ptr<ChassisControllerIntegrated> ChassisControllerBuilder::buildCCI(
   return std::make_shared<ChassisControllerIntegrated>(
     chassisControllerTimeUtilFactory.create(),
     makeChassisModel(),
-    std::make_unique<AsyncPosIntegratedController>(leftMotorGroup,
-                                                   AbstractMotor::GearsetRatioPair(gearset.internalGearset, 1.0),
-                                                   maxVelocity,
-                                                   closedLoopControllerTimeUtilFactory.create(),
-                                                   controllerLogger),
-    std::make_unique<AsyncPosIntegratedController>(rightMotorGroup,
-                                                   AbstractMotor::GearsetRatioPair(gearset.internalGearset, 1.0),
-                                                   maxVelocity,
-                                                   closedLoopControllerTimeUtilFactory.create(),
-                                                   controllerLogger),
+    std::make_unique<AsyncPosIntegratedController>(
+      leftMotorGroup,
+      AbstractMotor::GearsetRatioPair(gearset.internalGearset, 1.0),
+      maxVelocity,
+      closedLoopControllerTimeUtilFactory.create(),
+      controllerLogger),
+    std::make_unique<AsyncPosIntegratedController>(
+      rightMotorGroup,
+      AbstractMotor::GearsetRatioPair(gearset.internalGearset, 1.0),
+      maxVelocity,
+      closedLoopControllerTimeUtilFactory.create(),
+      controllerLogger),
     gearset,
     driveScales,
     controllerLogger);
