@@ -80,7 +80,7 @@ void ChassisControllerPID::loop() {
         distancePid->step(distanceElapsed);
         anglePid->step(angleChange);
 
-        if (DistanceRate) {
+        if (maxDistanceRate) {
           if (distancePid->getOutput() > DistanceRate) {
             DistanceRate += maxDistanceRate;
           } else if (distancePid->getOutput() < DistanceRate) {
@@ -91,8 +91,6 @@ void ChassisControllerPID::loop() {
         } else {
           DistanceRate = distancePid->getOutput();
         }
-
-        LOG_ERROR(std::to_string(DistanceRate) + "  " + std::to_string(distancePid->getOutput()));
 
         if (velocityMode) {
           chassisModel->driveVector(DistanceRate, anglePid->getOutput());
@@ -108,7 +106,7 @@ void ChassisControllerPID::loop() {
 
         turnPid->step(angleChange);
 
-        if (TurnRate) {
+        if (maxTurningRate) {
           if (turnPid->getOutput() > TurnRate) {
             TurnRate += maxTurningRate;
           } else if (turnPid->getOutput() < TurnRate) {
