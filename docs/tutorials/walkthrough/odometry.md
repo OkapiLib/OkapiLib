@@ -28,7 +28,7 @@ Here is an example using [ChassisControllerIntegrated](@ref okapi::ChassisContro
 ```cpp
 ChassisControllerBuilder()
     .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
-    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withOdometry() // use the same scales as the chassis (above)
     .buildOdometry(); // build an odometry chassis
@@ -44,7 +44,7 @@ ChassisControllerBuilder()
         {0.001, 0, 0.0001}, // Turn controller gains
         {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
     )
-    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withOdometry() // use the same scales as the chassis (above)
     .buildOdometry(); // build an odometry chassis
@@ -63,7 +63,7 @@ to specify the scales for the tracking wheels.
 ```cpp
 ChassisControllerBuilder()
     .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
-    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withSensors(
         ADIEncoder{'A', 'B'}, // left encoder in ADI ports A & B
@@ -104,7 +104,7 @@ Here is an example using [ChassisControllerIntegrated](@ref okapi::ChassisContro
 ```cpp
 ChassisControllerBuilder()
     .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
-    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withSensors(
         ADIEncoder{'A', 'B'}, // left encoder in ADI ports A & B
@@ -190,7 +190,7 @@ Here is is a full example of odometry using [ChassisControllerIntegrated](@ref o
 std::shared_ptr<OdomChassisController> chassis =
   ChassisControllerBuilder()
     .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
-    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     // left encoder in ADI ports A & B, right encoder in ADI ports C & D (reversed)
     .withSensors(ADIEncoder{'A', 'B'}, ADIEncoder{'C', 'D', true})
