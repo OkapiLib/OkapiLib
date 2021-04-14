@@ -5,6 +5,13 @@
  */
 #include "okapi/api/control/async/asyncMotionProfileController.hpp"
 #include "test/tests/api/implMocks.hpp"
+#include <fstream>
+#ifdef WINDOWS
+    #include <direct.h>
+    #define getcwd _getcwd
+#else
+    #include <unistd.h>
+ #endif
 #include <gtest/gtest.h>
 
 using namespace okapi;
@@ -14,15 +21,16 @@ class MockAsyncMotionProfileController : public AsyncMotionProfileController {
   using AsyncMotionProfileController::AsyncMotionProfileController;
   using AsyncMotionProfileController::convertLinearToRotational;
   using AsyncMotionProfileController::internalLoadPath;
+  using AsyncMotionProfileController::internalLoadPathfinderPath;
   using AsyncMotionProfileController::internalStorePath;
   using AsyncMotionProfileController::makeFilePath;
 
-  void executeSinglePath(const TrajectoryPair &path, std::unique_ptr<AbstractRate> rate) override {
+  void executeSinglePath(const std::vector<squiggles::ProfilePoint> &path, std::unique_ptr<AbstractRate> rate) override {
     executeSinglePathCalled = true;
     AsyncMotionProfileController::executeSinglePath(path, std::move(rate));
   }
 
-  TrajectoryPair &getPathData(std::string ipathId) {
+  std::vector<squiggles::ProfilePoint> &getPathData(std::string ipathId) {
     return paths.at(ipathId);
   }
 
@@ -31,9 +39,17 @@ class MockAsyncMotionProfileController : public AsyncMotionProfileController {
 
 class AsyncMotionProfileControllerTest : public ::testing::Test {
   protected:
+  std::string get_working_path() {
+   char temp[FILENAME_MAX];
+   return ( getcwd(temp, sizeof(temp)) ? std::string( temp ) : std::string("") );
+  }
+
   void SetUp() override {
-    leftPathFile = open_memstream(&leftFileBuf, &leftFileSize);
-    rightPathFile = open_memstream(&rightFileBuf, &rightFileSize);
+    squigglesPathFile = std::stringstream(squigglesFileBuf);
+    auto leftFilePath = get_working_path() + "/../test/leftFile.csv";
+    auto rightFilePath = get_working_path() + "/../test/rightFile.csv";
+    leftPathFile = std::ifstream(leftFilePath);
+    rightPathFile = std::ifstream(rightFilePath);
 
     leftMotor = std::make_shared<MockMotor>();
     rightMotor = std::make_shared<MockMotor>();
@@ -54,10 +70,6 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
   }
 
   void TearDown() override {
-    fclose(leftPathFile);
-    fclose(rightPathFile);
-    free(leftFileBuf);
-    free(rightFileBuf);
     delete controller;
   }
 
@@ -66,12 +78,10 @@ class AsyncMotionProfileControllerTest : public ::testing::Test {
   SkidSteerModel *model;
   MockAsyncMotionProfileController *controller;
 
-  FILE *leftPathFile;
-  FILE *rightPathFile;
-  char *leftFileBuf;
-  char *rightFileBuf;
-  size_t leftFileSize;
-  size_t rightFileSize;
+  std::stringstream squigglesPathFile;
+  std::ifstream leftPathFile;
+  std::ifstream rightPathFile;
+  std::string squigglesFileBuf;
 };
 
 TEST_F(AsyncMotionProfileControllerTest, ConstructWithGearRatioOf0) {
@@ -140,12 +150,9 @@ TEST_F(AsyncMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
 }
 
 TEST_F(AsyncMotionProfileControllerTest, ImpossiblePathThrowsException) {
+  // Path is too long to fit within the time window considered by Squiggles
   EXPECT_THROW(controller->generatePath({PathfinderPoint{0_m, 0_m, 0_deg},
-                                         PathfinderPoint{3_ft, 0_m, 0_deg},
-                                         PathfinderPoint{3_ft, 1_ft, 0_deg},
-                                         PathfinderPoint{2_ft, 1_ft, 0_deg},
-                                         PathfinderPoint{1_ft, 1_m, 0_deg},
-                                         PathfinderPoint{1_ft, 0_m, 0_deg}},
+                                         PathfinderPoint{9999_m, 0_m, 0_deg}},
                                         "A"),
                std::runtime_error);
   EXPECT_EQ(controller->getPaths().size(), 0);
@@ -296,10 +303,10 @@ TEST_F(AsyncMotionProfileControllerTest, FollowPathNotMirrored) {
   // Wait a little longer so we get into the path
   rate->delayUntil(200_ms);
 
-  EXPECT_GT(leftMotor->lastVelocity, 0);
-  EXPECT_GT(rightMotor->lastVelocity, 0);
-  EXPECT_GT(rightMotor->maxVelocity, leftMotor->maxVelocity);
-
+  EXPECT_NE(leftMotor->lastVelocity, 0);
+  EXPECT_NE(rightMotor->lastVelocity, 0);
+  EXPECT_GT(leftMotor->maxVelocity, rightMotor->maxVelocity);
+  
   // Disable the controller so gtest doesn't clean up the test fixture while the internal thread is
   // still running
   controller->flipDisable(true);
@@ -318,9 +325,9 @@ TEST_F(AsyncMotionProfileControllerTest, FollowPathMirrored) {
   // Wait a little longer so we get into the path
   rate->delayUntil(200_ms);
 
-  EXPECT_GT(leftMotor->lastVelocity, 0);
-  EXPECT_GT(rightMotor->lastVelocity, 0);
-  EXPECT_GT(leftMotor->maxVelocity, rightMotor->maxVelocity);
+  EXPECT_NE(leftMotor->lastVelocity, 0);
+  EXPECT_NE(rightMotor->lastVelocity, 0);
+  EXPECT_GT(rightMotor->maxVelocity, leftMotor->maxVelocity);
 
   // Disable the controller so gtest doesn't clean up the test fixture while the internal thread is
   // still running
@@ -360,15 +367,37 @@ TEST_F(AsyncMotionProfileControllerTest, FilePathRestrict) {
 TEST_F(AsyncMotionProfileControllerTest, SaveLoadPath) {
   controller->generatePath(
     {PathfinderPoint{0_in, 0_in, 0_deg}, PathfinderPoint{3_ft, 0_in, 45_deg}}, "A");
-  controller->internalStorePath(leftPathFile, rightPathFile, "A");
+  controller->internalStorePath(squigglesPathFile, "A");
 
-  int genPathLen = controller->getPathData("A").length;
+  auto startingPath = controller->getPathData("A");
 
   controller->removePath("A");
-  controller->internalLoadPath(leftPathFile, rightPathFile, "A");
+  controller->internalLoadPath(squigglesPathFile, "A");
   EXPECT_EQ(controller->getPaths().front(), "A");
   EXPECT_EQ(controller->getPaths().size(), 1);
-  EXPECT_EQ(controller->getPathData("A").length, genPathLen);
+  auto loadedPath = controller->getPathData("A");
+  for (std::size_t i = 0; i < startingPath.size(); ++i) {
+    ASSERT_EQ(loadedPath[i], startingPath[i]);
+  }
+
+  controller->setTarget("A");
+  EXPECT_EQ(controller->getTarget(), "A");
+}
+
+TEST_F(AsyncMotionProfileControllerTest, LoadPathfinderPath) {
+  controller->removePath("A");
+  controller->internalLoadPathfinderPath(leftPathFile, rightPathFile, "A");
+  EXPECT_EQ(controller->getPaths().front(), "A");
+  EXPECT_EQ(controller->getPaths().size(), 1);
+  int numLines = 0;
+  std::string buf;
+  leftPathFile.clear();
+  leftPathFile.seekg(0);
+  while (!leftPathFile.eof()) {
+    std::getline(leftPathFile, buf);
+    numLines++;
+  }
+  EXPECT_EQ(controller->getPathData("A").size(), numLines - 2);
 
   controller->setTarget("A");
   EXPECT_EQ(controller->getTarget(), "A");

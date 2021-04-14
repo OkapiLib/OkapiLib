@@ -70,7 +70,7 @@ wheels those encoders are attached to. Otherwise, `withDimensions` will refer to
 
 ```cpp
 ChassisControllerBuilder()
-    // Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // Green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
 ```
 
@@ -78,7 +78,7 @@ ChassisControllerBuilder()
 
 ```cpp
 ChassisControllerBuilder()
-    // Green gearset, external ratio of (36.0 / 60.0), 4 inch wheel diameter, 11.5 inch wheelbase
+    // Green gearset, external ratio of (36.0 / 60.0), 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions({AbstractMotor::gearset::green, (36.0 / 60.0)}, {{4_in, 11.5_in}, imev5GreenTPR})
 ```
 
@@ -130,7 +130,7 @@ to [withOdometry](@ref okapi::ChassisControllerBuilder::withOdometry).
 ```cpp
 ChassisControllerBuilder()
     .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-    // Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // Green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withOdometry() // Use the same scales as the chassis (above)
     .buildOdometry()
@@ -151,7 +151,7 @@ dimensions will be different than the ones given to
 ```cpp
 ChassisControllerBuilder()
     .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
-    // Green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // Green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withSensors(
         ADIEncoder{'A', 'B'}, // Left encoder in ADI ports A & B

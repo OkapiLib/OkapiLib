@@ -21,3 +21,6 @@ xml/
 venv/
 *.d/
 build/
+src/squiggles/
+include/okapi/squiggles/
+verify-template/
