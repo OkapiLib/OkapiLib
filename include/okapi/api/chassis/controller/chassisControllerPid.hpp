@@ -283,6 +283,12 @@ class ChassisControllerPID : public ChassisController {
   static void trampoline(void *context);
   void loop();
 
+  double computeNewDistanceTarget(const QLength itarget);
+  double computeNewAngleTarget(const QAngle idegTarget);
+
+  void moveDistanceIterativeStep(double distElapsed, double angleError);
+  void turnAngleIterativeStep(double angleChangeTicks);
+
   /**
    * Wait for the distance setup (distancePid and anglePid) to settle.
    *
