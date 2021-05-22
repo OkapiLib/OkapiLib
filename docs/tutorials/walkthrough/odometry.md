@@ -3,7 +3,7 @@
 Odometry is the act of tracking a robot's absolute position. 
 This information can be used by motion algorithms to drive to positions or turn to absolute angles.
 
-An excellent overview of the odometry tracking algorithm can be found [here](https://github.com/OkapiLib/OkapiLib/releases/download/v4.2.1/position-tracking-pilons-rev1.pdf).
+An excellent overview of the odometry tracking algorithm can be found [here](https://github.com/OkapiLib/OkapiLib/releases/download/v4.2.0/position-tracking-pilons-rev1.pdf).
 
 ## Configuring Odometry
 
