@@ -126,14 +126,14 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
 
 double ChassisControllerPID::computeNewDistanceTarget(const QLength idistError)
 {
-  return idistError.convert(meter) * scales.straight * gearsetRatioPair.ratio;
+  return idistError.convert(millimeter) * scales.straight * gearsetRatioPair.ratio;
 }
 
 void ChassisControllerPID::moveDistanceIterative(const QLength idistError, const QAngle idegError) {
-  LOG_INFO("ChassisControllerPID: move iterative " + std::to_string(idistError.convert(meter)) + " meters "
+  LOG_INFO("ChassisControllerPID: move iterative " + std::to_string(idistError.convert(millimeter)) + " mm "
           + std::to_string(idegError.convert(degree)) +
            " degrees");
-  LOG_DEBUG("ChassisControllerPID: scales.turn " + std::to_string(scales.turn) + " ratio " + std::to_string(gearsetRatioPair.ratio));
+  LOG_DEBUG("ChassisControllerPID: scales.straight " + std::to_string(scales.straight) + " ratio " + std::to_string(gearsetRatioPair.ratio));
 
   if(mode != distanceIterative) {
     doneLooping.store(true, std::memory_order_release);
@@ -263,8 +263,11 @@ bool ChassisControllerPID::isSettled() {
   switch (mode) {
   case distance:
     return distancePid->isSettled() && anglePid->isSettled();
+  case distanceIterative:
+    return distancePid->isSettled();
 
   case angle:
+  case angleIterative:
     return turnPid->isSettled();
 
   default:
