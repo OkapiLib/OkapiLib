@@ -126,11 +126,11 @@ void ChassisControllerPID::moveDistanceAsync(const QLength itarget) {
 
 double ChassisControllerPID::computeNewDistanceTarget(const QLength idistError)
 {
-  return idistError.convert(millimeter) * scales.straight * gearsetRatioPair.ratio;
+  return idistError.convert(meter) * scales.straight * gearsetRatioPair.ratio;
 }
 
 void ChassisControllerPID::moveDistanceIterative(const QLength idistError, const QAngle idegError) {
-  LOG_INFO("ChassisControllerPID: move iterative " + std::to_string(idistError.convert(millimeter)) + " mm "
+  LOG_INFO("ChassisControllerPID: move iterative " + std::to_string(idistError.convert(meter)) + " meters "
           + std::to_string(idegError.convert(degree)) +
            " degrees");
   LOG_DEBUG("ChassisControllerPID: scales.straight " + std::to_string(scales.straight) + " ratio " + std::to_string(gearsetRatioPair.ratio));
