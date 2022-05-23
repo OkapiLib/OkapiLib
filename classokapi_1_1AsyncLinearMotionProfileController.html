@@ -68,7 +68,6 @@
                 <li><a href="#base-classes">Base classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
-                <li><a href="#pro-types">Protected types</a></li>
                 <li><a href="#pro-static-methods">Protected static functions</a></li>
                 <li><a href="#pro-methods">Protected functions</a></li>
                 <li><a href="#pro-attribs">Protected variables</a></li>
@@ -222,23 +221,6 @@
             <dd>Attempts to remove a path without stopping execution, then if that fails, disables the controller and removes the path.</dd>
           </dl>
         </section>
-        <section id="pro-types">
-          <h2><a href="#pro-types">Protected types</a></h2>
-          <dl class="m-doc">
-            <dt>
-              struct <a href="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a4793d9c4aebdb9a947b3c5659f919e14">
-              using <a href="#a4793d9c4aebdb9a947b3c5659f919e14" class="m-doc-self">TrajectoryPtr</a> = std::unique_ptr&lt;TrajectoryCandidate, void(*)(TrajectoryCandidate*)&gt;
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a714a13979ef81d5fbca93264d044b8cc">
-              using <a href="#a714a13979ef81d5fbca93264d044b8cc" class="m-doc-self">SegmentPtr</a> = std::unique_ptr&lt;Segment, void(*)(void*)&gt;
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
         <section id="pro-static-methods">
           <h2><a href="#pro-static-methods">Protected static functions</a></h2>
           <dl class="m-doc">
@@ -256,7 +238,7 @@
             </dt>
             <dd><span></span></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#ac9f7d18503d72627ff4b7f70d2c373bd" class="m-doc">executeSinglePath</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path,
+              <span class="m-doc-wrap-bumper">void <a href="#aee82df6a654a18b44b683d9073f5f9b3" class="m-doc">executeSinglePath</a>(</span><span class="m-doc-wrap">const std::vector&lt;squiggles::ProfilePoint&gt;&amp; path,
               std::unique_ptr&lt;<a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>&gt; rate) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
             <dd>Follow the supplied path.</dd>
@@ -264,16 +246,12 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a3b2473f949bab83f6837b8d448b198cb" class="m-doc">convertLinearToRotational</a>(</span><span class="m-doc-wrap">QSpeed linear) const -&gt; QAngularSpeed</span>
             </dt>
             <dd>Converts linear &quot;chassis&quot; speed to rotational motor speed.</dd>
-            <dt id="a6778fc13018167cec6cccfa6abf7a0ad">
-              <span class="m-doc-wrap-bumper">auto <a href="#a6778fc13018167cec6cccfa6abf7a0ad" class="m-doc-self">getPathErrorMessage</a>(</span><span class="m-doc-wrap">const std::vector&lt;Waypoint&gt;&amp; points,
+            <dt id="a31ce43a4ec49cc7696abd175edb19e87">
+              <span class="m-doc-wrap-bumper">auto <a href="#a31ce43a4ec49cc7696abd175edb19e87" class="m-doc-self">getPathErrorMessage</a>(</span><span class="m-doc-wrap">const std::vector&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt;&amp; points,
               const std::string&amp; ipathId,
               int length) -&gt; std::string</span>
             </dt>
             <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#aede6dc18c7d2c8f5014c4ad6cd91d85d" class="m-doc">getPathLength</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path) -&gt; int</span>
-            </dt>
-            <dd>Reads the length of the path in a thread-safe manner.</dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -283,8 +261,8 @@
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; <a href="#abfdbc29ef850cf20ed15b3c1398c7cc1" class="m-doc-self">logger</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a955697ca2debe00771c8039b3df328f0">
-              std::map&lt;std::string, <a href="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&gt; <a href="#a955697ca2debe00771c8039b3df328f0" class="m-doc-self">paths</a>
+            <dt id="a5277c510d9d5cea438fb4a0006a57acf">
+              std::map&lt;std::string, std::vector&lt;squiggles::ProfilePoint&gt;&gt; <a href="#a5277c510d9d5cea438fb4a0006a57acf" class="m-doc-self">paths</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a9d2bb17d4a934984d488b3b4fba11c6e">
@@ -763,9 +741,9 @@
               </tbody>
             </table>
           </div></section>
-          <section class="m-doc-details" id="ac9f7d18503d72627ff4b7f70d2c373bd"><div>
+          <section class="m-doc-details" id="aee82df6a654a18b44b683d9073f5f9b3"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncLinearMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ac9f7d18503d72627ff4b7f70d2c373bd" class="m-doc-self">executeSinglePath</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path,
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncLinearMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aee82df6a654a18b44b683d9073f5f9b3" class="m-doc-self">executeSinglePath</a>(</span><span class="m-doc-wrap">const std::vector&lt;squiggles::ProfilePoint&gt;&amp; path,
               std::unique_ptr&lt;<a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>&gt; rate) <span class="m-label m-warning">virtual</span> <span class="m-label m-warning">protected</span></span></span>
             </h3>
             <p>Follow the supplied path.</p>
@@ -790,29 +768,6 @@
                 <tr>
                   <th>Returns</th>
                   <td>motor frame speed</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="aede6dc18c7d2c8f5014c4ad6cd91d85d"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">int okapi::<wbr />AsyncLinearMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#aede6dc18c7d2c8f5014c4ad6cd91d85d" class="m-doc-self">getPathLength</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncLinearMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path) <span class="m-label m-warning">protected</span></span></span>
-            </h3>
-            <p>Reads the length of the path in a thread-safe manner.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">path</td>
-                  <td>The path to read from.</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td>The length of the path.</td>
                 </tr>
               </tfoot>
             </table>

@@ -68,9 +68,9 @@
                 <li><a href="#base-classes">Base classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
-                <li><a href="#pro-types">Protected types</a></li>
                 <li><a href="#pro-static-methods">Protected static functions</a></li>
                 <li><a href="#pro-methods">Protected functions</a></li>
+                <li><a href="#pro-static-attribs">Protected static variables</a></li>
                 <li><a href="#pro-attribs">Protected variables</a></li>
               </ul>
             </li>
@@ -217,33 +217,16 @@
               <span class="m-doc-wrap-bumper">void <a href="#ad588aa51d62169159ff5e4b05ad3982c" class="m-doc">storePath</a>(</span><span class="m-doc-wrap">const std::string&amp; idirectory,
               const std::string&amp; ipathId)</span>
             </dt>
-            <dd>Saves a generated path to files.</dd>
+            <dd>Saves a generated path to a file.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a87c74350a819a3a322321be787c32d1f" class="m-doc">loadPath</a>(</span><span class="m-doc-wrap">const std::string&amp; idirectory,
               const std::string&amp; ipathId)</span>
             </dt>
-            <dd>Loads a path from a directory on the SD card containing path CSV files.</dd>
+            <dd>Loads a path from a directory on the SD card containing a path CSV file.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#ace5f9053d3455e6f5e69c63f1196521e" class="m-doc">forceRemovePath</a>(</span><span class="m-doc-wrap">const std::string&amp; ipathId)</span>
             </dt>
             <dd>Attempts to remove a path without stopping execution.</dd>
-          </dl>
-        </section>
-        <section id="pro-types">
-          <h2><a href="#pro-types">Protected types</a></h2>
-          <dl class="m-doc">
-            <dt>
-              struct <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="acf9be87bd2dd90aec23d91f0474f2d35">
-              using <a href="#acf9be87bd2dd90aec23d91f0474f2d35" class="m-doc-self">TrajectoryPtr</a> = std::unique_ptr&lt;TrajectoryCandidate, void(*)(TrajectoryCandidate*)&gt;
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a3ed298e703263af478d65e862afca6f3">
-              using <a href="#a3ed298e703263af478d65e862afca6f3" class="m-doc-self">SegmentPtr</a> = std::unique_ptr&lt;Segment, void(*)(void*)&gt;
-            </dt>
-            <dd><span></span></dd>
           </dl>
         </section>
         <section id="pro-static-methods">
@@ -268,7 +251,7 @@
             </dt>
             <dd><span></span></dd>
             <dt>
-              <span class="m-doc-wrap-bumper">void <a href="#abbc724e5856bff8879cb834bfc3cc6c3" class="m-doc">executeSinglePath</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path,
+              <span class="m-doc-wrap-bumper">void <a href="#a10d947159d306914db939d1ebe27cb0c" class="m-doc">executeSinglePath</a>(</span><span class="m-doc-wrap">const std::vector&lt;squiggles::ProfilePoint&gt;&amp; path,
               std::unique_ptr&lt;<a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>&gt; rate) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
             <dd>Follow the supplied path.</dd>
@@ -276,28 +259,37 @@
               <span class="m-doc-wrap-bumper">auto <a href="#a74b2981453d36e01c30b66c522bdcb52" class="m-doc">convertLinearToRotational</a>(</span><span class="m-doc-wrap">QSpeed linear) const -&gt; QAngularSpeed</span>
             </dt>
             <dd>Converts linear chassis speed to rotational motor speed.</dd>
-            <dt id="add71d15d34ef8c10205c3b6791e32f71">
-              <span class="m-doc-wrap-bumper">auto <a href="#add71d15d34ef8c10205c3b6791e32f71" class="m-doc-self">getPathErrorMessage</a>(</span><span class="m-doc-wrap">const std::vector&lt;Waypoint&gt;&amp; points,
+            <dt id="a2d576143711f7ed6cf912948ff1644de">
+              <span class="m-doc-wrap-bumper">auto <a href="#a2d576143711f7ed6cf912948ff1644de" class="m-doc-self">getPathErrorMessage</a>(</span><span class="m-doc-wrap">const std::vector&lt;<a href="structokapi_1_1PathfinderPoint.html" class="m-doc">PathfinderPoint</a>&gt;&amp; points,
               const std::string&amp; ipathId,
               int length) -&gt; std::string</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="ae9f67978e53a0bab9c96ef774505bd58">
-              <span class="m-doc-wrap-bumper">void <a href="#ae9f67978e53a0bab9c96ef774505bd58" class="m-doc-self">internalStorePath</a>(</span><span class="m-doc-wrap">FILE* leftPathFile,
-              FILE* rightPathFile,
+            <dt id="a3e1a5bdb3c7415e058b991ad215931a5">
+              <span class="m-doc-wrap-bumper">void <a href="#a3e1a5bdb3c7415e058b991ad215931a5" class="m-doc-self">internalStorePath</a>(</span><span class="m-doc-wrap">std::ostream&amp; file,
               const std::string&amp; ipathId)</span>
             </dt>
             <dd><span></span></dd>
-            <dt id="adc93d9516b749dee19f0af735d4b83cb">
-              <span class="m-doc-wrap-bumper">void <a href="#adc93d9516b749dee19f0af735d4b83cb" class="m-doc-self">internalLoadPath</a>(</span><span class="m-doc-wrap">FILE* leftPathFile,
-              FILE* rightPathFile,
+            <dt id="ae881cca2e517d1ee8a762ab0c23fc474">
+              <span class="m-doc-wrap-bumper">void <a href="#ae881cca2e517d1ee8a762ab0c23fc474" class="m-doc-self">internalLoadPath</a>(</span><span class="m-doc-wrap">std::istream&amp; file,
               const std::string&amp; ipathId)</span>
             </dt>
             <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#af14f6b6c201a7b80c32f5fc14c11022f" class="m-doc">getPathLength</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path) -&gt; int</span>
+            <dt id="a499379fdce80e3aad247197462963c2a">
+              <span class="m-doc-wrap-bumper">void <a href="#a499379fdce80e3aad247197462963c2a" class="m-doc-self">internalLoadPathfinderPath</a>(</span><span class="m-doc-wrap">std::istream&amp; leftFile,
+              std::istream&amp; rightFile,
+              const std::string&amp; ipathId)</span>
             </dt>
-            <dd>Reads the length of the path in a thread-safe manner.</dd>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pro-static-attribs">
+          <h2><a href="#pro-static-attribs">Protected static variables</a></h2>
+          <dl class="m-doc">
+            <dt id="a52440ab5883ea07cd0004d4fbccea6ce">
+              static double <a href="#a52440ab5883ea07cd0004d4fbccea6ce" class="m-doc-self">DT</a> <span class="m-label m-flat m-primary">constexpr</span>
+            </dt>
+            <dd><span></span></dd>
           </dl>
         </section>
         <section id="pro-attribs">
@@ -307,8 +299,8 @@
               std::shared_ptr&lt;<a href="classokapi_1_1Logger.html" class="m-doc">Logger</a>&gt; <a href="#a3ee7290ff00e7e10f381a9d166f5e5f9" class="m-doc-self">logger</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a2aa4ab02d2ef7cf29d6e6a952b3c4d9e">
-              std::map&lt;std::string, <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&gt; <a href="#a2aa4ab02d2ef7cf29d6e6a952b3c4d9e" class="m-doc-self">paths</a>
+            <dt id="a45543ade3a68d5eb6393c8e1f818d8c5">
+              std::map&lt;std::string, std::vector&lt;squiggles::ProfilePoint&gt;&gt; <a href="#a45543ade3a68d5eb6393c8e1f818d8c5" class="m-doc-self">paths</a>
             </dt>
             <dd><span></span></dd>
             <dt id="a2278da257c608adfcf52b0e3b1b7802b">
@@ -459,7 +451,7 @@
                 </tr>
               </tbody>
             </table>
-<p>Call <code>executePath()</code> with the same pathId to run it.</p><p>If the waypoints form a path which is impossible to achieve, an instance of <code>std::runtime_error</code> is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.</p>
+<p>Call <code>executePath()</code> with the same pathId to run it.</p><p>If the waypoints form a path which is impossible to achieve, an instance of <code>std::runtime_error</code> is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no path is generated.</p><p>NOTE: The waypoints are expected to be in the <a href="namespaceokapi.html#af37fbd761bd859a00ff4dd4a87dd8c07ad5ed7666e5cebf60d3af20a5a46edf3b" class="m-doc">okapi::<wbr />State::<wbr />FRAME_TRANSFORMATION</a> format where +x is forward, +y is right, and 0 theta is measured from the +x axis to the +y axis.</p>
           </div></section>
           <section class="m-doc-details" id="a6c6a889067dbb3a54c33f829b3aa1246"><div>
             <h3>
@@ -766,7 +758,7 @@
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#ad588aa51d62169159ff5e4b05ad3982c" class="m-doc-self">storePath</a>(</span><span class="m-doc-wrap">const std::string&amp; idirectory,
               const std::string&amp; ipathId)</span></span>
             </h3>
-            <p>Saves a generated path to files.</p>
+            <p>Saves a generated path to a file.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -774,7 +766,7 @@
               <tbody>
                 <tr>
                   <td style="width: 1%">idirectory</td>
-                  <td>The directory to store the path files in</td>
+                  <td>The directory to store the path file in</td>
                 </tr>
                 <tr>
                   <td>ipathId</td>
@@ -782,14 +774,14 @@
                 </tr>
               </tbody>
             </table>
-<p>Paths are stored as <code>&lt;ipathId&gt;.&lt;left/right&gt;.csv</code>. An SD card must be inserted into the brain and the directory must exist. <code>idirectory</code> can be prefixed with <code>/usd/</code>, but it this is not required.</p>
+<p>Paths are stored as <code>&lt;ipathId&gt;.csv</code>. An SD card must be inserted into the brain and the directory must exist. <code>idirectory</code> can be prefixed with <code>/usd/</code>, but it this is not required.</p>
           </div></section>
           <section class="m-doc-details" id="a87c74350a819a3a322321be787c32d1f"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a87c74350a819a3a322321be787c32d1f" class="m-doc-self">loadPath</a>(</span><span class="m-doc-wrap">const std::string&amp; idirectory,
               const std::string&amp; ipathId)</span></span>
             </h3>
-            <p>Loads a path from a directory on the SD card containing path CSV files.</p>
+            <p>Loads a path from a directory on the SD card containing a path CSV file.</p>
             <table class="m-table m-fullwidth m-flat">
               <thead>
                 <tr><th colspan="2">Parameters</th></tr>
@@ -853,9 +845,9 @@
               </tfoot>
             </table>
           </div></section>
-          <section class="m-doc-details" id="abbc724e5856bff8879cb834bfc3cc6c3"><div>
+          <section class="m-doc-details" id="a10d947159d306914db939d1ebe27cb0c"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#abbc724e5856bff8879cb834bfc3cc6c3" class="m-doc-self">executeSinglePath</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path,
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a10d947159d306914db939d1ebe27cb0c" class="m-doc-self">executeSinglePath</a>(</span><span class="m-doc-wrap">const std::vector&lt;squiggles::ProfilePoint&gt;&amp; path,
               std::unique_ptr&lt;<a href="classokapi_1_1AbstractRate.html" class="m-doc">AbstractRate</a>&gt; rate) <span class="m-label m-warning">virtual</span> <span class="m-label m-warning">protected</span></span></span>
             </h3>
             <p>Follow the supplied path.</p>
@@ -880,29 +872,6 @@
                 <tr>
                   <th>Returns</th>
                   <td>motor frame speed</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div></section>
-          <section class="m-doc-details" id="af14f6b6c201a7b80c32f5fc14c11022f"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">int okapi::<wbr />AsyncMotionProfileController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#af14f6b6c201a7b80c32f5fc14c11022f" class="m-doc-self">getPathLength</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1AsyncMotionProfileController_1_1TrajectoryPair.html" class="m-doc">TrajectoryPair</a>&amp; path) <span class="m-label m-warning">protected</span></span></span>
-            </h3>
-            <p>Reads the length of the path in a thread-safe manner.</p>
-            <table class="m-table m-fullwidth m-flat">
-              <thead>
-                <tr><th colspan="2">Parameters</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="width: 1%">path</td>
-                  <td>The path to read from.</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>Returns</th>
-                  <td>The length of the path.</td>
                 </tr>
               </tfoot>
             </table>
