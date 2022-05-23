@@ -13,22 +13,11 @@ which you can learn about in examples like these:
 - <https://github.com/AtsushiSakai/PythonRobotics/blob/master/PathPlanning/QuinticPolynomialsPlanner/animation.gif>
 - <https://www.dis.uniroma1.it/~deluca/rob1_en/13_TrajectoryPlanningJoints.pdf>
 
-OkapiLib, through [Pathfinder](https://github.com/JacisNonsense/Pathfinder),
+OkapiLib, through [Squiggles](https://github.com/baylessj/robotsquiggles),
 does this math for you and ties both the motion profiling and profile following
 actions to the same
 [async controllers](docs/tutorials/walkthrough/asyncAutonomousMovement.md) that are used
-for other simpler movements. Because OkapiLib's motion profile generation uses
-[Pathfinder](https://github.com/JacisNonsense/Pathfinder), there are a few open
-issues you should know about:
-
-- Pathfinder cannot generate negative velocities, so generating backward movements and very tight turns do not work
-  - Moving backwards: <https://github.com/JacisNonsense/Pathfinder/issues/39>
-  - Tight turns: <https://github.com/JacisNonsense/Pathfinder/issues/38>
-- Very long movements (typically movements much longer than a VEX field) can potentially never reach maximum speed: <https://github.com/JacisNonsense/Pathfinder/issues/43>
-
-> Even though OkapiLib cannot generate paths that move backwards, it can still **follow** a path backwards. 
-> To do this, there are parameters in [setTarget](@ref okapi::AsyncMotionProfileController::setTarget(std::string,bool,bool)) 
-> that allow you to follow a path backwards and optionally mirror the path.
+for other simpler movements.
 
 First, let's initialize a [ChassisController](@ref okapi::ChassisController) to
 pass into the

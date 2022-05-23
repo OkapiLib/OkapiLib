@@ -20,6 +20,7 @@ Type name: `QLength`
 | Foot       | `foot`       | `_ft`   |
 | Yard       | `yard`       | `_yd`   |
 | Mile       | `mile`       | `_mi`   |
+| Tile       | `tile`       | `_tile` |
 
 ## Speed Units
 
