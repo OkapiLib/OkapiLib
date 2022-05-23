@@ -130,3 +130,4 @@
 #include "okapi/impl/util/rate.hpp"
 #include "okapi/impl/util/timeUtilFactory.hpp"
 #include "okapi/impl/util/timer.hpp"
+#include "okapi/impl/util/configurableTimeUtilFactory.hpp"
