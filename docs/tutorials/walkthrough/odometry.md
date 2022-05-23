@@ -3,7 +3,7 @@
 Odometry is the act of tracking a robot's absolute position. 
 This information can be used by motion algorithms to drive to positions or turn to absolute angles.
 
-An excellent overview of the odometry tracking algorithm can be found [here](https://www.vexforum.com/t/team-5225-introduction-to-position-tracking-document/49640).
+An excellent overview of the odometry tracking algorithm can be found [here](https://github.com/OkapiLib/OkapiLib/releases/download/v4.2.0/position-tracking-pilons-rev1.pdf).
 
 ## Configuring Odometry
 
@@ -28,7 +28,7 @@ Here is an example using [ChassisControllerIntegrated](@ref okapi::ChassisContro
 ```cpp
 ChassisControllerBuilder()
     .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
-    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withOdometry() // use the same scales as the chassis (above)
     .buildOdometry(); // build an odometry chassis
@@ -44,7 +44,7 @@ ChassisControllerBuilder()
         {0.001, 0, 0.0001}, // Turn controller gains
         {0.001, 0, 0.0001}  // Angle controller gains (helps drive straight)
     )
-    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withOdometry() // use the same scales as the chassis (above)
     .buildOdometry(); // build an odometry chassis
@@ -63,7 +63,7 @@ to specify the scales for the tracking wheels.
 ```cpp
 ChassisControllerBuilder()
     .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
-    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withSensors(
         ADIEncoder{'A', 'B'}, // left encoder in ADI ports A & B
@@ -104,7 +104,7 @@ Here is an example using [ChassisControllerIntegrated](@ref okapi::ChassisContro
 ```cpp
 ChassisControllerBuilder()
     .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
-    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     .withSensors(
         ADIEncoder{'A', 'B'}, // left encoder in ADI ports A & B
@@ -190,7 +190,7 @@ Here is is a full example of odometry using [ChassisControllerIntegrated](@ref o
 std::shared_ptr<OdomChassisController> chassis =
   ChassisControllerBuilder()
     .withMotors(1, -2) // left motor is 1, right motor is 2 (reversed)
-    // green gearset, 4 inch wheel diameter, 11.5 inch wheelbase
+    // green gearset, 4 inch wheel diameter, 11.5 inch wheel track
     .withDimensions(AbstractMotor::gearset::green, {{4_in, 11.5_in}, imev5GreenTPR})
     // left encoder in ADI ports A & B, right encoder in ADI ports C & D (reversed)
     .withSensors(ADIEncoder{'A', 'B'}, ADIEncoder{'C', 'D', true})

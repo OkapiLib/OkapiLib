@@ -258,6 +258,10 @@ void MotorGroup::controllerSet(const double ivalue) {
   }
 }
 
+size_t MotorGroup::getSize() {
+  return motors.size();
+};
+
 std::shared_ptr<ContinuousRotarySensor> MotorGroup::getEncoder() {
   return getEncoder(0);
 }

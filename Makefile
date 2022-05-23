@@ -22,15 +22,19 @@ USE_PACKAGE:=0
 # Set this to 1 to add additional rules to compile your project as a PROS library template
 IS_LIBRARY:=1
 LIBNAME:=okapilib
-VERSION:=4.2.1
+VERSION:=4.4.0
 EXCLUDE_SRC_FROM_LIB=$(call rwildcard,$(SRCDIR)/test,*.*)
 # this line excludes opcontrol.c and similar files
 EXCLUDE_SRC_FROM_LIB+= $(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize $(SRCDIR)/autonomous $(SRCDIR)/main,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
 
+# Added to the local makefile to ensure that we don't try to download the 
+# Squiggles source files for projects including Okapi as a template
+DOWNLOAD_SQUIGGLES:=$(shell mkdir -p cmake-build-debug && cd cmake-build-debug && cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" .. && rm -r ../src/squiggles 2> /dev/null || true  && mkdir -p ../src/squiggles && find ./squiggles-src/main/src -type f -name '*.cpp' ! -name 'main.cpp' | xargs cp -t ../src/squiggles && rm -r ../include/okapi/squiggles 2> /dev/null || true && cp -r ./squiggles-src/main/include ../include/okapi/squiggles && cd ..)
+
 # files that get distributed to every user (beyond your source archive) - add
 # whatever files you want here. This line is configured to add all header files
 # that are in the the include directory get exported
-TEMPLATE_FILES=$(INCDIR)/okapi/**/*.h $(INCDIR)/okapi/**/*.hpp
+TEMPLATE_FILES=$(INCDIR)/okapi/**/*.h $(INCDIR)/okapi/**/*.hpp $(FWDIR)/squiggles.mk
 
 .DEFAULT_GOAL=quick
 

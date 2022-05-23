@@ -3,12 +3,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#include "okapi/api/control/async/asyncMotionProfileController.hpp"
-#include "okapi/api/util/mathUtil.hpp"
 #include <algorithm>
 #include <iostream>
+#include <fstream>
 #include <mutex>
 #include <numeric>
+
+#include "okapi/api/control/async/asyncMotionProfileController.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 
 namespace okapi {
 AsyncMotionProfileController::AsyncMotionProfileController(
@@ -57,96 +59,39 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
     return;
   }
 
-  std::vector<Waypoint> points;
+  std::vector<squiggles::Pose> points;
   points.reserve(iwaypoints.size());
   for (auto &point : iwaypoints) {
     points.push_back(
-      Waypoint{point.x.convert(meter), point.y.convert(meter), point.theta.convert(radian)});
+      squiggles::Pose{point.y.convert(meter),
+                      point.x.convert(meter),
+                      (90_deg - point.theta).convert(radian)});
   }
 
   LOG_INFO_S("AsyncMotionProfileController: Preparing trajectory");
 
-  TrajectoryPtr candidate(new TrajectoryCandidate, [](TrajectoryCandidate *c) {
-    if (c->laptr) {
-      free(c->laptr);
-    }
+  auto constraints = squiggles::Constraints(ilimits.maxVel, ilimits.maxAccel, ilimits.maxJerk);
+  auto splineGenerator = squiggles::SplineGenerator(constraints, 
+    std::make_shared<squiggles::TankModel>(scales.wheelTrack.convert(meter), constraints), 
+    DT);
+  auto path = splineGenerator.generate(points);
 
-    if (c->saptr) {
-      free(c->saptr);
-    }
-
-    delete c;
-  });
-
-  pathfinder_prepare(points.data(),
-                     static_cast<int>(points.size()),
-                     FIT_HERMITE_CUBIC,
-                     PATHFINDER_SAMPLES_FAST,
-                     0.010,
-                     ilimits.maxVel,
-                     ilimits.maxAccel,
-                     ilimits.maxJerk,
-                     candidate.get());
-
-  const int length = candidate->length;
-
-  if (length < 0) {
-    std::string message = "AsyncMotionProfileController: Length was negative. " +
-                          getPathErrorMessage(points, ipathId, length);
-
-    LOG_ERROR(message);
-    throw std::runtime_error(message);
-  }
-
-  SegmentPtr trajectory(static_cast<Segment *>(malloc(length * sizeof(Segment))), free);
-
-  if (trajectory == nullptr) {
-    std::string message = "AsyncMotionProfileController: Could not allocate trajectory. " +
-                          getPathErrorMessage(points, ipathId, length);
-
-    LOG_ERROR(message);
-    throw std::runtime_error(message);
-  }
-
-  LOG_INFO_S("AsyncMotionProfileController: Generating path");
-
-  pathfinder_generate(candidate.get(), trajectory.get());
-
-  SegmentPtr leftTrajectory((Segment *)malloc(sizeof(Segment) * length), free);
-  SegmentPtr rightTrajectory((Segment *)malloc(sizeof(Segment) * length), free);
-
-  if (leftTrajectory == nullptr || rightTrajectory == nullptr) {
-    std::string message = "AsyncMotionProfileController: Could not allocate left and/or right "
-                          "trajectories. " +
-                          getPathErrorMessage(points, ipathId, length);
-
-    LOG_ERROR(message);
-    throw std::runtime_error(message);
-  }
-
-  LOG_INFO_S("AsyncMotionProfileController: Modifying for tank drive");
-  pathfinder_modify_tank(trajectory.get(),
-                         length,
-                         leftTrajectory.get(),
-                         rightTrajectory.get(),
-                         scales.wheelTrack.convert(meter));
 
   // Free the old path before overwriting it
   forceRemovePath(ipathId);
 
-  paths.emplace(ipathId,
-                TrajectoryPair{std::move(leftTrajectory), std::move(rightTrajectory), length});
+  paths.insert({ipathId, path});
 
   LOG_INFO("AsyncMotionProfileController: Completely done generating path " + ipathId);
-  LOG_DEBUG("AsyncMotionProfileController: Path length: " + std::to_string(length));
+  LOG_DEBUG("AsyncMotionProfileController: Path length: " + std::to_string(path.size()));
 }
 
-std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<Waypoint> &points,
+std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<PathfinderPoint> &points,
                                                               const std::string &ipathId,
                                                               int length) {
-  auto pointToString = [](Waypoint point) {
-    return "PathfinderPoint{x=" + std::to_string(point.x) + ", y=" + std::to_string(point.y) +
-           ", theta=" + std::to_string(point.angle) + "}";
+  auto pointToString = [](PathfinderPoint point) {
+    return "PathfinderPoint{x=" + std::to_string(point.x.getValue()) + ", y=" + std::to_string(point.y.getValue()) +
+           ", theta=" + std::to_string(point.theta.getValue()) + "}";
   };
 
   return "The path (id " + ipathId + ", length " + std::to_string(length) +
@@ -154,7 +99,7 @@ std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<
          std::accumulate(std::next(points.begin()),
                          points.end(),
                          pointToString(points.at(0)),
-                         [&](std::string a, Waypoint b) { return a + ", " + pointToString(b); });
+                         [&](std::string a, PathfinderPoint b) { return a + ", " + pointToString(b); });
 }
 
 bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
@@ -228,7 +173,7 @@ void AsyncMotionProfileController::loop() {
                  currentPath);
       } else {
         LOG_DEBUG("AsyncMotionProfileController: Path length is " +
-                  std::to_string(path->second.length));
+                  std::to_string(path->second.size()));
 
         executeSinglePath(path->second, timeUtil.getRate());
 
@@ -249,21 +194,24 @@ void AsyncMotionProfileController::loop() {
   LOG_INFO_S("Stopped AsyncMotionProfileController task.");
 }
 
-void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
+void AsyncMotionProfileController::executeSinglePath(const std::vector<squiggles::ProfilePoint> &path,
                                                      std::unique_ptr<AbstractRate> rate) {
   const int reversed = direction.load(std::memory_order_acquire);
   const bool followMirrored = mirrored.load(std::memory_order_acquire);
-  const int pathLength = getPathLength(path);
 
-  for (int i = 0; i < pathLength && !isDisabled(); ++i) {
+  currentPathMutex.lock();
+  // store this locally so we aren't accessing the path when we don't know if it's valid
+  std::size_t pathSize = path.size(); 
+  currentPathMutex.unlock();
+  for (std::size_t i = 0; i < pathSize && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
     // if a running path is asked to be removed at the moment this loop is executing
     std::scoped_lock lock(currentPathMutex);
 
-    const auto segDT = path.left.get()[i].dt * second;
-    const auto leftRPM = convertLinearToRotational(path.left.get()[i].velocity * mps).convert(rpm);
+    const auto segDT = DT * second;
+    const auto leftRPM = convertLinearToRotational(path[i].wheel_velocities[0] * mps).convert(rpm);
     const auto rightRPM =
-      convertLinearToRotational(path.right.get()[i].velocity * mps).convert(rpm);
+      convertLinearToRotational(path[i].wheel_velocities[1] * mps).convert(rpm);
 
     const double rightSpeed = rightRPM / toUnderlyingType(pair.internalGearset) * reversed;
     const double leftSpeed = leftRPM / toUnderlyingType(pair.internalGearset) * reversed;
@@ -280,11 +228,6 @@ void AsyncMotionProfileController::executeSinglePath(const TrajectoryPair &path,
 
     rate->delayUntil(segDT);
   }
-}
-
-int AsyncMotionProfileController::getPathLength(const TrajectoryPair &path) {
-  std::scoped_lock lock(currentPathMutex);
-  return path.length;
 }
 
 QAngularSpeed AsyncMotionProfileController::convertLinearToRotational(QSpeed linear) const {
@@ -381,60 +324,60 @@ CrossplatformThread *AsyncMotionProfileController::getThread() const {
 
 void AsyncMotionProfileController::storePath(const std::string &idirectory,
                                              const std::string &ipathId) {
-  std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
-  std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
-  FILE *leftPathFile = fopen(leftFilePath.c_str(), "w");
-  FILE *rightPathFile = fopen(rightFilePath.c_str(), "w");
+  std::string filePath = makeFilePath(idirectory, ipathId + ".csv");
+  std::ofstream file;
+  file.open(filePath, std::ofstream::out);
 
   // Make sure we can open the file successfully
-  if (leftPathFile == NULL) {
-    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for writing");
-    if (rightPathFile != NULL) {
-      fclose(rightPathFile);
-    }
-    return;
-  }
-  if (rightPathFile == NULL) {
-    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for writing");
-    fclose(leftPathFile);
+  if (!file.good()) {
+    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + filePath + " for writing");
     return;
   }
 
-  internalStorePath(leftPathFile, rightPathFile, ipathId);
+  internalStorePath(file, ipathId);
 
-  fclose(leftPathFile);
-  fclose(rightPathFile);
+  file.close();
 }
 
 void AsyncMotionProfileController::loadPath(const std::string &idirectory,
                                             const std::string &ipathId) {
+  std::string squigglesPath = makeFilePath(idirectory, ipathId + ".csv");  
+  std::ifstream squigglesPathFile;
+  squigglesPathFile.open(squigglesPath, std::ifstream::in);
+  if (squigglesPathFile.good()) {
+    // give preference to a squiggles path stored for this id
+    internalLoadPath(squigglesPathFile, ipathId);
+    squigglesPathFile.close();
+    return;
+  }
+
+  // There's no Squiggles path, let's check for Pathfinder files
   std::string leftFilePath = makeFilePath(idirectory, ipathId + ".left.csv");
   std::string rightFilePath = makeFilePath(idirectory, ipathId + ".right.csv");
-  FILE *leftPathFile = fopen(leftFilePath.c_str(), "r");
-  FILE *rightPathFile = fopen(rightFilePath.c_str(), "r");
-
-  // Make sure we can open the file successfully
-  if (leftPathFile == NULL) {
-    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for reading");
-    if (rightPathFile != NULL) {
-      fclose(rightPathFile);
+  std::ifstream leftPathFile, rightPathFile;
+  leftPathFile.open(leftFilePath, std::ifstream::in);
+  rightPathFile.open(rightFilePath, std::ifstream::in);
+  if (leftPathFile.good() && rightPathFile.good()) {
+    internalLoadPathfinderPath(leftPathFile, rightPathFile, ipathId);
+    leftPathFile.close();
+    rightPathFile.close();
+  } else {
+    // we don't have both pathfinder files available, check if there's one
+    if (rightPathFile.good()) {
+      LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for reading");
+      rightPathFile.close();
+      return;
+    } 
+    if (leftPathFile.good()) {
+      LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for reading");
+      leftPathFile.close();
+      return;
     }
-    return;
+    LOG_WARN("AsyncMotionProfileController: Couldn't find any path files for id " + ipathId);
   }
-  if (rightPathFile == NULL) {
-    LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for reading");
-    fclose(leftPathFile);
-    return;
-  }
-
-  internalLoadPath(leftPathFile, rightPathFile, ipathId);
-
-  fclose(leftPathFile);
-  fclose(rightPathFile);
 }
 
-void AsyncMotionProfileController::internalStorePath(FILE *leftPathFile,
-                                                     FILE *rightPathFile,
+void AsyncMotionProfileController::internalStorePath(std::ostream &file,
                                                      const std::string &ipathId) {
   auto pathData = this->paths.find(ipathId);
 
@@ -444,38 +387,25 @@ void AsyncMotionProfileController::internalStorePath(FILE *leftPathFile,
              ipathId);
     // Do nothing- can't serialize nonexistent path
   } else {
-    int len = pathData->second.length;
-
-    // Serialize paths
-    pathfinder_serialize_csv(leftPathFile, pathData->second.left.get(), len);
-    pathfinder_serialize_csv(rightPathFile, pathData->second.right.get(), len);
+    squiggles::serialize_path(file, pathData->second);
   }
 }
 
-void AsyncMotionProfileController::internalLoadPath(FILE *leftPathFile,
-                                                    FILE *rightPathFile,
+void AsyncMotionProfileController::internalLoadPath(std::istream &file,
                                                     const std::string &ipathId) {
-  // Count lines in file, remove one for headers
-  int count = 0;
-  for (int c = getc(leftPathFile); c != EOF; c = getc(leftPathFile)) {
-    if (c == '\n') {
-      ++count;
-    }
-  }
-  --count;
-  rewind(leftPathFile);
 
-  // Allocate memory
-  SegmentPtr leftTrajectory((Segment *)malloc(sizeof(Segment) * count), free);
-  SegmentPtr rightTrajectory((Segment *)malloc(sizeof(Segment) * count), free);
-
-  pathfinder_deserialize_csv(leftPathFile, leftTrajectory.get());
-  pathfinder_deserialize_csv(rightPathFile, rightTrajectory.get());
-
-  // Remove the old path if it exists
+  auto path = squiggles::deserialize_path(file);
   forceRemovePath(ipathId);
-  paths.emplace(ipathId,
-                TrajectoryPair{std::move(leftTrajectory), std::move(rightTrajectory), count});
+  paths.emplace(ipathId, path.value());
+}
+
+void AsyncMotionProfileController::internalLoadPathfinderPath(std::istream &leftFile,
+                                                              std::istream &rightFile,
+                                                    const std::string &ipathId) {
+
+  auto path = squiggles::deserialize_pathfinder_path(leftFile, rightFile);
+  forceRemovePath(ipathId);
+  paths.emplace(ipathId, path.value());
 }
 
 std::string AsyncMotionProfileController::makeFilePath(const std::string &directory,
@@ -488,7 +418,7 @@ std::string AsyncMotionProfileController::makeFilePath(const std::string &direct
       // There's a usd, but no beginning slash
       path.insert(0, "/"); // We just need a slash
     } else {               // There's nothing at all
-      if (path.front() == '/') {
+      if (!path.empty() && path.front() == '/') {
         // Don't double up on slashes
         path.insert(0, "/usd");
       } else {
