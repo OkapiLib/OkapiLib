@@ -220,7 +220,7 @@ void XDriveModel::fieldOrientedXArcade(double ixSpeed,
                                        double iforwardSpeed, 
                                        double iyaw, 
                                        QAngle iangle, 
-                                       double ithreshold = 0) {
+                                       double ithreshold) {
   double xSpeed = std::clamp(ixSpeed, -1.0, 1.0);
   if (std::abs(xSpeed) < ithreshold) {
     xSpeed = 0;
