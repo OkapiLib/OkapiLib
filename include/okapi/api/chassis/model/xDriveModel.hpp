@@ -8,6 +8,7 @@
 #include "okapi/api/chassis/model/chassisModel.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
+#include "okapi/api/units/QAngle.hpp"
 
 namespace okapi {
 class XDriveModel : public ChassisModel {
@@ -123,6 +124,21 @@ class XDriveModel : public ChassisModel {
    */
   virtual void
   xArcade(double irightSpeed, double iforwardSpeed, double iyaw, double ithreshold = 0);
+
+  /**
+   * Drive the robot with a field-oriented arcade drive layout. Uses voltage mode.
+   * 
+   * @param ixSpeed speed to the right
+   * @param iforwardSpeed speed forward
+   * @param iyaw turn speed
+   * @param iangle current chassis angle
+   * @param ithreshold deadband on joystick values
+   */
+  virtual void fieldOrientedXArcade(double ixSpeed, 
+                                    double iforwardSpeed, 
+                                    double iyaw, 
+                                    QAngle iangle, 
+                                    double ithreshold = 0);
 
   /**
    * Power the left side motors. Uses velocity mode.
