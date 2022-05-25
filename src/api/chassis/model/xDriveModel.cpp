@@ -217,7 +217,7 @@ void XDriveModel::xArcade(const double ixSpeed,
 }
 
 void XDriveModel::fieldOrientedXArcade(double ixSpeed, 
-                                       double iforwardSpeed, 
+                                       double iySpeed, 
                                        double iyaw, 
                                        QAngle iangle, 
                                        double ithreshold) {
@@ -226,9 +226,9 @@ void XDriveModel::fieldOrientedXArcade(double ixSpeed,
     xSpeed = 0;
   }
 
-  double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
-  if (std::abs(forwardSpeed) < ithreshold) {
-    forwardSpeed = 0;
+  double ySpeed = -std::clamp(iySpeed, -1.0, 1.0);
+  if (std::abs(ySpeed) < ithreshold) {
+    ySpeed = 0;
   }
 
   double yaw = std::clamp(iyaw, -1.0, 1.0);
@@ -236,8 +236,8 @@ void XDriveModel::fieldOrientedXArcade(double ixSpeed,
     yaw = 0;
   }
 
-  double fwd = forwardSpeed * std::cos(iangle.convert(okapi::radian)) - xSpeed * std::sin(iangle.convert(okapi::radian));
-  double right = forwardSpeed * std::sin(iangle.convert(okapi::radian)) + xSpeed * std::cos(iangle.convert(okapi::radian));
+  double fwd = xSpeed * cos(iangle).getValue() - ySpeed * sin(iangle).getValue();
+  double right = xSpeed * sin(iangle).getValue() + ySpeed * cos(iangle).getValue();
 
   topLeftMotor->moveVoltage(
     static_cast<int16_t>(std::clamp(fwd - right + yaw, -1.0, 1.0) * maxVoltage));

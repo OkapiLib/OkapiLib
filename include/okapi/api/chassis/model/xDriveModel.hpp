@@ -135,7 +135,7 @@ class XDriveModel : public ChassisModel {
    * @param ithreshold deadband on joystick values
    */
   virtual void fieldOrientedXArcade(double ixSpeed, 
-                                    double iforwardSpeed, 
+                                    double iySpeed, 
                                     double iyaw, 
                                     QAngle iangle, 
                                     double ithreshold = 0);
