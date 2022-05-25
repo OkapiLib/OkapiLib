@@ -371,6 +371,137 @@ TEST_F(XDriveModelTest, XArcadeBoundsInputAllNoForward) {
   EXPECT_EQ(bottomLeftMotor->lastVoltage, 0);
 }
 
+TEST_F(XDriveModelTest, FieldOrientedXArcadeFullForward) {
+  model.fieldOrientedXArcade(1, 0, 0, 0_deg);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(12000);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeFullBackwards) {
+  model.fieldOrientedXArcade(-1, 0, 0, 0_deg);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(-12000);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeHalfForward) {
+  model.fieldOrientedXArcade(0.5, 0, 0, 0_deg);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(6000);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeHalfBackwards) {
+  model.fieldOrientedXArcade(-0.5, 0, 0, 0_deg);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(-6000);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeFullLeft) {
+  model.fieldOrientedXArcade(0, -1, 0, 0_deg);
+
+  EXPECT_EQ(topLeftMotor->lastVoltage, -12000);
+  EXPECT_EQ(topRightMotor->lastVoltage, 12000);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, 12000);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, -12000);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeFullRight) {
+  model.fieldOrientedXArcade(0, 1, 0, 0_deg);
+
+  EXPECT_EQ(topLeftMotor->lastVoltage, 12000);
+  EXPECT_EQ(topRightMotor->lastVoltage, -12000);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, -12000);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, 12000);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeHalfLeft) {
+  model.fieldOrientedXArcade(0, -0.5, 0, 0_deg);
+
+  EXPECT_EQ(topLeftMotor->lastVoltage, -6000);
+  EXPECT_EQ(topRightMotor->lastVoltage, 6000);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, 6000);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, -6000);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeHalfRight) {
+  model.fieldOrientedXArcade(0, 0.5, 0, 0_deg);
+
+  EXPECT_EQ(topLeftMotor->lastVoltage, 6000);
+  EXPECT_EQ(topRightMotor->lastVoltage, -6000);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, -6000);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, 6000);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeXThreshold) {
+  model.fieldOrientedXArcade(0.4, 0, 0, 0_deg, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(0);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeYThreshold) {
+  model.fieldOrientedXArcade(0, 0.4, 0, 0_deg, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(0);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeYawThreshold) {
+  model.fieldOrientedXArcade(0, 0, 0.4, 0_deg, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(0);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeRotateLeftFull) {
+  model.fieldOrientedXArcade(0, 0, -1, 0_deg, 0);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(-12000, 12000);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeRotateRightFull) {
+  model.fieldOrientedXArcade(0, 0, 1, 0_deg, 0);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(12000, -12000);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeRotateLeftHalf) {
+  model.fieldOrientedXArcade(0, 0, -0.5, 0_deg, 0);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(-6000, 6000);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeRotateRightHalf) {
+  model.fieldOrientedXArcade(0, 0, 0.5, 0_deg, 0);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(6000, -6000);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeFull90Forward) {
+  model.fieldOrientedXArcade(1, 0, 0, 90_deg);
+
+  EXPECT_EQ(topLeftMotor->lastVoltage, -11999);
+  EXPECT_EQ(topRightMotor->lastVoltage, 12000);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, 12000);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, -11999);
+}
+
+TEST_F(XDriveModelTest, FieldOrientedXArcadeFull180Forward) {
+  model.fieldOrientedXArcade(1, 0, 0, 180_deg);
+
+  EXPECT_EQ(topLeftMotor->lastVoltage, -12000);
+  EXPECT_EQ(topRightMotor->lastVoltage, -11999);
+  EXPECT_EQ(bottomLeftMotor->lastVoltage, -11999);
+  EXPECT_EQ(bottomRightMotor->lastVoltage, -12000);
+}
+
 TEST_F(XDriveModelTest, SetMaxVelocity) {
   model.setMaxVelocity(2);
   model.forward(0.5);
