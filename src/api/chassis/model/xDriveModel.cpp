@@ -216,6 +216,39 @@ void XDriveModel::xArcade(const double ixSpeed,
     static_cast<int16_t>(std::clamp(forwardSpeed - xSpeed + yaw, -1.0, 1.0) * maxVoltage));
 }
 
+void XDriveModel::fieldOrientedXArcade(double ixSpeed, 
+                                       double iySpeed, 
+                                       double iyaw, 
+                                       QAngle iangle, 
+                                       double ithreshold) {
+  double xSpeed = std::clamp(ixSpeed, -1.0, 1.0);
+  if (std::abs(xSpeed) < ithreshold) {
+    xSpeed = 0;
+  }
+
+  double ySpeed = -std::clamp(iySpeed, -1.0, 1.0);
+  if (std::abs(ySpeed) < ithreshold) {
+    ySpeed = 0;
+  }
+
+  double yaw = std::clamp(iyaw, -1.0, 1.0);
+  if (std::abs(yaw) < ithreshold) {
+    yaw = 0;
+  }
+
+  double fwd = xSpeed * cos(iangle).getValue() - ySpeed * sin(iangle).getValue();
+  double right = xSpeed * sin(iangle).getValue() + ySpeed * cos(iangle).getValue();
+
+  topLeftMotor->moveVoltage(
+    static_cast<int16_t>(std::clamp(fwd - right + yaw, -1.0, 1.0) * maxVoltage));
+  topRightMotor->moveVoltage(
+    static_cast<int16_t>(std::clamp(fwd + right - yaw, -1.0, 1.0) * maxVoltage));
+  bottomRightMotor->moveVoltage(
+    static_cast<int16_t>(std::clamp(fwd - right - yaw, -1.0, 1.0) * maxVoltage));
+  bottomLeftMotor->moveVoltage(
+    static_cast<int16_t>(std::clamp(fwd + right + yaw, -1.0, 1.0) * maxVoltage));
+}
+
 void XDriveModel::left(const double ispeed) {
   const double speed = std::clamp(ispeed, -1.0, 1.0);
   topLeftMotor->moveVelocity(static_cast<int16_t>(speed * maxVelocity));
