@@ -57,7 +57,7 @@ std::int32_t IMU::reset() {
 }
 
 std::int32_t IMU::reset(double inewAngle) {
-  double currentAngle = readAngle();
+  const double currentAngle = readAngle();
   if (currentAngle == PROS_ERR) {
     return PROS_ERR;
   } else {
