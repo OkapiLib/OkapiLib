@@ -114,6 +114,10 @@
             </dt>
             <dd>Reset the rotation value to zero.</dd>
             <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a233ed21c87990e6a30191ed401f9444a" class="m-doc">reset</a>(</span><span class="m-doc-wrap">double inewAngle) -&gt; std::int32_t</span>
+            </dt>
+            <dd>Resets rotation value to desired value For example, <code>reset(0)</code> will reset the sensor to zero.</dd>
+            <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aaab7c59addb969843cc9549bcd4bd5ea" class="m-doc">calibrate</a>(</span><span class="m-doc-wrap">) -&gt; std::int32_t</span>
             </dt>
             <dd>Calibrate the <a href="classokapi_1_1IMU.html" class="m-doc">IMU</a>.</dd>
@@ -248,6 +252,30 @@
                 </tr>
               </tfoot>
             </table>
+          </div></section>
+          <section class="m-doc-details" id="a233ed21c87990e6a30191ed401f9444a"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::int32_t okapi::<wbr />IMU::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a233ed21c87990e6a30191ed401f9444a" class="m-doc-self">reset</a>(</span><span class="m-doc-wrap">double inewAngle)</span></span>
+            </h3>
+            <p>Resets rotation value to desired value For example, <code>reset(0)</code> will reset the sensor to zero.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">inewAngle</td>
+                  <td>desired reset value</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td><code>1</code> or <code>PROS_ERR</code>.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>But <code>reset(90)</code> will reset the sensor to 90 degrees.</p>
           </div></section>
           <section class="m-doc-details" id="aaab7c59addb969843cc9549bcd4bd5ea"><div>
             <h3>
