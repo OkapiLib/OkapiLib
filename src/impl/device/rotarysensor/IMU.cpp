@@ -56,6 +56,16 @@ std::int32_t IMU::reset() {
   }
 }
 
+std::int32_t IMU::reset(double inewAngle) {
+  const double currentAngle = readAngle();
+  if (currentAngle == PROS_ERR) {
+    return PROS_ERR;
+  } else {
+    offset = currentAngle - inewAngle;
+    return 1;
+  }
+}
+
 std::int32_t IMU::calibrate() {
   const std::int32_t result = pros::c::imu_reset(port);
 
