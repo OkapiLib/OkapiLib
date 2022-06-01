@@ -57,6 +57,7 @@ class ChassisController {
 
   /**
    * Turns the robot clockwise in place (using closed-loop control).
+   * (turns the shortest angle for OdomChassisControllers)
    *
    * @param idegTarget angle to turn for
    */
@@ -71,6 +72,7 @@ class ChassisController {
 
   /**
    * Sets the target angle for the robot to turn clockwise in place (using closed-loop control).
+   * (turns the shortest angle for OdomChassisControllers)
    *
    * @param idegTarget angle to turn for
    */
