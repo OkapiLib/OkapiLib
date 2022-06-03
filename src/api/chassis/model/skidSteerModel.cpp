@@ -137,6 +137,41 @@ void SkidSteerModel::arcade(const double iforwardSpeed,
     static_cast<int16_t>(std::clamp(rightOutput, -1.0, 1.0) * maxVoltage));
 }
 
+void SkidSteerModel::curvature(const double iforwardSpeed, 
+                               const double icurvature, 
+                               const double ithreshold) {
+  // This code is adapted from WPIlib. All credit goes to them. Link:
+  // https://github.com/wpilibsuite/allwpilib/blob/main/wpilibc/src/main/native/cpp/drive/DifferentialDrive.cpp#L49
+  double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
+  if (std::abs(forwardSpeed) < ithreshold) {
+    forwardSpeed = 0;
+  }
+
+  double curvature = std::clamp(icurvature, -1.0, 1.0);
+  if (std::abs(curvature) < ithreshold) {
+    curvature = 0;
+  }
+
+  // the algorithm switches to arcade when forward speed is 0 to allow point turns.
+  if(forwardSpeed == 0){
+    arcade(forwardSpeed, curvature, ithreshold);
+    return;
+  }
+
+  double leftSpeed = forwardSpeed + std::abs(forwardSpeed) * curvature;
+  double rightSpeed = forwardSpeed - std::abs(forwardSpeed) * curvature;
+  double maxSpeed = std::max(leftSpeed, rightSpeed);
+
+  // normalizes output
+  if(maxSpeed > 1.0){
+    leftSpeed /= maxSpeed;
+	rightSpeed /= maxSpeed;
+  }
+
+  leftSideMotor->moveVoltage(static_cast<int16_t>(leftSpeed * maxVoltage));
+  rightSideMotor->moveVoltage(static_cast<int16_t>(rightSpeed * maxVoltage));
+}
+
 void SkidSteerModel::left(const double ispeed) {
   leftSideMotor->moveVelocity(static_cast<int16_t>(std::clamp(ispeed, -1.0, 1.0) * maxVelocity));
 }
