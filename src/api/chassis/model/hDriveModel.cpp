@@ -206,6 +206,46 @@ void HDriveModel::hArcade(const double ixSpeed,
   middleMotor->moveVoltage(static_cast<int16_t>(std::clamp(xSpeed, -1.0, 1.0) * maxVoltage));
 }
 
+void HDriveModel::hCurvature(const double ixSpeed, 
+                             const double iforwardSpeed,
+                             const double icurvature, 
+                             const double ithreshold) {
+  double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
+  if (std::abs(forwardSpeed) < ithreshold) {
+    forwardSpeed = 0;
+  }
+
+  double curvature = std::clamp(icurvature, -1.0, 1.0);
+  if (std::abs(curvature) < ithreshold) {
+    curvature = 0;
+  }
+
+  double xSpeed = std::clamp(ixSpeed, -1.0, 1.0);
+  if (std::abs(xSpeed) < ithreshold) {
+    xSpeed = 0;
+  }
+
+  // the algorithm switches to arcade when forward speed is 0 to allow point turns.
+  if(forwardSpeed == 0){
+    hArcade(xSpeed, forwardSpeed, curvature, ithreshold);
+    return;
+  }
+
+  double leftSpeed = forwardSpeed + std::abs(forwardSpeed) * curvature;
+  double rightSpeed = forwardSpeed - std::abs(forwardSpeed) * curvature;
+  double maxSpeed = std::max(leftSpeed, rightSpeed);
+
+  // normalizes output
+  if(maxSpeed > 1.0){
+    leftSpeed /= maxSpeed;
+	  rightSpeed /= maxSpeed;
+  }
+
+  leftSideMotor->moveVoltage(static_cast<int16_t>(leftSpeed * maxVoltage));
+  rightSideMotor->moveVoltage(static_cast<int16_t>(rightSpeed * maxVoltage));
+  middleMotor->moveVoltage(static_cast<int16_t>(xSpeed * maxVoltage));
+}
+
 void HDriveModel::left(const double ispeed) {
   leftSideMotor->moveVelocity(static_cast<int16_t>(std::clamp(ispeed, -1.0, 1.0) * maxVelocity));
 }

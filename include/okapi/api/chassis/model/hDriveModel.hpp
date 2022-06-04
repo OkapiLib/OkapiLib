@@ -124,6 +124,17 @@ class HDriveModel : public ChassisModel {
   hArcade(double irightSpeed, double iforwardSpeed, double iyaw, double ithreshold = 0);
 
   /**
+   * Drive the robot with an curvature drive layout. Uses voltage mode.
+   *
+   * @param irightSpeed speed to the right
+   * @param iforwardSpeed speed in the forward direction
+   * @param icurvature curvature (inverse of radius) to drive in
+   * @param ithreshold deadband on joystick values
+   */
+  virtual void
+  hCurvature(double irightSpeed, double iforwardSpeed, double icurvature, double ithreshold = 0);
+
+  /**
    * Power the left side motors. Uses velocity mode.
    *
    * @param ispeed The motor power.
