@@ -1,4 +1,4 @@
-/*
+  /*
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -36,7 +36,7 @@ void XDriveModel::forward(const double ispeed) {
 
 void XDriveModel::driveVector(const double iforwardSpeed, const double iyaw) {
   // This code is taken from WPIlib. All credit goes to them. Link:
-  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   const double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
   const double yaw = std::clamp(iyaw, -1.0, 1.0);
 
@@ -56,7 +56,7 @@ void XDriveModel::driveVector(const double iforwardSpeed, const double iyaw) {
 
 void XDriveModel::driveVectorVoltage(const double iforwardSpeed, const double iyaw) {
   // This code is taken from WPIlib. All credit goes to them. Link:
-  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   const double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
   const double yaw = std::clamp(iyaw, -1.0, 1.0);
 
@@ -92,7 +92,7 @@ void XDriveModel::strafe(const double ispeed) {
 
 void XDriveModel::strafeVector(const double istrafeSpeed, const double iyaw) {
   // This code is taken from WPIlib. All credit goes to them. Link:
-  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   const double forwardSpeed = std::clamp(istrafeSpeed, -1.0, 1.0);
   const double yaw = std::clamp(iyaw, -1.0, 1.0);
 
@@ -126,7 +126,7 @@ void XDriveModel::stop() {
 
 void XDriveModel::tank(const double ileftSpeed, const double irightSpeed, const double ithreshold) {
   // This code is taken from WPIlib. All credit goes to them. Link:
-  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L198
   double leftSpeed = std::clamp(ileftSpeed, -1.0, 1.0);
   if (std::abs(leftSpeed) < ithreshold) {
     leftSpeed = 0;
@@ -145,7 +145,7 @@ void XDriveModel::tank(const double ileftSpeed, const double irightSpeed, const 
 
 void XDriveModel::arcade(const double iforwardSpeed, const double iyaw, const double ithreshold) {
   // This code is taken from WPIlib. All credit goes to them. Link:
-  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L48
   double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
   if (std::abs(forwardSpeed) <= ithreshold) {
     forwardSpeed = 0;
@@ -191,7 +191,7 @@ void XDriveModel::curvature(const double iforwardSpeed,
                             const double icurvature, 
                             const double ithreshold) {
   // This code is adapted from WPIlib. All credit goes to them. Link:
-  // https://github.com/wpilibsuite/allwpilib/blob/main/wpilibc/src/main/native/cpp/drive/DifferentialDrive.cpp#L49
+  // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L117
   double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
   if (std::abs(forwardSpeed) < ithreshold) {
     forwardSpeed = 0;
