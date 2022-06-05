@@ -1,4 +1,4 @@
-  /*
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -187,8 +187,8 @@ void XDriveModel::arcade(const double iforwardSpeed, const double iyaw, const do
   bottomLeftMotor->moveVoltage(static_cast<int16_t>(leftOutput * maxVoltage));
 }
 
-void XDriveModel::curvature(const double iforwardSpeed, 
-                            const double icurvature, 
+void XDriveModel::curvature(const double iforwardSpeed,
+                            const double icurvature,
                             const double ithreshold) {
   // This code is adapted from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L117
@@ -203,7 +203,7 @@ void XDriveModel::curvature(const double iforwardSpeed,
   }
 
   // the algorithm switches to arcade when forward speed is 0 to allow point turns.
-  if(forwardSpeed == 0){
+  if (forwardSpeed == 0) {
     arcade(forwardSpeed, curvature, ithreshold);
     return;
   }
@@ -213,9 +213,9 @@ void XDriveModel::curvature(const double iforwardSpeed,
   double maxSpeed = std::max(leftSpeed, rightSpeed);
 
   // normalizes output
-  if(maxSpeed > 1.0){
+  if (maxSpeed > 1.0) {
     leftSpeed /= maxSpeed;
-	  rightSpeed /= maxSpeed;
+    rightSpeed /= maxSpeed;
   }
 
   topLeftMotor->moveVoltage(static_cast<int16_t>(leftSpeed * maxVoltage));
@@ -253,10 +253,10 @@ void XDriveModel::xArcade(const double ixSpeed,
     static_cast<int16_t>(std::clamp(forwardSpeed - xSpeed + yaw, -1.0, 1.0) * maxVoltage));
 }
 
-void XDriveModel::fieldOrientedXArcade(double ixSpeed, 
-                                       double iySpeed, 
-                                       double iyaw, 
-                                       QAngle iangle, 
+void XDriveModel::fieldOrientedXArcade(double ixSpeed,
+                                       double iySpeed,
+                                       double iyaw,
+                                       QAngle iangle,
                                        double ithreshold) {
   double xSpeed = std::clamp(ixSpeed, -1.0, 1.0);
   if (std::abs(xSpeed) < ithreshold) {

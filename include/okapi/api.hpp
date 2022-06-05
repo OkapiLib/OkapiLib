@@ -127,7 +127,7 @@
 #include "okapi/api/util/mathUtil.hpp"
 #include "okapi/api/util/supplier.hpp"
 #include "okapi/api/util/timeUtil.hpp"
+#include "okapi/impl/util/configurableTimeUtilFactory.hpp"
 #include "okapi/impl/util/rate.hpp"
 #include "okapi/impl/util/timeUtilFactory.hpp"
 #include "okapi/impl/util/timer.hpp"
-#include "okapi/impl/util/configurableTimeUtilFactory.hpp"

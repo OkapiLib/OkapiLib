@@ -89,8 +89,8 @@ class SkidSteerModel : public ChassisModel {
 
   /**
    * Drive the robot with a curvature drive layout. The robot drives in constant radius turns
-   * where you control the curvature (inverse of radius) you drive in. This is advantageous 
-   * because the forward speed will not affect the rate of turning. The algorithm switches to 
+   * where you control the curvature (inverse of radius) you drive in. This is advantageous
+   * because the forward speed will not affect the rate of turning. The algorithm switches to
    * arcade if the forward speed is 0. Uses voltage mode.
    *
    * @param iforwardSpeed speed in the forward direction

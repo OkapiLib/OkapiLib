@@ -137,8 +137,8 @@ void SkidSteerModel::arcade(const double iforwardSpeed,
     static_cast<int16_t>(std::clamp(rightOutput, -1.0, 1.0) * maxVoltage));
 }
 
-void SkidSteerModel::curvature(const double iforwardSpeed, 
-                               const double icurvature, 
+void SkidSteerModel::curvature(const double iforwardSpeed,
+                               const double icurvature,
                                const double ithreshold) {
   // This code is adapted from WPIlib. All credit goes to them. Link:
   // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L117
@@ -153,7 +153,7 @@ void SkidSteerModel::curvature(const double iforwardSpeed,
   }
 
   // the algorithm switches to arcade when forward speed is 0 to allow point turns.
-  if(forwardSpeed == 0){
+  if (forwardSpeed == 0) {
     arcade(forwardSpeed, curvature, ithreshold);
     return;
   }
@@ -163,9 +163,9 @@ void SkidSteerModel::curvature(const double iforwardSpeed,
   double maxSpeed = std::max(leftSpeed, rightSpeed);
 
   // normalizes output
-  if(maxSpeed > 1.0){
+  if (maxSpeed > 1.0) {
     leftSpeed /= maxSpeed;
-	rightSpeed /= maxSpeed;
+    rightSpeed /= maxSpeed;
   }
 
   leftSideMotor->moveVoltage(static_cast<int16_t>(leftSpeed * maxVoltage));
