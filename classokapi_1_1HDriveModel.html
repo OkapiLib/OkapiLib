@@ -136,12 +136,25 @@
             </dt>
             <dd>Drive the robot with an arcade drive layout.</dd>
             <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#adb6f15eb2635677962f1c870d4072430" class="m-doc">curvature</a>(</span><span class="m-doc-wrap">double iforwardSpeed,
+              double icurvature,
+              double ithreshold = 0) <span class="m-label m-flat m-warning">override</span></span>
+            </dt>
+            <dd>Drive the robot with a curvature drive layout.</dd>
+            <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a3f371bf7774e098666593a5c5685691b" class="m-doc">hArcade</a>(</span><span class="m-doc-wrap">double irightSpeed,
               double iforwardSpeed,
               double iyaw,
               double ithreshold = 0) <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
             <dd>Drive the robot with an arcade drive layout.</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a2e454db56f590228b4b4a90757afa8f7" class="m-doc">hCurvature</a>(</span><span class="m-doc-wrap">double irightSpeed,
+              double iforwardSpeed,
+              double icurvature,
+              double ithreshold = 0) <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd>Drive the robot with an curvature drive layout.</dd>
             <dt>
               <span class="m-doc-wrap-bumper">void <a href="#a7d92c1f2384ed4a3d1af675ee6996d8b" class="m-doc">left</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
@@ -441,6 +454,34 @@
             </table>
 <p>Uses voltage mode. Sets the middle motor to zero velocity.</p>
           </div></section>
+          <section class="m-doc-details" id="adb6f15eb2635677962f1c870d4072430"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />HDriveModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#adb6f15eb2635677962f1c870d4072430" class="m-doc-self">curvature</a>(</span><span class="m-doc-wrap">double iforwardSpeed,
+              double icurvature,
+              double ithreshold = 0) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <p>Drive the robot with a curvature drive layout.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iforwardSpeed</td>
+                  <td>speed in the forward direction</td>
+                </tr>
+                <tr>
+                  <td>icurvature</td>
+                  <td>curvature (inverse of radius) to drive in</td>
+                </tr>
+                <tr>
+                  <td>ithreshold</td>
+                  <td>deadband on joystick values</td>
+                </tr>
+              </tbody>
+            </table>
+<p>The robot drives in constant radius turns where you control the curvature (inverse of radius) you drive in. This is advantageous because the forward speed will not affect the rate of turning. The algorithm switches to arcade if the forward speed is 0. Uses voltage mode. Sets the middle motor to zero velocity.</p>
+          </div></section>
           <section class="m-doc-details" id="a3f371bf7774e098666593a5c5685691b"><div>
             <h3>
               <span class="m-doc-wrap-bumper">void okapi::<wbr />HDriveModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a3f371bf7774e098666593a5c5685691b" class="m-doc-self">hArcade</a>(</span><span class="m-doc-wrap">double irightSpeed,
@@ -465,6 +506,39 @@
                 <tr>
                   <td>iyaw</td>
                   <td>speed around the vertical axis</td>
+                </tr>
+                <tr>
+                  <td>ithreshold</td>
+                  <td>deadband on joystick values</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Uses voltage mode.</p>
+          </div></section>
+          <section class="m-doc-details" id="a2e454db56f590228b4b4a90757afa8f7"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />HDriveModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2e454db56f590228b4b4a90757afa8f7" class="m-doc-self">hCurvature</a>(</span><span class="m-doc-wrap">double irightSpeed,
+              double iforwardSpeed,
+              double icurvature,
+              double ithreshold = 0) <span class="m-label m-warning">virtual</span></span></span>
+            </h3>
+            <p>Drive the robot with an curvature drive layout.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">irightSpeed</td>
+                  <td>speed to the right</td>
+                </tr>
+                <tr>
+                  <td>iforwardSpeed</td>
+                  <td>speed in the forward direction</td>
+                </tr>
+                <tr>
+                  <td>icurvature</td>
+                  <td>curvature (inverse of radius) to drive in</td>
                 </tr>
                 <tr>
                   <td>ithreshold</td>

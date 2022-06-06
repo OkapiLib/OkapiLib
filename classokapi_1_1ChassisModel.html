@@ -155,6 +155,12 @@
             </dt>
             <dd>Drive the robot with an arcade drive layout.</dd>
             <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a2459ac1128c26c5911fa1696bd185c63" class="m-doc">curvature</a>(</span><span class="m-doc-wrap">double iforwardSpeed,
+              double icurvature,
+              double ithreshold = 0) <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd>Drive the robot with a curvature drive layout.</dd>
+            <dt>
               <span class="m-doc-wrap-bumper">void <a href="#aa2008856c169eb64c6648bc64c31c504" class="m-doc">left</a>(</span><span class="m-doc-wrap">double ispeed) <span class="m-label m-flat m-warning">pure virtual</span></span>
             </dt>
             <dd>Power the left side motors.</dd>
@@ -331,6 +337,34 @@
               </tbody>
             </table>
 <p>Uses voltage mode.</p>
+          </div></section>
+          <section class="m-doc-details" id="a2459ac1128c26c5911fa1696bd185c63"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />ChassisModel::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2459ac1128c26c5911fa1696bd185c63" class="m-doc-self">curvature</a>(</span><span class="m-doc-wrap">double iforwardSpeed,
+              double icurvature,
+              double ithreshold = 0) <span class="m-label m-warning">pure virtual</span></span></span>
+            </h3>
+            <p>Drive the robot with a curvature drive layout.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">iforwardSpeed</td>
+                  <td>speed in the forward direction</td>
+                </tr>
+                <tr>
+                  <td>icurvature</td>
+                  <td>curvature (inverse of radius) to drive in</td>
+                </tr>
+                <tr>
+                  <td>ithreshold</td>
+                  <td>deadband on joystick values</td>
+                </tr>
+              </tbody>
+            </table>
+<p>The robot drives in constant radius turns where you control the curvature (inverse of radius) you drive in. This is advantageous because the forward speed will not affect the rate of turning. The algorithm switches to arcade if the forward speed is 0. Uses voltage mode.</p>
           </div></section>
           <section class="m-doc-details" id="aa2008856c169eb64c6648bc64c31c504"><div>
             <h3>
