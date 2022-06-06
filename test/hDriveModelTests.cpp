@@ -194,6 +194,49 @@ TEST_F(HDriveModelTest, ArcadeNegativeZero) {
   assertAllMotorsLastVelocity(0);
   assertLeftAndRightMotorsLastVoltage(-12000, 12000);
 }
+
+TEST_F(HDriveModelTest, CurvatureHalfPower) {
+  model.curvature(0.5, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(9000, 3000);
+}
+
+TEST_F(HDriveModelTest, CurvatureNormalizes) {
+  model.curvature(0.7, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(12000, 4000);
+}
+
+TEST_F(HDriveModelTest, CurvatureSwitchesToArcade) {
+  model.curvature(0.0, 1.0);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(12000, -12000);
+}
+
+TEST_F(HDriveModelTest, CurvatureBoundsInput) {
+  model.curvature(10, -10);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(0, 12000);
+}
+
+TEST_F(HDriveModelTest, CurvatureThresholds) {
+  model.curvature(0.2, 0.2, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(0, 0);
+}
+
+TEST_F(HDriveModelTest, CurvatureNegativeZero) {
+  model.curvature(-0.0, -0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(-6000, 6000);
+}
+
 TEST_F(HDriveModelTest, HArcadeHalfPowerForward) {
   model.hArcade(0, 0.5, 0);
 
@@ -282,6 +325,76 @@ TEST_F(HDriveModelTest, HArcadeBoundsInputAllNoForward) {
   EXPECT_EQ(leftMotor->lastVoltage, 12000);
   EXPECT_EQ(rightMotor->lastVoltage, -12000);
   EXPECT_EQ(middleMotor->lastVoltage, 12000);
+}
+
+TEST_F(HDriveModelTest, HCurvatureHalfPower) {
+  model.hCurvature(0, 0.5, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  EXPECT_EQ(leftMotor->lastVoltage, 9000);
+  EXPECT_EQ(rightMotor->lastVoltage, 3000);
+  EXPECT_EQ(middleMotor->lastVoltage, 0);
+}
+
+TEST_F(HDriveModelTest, HCurvatureHalfPowerStrafe) {
+  model.hCurvature(0.5, 0, 0);
+
+  assertAllMotorsLastVelocity(0);
+  EXPECT_EQ(leftMotor->lastVoltage, 0);
+  EXPECT_EQ(rightMotor->lastVoltage, 0);
+  EXPECT_EQ(middleMotor->lastVoltage, 6000);
+}
+
+TEST_F(HDriveModelTest, HCurvatureFullPower) {
+  model.hCurvature(1, 1, 0);
+
+  assertAllMotorsLastVelocity(0);
+  EXPECT_EQ(leftMotor->lastVoltage, 12000);
+  EXPECT_EQ(rightMotor->lastVoltage, 12000);
+  EXPECT_EQ(middleMotor->lastVoltage, 12000);
+}
+
+TEST_F(HDriveModelTest, HCurvatureFullPowerTurn) {
+  model.hCurvature(1, 1, 1);
+
+  assertAllMotorsLastVelocity(0);
+  EXPECT_EQ(leftMotor->lastVoltage, 12000);
+  EXPECT_EQ(rightMotor->lastVoltage, 0);
+  EXPECT_EQ(middleMotor->lastVoltage, 12000);
+}
+
+TEST_F(HDriveModelTest, HCurvatureNormalizes) {
+  model.hCurvature(-0.25, 0.7, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  EXPECT_EQ(leftMotor->lastVoltage, 12000);
+  EXPECT_EQ(rightMotor->lastVoltage, 4000);
+  EXPECT_EQ(middleMotor->lastVoltage, -3000);
+}
+
+TEST_F(HDriveModelTest, HCurvatureBoundsInput) {
+  model.hCurvature(-10, 10, 10);
+
+  assertAllMotorsLastVelocity(0);
+  EXPECT_EQ(leftMotor->lastVoltage, 12000);
+  EXPECT_EQ(rightMotor->lastVoltage, 0);
+  EXPECT_EQ(middleMotor->lastVoltage, -12000);
+}
+
+TEST_F(HDriveModelTest, HCurvatureThresholds) {
+  model.hCurvature(0.4, 0.5, 0.5, 0.7);
+
+  assertAllMotorsLastVelocity(0);
+  assertAllMotorsLastVoltage(0);
+}
+
+TEST_F(HDriveModelTest, HCurvatureNegativeZero) {
+  model.hCurvature(-0.0, -0.0, -0.0);
+
+  assertAllMotorsLastVelocity(0);
+  EXPECT_EQ(leftMotor->lastVoltage, 0);
+  EXPECT_EQ(rightMotor->lastVoltage, 0);
+  EXPECT_EQ(middleMotor->lastVoltage, 0);
 }
 
 TEST_F(HDriveModelTest, SetMaxVelocity) {

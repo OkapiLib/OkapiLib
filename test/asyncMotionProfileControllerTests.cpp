@@ -7,11 +7,11 @@
 #include "test/tests/api/implMocks.hpp"
 #include <fstream>
 #ifdef WINDOWS
-    #include <direct.h>
-    #define getcwd _getcwd
+#include <direct.h>
+#define getcwd _getcwd
 #else
-    #include <unistd.h>
- #endif
+#include <unistd.h>
+#endif
 #include <gtest/gtest.h>
 
 using namespace okapi;
@@ -25,7 +25,8 @@ class MockAsyncMotionProfileController : public AsyncMotionProfileController {
   using AsyncMotionProfileController::internalStorePath;
   using AsyncMotionProfileController::makeFilePath;
 
-  void executeSinglePath(const std::vector<squiggles::ProfilePoint> &path, std::unique_ptr<AbstractRate> rate) override {
+  void executeSinglePath(const std::vector<squiggles::ProfilePoint> &path,
+                         std::unique_ptr<AbstractRate> rate) override {
     executeSinglePathCalled = true;
     AsyncMotionProfileController::executeSinglePath(path, std::move(rate));
   }
@@ -40,8 +41,8 @@ class MockAsyncMotionProfileController : public AsyncMotionProfileController {
 class AsyncMotionProfileControllerTest : public ::testing::Test {
   protected:
   std::string get_working_path() {
-   char temp[FILENAME_MAX];
-   return ( getcwd(temp, sizeof(temp)) ? std::string( temp ) : std::string("") );
+    char temp[FILENAME_MAX];
+    return (getcwd(temp, sizeof(temp)) ? std::string(temp) : std::string(""));
   }
 
   void SetUp() override {
@@ -151,9 +152,8 @@ TEST_F(AsyncMotionProfileControllerTest, TwoPathsOverwriteEachOther) {
 
 TEST_F(AsyncMotionProfileControllerTest, ImpossiblePathThrowsException) {
   // Path is too long to fit within the time window considered by Squiggles
-  EXPECT_THROW(controller->generatePath({PathfinderPoint{0_m, 0_m, 0_deg},
-                                         PathfinderPoint{9999_m, 0_m, 0_deg}},
-                                        "A"),
+  EXPECT_THROW(controller->generatePath(
+                 {PathfinderPoint{0_m, 0_m, 0_deg}, PathfinderPoint{9999_m, 0_m, 0_deg}}, "A"),
                std::runtime_error);
   EXPECT_EQ(controller->getPaths().size(), 0);
 }
@@ -306,7 +306,7 @@ TEST_F(AsyncMotionProfileControllerTest, FollowPathNotMirrored) {
   EXPECT_NE(leftMotor->lastVelocity, 0);
   EXPECT_NE(rightMotor->lastVelocity, 0);
   EXPECT_GT(leftMotor->maxVelocity, rightMotor->maxVelocity);
-  
+
   // Disable the controller so gtest doesn't clean up the test fixture while the internal thread is
   // still running
   controller->flipDisable(true);

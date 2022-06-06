@@ -66,8 +66,8 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    * If the waypoints form a path which is impossible to achieve, an instance of
    * `std::runtime_error` is thrown (and an error is logged) which describes the waypoints. If there
    * are no waypoints, no path is generated.
-   * 
-   * NOTE: The waypoints are expected to be in the 
+   *
+   * NOTE: The waypoints are expected to be in the
    * okapi::State::FRAME_TRANSFORMATION format where +x is forward, +y is right,
    * and 0 theta is measured from the +x axis to the +y axis.
    *
@@ -290,7 +290,8 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
   /**
    * Follow the supplied path. Must follow the disabled lifecycle.
    */
-  virtual void executeSinglePath(const std::vector<squiggles::ProfilePoint> &path, std::unique_ptr<AbstractRate> rate);
+  virtual void executeSinglePath(const std::vector<squiggles::ProfilePoint> &path,
+                                 std::unique_ptr<AbstractRate> rate);
 
   /**
    * Converts linear chassis speed to rotational motor speed.
@@ -300,8 +301,9 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
    */
   QAngularSpeed convertLinearToRotational(QSpeed linear) const;
 
-  std::string
-  getPathErrorMessage(const std::vector<PathfinderPoint> &points, const std::string &ipathId, int length);
+  std::string getPathErrorMessage(const std::vector<PathfinderPoint> &points,
+                                  const std::string &ipathId,
+                                  int length);
 
   /**
    * Joins and escapes a directory and file name
@@ -315,8 +317,10 @@ class AsyncMotionProfileController : public AsyncPositionController<std::string,
 
   void internalStorePath(std::ostream &file, const std::string &ipathId);
   void internalLoadPath(std::istream &file, const std::string &ipathId);
-  void internalLoadPathfinderPath(std::istream &leftFile, std::istream &rightFile, const std::string &ipathId);
+  void internalLoadPathfinderPath(std::istream &leftFile,
+                                  std::istream &rightFile,
+                                  const std::string &ipathId);
 
-  static constexpr double DT = 0.01; 
+  static constexpr double DT = 0.01;
 };
 } // namespace okapi

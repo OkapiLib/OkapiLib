@@ -183,6 +183,48 @@ TEST_F(SkidSteerModelTest, ArcadeNegativeZero) {
   assertLeftAndRightMotorsLastVoltage(-12000, 12000);
 }
 
+TEST_F(SkidSteerModelTest, CurvatureHalfPower) {
+  model.curvature(0.5, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(9000, 3000);
+}
+
+TEST_F(SkidSteerModelTest, CurvatureNormalizes) {
+  model.curvature(0.7, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(12000, 4000);
+}
+
+TEST_F(SkidSteerModelTest, CurvatureSwitchesToArcade) {
+  model.curvature(0.0, 1.0);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(12000, -12000);
+}
+
+TEST_F(SkidSteerModelTest, CurvatureBoundsInput) {
+  model.curvature(10, -10);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(0, 12000);
+}
+
+TEST_F(SkidSteerModelTest, CurvatureThresholds) {
+  model.curvature(0.2, 0.2, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(0, 0);
+}
+
+TEST_F(SkidSteerModelTest, CurvatureNegativeZero) {
+  model.curvature(-0.0, -0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(-6000, 6000);
+}
+
 TEST_F(SkidSteerModelTest, SetMaxVelocity) {
   model.setMaxVelocity(2);
   model.forward(0.5);
