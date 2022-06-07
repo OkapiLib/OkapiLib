@@ -36,7 +36,7 @@ void XDriveModel::forward(const double ispeed) {
 
 void XDriveModel::driveVector(const double iforwardSpeed, const double iyaw) {
   // This code is taken from WPIlib. All credit goes to them. Link:
-  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   const double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
   const double yaw = std::clamp(iyaw, -1.0, 1.0);
 
@@ -56,7 +56,7 @@ void XDriveModel::driveVector(const double iforwardSpeed, const double iyaw) {
 
 void XDriveModel::driveVectorVoltage(const double iforwardSpeed, const double iyaw) {
   // This code is taken from WPIlib. All credit goes to them. Link:
-  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   const double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
   const double yaw = std::clamp(iyaw, -1.0, 1.0);
 
@@ -92,7 +92,7 @@ void XDriveModel::strafe(const double ispeed) {
 
 void XDriveModel::strafeVector(const double istrafeSpeed, const double iyaw) {
   // This code is taken from WPIlib. All credit goes to them. Link:
-  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
   const double forwardSpeed = std::clamp(istrafeSpeed, -1.0, 1.0);
   const double yaw = std::clamp(iyaw, -1.0, 1.0);
 
@@ -126,7 +126,7 @@ void XDriveModel::stop() {
 
 void XDriveModel::tank(const double ileftSpeed, const double irightSpeed, const double ithreshold) {
   // This code is taken from WPIlib. All credit goes to them. Link:
-  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L198
   double leftSpeed = std::clamp(ileftSpeed, -1.0, 1.0);
   if (std::abs(leftSpeed) < ithreshold) {
     leftSpeed = 0;
@@ -145,7 +145,7 @@ void XDriveModel::tank(const double ileftSpeed, const double irightSpeed, const 
 
 void XDriveModel::arcade(const double iforwardSpeed, const double iyaw, const double ithreshold) {
   // This code is taken from WPIlib. All credit goes to them. Link:
-  // https://github.com/wpilibsuite/allwpilib/blob/master/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L73
+  // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L48
   double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
   if (std::abs(forwardSpeed) <= ithreshold) {
     forwardSpeed = 0;
@@ -187,6 +187,43 @@ void XDriveModel::arcade(const double iforwardSpeed, const double iyaw, const do
   bottomLeftMotor->moveVoltage(static_cast<int16_t>(leftOutput * maxVoltage));
 }
 
+void XDriveModel::curvature(const double iforwardSpeed,
+                            const double icurvature,
+                            const double ithreshold) {
+  // This code is adapted from WPIlib. All credit goes to them. Link:
+  // https://github.com/wpilibsuite/allwpilib/blob/96e9a6989ce1688f3edb2d9b9d21ef8cd3861579/wpilibc/src/main/native/cpp/Drive/DifferentialDrive.cpp#L117
+  double forwardSpeed = std::clamp(iforwardSpeed, -1.0, 1.0);
+  if (std::abs(forwardSpeed) < ithreshold) {
+    forwardSpeed = 0;
+  }
+
+  double curvature = std::clamp(icurvature, -1.0, 1.0);
+  if (std::abs(curvature) < ithreshold) {
+    curvature = 0;
+  }
+
+  // the algorithm switches to arcade when forward speed is 0 to allow point turns.
+  if (forwardSpeed == 0) {
+    arcade(forwardSpeed, curvature, ithreshold);
+    return;
+  }
+
+  double leftSpeed = forwardSpeed + std::abs(forwardSpeed) * curvature;
+  double rightSpeed = forwardSpeed - std::abs(forwardSpeed) * curvature;
+  double maxSpeed = std::max(leftSpeed, rightSpeed);
+
+  // normalizes output
+  if (maxSpeed > 1.0) {
+    leftSpeed /= maxSpeed;
+    rightSpeed /= maxSpeed;
+  }
+
+  topLeftMotor->moveVoltage(static_cast<int16_t>(leftSpeed * maxVoltage));
+  topRightMotor->moveVoltage(static_cast<int16_t>(rightSpeed * maxVoltage));
+  bottomRightMotor->moveVoltage(static_cast<int16_t>(rightSpeed * maxVoltage));
+  bottomLeftMotor->moveVoltage(static_cast<int16_t>(leftSpeed * maxVoltage));
+}
+
 void XDriveModel::xArcade(const double ixSpeed,
                           const double iforwardSpeed,
                           const double iyaw,
@@ -216,10 +253,10 @@ void XDriveModel::xArcade(const double ixSpeed,
     static_cast<int16_t>(std::clamp(forwardSpeed - xSpeed + yaw, -1.0, 1.0) * maxVoltage));
 }
 
-void XDriveModel::fieldOrientedXArcade(double ixSpeed, 
-                                       double iySpeed, 
-                                       double iyaw, 
-                                       QAngle iangle, 
+void XDriveModel::fieldOrientedXArcade(double ixSpeed,
+                                       double iySpeed,
+                                       double iyaw,
+                                       QAngle iangle,
                                        double ithreshold) {
   double xSpeed = std::clamp(ixSpeed, -1.0, 1.0);
   if (std::abs(xSpeed) < ithreshold) {

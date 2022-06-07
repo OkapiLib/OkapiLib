@@ -273,7 +273,8 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
   /**
    * Follow the supplied path. Must follow the disabled lifecycle.
    */
-  virtual void executeSinglePath(const std::vector<squiggles::ProfilePoint> &path, std::unique_ptr<AbstractRate> rate);
+  virtual void executeSinglePath(const std::vector<squiggles::ProfilePoint> &path,
+                                 std::unique_ptr<AbstractRate> rate);
 
   /**
    * Converts linear "chassis" speed to rotational motor speed.
@@ -283,7 +284,8 @@ class AsyncLinearMotionProfileController : public AsyncPositionController<std::s
    */
   QAngularSpeed convertLinearToRotational(QSpeed linear) const;
 
-  std::string
-  getPathErrorMessage(const std::vector<PathfinderPoint> &points, const std::string &ipathId, int length);
+  std::string getPathErrorMessage(const std::vector<PathfinderPoint> &points,
+                                  const std::string &ipathId,
+                                  int length);
 };
 } // namespace okapi
