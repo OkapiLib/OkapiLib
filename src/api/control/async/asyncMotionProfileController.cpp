@@ -4,8 +4,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include <algorithm>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <mutex>
 #include <numeric>
 
@@ -62,20 +62,18 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
   std::vector<squiggles::Pose> points;
   points.reserve(iwaypoints.size());
   for (auto &point : iwaypoints) {
-    points.push_back(
-      squiggles::Pose{point.y.convert(meter),
-                      point.x.convert(meter),
-                      (90_deg - point.theta).convert(radian)});
+    points.push_back(squiggles::Pose{
+      point.y.convert(meter), point.x.convert(meter), (90_deg - point.theta).convert(radian)});
   }
 
   LOG_INFO_S("AsyncMotionProfileController: Preparing trajectory");
 
   auto constraints = squiggles::Constraints(ilimits.maxVel, ilimits.maxAccel, ilimits.maxJerk);
-  auto splineGenerator = squiggles::SplineGenerator(constraints, 
-    std::make_shared<squiggles::TankModel>(scales.wheelTrack.convert(meter), constraints), 
+  auto splineGenerator = squiggles::SplineGenerator(
+    constraints,
+    std::make_shared<squiggles::TankModel>(scales.wheelTrack.convert(meter), constraints),
     DT);
   auto path = splineGenerator.generate(points);
-
 
   // Free the old path before overwriting it
   forceRemovePath(ipathId);
@@ -86,20 +84,23 @@ void AsyncMotionProfileController::generatePath(std::initializer_list<Pathfinder
   LOG_DEBUG("AsyncMotionProfileController: Path length: " + std::to_string(path.size()));
 }
 
-std::string AsyncMotionProfileController::getPathErrorMessage(const std::vector<PathfinderPoint> &points,
-                                                              const std::string &ipathId,
-                                                              int length) {
+std::string
+AsyncMotionProfileController::getPathErrorMessage(const std::vector<PathfinderPoint> &points,
+                                                  const std::string &ipathId,
+                                                  int length) {
   auto pointToString = [](PathfinderPoint point) {
-    return "PathfinderPoint{x=" + std::to_string(point.x.getValue()) + ", y=" + std::to_string(point.y.getValue()) +
+    return "PathfinderPoint{x=" + std::to_string(point.x.getValue()) +
+           ", y=" + std::to_string(point.y.getValue()) +
            ", theta=" + std::to_string(point.theta.getValue()) + "}";
   };
 
   return "The path (id " + ipathId + ", length " + std::to_string(length) +
          ") is impossible with waypoints: " +
-         std::accumulate(std::next(points.begin()),
-                         points.end(),
-                         pointToString(points.at(0)),
-                         [&](std::string a, PathfinderPoint b) { return a + ", " + pointToString(b); });
+         std::accumulate(
+           std::next(points.begin()),
+           points.end(),
+           pointToString(points.at(0)),
+           [&](std::string a, PathfinderPoint b) { return a + ", " + pointToString(b); });
 }
 
 bool AsyncMotionProfileController::removePath(const std::string &ipathId) {
@@ -194,14 +195,15 @@ void AsyncMotionProfileController::loop() {
   LOG_INFO_S("Stopped AsyncMotionProfileController task.");
 }
 
-void AsyncMotionProfileController::executeSinglePath(const std::vector<squiggles::ProfilePoint> &path,
-                                                     std::unique_ptr<AbstractRate> rate) {
+void AsyncMotionProfileController::executeSinglePath(
+  const std::vector<squiggles::ProfilePoint> &path,
+  std::unique_ptr<AbstractRate> rate) {
   const int reversed = direction.load(std::memory_order_acquire);
   const bool followMirrored = mirrored.load(std::memory_order_acquire);
 
   currentPathMutex.lock();
   // store this locally so we aren't accessing the path when we don't know if it's valid
-  std::size_t pathSize = path.size(); 
+  std::size_t pathSize = path.size();
   currentPathMutex.unlock();
   for (std::size_t i = 0; i < pathSize && !isDisabled(); ++i) {
     // This mutex is used to combat an edge case of an edge case
@@ -210,8 +212,7 @@ void AsyncMotionProfileController::executeSinglePath(const std::vector<squiggles
 
     const auto segDT = DT * second;
     const auto leftRPM = convertLinearToRotational(path[i].wheel_velocities[0] * mps).convert(rpm);
-    const auto rightRPM =
-      convertLinearToRotational(path[i].wheel_velocities[1] * mps).convert(rpm);
+    const auto rightRPM = convertLinearToRotational(path[i].wheel_velocities[1] * mps).convert(rpm);
 
     const double rightSpeed = rightRPM / toUnderlyingType(pair.internalGearset) * reversed;
     const double leftSpeed = leftRPM / toUnderlyingType(pair.internalGearset) * reversed;
@@ -341,7 +342,7 @@ void AsyncMotionProfileController::storePath(const std::string &idirectory,
 
 void AsyncMotionProfileController::loadPath(const std::string &idirectory,
                                             const std::string &ipathId) {
-  std::string squigglesPath = makeFilePath(idirectory, ipathId + ".csv");  
+  std::string squigglesPath = makeFilePath(idirectory, ipathId + ".csv");
   std::ifstream squigglesPathFile;
   squigglesPathFile.open(squigglesPath, std::ifstream::in);
   if (squigglesPathFile.good()) {
@@ -367,9 +368,10 @@ void AsyncMotionProfileController::loadPath(const std::string &idirectory,
       LOG_WARN("AsyncMotionProfileController: Couldn't open file " + leftFilePath + " for reading");
       rightPathFile.close();
       return;
-    } 
+    }
     if (leftPathFile.good()) {
-      LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath + " for reading");
+      LOG_WARN("AsyncMotionProfileController: Couldn't open file " + rightFilePath +
+               " for reading");
       leftPathFile.close();
       return;
     }
@@ -401,7 +403,7 @@ void AsyncMotionProfileController::internalLoadPath(std::istream &file,
 
 void AsyncMotionProfileController::internalLoadPathfinderPath(std::istream &leftFile,
                                                               std::istream &rightFile,
-                                                    const std::string &ipathId) {
+                                                              const std::string &ipathId) {
 
   auto path = squiggles::deserialize_pathfinder_path(leftFile, rightFile);
   forceRemovePath(ipathId);

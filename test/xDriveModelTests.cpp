@@ -272,6 +272,48 @@ TEST_F(XDriveModelTest, ArcadeNegativeZero) {
   assertLeftAndRightMotorsLastVoltage(-12000, 12000);
 }
 
+TEST_F(XDriveModelTest, CurvatureHalfPower) {
+  model.curvature(0.5, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(9000, 3000);
+}
+
+TEST_F(XDriveModelTest, CurvatureNormalizes) {
+  model.curvature(0.7, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(12000, 4000);
+}
+
+TEST_F(XDriveModelTest, CurvatureSwitchesToArcade) {
+  model.curvature(0.0, 1.0);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(12000, -12000);
+}
+
+TEST_F(XDriveModelTest, CurvatureBoundsInput) {
+  model.curvature(10, -10);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(0, 12000);
+}
+
+TEST_F(XDriveModelTest, CurvatureThresholds) {
+  model.curvature(0.2, 0.2, 0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(0, 0);
+}
+
+TEST_F(XDriveModelTest, CurvatureNegativeZero) {
+  model.curvature(-0.0, -0.5);
+
+  assertAllMotorsLastVelocity(0);
+  assertLeftAndRightMotorsLastVoltage(-6000, 6000);
+}
+
 TEST_F(XDriveModelTest, XArcadeHalfPowerForward) {
   model.xArcade(0, 0.5, 0);
 

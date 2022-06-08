@@ -486,6 +486,11 @@ class MockChassisModel : public ChassisModel {
     lastArcadeZ = izRotation;
   }
 
+  void curvature(double iforwardSpeed, double icurvature, double) override {
+    lastCurvatureForward = iforwardSpeed;
+    lastCurvatureCurvature = icurvature;
+  }
+
   void left(double ispeed) override {
     lastLeft = ispeed;
   }
@@ -536,6 +541,8 @@ class MockChassisModel : public ChassisModel {
   mutable double lastTankRight{0};
   mutable double lastArcadeY{0};
   mutable double lastArcadeZ{0};
+  mutable double lastCurvatureForward{0};
+  mutable double lastCurvatureCurvature{0};
   mutable double lastLeft{0};
   mutable double lastRight{0};
   mutable bool resetSensorsWasCalled{false};
