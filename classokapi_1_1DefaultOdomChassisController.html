@@ -155,18 +155,18 @@
               <span class="m-doc-wrap-bumper">void <a href="#aec3f30b75ae403601de320a5b376ef0a" class="m-doc-self">moveRawAsync</a>(</span><span class="m-doc-wrap">double itarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
-            <dt id="a4ba07ac4bea9ff2d8aea30be72f6a0ea">
-              <span class="m-doc-wrap-bumper">void <a href="#a4ba07ac4bea9ff2d8aea30be72f6a0ea" class="m-doc-self">turnAngle</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a4ba07ac4bea9ff2d8aea30be72f6a0ea" class="m-doc">turnAngle</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dd>Turns chassis to desired angle (turns in the direction of smallest angle) (ex.</dd>
             <dt id="a2546087ed9bf13794235509bc8a2503f">
               <span class="m-doc-wrap-bumper">void <a href="#a2546087ed9bf13794235509bc8a2503f" class="m-doc-self">turnRaw</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
             <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
-            <dt id="a18d748097a7938e3102638d17be54c76">
-              <span class="m-doc-wrap-bumper">void <a href="#a18d748097a7938e3102638d17be54c76" class="m-doc-self">turnAngleAsync</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">override</span></span>
+            <dt>
+              <span class="m-doc-wrap-bumper">void <a href="#a18d748097a7938e3102638d17be54c76" class="m-doc">turnAngleAsync</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
-            <dd>This delegates to the input <a href="classokapi_1_1ChassisController.html" class="m-doc">ChassisController</a>.</dd>
+            <dd>Turns chassis to desired angle (turns in the direction of smallest angle) (ex.</dd>
             <dt id="a3a69b57e67a178c2fdafbe31f64e44b4">
               <span class="m-doc-wrap-bumper">void <a href="#a3a69b57e67a178c2fdafbe31f64e44b4" class="m-doc-self">turnRawAsync</a>(</span><span class="m-doc-wrap">double idegTarget) <span class="m-label m-flat m-warning">override</span></span>
             </dt>
@@ -354,6 +354,42 @@
                 </tr>
               </tfoot>
             </table>
+          </div></section>
+          <section class="m-doc-details" id="a4ba07ac4bea9ff2d8aea30be72f6a0ea"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a4ba07ac4bea9ff2d8aea30be72f6a0ea" class="m-doc-self">turnAngle</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <p>Turns chassis to desired angle (turns in the direction of smallest angle) (ex.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">idegTarget</td>
+                  <td>target angle</td>
+                </tr>
+              </tbody>
+            </table>
+<p>If current angle is 0 and target is 270, the chassis will turn -90 degrees)</p>
+          </div></section>
+          <section class="m-doc-details" id="a18d748097a7938e3102638d17be54c76"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">void okapi::<wbr />DefaultOdomChassisController::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a18d748097a7938e3102638d17be54c76" class="m-doc-self">turnAngleAsync</a>(</span><span class="m-doc-wrap">QAngle idegTarget) <span class="m-label m-warning">override</span></span></span>
+            </h3>
+            <p>Turns chassis to desired angle (turns in the direction of smallest angle) (ex.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">idegTarget</td>
+                  <td>target angle</td>
+                </tr>
+              </tbody>
+            </table>
+<p>If current angle is 0 and target is 270, the chassis will turn -90 degrees)</p>
           </div></section>
         </section>
       </div>
