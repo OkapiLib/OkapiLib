@@ -86,7 +86,7 @@ void DefaultOdomChassisController::turnToPoint(const Point &ipoint) {
 void DefaultOdomChassisController::turnToAngle(const QAngle &iangle) {
   waitForOdomTask();
 
-  const auto angle = iangle - odom->getState(StateMode::FRAME_TRANSFORMATION).theta;
+  const auto angle = OdomMath::constrainAngle180(iangle - odom->getState(StateMode::FRAME_TRANSFORMATION).theta);
 
   LOG_INFO("DefaultOdomChassisController: Computed angle of " +
            std::to_string(angle.convert(degree)) + " degrees");
