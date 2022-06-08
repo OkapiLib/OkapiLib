@@ -158,6 +158,11 @@ TEST_F(DefaultOdomChassisControllerTest, TurnAboveThreshold) {
   EXPECT_EQ(controller->lastTurnAngleTargetQAngle, 6_deg);
 }
 
+TEST_F(DefaultOdomChassisControllerTest, BoundTurn) {
+  drive->turnToAngle(270_deg);
+  EXPECT_EQ(controller->lastTurnAngleTargetQAngle, -90_deg);
+}
+
 TEST_F(DefaultOdomChassisControllerTest, SetStateTest) {
   auto stateBefore = drive->getState();
   assertOdomStateEquals(0, 0, 0, stateBefore);
