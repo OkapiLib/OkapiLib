@@ -22,7 +22,7 @@ USE_PACKAGE:=0
 # Set this to 1 to add additional rules to compile your project as a PROS library template
 IS_LIBRARY:=1
 LIBNAME:=okapilib
-VERSION:=4.6.0
+VERSION:=4.7.0
 EXCLUDE_SRC_FROM_LIB=$(call rwildcard,$(SRCDIR)/test,*.*)
 # this line excludes opcontrol.c and similar files
 EXCLUDE_SRC_FROM_LIB+= $(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize $(SRCDIR)/autonomous $(SRCDIR)/main,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
