@@ -7,6 +7,7 @@
 
 #include "okapi/api/units/QAngle.hpp"
 #include "okapi/api/units/QLength.hpp"
+#include "okapi/api/units/RQuantityName.hpp"
 #include <string>
 
 namespace okapi {
@@ -18,7 +19,11 @@ struct OdomState {
   /**
    * @return A string representing the state.
    */
-  std::string str() const;
+  std::string str(QLength idistanceUnit, QAngle iangleUnit) const;
+  std::string str(QLength idistanceUnit = meter,
+                  std::string distUnitName = "_m",
+                  QAngle iangleUnit = degree,
+                  std::string angleUnitName = "_deg") const;
 
   bool operator==(const OdomState &rhs) const;
 
