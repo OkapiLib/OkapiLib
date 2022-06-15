@@ -9,6 +9,14 @@
 
 namespace okapi {
 
+/**
+* Returns a short name for a unit.
+* For example: `str(1_ft)` will return "ft", so will `1 * foot` or `0.3048_m`.
+* Throws std::domain_error when `q` is a unit not defined in this function.
+*
+* @param q Your unit. Currently only QLength and QAngle are supported.
+* @return The short string suffix for that unit.
+*/
 template <class QType> std::string getShortUnitName(QType q) {
   const std::unordered_map<std::type_index, std::unordered_map<double, const char *>> shortNameMap =
     {{typeid(meter),
