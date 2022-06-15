@@ -121,6 +121,7 @@
 #include "okapi/api/units/QTime.hpp"
 #include "okapi/api/units/QTorque.hpp"
 #include "okapi/api/units/QVolume.hpp"
+#include "okapi/api/units/RQuantityName.hpp"
 
 #include "okapi/api/util/abstractRate.hpp"
 #include "okapi/api/util/abstractTimer.hpp"

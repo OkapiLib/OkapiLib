@@ -8,6 +8,7 @@
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/QTime.hpp"
 #include "okapi/api/units/QVolume.hpp"
+#include "okapi/api/units/RQuantityName.hpp"
 #include <gtest/gtest.h>
 
 using namespace okapi;
@@ -122,4 +123,14 @@ TEST(UnitTests, Atan2Test) {
   EXPECT_DOUBLE_EQ(atan2(1_ft, -2_ft).convert(radian), 2.677945044588987);
   EXPECT_DOUBLE_EQ(atan2(-1_ft, -2_ft).convert(radian), -2.677945044588987);
   EXPECT_DOUBLE_EQ(atan2(-1_ft, 2_ft).convert(radian), -0.4636476090008061);
+}
+
+TEST(UnitTests, UnitShortNameTest) {
+  EXPECT_STREQ(getShortUnitName(meter).c_str(), "m");
+  EXPECT_STREQ(getShortUnitName(foot).c_str(), "ft");
+  EXPECT_STREQ(getShortUnitName(degree).c_str(), "deg");
+  EXPECT_STREQ(getShortUnitName(radian).c_str(), "rad");
+
+  EXPECT_ANY_THROW(getShortUnitName(millimeter * 2));
+  EXPECT_ANY_THROW(getShortUnitName(meter3));
 }
