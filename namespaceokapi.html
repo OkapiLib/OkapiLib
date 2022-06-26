@@ -792,6 +792,11 @@
             </dt>
             <dd><span></span></dd>
             <dt>
+              <div class="m-doc-template">template&lt;class QType&gt;</div>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5091b102480ec68d8cd63d6c3c6fe2a0" class="m-doc">getShortUnitName</a>(</span><span class="m-doc-wrap">QType q) -&gt; std::string</span>
+            </dt>
+            <dd>Returns a short name for a unit.</dd>
+            <dt>
               <span class="m-doc-wrap-bumper">auto <a href="#aba6bd8fdde45445ead2bd8c3bf887fb4" class="m-doc">ipow</a>(</span><span class="m-doc-wrap">const double base,
               const int expo) -&gt; double <span class="m-label m-flat m-primary">constexpr</span></span>
             </dt>
@@ -1843,6 +1848,34 @@
               const <a href="classokapi_1_1RQuantity.html" class="m-doc">RQuantity</a>&lt;M, L, T, A&gt;&amp; rhs) <span class="m-label m-primary">constexpr</span></span></span>
             </h3>
             <p><span></span></p>
+          </div></section>
+          <section class="m-doc-details" id="a5091b102480ec68d8cd63d6c3c6fe2a0"><div>
+            <h3>
+              <div class="m-doc-include m-code m-inverted m-right-m m-text-right"><span class="cp">#include</span> <a class="cpf" href="RQuantityName_8hpp.html">&lt;include/okapi/api/units/RQuantityName.hpp&gt;</a></div>
+              <div class="m-doc-template">
+                template&lt;class QType&gt;
+              </div>
+              <span class="m-doc-wrap-bumper">std::string okapi::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5091b102480ec68d8cd63d6c3c6fe2a0" class="m-doc-self">getShortUnitName</a>(</span><span class="m-doc-wrap">QType q)</span></span>
+            </h3>
+            <p>Returns a short name for a unit.</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">q</td>
+                  <td>Your unit. Currently only QLength and QAngle are supported.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>The short string suffix for that unit.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>For example: <code>str(1_ft)</code> will return &quot;ft&quot;, so will <code>1 * foot</code> or <code>0.3048_m</code>. Throws std::domain_error when <code>q</code> is a unit not defined in this function.</p>
           </div></section>
           <section class="m-doc-details" id="aba6bd8fdde45445ead2bd8c3bf887fb4"><div>
             <h3>

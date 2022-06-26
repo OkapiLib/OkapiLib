@@ -75,9 +75,17 @@
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#adfaa3faf1931a8027af8a3cf9de439c1" class="m-doc">str</a>(</span><span class="m-doc-wrap">) const -&gt; std::string</span>
+              <span class="m-doc-wrap-bumper">auto <a href="#a5c7103ec3764cf944a704e977fe1398c" class="m-doc">str</a>(</span><span class="m-doc-wrap">QLength idistanceUnit,
+              QAngle iangleUnit) const -&gt; std::string</span>
             </dt>
-            <dd></dd>
+            <dd>Get a string for the current odometry state (optionally with the specified units).</dd>
+            <dt>
+              <span class="m-doc-wrap-bumper">auto <a href="#a0feae04e9707999ce72e6b948c1cbe64" class="m-doc">str</a>(</span><span class="m-doc-wrap">QLength idistanceUnit = <a href="namespaceokapi.html#a59563b3d4b18633f1c8d852e2932d1db" class="m-doc">meter</a>,
+              std::string distUnitName = &quot;_m&quot;,
+              QAngle iangleUnit = <a href="namespaceokapi.html#a62211562b2e637742bd6e64748802211" class="m-doc">degree</a>,
+              std::string angleUnitName = &quot;_deg&quot;) const -&gt; std::string</span>
+            </dt>
+            <dd>Get a string for the current odometry state (optionally with the specified units).</dd>
             <dt id="a17668afbbe39bcc745233a679aa917de">
               <span class="m-doc-wrap-bumper">auto <a href="#a17668afbbe39bcc745233a679aa917de" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const <a href="structokapi_1_1OdomState.html" class="m-doc">OdomState</a>&amp; rhs) const -&gt; bool</span>
             </dt>
@@ -107,18 +115,74 @@
         </section>
         <section>
           <h2>Function documentation</h2>
-          <section class="m-doc-details" id="adfaa3faf1931a8027af8a3cf9de439c1"><div>
+          <section class="m-doc-details" id="a5c7103ec3764cf944a704e977fe1398c"><div>
             <h3>
-              <span class="m-doc-wrap-bumper">std::string okapi::<wbr />OdomState::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#adfaa3faf1931a8027af8a3cf9de439c1" class="m-doc-self">str</a>(</span><span class="m-doc-wrap">) const</span></span>
+              <span class="m-doc-wrap-bumper">std::string okapi::<wbr />OdomState::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a5c7103ec3764cf944a704e977fe1398c" class="m-doc-self">str</a>(</span><span class="m-doc-wrap">QLength idistanceUnit,
+              QAngle iangleUnit) const</span></span>
             </h3>
+            <p>Get a string for the current odometry state (optionally with the specified units).</p>
             <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">idistanceUnit</td>
+                  <td>The units you want your distance to be in. This must be an exact, predefined QLength (such as foot, meter, inch, tile etc.).</td>
+                </tr>
+                <tr>
+                  <td>iangleUnit</td>
+                  <td>The units you want your angle to be in. This must be an exact, predefined QAngle (degree or radian).</td>
+                </tr>
+              </tbody>
               <tfoot>
                 <tr>
-                  <th style="width: 1%">Returns</th>
+                  <th>Returns</th>
                   <td>A string representing the state.</td>
                 </tr>
               </tfoot>
             </table>
+<p>Examples:</p><ul><li><code>OdomState::str(1_m, 1_deg)</code>: The default (no arguments specified).</li><li><code>OdomState::str(1_tile, 1_radian)</code>: distance tiles and angle radians.</li></ul><p>Throws std::domain_error if the units passed are undefined.</p>
+          </div></section>
+          <section class="m-doc-details" id="a0feae04e9707999ce72e6b948c1cbe64"><div>
+            <h3>
+              <span class="m-doc-wrap-bumper">std::string okapi::<wbr />OdomState::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0feae04e9707999ce72e6b948c1cbe64" class="m-doc-self">str</a>(</span><span class="m-doc-wrap">QLength idistanceUnit = <a href="namespaceokapi.html#a59563b3d4b18633f1c8d852e2932d1db" class="m-doc">meter</a>,
+              std::string distUnitName = &quot;_m&quot;,
+              QAngle iangleUnit = <a href="namespaceokapi.html#a62211562b2e637742bd6e64748802211" class="m-doc">degree</a>,
+              std::string angleUnitName = &quot;_deg&quot;) const</span></span>
+            </h3>
+            <p>Get a string for the current odometry state (optionally with the specified units).</p>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">idistanceUnit</td>
+                  <td>The units you want your distance to be in. The x or y position will be output in multiples of this length.</td>
+                </tr>
+                <tr>
+                  <td>distUnitName</td>
+                  <td>The suffix you as your distance unit.</td>
+                </tr>
+                <tr>
+                  <td>iangleUnit</td>
+                  <td>The units you want your angle to be in. The angle will be output in multiples of this unit.</td>
+                </tr>
+                <tr>
+                  <td>angleUnitName</td>
+                  <td>The suffix you want as your angle unit.</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>A string representing the state.</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Examples:</p><ul><li><code><a href="structokapi_1_1OdomState.html#a5c7103ec3764cf944a704e977fe1398c" class="m-doc">OdomState::<wbr />str</a>(1_m, &quot;_m&quot;, 1_deg, &quot;_deg&quot;)</code>: The default (no arguments specified), prints in meters and degrees.</li><li><code><a href="structokapi_1_1OdomState.html#a5c7103ec3764cf944a704e977fe1398c" class="m-doc">OdomState::<wbr />str</a>(1_in, &quot;_in&quot;, 1_deg, &quot;_deg&quot;)</code> or <code><a href="structokapi_1_1OdomState.html#a5c7103ec3764cf944a704e977fe1398c" class="m-doc">OdomState::<wbr />str</a>(1_in, &quot;\&quot;&quot;, 1_deg, &quot;°&quot;)&lt;/tt&gt;: to print values in inches and degrees with different suffixes.
+  - &lt;tt&gt;OdomState::str(6_tile / 100, &quot;%&quot;, 360_deg / 100, &quot;%&quot;)</code> to get the distance values in % of the vex field, and angle values in % of a full rotation.</li></ul>
           </div></section>
         </section>
       </div>
