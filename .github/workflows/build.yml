@@ -30,10 +30,10 @@ jobs:
         run: |
           wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
           tar xf gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
-          echo "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi" >> $GITHUB_PATH
+          echo "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin/" >> $GITHUB_PATH
 
       - name: Install dependencies
-        run: sudo apt install -y lcov
+        run: sudo apt-get install -y lcov
 
       - uses: actions/checkout@v3
         with:
