@@ -4,6 +4,9 @@
     [Released under MIT License. Please refer to license.txt for details]
 ========================================== */
 
+#ifndef INCLUDE_UNITY_UNITY
+#define INCLUDE_UNITY_UNITY
+
 #ifndef INCLUDE_TEST_TESTS_IMPL_UNITY
 #define INCLUDE_TEST_TESTS_IMPL_UNITY
 #define UNITY
@@ -659,3 +662,6 @@ void verifyTest(void);
 }
 #endif
 #endif /* INCLUDE_TEST_TESTS_IMPL_UNITY */
+
+
+#endif /* INCLUDE_UNITY_UNITY */

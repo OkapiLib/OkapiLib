@@ -4,8 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "pros/rtos.hpp"
-#include "test/tests/impl/unity.h"
-#include "api.h"
+#include "unity/unity.h"
 
 void setUp(void) {
     // set stuff up here

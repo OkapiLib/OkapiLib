@@ -4,6 +4,9 @@
     [Released under MIT License. Please refer to license.txt for details]
 ========================================== */
 
+#ifndef INCLUDE_UNITY_UNITY_INTERNALS
+#define INCLUDE_UNITY_UNITY_INTERNALS
+
 #ifndef INCLUDE_TEST_UNITY_INTERNALS
 #define INCLUDE_TEST_UNITY_INTERNALS
 
@@ -1037,3 +1040,6 @@ int UnityTestMatches(void);
 
 /* End of UNITY_INTERNALS_H */
 #endif /* INCLUDE_TEST_UNITY_INTERNALS */
+
+
+#endif /* INCLUDE_UNITY_UNITY_INTERNALS */

@@ -14,7 +14,7 @@ jobs:
       group: "embedded_test @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
       cancel-in-progress: false
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v3
@@ -55,10 +55,11 @@ jobs:
 
       - name: Create test project
         run: |
-          prosv5 c f okapilib@*.zip
-          prosv5 c n embedded_test
-          cp -rf embedded_test_src/* embedded_test/src/
-      
+          pros c f okapilib@*.zip
+          pros c n embedded_test
+          cp -rf src/embedded_test_src/* embedded_test/src/
+          cp -rf include/unity embedded_test/include/
+
       - name: Run embedded tests
         run: |
           cd embedded_test
@@ -117,7 +118,7 @@ jobs:
         with:
           persist-credentials: true
           submodules: recursive
-      
+
       - name: Install dependencies
         run: |
           sudo apt-get install -y doxygen
