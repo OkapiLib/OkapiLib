@@ -82,7 +82,7 @@ jobs:
           tar xf gcc-arm-none-eabi-${{ matrix.toolchain-version }}-x86_64-linux.tar.xz
 
       - name: Set toolchain path
-        run: echo "$GITHUB_WORKSPACE/gcc-arm-${{ matrix.toolchain-version }}-x86_64-arm-none-eabi/bin" >> $GITHUB_PATH
+        run: echo "$GITHUB_WORKSPACE/gcc-arm-none-eabi-${{ matrix.toolchain-version }}/bin" >> $GITHUB_PATH
 
       - name: Install pros-cli
         run: python3 -m pip install --user pros-cli
