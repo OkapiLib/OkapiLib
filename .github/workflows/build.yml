@@ -21,7 +21,7 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - run: pros v5 info
-      - run: pros t
+      - run: echo '' | pros t
 
   # security_scan:
   #   permissions:
