@@ -47,62 +47,65 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
 
-  # embedded_test:
-  #   concurrency:
-  #     group: "embedded_test @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
-  #     cancel-in-progress: false
+  embedded_test:
+    concurrency:
+      group: "embedded_test @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+      cancel-in-progress: false
 
-  #   runs-on: self-hosted
-  #   needs: [security_scan]
+    permissions:
+      contents: read
 
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         persist-credentials: false
-  #         submodules: recursive
+    runs-on: self-hosted
+    needs: [security_scan]
 
-  #     - name: Cache toolchain
-  #       uses: actions/cache@v3
-  #       id: cache-toolchain
-  #       with:
-  #         key: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
-  #         path: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          submodules: recursive
 
-  #     - name: Install toolchain
-  #       if: ${{ steps.cache-toolchain.outputs.cache-hit != 'true' }}
-  #       run: |
-  #         wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
-  #         tar xf gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
+      - name: Cache toolchain
+        uses: actions/cache@v3
+        id: cache-toolchain
+        with:
+          key: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
+          path: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
 
-  #     - name: Set toolchain path
-  #       run: echo "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin" >> $GITHUB_PATH
+      - name: Install toolchain
+        if: ${{ steps.cache-toolchain.outputs.cache-hit != 'true' }}
+        run: |
+          wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
+          tar xf gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
 
-  #     - name: Install dependencies
-  #       run: sudo apt-get install -y lcov
+      - name: Set toolchain path
+        run: echo "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin" >> $GITHUB_PATH
 
-  #     - name: Install pros-cli
-  #       run: python3 -m pip install --user pros-cli
+      - name: Install dependencies
+        run: sudo apt-get install -y lcov
 
-  #     - name: Make Template
-  #       run: make template
+      - name: Install pros-cli
+        run: python3 -m pip install --user pros-cli
 
-  #     - name: Upload template to cache
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: template
-  #         path: okapilib@*.zip
+      - name: Make Template
+        run: make template
 
-  #     - name: Create test project
-  #       run: |
-  #         pros c f okapilib@*.zip
-  #         pros c n embedded_test
-  #         cp -rf src/embedded_test_src/* embedded_test/src/
-  #         cp -rf include/unity embedded_test/include/
+      - name: Upload template to cache
+        uses: actions/upload-artifact@v3
+        with:
+          name: template
+          path: okapilib@*.zip
 
-  #     - name: Run embedded tests
-  #       run: |
-  #         cd embedded_test
-  #         pros mut
+      - name: Create test project
+        run: |
+          pros c f okapilib@*.zip
+          pros c n embedded_test
+          cp -rf src/embedded_test_src/* embedded_test/src/
+          cp -rf include/unity embedded_test/include/
+
+      - name: Run embedded tests
+        run: |
+          cd embedded_test
+          pros mut
 
   test:
     concurrency:
