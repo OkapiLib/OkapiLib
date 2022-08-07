@@ -17,6 +17,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          submodules: recursive
+
       - name: Cache toolchain
         uses: actions/cache@v3
         id: cache-toolchain
@@ -30,7 +35,7 @@ jobs:
         run: |
           wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
           tar xf gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
-        
+
       - run: ls $GITHUB_WORKSPACE
       - run: ls $GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
       - run: ls $GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin
@@ -43,17 +48,12 @@ jobs:
       - run: |
           export PATH=$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:$PATH
           arm-none-eabi-g++ --version
-      
+
       - run: arm-none-eabi-g++ --version
       - run: sh -c 'arm-none-eabi-g++ --version'
 
       - name: Install dependencies
         run: sudo apt-get install -y lcov
-
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          submodules: recursive
 
       - name: Make Template
         run: |
