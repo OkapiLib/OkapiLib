@@ -78,7 +78,7 @@ jobs:
       - name: Install toolchain
         if: ${{ steps.cache-toolchain.outputs.cache-hit != 'true' }}
         run: |
-          wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/${{ matrix.toolchain-version }}/gcc-arm-none-eabi-${{ matrix.toolchain-version }}-x86_64-linux.tar.bz2
+          wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/${{ matrix.toolchain-version }}/gcc-arm-none-eabi-${{ matrix.toolchain-version }}-x86_64-linux.tar.xz
           tar xf gcc-arm-${{ matrix.toolchain-version }}-x86_64-arm-none-eabi.tar.xz
 
       - name: Set toolchain path
