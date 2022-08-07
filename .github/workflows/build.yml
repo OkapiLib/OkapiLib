@@ -119,7 +119,7 @@ jobs:
           submodules: recursive
 
       - name: Install dependencies
-        run: sudo apt-get install -y lcov
+        run: sudo apt-get install -y lcov valgrind
 
       - name: Compile
         run: |
