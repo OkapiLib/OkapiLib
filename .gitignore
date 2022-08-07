@@ -24,3 +24,4 @@ build/
 src/squiggles/
 include/okapi/squiggles/
 verify-template/
+.cache/

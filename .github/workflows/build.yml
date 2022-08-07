@@ -9,10 +9,10 @@ on:
       - "master"
 
 jobs:
-  build_template:
+  embedded_test:
     concurrency:
-      group: "build_template @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
-      cancel-in-progress: true
+      group: "embedded_test @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+      cancel-in-progress: false
 
     runs-on: ubuntu-latest
 
@@ -47,16 +47,22 @@ jobs:
       - name: Make Template
         run: make template
 
-      - name: Verify Template
-        run: |
-          prosv5 c f okapilib@*.zip
-          prosv5 c n verify-template
-
       - name: Upload template to cache
         uses: actions/upload-artifact@v3
         with:
           name: template
           path: okapilib@*.zip
+
+      - name: Create test project
+        run: |
+          prosv5 c f okapilib@*.zip
+          prosv5 c n embedded_test
+          cp -rf embedded_test_src/* embedded_test/src/
+      
+      - name: Run embedded tests
+        run: |
+          cd embedded_test
+          pros mut
 
   test:
     concurrency:
@@ -84,6 +90,10 @@ jobs:
         working-directory: cmake-build-debug
         run: ./OkapiLibV5
 
+      - name: Valgrind
+        working-directory: cmake-build-debug
+        run: valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
+
       - name: Collect Coverage
         run: |
           lcov --directory . --capture --output-file coverage.info
@@ -95,36 +105,10 @@ jobs:
         with:
           fail_ci_if_error: true
 
-  valgrind:
-    concurrency:
-      group: "valgrind @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
-      cancel-in-progress: true
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          submodules: recursive
-
-      - name: Install dependencies
-        run: sudo apt-get install -y lcov valgrind
-
-      - name: Compile
-        run: |
-          mkdir -p cmake-build-debug && cd cmake-build-debug
-          cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
-          cmake --build . --target OkapiLibV5 -- -j 2
-
-      - name: Valgrind
-        working-directory: cmake-build-debug
-        run: valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
-
   docs:
     concurrency:
       group: "docs @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
-      cancel-in-progress: true
+      cancel-in-progress: false
 
     runs-on: ubuntu-latest
 

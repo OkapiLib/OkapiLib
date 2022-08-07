@@ -23,7 +23,7 @@ USE_PACKAGE:=0
 IS_LIBRARY:=1
 LIBNAME:=okapilib
 VERSION:=4.8.0
-EXCLUDE_SRC_FROM_LIB=$(call rwildcard,$(SRCDIR)/test,*.*)
+EXCLUDE_SRC_FROM_LIB=$(call rwildcard,$(SRCDIR)/embedded_test_src,*.*)
 # this line excludes opcontrol.c and similar files
 EXCLUDE_SRC_FROM_LIB+= $(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize $(SRCDIR)/autonomous $(SRCDIR)/main,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
 
