@@ -111,7 +111,7 @@ jobs:
           make
           pros u --slot 1
           pros v5 run 1
-          python3 ../run_tests.py
+          python3 ../run_terminal.py
 
   test:
     concurrency:

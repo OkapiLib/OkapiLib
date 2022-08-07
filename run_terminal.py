@@ -46,7 +46,7 @@ class OutStream:
 # Start the subprocess.
 out_r, out_w = pty.openpty()
 err_r, err_w = pty.openpty()
-proc = subprocess.Popen(["pros", "t"], stdout=out_w, stderr=err_w)
+proc = subprocess.Popen(["pros", "t"], shell=True, stdout=out_w, stderr=err_w)
 os.close(out_w)  # if we do not write to process, close these.
 os.close(err_w)
 
