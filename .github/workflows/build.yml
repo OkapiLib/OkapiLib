@@ -45,6 +45,7 @@ jobs:
           arm-none-eabi-g++ --version
       
       - run: arm-none-eabi-g++ --version
+      - run: sh -c 'arm-none-eabi-g++ --version'
 
       - name: Install dependencies
         run: sudo apt-get install -y lcov
