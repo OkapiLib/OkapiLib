@@ -15,6 +15,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Install pros-cli
+        run: |
+          python3 -m pip install --user pros-cli
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
       - run: |
           pros t
 
