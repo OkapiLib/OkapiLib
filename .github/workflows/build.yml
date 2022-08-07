@@ -9,30 +9,6 @@ on:
       - "master"
 
 jobs:
-  test_terminal:
-    permissions:
-      contents: read
-
-    runs-on: self-hosted
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          submodules: recursive
-
-      - name: Install pros-cli
-        run: |
-          python3 -m pip install --user pros-cli
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
-
-      - run: |
-          cd embedded_test
-          make
-          pros u --slot 1
-          pros v5 run 1
-          tail -f /dev/ttyACM0
-
   # security_scan:
   #   permissions:
   #     actions: read
@@ -71,71 +47,71 @@ jobs:
   #     - name: Perform CodeQL Analysis
   #       uses: github/codeql-action/analyze@v2
 
-  # embedded_test:
-  #   concurrency:
-  #     group: "embedded_test @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
-  #     cancel-in-progress: false
+  embedded_test:
+    concurrency:
+      group: "embedded_test @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+      cancel-in-progress: false
 
-  #   permissions:
-  #     contents: read
+    permissions:
+      contents: read
 
-  #   runs-on: self-hosted
-  #   needs: [security_scan]
-  #   strategy:
-  #     matrix:
-  #       toolchain-version: ["10.3-2021.10"]
+    runs-on: self-hosted
+    # needs: [security_scan]
+    strategy:
+      matrix:
+        toolchain-version: ["10.3-2021.10"]
 
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         persist-credentials: false
-  #         submodules: recursive
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          submodules: recursive
 
-  #     - name: Cache toolchain
-  #       uses: actions/cache@v3
-  #       id: cache-toolchain
-  #       with:
-  #         key: gcc-arm-${{ matrix.toolchain-version }}-x86_64-arm-none-eabi
-  #         path: gcc-arm-${{ matrix.toolchain-version }}-x86_64-arm-none-eabi
+      - name: Cache toolchain
+        uses: actions/cache@v3
+        id: cache-toolchain
+        with:
+          key: gcc-arm-${{ matrix.toolchain-version }}-x86_64-arm-none-eabi
+          path: gcc-arm-${{ matrix.toolchain-version }}-x86_64-arm-none-eabi
 
-  #     # get versions from https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/downloads
-  #     - name: Install toolchain
-  #       if: ${{ steps.cache-toolchain.outputs.cache-hit != 'true' }}
-  #       run: |
-  #         wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/${{ matrix.toolchain-version }}/gcc-arm-none-eabi-${{ matrix.toolchain-version }}-x86_64-linux.tar.xz
-  #         tar xf gcc-arm-none-eabi-${{ matrix.toolchain-version }}-x86_64-linux.tar.xz
+      # get versions from https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/downloads
+      - name: Install toolchain
+        if: ${{ steps.cache-toolchain.outputs.cache-hit != 'true' }}
+        run: |
+          wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/${{ matrix.toolchain-version }}/gcc-arm-none-eabi-${{ matrix.toolchain-version }}-x86_64-linux.tar.xz
+          tar xf gcc-arm-none-eabi-${{ matrix.toolchain-version }}-x86_64-linux.tar.xz
 
-  #     - name: Set toolchain path
-  #       run: echo "$GITHUB_WORKSPACE/gcc-arm-none-eabi-${{ matrix.toolchain-version }}/bin" >> $GITHUB_PATH
+      - name: Set toolchain path
+        run: echo "$GITHUB_WORKSPACE/gcc-arm-none-eabi-${{ matrix.toolchain-version }}/bin" >> $GITHUB_PATH
 
-  #     - name: Install pros-cli
-  #       run: |
-  #         python3 -m pip install --user pros-cli
-  #         echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Install pros-cli
+        run: |
+          python3 -m pip install --user pros-cli
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-  #     - name: Make Template
-  #       run: make template
+      - name: Make Template
+        run: make template
 
-  #     - name: Upload template to cache
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: template
-  #         path: okapilib@*.zip
+      - name: Upload template to cache
+        uses: actions/upload-artifact@v3
+        with:
+          name: template
+          path: okapilib@*.zip
 
-  #     - name: Create test project
-  #       run: |
-  #         pros c f okapilib@*.zip
-  #         pros c n embedded_test
-  #         cp -rf embedded_test_src/* embedded_test/src/
-  #         cp -rf include/unity embedded_test/include/
+      - name: Create test project
+        run: |
+          pros c f okapilib@*.zip
+          pros c n embedded_test
+          cp -rf embedded_test_src/* embedded_test/src/
+          cp -rf include/unity embedded_test/include/
 
-  #     - name: Run embedded tests
-  #       run: |
-  #         cd embedded_test
-  #         make
-  #         pros u --slot 1
-  #         pros v5 run 1
-  #         python3 ../run_terminal.py
+      - name: Run embedded tests
+        run: |
+          cd embedded_test
+          make
+          pros u --slot 1
+          pros v5 run 1
+          tail -f /dev/ttyACM0
 
   # test:
   #   concurrency:
