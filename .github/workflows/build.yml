@@ -48,7 +48,9 @@ jobs:
           submodules: recursive
 
       - name: Make Template
-        run: make template
+        run: |
+          export PATH=$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:$PATH
+          make template
 
       - name: Verify Template
         run: |
