@@ -23,7 +23,11 @@ jobs:
         with:
           key: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
           path: |
-            "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi"
+            "${{ github.workspace }}/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi"
+
+        run: pwd
+        
+        run: echo "$GITHUB_WORKSPACE"
 
       - name: Install toolchain
         if: ${{ steps.cache-toolchain.outputs.cache-hit != 'true' }}
