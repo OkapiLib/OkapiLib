@@ -34,6 +34,7 @@ jobs:
       - run: ls $GITHUB_WORKSPACE
       - run: ls $GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
       - run: ls $GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin
+      - run: $GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin/arm-none-eabi-g++ --version
       # - run: mv "$(pwd)/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi" "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi"
 
       - name: Set toolchain path
