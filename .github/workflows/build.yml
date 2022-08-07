@@ -80,9 +80,6 @@ jobs:
       - name: Set toolchain path
         run: echo "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin" >> $GITHUB_PATH
 
-      - name: Install dependencies
-        run: sudo apt-get install -y lcov
-
       - name: Install pros-cli
         run: python3 -m pip install --user pros-cli
 
