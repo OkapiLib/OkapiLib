@@ -19,17 +19,21 @@ jobs:
     steps:
       - name: Cache toolchain
         uses: actions/cache@v3
+        id: cache-toolchain
         with:
           key: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
           path: |
             "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi"
 
       - name: Install toolchain
-        if: ${{ steps.cache-npm.outputs.cache-hit == 'false' }}
+        if: ${{ steps.cache-toolchain.outputs.cache-hit == 'false' }}
         run: |
           wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
           tar xf gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
           echo "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: sudo apt install -y lcov
 
       - uses: actions/checkout@v3
         with:
