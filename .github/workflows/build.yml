@@ -25,9 +25,9 @@ jobs:
           path: |
             "${{ github.workspace }}/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi"
 
-        run: pwd
+      - run: pwd
         
-        run: echo "$GITHUB_WORKSPACE"
+      - run: echo "$GITHUB_WORKSPACE"
 
       - name: Install toolchain
         if: ${{ steps.cache-toolchain.outputs.cache-hit != 'true' }}
