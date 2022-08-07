@@ -71,6 +71,9 @@ jobs:
           persist-credentials: false
           submodules: recursive
 
+      - name: Install dependencies
+        run: sudo apt-get install -y lcov
+
       - name: Compile
         run: |
           mkdir -p cmake-build-debug && cd cmake-build-debug
@@ -107,6 +110,9 @@ jobs:
         with:
           persist-credentials: false
           submodules: recursive
+
+      - name: Install dependencies
+        run: sudo apt-get install -y lcov
 
       - name: Compile
         run: |
