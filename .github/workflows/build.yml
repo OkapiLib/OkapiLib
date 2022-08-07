@@ -10,18 +10,28 @@ on:
 
 jobs:
   test_terminal:
-    permissions: {}
+    permissions:
+      contents: read
 
     runs-on: self-hosted
 
     steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          submodules: recursive
+
       - name: Install pros-cli
         run: |
           python3 -m pip install --user pros-cli
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - run: pros v5 status
-      - run: echo '' | pros t > out.txt
+      - run: |
+          cd embedded_test
+          make
+          pros u --slot 1
+          pros v5 run 1
+          tail -f /dev/ttyACM0
 
   # security_scan:
   #   permissions:
