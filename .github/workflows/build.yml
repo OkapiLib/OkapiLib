@@ -9,12 +9,13 @@ on:
       - "master"
 
 jobs:
-  embedded_test:
-    concurrency:
-      group: "embedded_test @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
-      cancel-in-progress: false
+  security_scan:
+    runs-on: ubuntu-latest
 
-    runs-on: self-hosted
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
 
     steps:
       - uses: actions/checkout@v3
@@ -22,48 +23,86 @@ jobs:
           persist-credentials: false
           submodules: recursive
 
-      - name: Cache toolchain
-        uses: actions/cache@v3
-        id: cache-toolchain
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
         with:
-          key: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
-          path: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
+          languages: ${{ matrix.language }}
+          # If you wish to specify custom queries, you can do so here or in a config file.
+          # By default, queries listed here will override any specified in a config file.
+          # Prefix the list here with "+" to use these queries and those in the config file.
 
-      - name: Install toolchain
-        if: ${{ steps.cache-toolchain.outputs.cache-hit != 'true' }}
-        run: |
-          wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
-          tar xf gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
-
-      - name: Set toolchain path
-        run: echo "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin" >> $GITHUB_PATH
+          # Details on CodeQL's query packs refer to : https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
+          # queries: security-extended,security-and-quality
 
       - name: Install dependencies
         run: sudo apt-get install -y lcov
 
-      - name: Install pros-cli
-        run: python3 -m pip install --user pros-cli
-
-      - name: Make Template
-        run: make template
-
-      - name: Upload template to cache
-        uses: actions/upload-artifact@v3
-        with:
-          name: template
-          path: okapilib@*.zip
-
-      - name: Create test project
+      - name: Compile
         run: |
-          pros c f okapilib@*.zip
-          pros c n embedded_test
-          cp -rf src/embedded_test_src/* embedded_test/src/
-          cp -rf include/unity embedded_test/include/
+          mkdir -p cmake-build-debug && cd cmake-build-debug
+          cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
+          cmake --build . --target OkapiLibV5 -- -j 2
 
-      - name: Run embedded tests
-        run: |
-          cd embedded_test
-          pros mut
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+
+  # embedded_test:
+  #   concurrency:
+  #     group: "embedded_test @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+  #     cancel-in-progress: false
+
+  #   runs-on: self-hosted
+  #   needs: [security_scan]
+
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         persist-credentials: false
+  #         submodules: recursive
+
+  #     - name: Cache toolchain
+  #       uses: actions/cache@v3
+  #       id: cache-toolchain
+  #       with:
+  #         key: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
+  #         path: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
+
+  #     - name: Install toolchain
+  #       if: ${{ steps.cache-toolchain.outputs.cache-hit != 'true' }}
+  #       run: |
+  #         wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
+  #         tar xf gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
+
+  #     - name: Set toolchain path
+  #       run: echo "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin" >> $GITHUB_PATH
+
+  #     - name: Install dependencies
+  #       run: sudo apt-get install -y lcov
+
+  #     - name: Install pros-cli
+  #       run: python3 -m pip install --user pros-cli
+
+  #     - name: Make Template
+  #       run: make template
+
+  #     - name: Upload template to cache
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: template
+  #         path: okapilib@*.zip
+
+  #     - name: Create test project
+  #       run: |
+  #         pros c f okapilib@*.zip
+  #         pros c n embedded_test
+  #         cp -rf src/embedded_test_src/* embedded_test/src/
+  #         cp -rf include/unity embedded_test/include/
+
+  #     - name: Run embedded tests
+  #       run: |
+  #         cd embedded_test
+  #         pros mut
 
   test:
     concurrency:
@@ -71,6 +110,7 @@ jobs:
       cancel-in-progress: true
 
     runs-on: ubuntu-latest
+    needs: [security_scan]
 
     steps:
       - uses: actions/checkout@v3
@@ -112,6 +152,7 @@ jobs:
       cancel-in-progress: false
 
     runs-on: ubuntu-latest
+    needs: [security_scan]
 
     steps:
       - uses: actions/checkout@v3
