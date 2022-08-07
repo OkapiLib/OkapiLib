@@ -56,7 +56,9 @@ jobs:
 
       - name: Make Template
         run: |
-          export PATH=$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:$PATH
+          arm-none-eabi-gcc --version
+          arm-none-eabi-g++ --version
+          make
           make template
 
       - name: Verify Template
