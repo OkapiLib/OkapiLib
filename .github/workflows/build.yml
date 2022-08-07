@@ -95,9 +95,6 @@ jobs:
         with:
           fail_ci_if_error: true
 
-      - name: Build Docs
-        run: ./run_doxygen.sh
-
   valgrind:
     concurrency:
       group: "valgrind @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
@@ -112,7 +109,7 @@ jobs:
           submodules: recursive
 
       - name: Install dependencies
-        run: sudo apt-get install -y lcov
+        run: sudo apt-get install -y lcov valgrind
 
       - name: Compile
         run: |
@@ -136,6 +133,9 @@ jobs:
         with:
           persist-credentials: true
           submodules: recursive
+      
+      - name: Install dependencies
+        run: python3 -m pip install --user jinja2 pygments
 
       - name: Build Docs
         run: ./run_doxygen.sh
