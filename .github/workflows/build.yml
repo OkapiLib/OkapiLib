@@ -1,0 +1,148 @@
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - "master"
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build_template:
+    concurrency:
+      group: "build_template @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+      cancel-in-progress: true
+
+    runs-on: ubuntu-latest
+    container:
+      image: okapilib/ubuntu-base:18.04
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          submodules: recursive
+
+      - name: Make Template
+        run: make template
+
+      - name: Verify Template
+        run: |
+          prosv5 c f okapilib@*.zip
+          prosv5 c n verify-template
+
+      - name: Upload template to cache
+        uses: actions/upload-artifact@v3
+        with:
+          name: template
+          path: okapilib@*.zip
+
+  test:
+    concurrency:
+      group: "test @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+      cancel-in-progress: true
+
+    runs-on: ubuntu-latest
+    container:
+      image: okapilib/ubuntu-base:18.04
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          submodules: recursive
+
+      - name: Compile
+        env:
+          CC: gcc-7
+          CXX: g++-7
+        run: |
+          mkdir -p cmake-build-debug && cd cmake-build-debug
+          cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
+          cmake --build . --target OkapiLibV5 -- -j 2
+
+      - name: Test
+        working-directory: cmake-build-debug
+        run: ./OkapiLibV5
+
+      - name: Collect Coverage
+        run: |
+          lcov --directory . --capture --output-file coverage.info
+          lcov --remove coverage.info '/usr/*' --output-file coverage.info
+          lcov --list coverage.info
+
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+
+      - name: Build Docs
+        run: ./run_doxygen.sh
+
+  valgrind:
+    concurrency:
+      group: "valgrind @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+      cancel-in-progress: true
+
+    runs-on: ubuntu-latest
+    container:
+      image: okapilib/ubuntu-base:18.04
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          submodules: recursive
+
+      - name: Compile
+        env:
+          CC: gcc-7
+          CXX: g++-7
+        run: |
+          mkdir -p cmake-build-debug && cd cmake-build-debug
+          cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
+          cmake --build . --target OkapiLibV5 -- -j 2
+
+      - name: Valgrind
+        working-directory: cmake-build-debug
+        run: valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
+
+  docs:
+    concurrency:
+      group: "docs @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+      cancel-in-progress: true
+
+    runs-on: ubuntu-latest
+    container:
+      image: okapilib/ubuntu-base:18.04
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+          submodules: recursive
+
+      - name: Build Docs
+        run: ./run_doxygen.sh
+
+      - name: Commit Changes
+        if: ${{ success() && github.ref == 'refs/heads/master' }}
+        run: |
+          rm -rf /tmp/html
+          cp -r html /tmp/
+          git config --local user.name "OkapiLibBot"
+          git config --local user.email "octogonapus@okapilib.org"
+          git checkout gh-pages
+          rm -rf *
+          cp -r /tmp/html/* .
+          git add .
+          git commit -m "Publishing GitHub Pages"
+
+      - name: Push changes
+        if: ${{ success() && github.ref == 'refs/heads/master' }}
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          force: true
