@@ -27,7 +27,7 @@ jobs:
         id: cache-toolchain
         with:
           key: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
-          path: "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi"
+          path: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
 
       - name: Install toolchain
         if: ${{ steps.cache-toolchain.outputs.cache-hit != 'true' }}
@@ -135,7 +135,9 @@ jobs:
           submodules: recursive
       
       - name: Install dependencies
-        run: python3 -m pip install --user jinja2 pygments
+        run: |
+          sudo apt-get install -y doxygen
+          python3 -m pip install --user jinja2 pygments
 
       - name: Build Docs
         run: ./run_doxygen.sh
