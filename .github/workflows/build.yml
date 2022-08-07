@@ -20,8 +20,8 @@ jobs:
           python3 -m pip install --user pros-cli
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - run: |
-          sh -c 'pros t'
+      - run: pros v5 info
+      - run: pros t
 
   # security_scan:
   #   permissions:
