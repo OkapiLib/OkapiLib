@@ -102,7 +102,7 @@ jobs:
         run: |
           pros c f okapilib@*.zip
           pros c n embedded_test
-          cp -rf src/embedded_test_src/* embedded_test/src/
+          cp -rf embedded_test_src/* embedded_test/src/
           cp -rf include/unity embedded_test/include/
 
       - name: Run embedded tests
