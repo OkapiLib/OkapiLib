@@ -36,12 +36,6 @@ jobs:
           wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
           tar xf gcc-arm-11.2-2022.02-x86_64-arm-none-eabi.tar.xz
 
-      - run: ls $GITHUB_WORKSPACE
-      - run: ls $GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
-      - run: ls $GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin
-      - run: $GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin/arm-none-eabi-g++ --version
-      # - run: mv "$(pwd)/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi" "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi"
-
       - name: Set toolchain path
         run: echo "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin" >> $GITHUB_PATH
 
@@ -55,12 +49,11 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get install -y lcov
 
+      - name: Install pros-cli
+        run: python3 -m pip install --user pros-cli
+
       - name: Make Template
-        run: |
-          arm-none-eabi-gcc --version
-          arm-none-eabi-g++ --version
-          make
-          make template
+        run: make template
 
       - name: Verify Template
         run: |
@@ -79,8 +72,6 @@ jobs:
       cancel-in-progress: true
 
     runs-on: ubuntu-latest
-    container:
-      image: okapilib/ubuntu-base:18.04
 
     steps:
       - uses: actions/checkout@v3
@@ -89,9 +80,6 @@ jobs:
           submodules: recursive
 
       - name: Compile
-        env:
-          CC: gcc-7
-          CXX: g++-7
         run: |
           mkdir -p cmake-build-debug && cd cmake-build-debug
           cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
@@ -121,8 +109,6 @@ jobs:
       cancel-in-progress: true
 
     runs-on: ubuntu-latest
-    container:
-      image: okapilib/ubuntu-base:18.04
 
     steps:
       - uses: actions/checkout@v3
@@ -131,9 +117,6 @@ jobs:
           submodules: recursive
 
       - name: Compile
-        env:
-          CC: gcc-7
-          CXX: g++-7
         run: |
           mkdir -p cmake-build-debug && cd cmake-build-debug
           cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
@@ -149,8 +132,6 @@ jobs:
       cancel-in-progress: true
 
     runs-on: ubuntu-latest
-    container:
-      image: okapilib/ubuntu-base:18.04
 
     steps:
       - uses: actions/checkout@v3
