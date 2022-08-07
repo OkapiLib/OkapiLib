@@ -21,7 +21,7 @@ jobs:
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - run: |
-          pros t
+          sh -c 'pros t'
 
   # security_scan:
   #   permissions:
