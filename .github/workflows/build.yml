@@ -108,7 +108,10 @@ jobs:
       - name: Run embedded tests
         run: |
           cd embedded_test
-          pros mut
+          make
+          pros u --slot 1
+          pros v5 run 1
+          python3 run_tests.py
 
   test:
     concurrency:

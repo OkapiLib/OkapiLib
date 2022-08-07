@@ -24,7 +24,7 @@ void test_function_should_doAlsoDoBlah(void) {
 
 // not needed when using generate_test_runner.rb
 void opcontrol() {
-  pros::delay(1000);
+  pros::delay(10000);
   UNITY_BEGIN();
   RUN_TEST(test_function_should_doBlahAndBlah);
   RUN_TEST(test_function_should_doAlsoDoBlah);
