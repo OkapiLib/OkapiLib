@@ -27,8 +27,7 @@ jobs:
         id: cache-toolchain
         with:
           key: gcc-arm-11.2-2022.02-x86_64-arm-none-eabi
-          path: |
-            "${{ github.workspace }}/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi"
+          path: "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi"
 
       - name: Install toolchain
         if: ${{ steps.cache-toolchain.outputs.cache-hit != 'true' }}
@@ -38,13 +37,6 @@ jobs:
 
       - name: Set toolchain path
         run: echo "$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin" >> $GITHUB_PATH
-
-      - run: |
-          export PATH=$GITHUB_WORKSPACE/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin:$PATH
-          arm-none-eabi-g++ --version
-
-      - run: arm-none-eabi-g++ --version
-      - run: sh -c 'arm-none-eabi-g++ --version'
 
       - name: Install dependencies
         run: sudo apt-get install -y lcov
