@@ -4,6 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 #include "main.h"
+#include "pros/apix.h"
 #include "unity/unity.h"
 
 void setUp(void) {
@@ -24,7 +25,7 @@ void test_function_should_doAlsoDoBlah(void) {
 
 // not needed when using generate_test_runner.rb
 void opcontrol() {
-  serctl(SERCTL_DISABLE_COBS, NULL);
+  pros::c::serctl(SERCTL_DISABLE_COBS, NULL);
   pros::delay(10000);
   UNITY_BEGIN();
   RUN_TEST(test_function_should_doBlahAndBlah);
