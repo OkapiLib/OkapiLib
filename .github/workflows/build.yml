@@ -111,7 +111,8 @@ jobs:
           make
           pros u --slot 1
           pros v5 run 1
-          tail -f /dev/ttyACM0
+
+      - run: tail -f /dev/ttyACM0
 
   # test:
   #   concurrency:
