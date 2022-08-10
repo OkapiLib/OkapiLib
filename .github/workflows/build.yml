@@ -108,7 +108,7 @@ jobs:
       - name: Run embedded tests
         run: |
           cd embedded_test
-          make
+          make -j2
           pros u --slot 1
           pros v5 run 1
 
