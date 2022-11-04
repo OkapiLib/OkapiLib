@@ -30,11 +30,16 @@ double RotationSensor::getVelocity() const {
   }
 }
 
-std::int32_t RotationSensor::reset() {
+std::int32_t RotationSensor::resetOld() {
   return pros::c::rotation_reset(port);
 }
 
 double RotationSensor::controllerGet() {
   return get();
 }
+
+std::int32_t RotationSensor::reset() {
+  pros::c::rotation_reset_position(port);
+}
+
 } // namespace okapi

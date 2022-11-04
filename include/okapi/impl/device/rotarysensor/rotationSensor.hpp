@@ -40,6 +40,14 @@ class RotationSensor : public ContinuousRotarySensor {
    * ``errno``.
    */
   std::int32_t reset() override;
+  
+  /**
+  * This is the old reset function that was not working properly to reset to .
+  * Method above fixes problem but I kept the old method still accessible.
+  **/
+  std::int32_t resetOld() override;
+
+
 
   /**
    * Get the sensor value for use in a control loop. This method might be automatically called in
@@ -47,6 +55,8 @@ class RotationSensor : public ContinuousRotarySensor {
    *
    * @return The same as [get](@ref okapi::RotationSensor::get).
    */
+  
+
   double controllerGet() override;
 
   /**
