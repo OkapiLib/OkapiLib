@@ -42,7 +42,7 @@ class RotationSensor : public ContinuousRotarySensor {
   std::int32_t reset() override;
   
   /**
-  * This is the old reset function that was not working properly to reset to .
+  * This is the old reset function that was not working properly to reset to.
   * Method above fixes problem but I kept the old method still accessible.
   **/
   std::int32_t resetOld() override;
