@@ -1,3 +1,5 @@
+This repository is no longer maintained; the community has made a fork here: https://github.com/purduesigbots/OkapiLib
+
 ![Test](https://github.com/OkapiLib/OkapiLib/workflows/Test/badge.svg)
 ![Docs](https://github.com/OkapiLib/OkapiLib/workflows/Docs/badge.svg)
 [![codecov](https://codecov.io/gh/OkapiLib/OkapiLib/branch/develop/graph/badge.svg)](https://codecov.io/gh/OkapiLib/OkapiLib)
