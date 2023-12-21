@@ -1,7 +1,3 @@
-[submodule "include/test/snowhouse"]
-	path = include/test/snowhouse
-	url = https://github.com/banditcpp/snowhouse
-	branch = headers-only
 [submodule "include/test/FakeIt"]
 	path = include/test/FakeIt
 	url = https://github.com/eranpeer/FakeIt.git

@@ -1,0 +1,206 @@
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - "master"
+  push:
+    branches:
+      - "master"
+
+jobs:
+  # security_scan:
+  #   permissions:
+  #     actions: read
+  #     contents: read
+  #     security-events: write
+
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         persist-credentials: false
+  #         submodules: recursive
+
+  #     # Initializes the CodeQL tools for scanning.
+  #     - name: Initialize CodeQL
+  #       uses: github/codeql-action/init@v2
+  #       with:
+  #         languages: "cpp"
+  #         # If you wish to specify custom queries, you can do so here or in a config file.
+  #         # By default, queries listed here will override any specified in a config file.
+  #         # Prefix the list here with "+" to use these queries and those in the config file.
+
+  #         # Details on CodeQL's query packs refer to : https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
+  #         # queries: security-extended,security-and-quality
+
+  #     - name: Install dependencies
+  #       run: sudo apt-get install -y lcov
+
+  #     - name: Compile
+  #       run: |
+  #         mkdir -p cmake-build-debug && cd cmake-build-debug
+  #         cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
+  #         cmake --build . --target OkapiLibV5 -- -j 2
+
+  #     - name: Perform CodeQL Analysis
+  #       uses: github/codeql-action/analyze@v2
+
+  embedded_test:
+    concurrency:
+      group: "embedded_test @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+      cancel-in-progress: false
+
+    permissions:
+      contents: read
+
+    runs-on: self-hosted
+    # needs: [security_scan]
+    strategy:
+      matrix:
+        toolchain-version: ["10.3-2021.10"]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          submodules: recursive
+
+      - name: Cache toolchain
+        uses: actions/cache@v3
+        id: cache-toolchain
+        with:
+          key: gcc-arm-${{ matrix.toolchain-version }}-x86_64-arm-none-eabi
+          path: gcc-arm-${{ matrix.toolchain-version }}-x86_64-arm-none-eabi
+
+      # get versions from https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/downloads
+      - name: Install toolchain
+        if: ${{ steps.cache-toolchain.outputs.cache-hit != 'true' }}
+        run: |
+          wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/${{ matrix.toolchain-version }}/gcc-arm-none-eabi-${{ matrix.toolchain-version }}-x86_64-linux.tar.xz
+          tar xf gcc-arm-none-eabi-${{ matrix.toolchain-version }}-x86_64-linux.tar.xz
+
+      - name: Set toolchain path
+        run: echo "$GITHUB_WORKSPACE/gcc-arm-none-eabi-${{ matrix.toolchain-version }}/bin" >> $GITHUB_PATH
+
+      - name: Install pros-cli
+        run: |
+          python3 -m pip install --user pros-cli
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Make Template
+        run: make template
+
+      - name: Upload template to cache
+        uses: actions/upload-artifact@v3
+        with:
+          name: template
+          path: okapilib@*.zip
+
+      - name: Create test project
+        run: |
+          pros c f okapilib@*.zip
+          pros c n embedded_test
+          cp -rf embedded_test_src/* embedded_test/src/
+          cp -rf include/unity embedded_test/include/
+
+      - name: Run embedded tests
+        run: |
+          cd embedded_test
+          make -j2
+          pros u --slot 1
+          pros v5 run 1
+
+      - run: tail -f /dev/ttyACM0
+
+  # test:
+  #   concurrency:
+  #     group: "test @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+  #     cancel-in-progress: true
+
+  #   permissions:
+  #     contents: read
+
+  #   runs-on: ubuntu-latest
+  #   needs: [security_scan]
+
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         persist-credentials: false
+  #         submodules: recursive
+
+  #     - name: Install dependencies
+  #       run: sudo apt-get install -y lcov valgrind
+
+  #     - name: Compile
+  #       run: |
+  #         mkdir -p cmake-build-debug && cd cmake-build-debug
+  #         cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" ..
+  #         cmake --build . --target OkapiLibV5 -- -j 2
+
+  #     - name: Test
+  #       working-directory: cmake-build-debug
+  #       run: ./OkapiLibV5
+
+  #     - name: Valgrind
+  #       working-directory: cmake-build-debug
+  #       run: valgrind --tool=memcheck --leak-check=full --leak-resolution=med --show-leak-kinds=all --undef-value-errors=yes --track-origins=yes  --error-exitcode=1 --show-reachable=no ./OkapiLibV5
+
+  #     - name: Collect Coverage
+  #       run: |
+  #         lcov --directory . --capture --output-file coverage.info
+  #         lcov --remove coverage.info '/usr/*' --output-file coverage.info
+  #         lcov --list coverage.info
+
+  #     - name: Upload Coverage
+  #       uses: codecov/codecov-action@v1
+  #       with:
+  #         fail_ci_if_error: true
+
+  # docs:
+  #   concurrency:
+  #     group: "docs @ ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+  #     cancel-in-progress: false
+
+  #   permissions:
+  #     contents: write
+
+  #   runs-on: ubuntu-latest
+  #   needs: [security_scan]
+
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         persist-credentials: true
+  #         submodules: recursive
+
+  #     - name: Install dependencies
+  #       run: |
+  #         sudo apt-get install -y doxygen
+  #         python3 -m pip install --user jinja2 pygments
+
+  #     - name: Build Docs
+  #       run: ./run_doxygen.sh
+
+  #     - name: Commit Changes
+  #       if: ${{ success() && github.ref == 'refs/heads/master' }}
+  #       run: |
+  #         rm -rf /tmp/html
+  #         cp -r html /tmp/
+  #         git config --local user.name "OkapiLibBot"
+  #         git config --local user.email "octogonapus@okapilib.org"
+  #         git checkout gh-pages
+  #         rm -rf *
+  #         cp -r /tmp/html/* .
+  #         git add .
+  #         git commit -m "Publishing GitHub Pages"
+
+  #     - name: Push changes
+  #       if: ${{ success() && github.ref == 'refs/heads/master' }}
+  #       uses: ad-m/github-push-action@master
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         branch: gh-pages
+  #         force: true
